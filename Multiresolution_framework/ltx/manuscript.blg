@@ -1,97 +1,57 @@
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: manuscript.aux
 The style file: IEEEtran.bst
-I couldn't open database file ../../../Papers/SpatioTemporalSystems.bib
----line 105 of file manuscript.aux
- : \bibdata{IEEEabrv,../../../Papers/SpatioTemporalSystems
- :                                                        ,../../../Papers/Wavelet}
-I'm skipping whatever remains of this command
 Reallocated wiz_functions (elt_size=4) to 6000 items from 140733193391032.
 Database file #1: IEEEabrv.bib
-Warning--I didn't find a database entry for "Schofield2002"
-Warning--I didn't find a database entry for "Xu2005"
-Warning--I didn't find a database entry for "Romanowicz2006"
-Warning--I didn't find a database entry for "Bond-Lamberty2005"
-Warning--I didn't find a database entry for "Deng2005"
-Warning--I didn't find a database entry for "Kuo2009"
-Warning--I didn't find a database entry for "Sun2005"
-Warning--I didn't find a database entry for "Wolfram1984"
-Warning--I didn't find a database entry for "Billings2002"
-Warning--I didn't find a database entry for "Wei2009"
-Warning--I didn't find a database entry for "Pfeifer1980"
-Warning--I didn't find a database entry for "Glasbey2008"
-Warning--I didn't find a database entry for "Dewar2007"
-Warning--I didn't find a database entry for "Kot1992"
-Warning--I didn't find a database entry for "Kot1996"
-Warning--I didn't find a database entry for "Wikle2002"
-Warning--I didn't find a database entry for "Dewar2009"
-Warning--I didn't find a database entry for "Scerri2009"
-Warning--I didn't find a database entry for "Wiens1989"
-Warning--I didn't find a database entry for "Chelton1994"
-Warning--I didn't find a database entry for "Schmidt2005"
-Warning--I didn't find a database entry for "Ribba2006"
-Warning--I didn't find a database entry for "Wilsky2002"
-Warning--I didn't find a database entry for "Mallat1989a"
-Warning--I didn't find a database entry for "Mallat1989b"
-Warning--I didn't find a database entry for "Walnut2002"
-Warning--I didn't find a database entry for "Chui1992"
-Warning--I didn't find a database entry for "Unser1993"
-Warning--I didn't find a database entry for "Unser1992"
-Warning--I didn't find a database entry for "Chui1992a"
-Warning--I didn't find a database entry for "G.P.Liu2000"
-Warning--I didn't find a database entry for "Jun2005"
-Warning--I didn't find a database entry for "Billings2006"
-Warning--I didn't find a database entry for "Meyer1992"
-Warning--I didn't find a database entry for "Mallat1998"
-Warning--I didn't find a database entry for "Goswami1999"
-Warning--I didn't find a database entry for "Gibsona2005"
-Warning--I didn't find a database entry for "Dempster1977"
-Warning--I didn't find a database entry for "McLachlan1997"
-Warning--I didn't find a database entry for "Sahu2008"
+Database file #2: MRAIDE.bib
+Repeated entry---line 88 of file MRAIDE.bib
+ : @article{Chui1992
+ :                  ,
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 0 entries,
+You've used 40 entries,
             4039 wiz_defined-function locations,
-            1286 strings with 15725 characters,
-and the built_in function-call counts, 103 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 19
-:= -- 26
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 3
+            1487 strings with 21390 characters,
+and the built_in function-call counts, 33091 in all, are:
+= -- 2856
+> -- 668
+< -- 365
++ -- 386
+- -- 94
+* -- 1626
+:= -- 4985
+add.period$ -- 80
+call.type$ -- 40
+change.case$ -- 34
+chr.to.int$ -- 792
+cite$ -- 40
+duplicate$ -- 2320
+empty$ -- 2439
+format.name$ -- 122
+if$ -- 7629
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 23
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 40
+missing$ -- 355
+newline$ -- 143
+num.names$ -- 40
+pop$ -- 638
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1
+skip$ -- 2578
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 1883
+swap$ -- 2140
+text.length$ -- 101
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 0
+type$ -- 40
 warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 22
+while$ -- 170
+width$ -- 42
+write$ -- 437
 (There was 1 error message)

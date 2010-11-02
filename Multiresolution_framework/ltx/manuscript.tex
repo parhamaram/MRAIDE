@@ -63,7 +63,13 @@
 % should be used if it is desired that the figures are to be displayed in
 % draft mode.
 
-  
+
+
+ % TO DELETE
+\newcommand{\mike}[1]{\textsf{\emph{\textbf{\textcolor{red}{#1}}}}} 
+\newcommand{\dean}[1]{\textsf{\emph{\textbf{\textcolor{green}{#1}}}}} 
+\newcommand{\parham}[1]{\textsf{\emph{\textbf{\textcolor{blue}{#1}}}}} 
+\newcommand{\ken}[1]{\textsf{\emph{\textbf{\textcolor{magenta}{#1}}}}} 
 %    \documentclass[journal,a4paper]{IEEEtran}
 %     \documentclass[10pt,twocolumn,twoside]{IEEEtran}
      \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
@@ -925,7 +931,7 @@ In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel
 where $\varepsilon$ is a threshold value and $\parallel \mathbf{A} \parallel_{F}^{(i)}$ and $ \parallel \mathbf{A} \parallel_{F}^{(i-1)}$ are the Frobenius norm  of the successive estimates of $\mathbf{A} $ matrices. It has been shown \cite{Dewar2009} that the state dimension is a critical factor in the complexity of the estimation procedure, however using the above decomposition, this is decoupled from the number of observation locations.
 % The complexity of this algorithm is $O\left(n_{x}^2n_{\theta}^2\right)+O \left(Tn_{x}^{3}\right)+O\left(Tn_{y}^3\right) $ showing that
 \section{Simulation}
-This section demonstrates the identification of the proposed IDE model. Primarily, the MRA of a synthetic model is demonstrated, which is able to represent the system at different spatial scales. In addition, the complexity of the field decomposition is shown to be independent to the number and spatial regularity of the observation locations. This allows the construction of parsimonious models using spatially dense observations, and demonstrates the utility of the approach to situations where the observations are not arranged on a regular lattice, i.e. sensor networks \cite{Sahu2008}.
+In this section, we compare the performance of the different algorithms mentioned above on a synthetic example .....This section demonstrates the identification of the proposed IDE model. Primarily, the MRA of a synthetic model is demonstrated, which is able to represent the system at different spatial scales. In addition, the complexity of the field decomposition is shown to be independent to the number and spatial regularity of the observation locations. This allows the construction of parsimonious models using spatially dense observations, and demonstrates the utility of the approach to situations where the observations are not arranged on a regular lattice, i.e. sensor networks \cite{Sahu2008}.
 \subsection{One dimensional example}
  Consider the following homogeneous multiscale spatial mixing kernel 
 \setlength{\arraycolsep}{0.0em}
@@ -1164,9 +1170,12 @@ Therefore
 % The IEEEtran BibTeX style support page is at:
 % http://www.michaelshell.org/tex/ieeetran/bibtex/
   \newpage
+% \bibliographystyle{unsrt} 
+% \bibliography{MRAIDE}
+
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
-\bibliography{IEEEabrv,../../../Papers/SpatioTemporalSystems,../../../Papers/Wavelet}
+ \bibliography{IEEEabrv,MRAIDE}
 
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
