@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2010.9.1)  2 NOV 2010 15:45
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2010.9.1)  8 NOV 2010 19:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -243,33 +243,37 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 682.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [2] [3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 813--824
+)
+
+LaTeX Warning: Citation `Rasmussen2005' on page 2 undefined on input line 686.
+
+[2] [3] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 806--817
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 813--824
+Underfull \hbox (badness 10000) in paragraph at lines 806--817
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 813--824
+Underfull \hbox (badness 10000) in paragraph at lines 806--817
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 813--824
+Underfull \hbox (badness 10000) in paragraph at lines 806--817
 
  []
 
 [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 884--886
+Underfull \hbox (badness 10000) in paragraph at lines 877--879
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 914--923
+Underfull \hbox (badness 10000) in paragraph at lines 907--916
 
  []
 
@@ -292,12 +296,12 @@ File: ./Graph/aram3200.eps Graphic file (type eps)
 <./Graph/aram3200.eps>
 File: ./Graph/aram3300.eps Graphic file (type eps)
  <./Graph/aram3300.eps>
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 959--965
+Overfull \hbox (7.9491pt too wide) in paragraph at lines 952--958
 [][] [] [] 
  []
 
 
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 959--965
+Overfull \hbox (7.9491pt too wide) in paragraph at lines 952--958
 [] [] [] 
  []
 
@@ -309,22 +313,22 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [9] [10] [11]
 File: ./Graph/aram4.eps Graphic file (type eps)
- <./Graph/aram4.eps>
+ <./Graph/aram4.eps> [12]
 File: ./Graph/aram5.eps Graphic file (type eps)
  <./Graph/aram5.eps>
 File: ./Graph/aram6a.eps Graphic file (type eps)
- <./Graph/aram6a.eps>
-File: ./Graph/aram6b.eps Graphic file (type eps)
 
-<./Graph/aram6b.eps>
+<./Graph/aram6a.eps>
+File: ./Graph/aram6b.eps Graphic file (type eps)
+ <./Graph/aram6b.eps>
 File: ./Graph/aram6c.eps Graphic file (type eps)
  <./Graph/aram6c.eps>
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 1011--1014
+Overfull \hbox (7.9491pt too wide) in paragraph at lines 1004--1007
 [][] [] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1011--1014
+Underfull \hbox (badness 10000) in paragraph at lines 1004--1007
 
  []
 
@@ -334,12 +338,12 @@ File: ./Graph/aram7b.eps Graphic file (type eps)
  <./Graph/aram7b.eps>
 File: ./Graph/aram7c.eps Graphic file (type eps)
  <./Graph/aram7c.eps>
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 1016--1019
+Overfull \hbox (7.9491pt too wide) in paragraph at lines 1009--1012
 [][] [] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1016--1019
+Underfull \hbox (badness 10000) in paragraph at lines 1009--1012
 
  []
 
@@ -349,11 +353,10 @@ File: ./Graph/aram8b.eps Graphic file (type eps)
  <./Graph/aram8b.eps>
 File: ./Graph/aram8c.eps Graphic file (type eps)
  <./Graph/aram8c.eps>
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 1021--1024
+Overfull \hbox (7.9491pt too wide) in paragraph at lines 1014--1017
 [][] [] [] 
  []
 
-[12]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -363,27 +366,32 @@ LaTeX Warning: Text page 14 contains only floats.
 
 [14]
 \c@lemma=\count109
- [15] [16] [17] (./manuscript.bbl [18]) [19] (./manuscript.aux)
+
+
+LaTeX Warning: Reference `eq:FieldCovariance' on page 15 undefined on input lin
+e 1063.
+
+[15] [16] [17] (./manuscript.bbl [18]) [19] (./manuscript.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 2.25pt have occurred.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were undefined references.
 
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 1003 ({)
-### simple group (level 1) entered at line 990 ({)
+### simple group (level 2) entered at line 996 ({)
+### simple group (level 1) entered at line 983 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 2586 strings out of 495062
- 36273 string characters out of 1182645
+ 2602 strings out of 495062
+ 36498 string characters out of 1182645
  88054 words of memory out of 3000000
- 5730 multiletter control sequences out of 15000+50000
- 37719 words of font info for 104 fonts, out of 3000000 for 9000
+ 5743 multiletter control sequences out of 15000+50000
+ 39230 words of font info for 109 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,21n,24p,1647b,328s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,21n,24p,1647b,332s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on manuscript.dvi (20 pages, 65828 bytes).
+Output written on manuscript.dvi (20 pages, 67912 bytes).

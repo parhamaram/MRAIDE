@@ -8,50 +8,51 @@ Repeated entry---line 88 of file MRAIDE.bib
  : @article{Chui1992
  :                  ,
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Rasmussen2005"
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 40 entries,
+You've used 41 entries,
             4039 wiz_defined-function locations,
-            1487 strings with 21390 characters,
-and the built_in function-call counts, 33091 in all, are:
-= -- 2856
-> -- 668
-< -- 365
-+ -- 386
-- -- 94
-* -- 1626
-:= -- 4985
-add.period$ -- 80
-call.type$ -- 40
-change.case$ -- 34
-chr.to.int$ -- 792
-cite$ -- 40
-duplicate$ -- 2320
-empty$ -- 2439
-format.name$ -- 122
-if$ -- 7629
+            1497 strings with 21557 characters,
+and the built_in function-call counts, 33865 in all, are:
+= -- 2924
+> -- 679
+< -- 374
++ -- 394
+- -- 95
+* -- 1660
+:= -- 5104
+add.period$ -- 82
+call.type$ -- 41
+change.case$ -- 35
+chr.to.int$ -- 813
+cite$ -- 41
+duplicate$ -- 2375
+empty$ -- 2497
+format.name$ -- 123
+if$ -- 7810
 int.to.chr$ -- 0
-int.to.str$ -- 40
-missing$ -- 355
-newline$ -- 143
-num.names$ -- 40
-pop$ -- 638
+int.to.str$ -- 41
+missing$ -- 362
+newline$ -- 146
+num.names$ -- 41
+pop$ -- 650
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2578
+skip$ -- 2641
 stack$ -- 0
-substring$ -- 1883
-swap$ -- 2140
-text.length$ -- 101
+substring$ -- 1933
+swap$ -- 2188
+text.length$ -- 103
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 40
+type$ -- 41
 warning$ -- 0
-while$ -- 170
-width$ -- 42
-write$ -- 437
+while$ -- 174
+width$ -- 43
+write$ -- 447
 (There was 1 error message)

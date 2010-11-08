@@ -683,16 +683,7 @@ The spatially homogeneous, linear IDE is given by
  z_{t+1}\left(\mathbf{s}\right)=\int_{\mathcal{S}}k\left(\mathbf{s}-\mathbf{r}\right)z_{t}\left(\mathbf{r}\right)d\mathbf{r}+e_{t}\left(\mathbf{s}\right)
 \label{eq:ConvolutionIntegral}
 \end{equation}
-where $t\in \mathbb{Z}_0 $ denotes discrete time, $\mathbf{s},\mathbf{r} \in \mathcal{S} \subset \mathbb{R}^{n_\mathcal{S}}$ are spatial locations in $n_{\mathcal S}$-dimensional physical space, where $n_{\mathcal S} \in \left\lbrace 1,2,3 \right\rbrace $. The continuous spatial field at time $t$ and at location $\mathbf s$ is denoted $z_t\left(\mathbf s\right)$. The model dynamics  are defined by the homogeneous time invariant spatial mixing kernel, $k\left(\mathbf{s}-\mathbf{r}\right):\mathbb{R}^{n_\mathcal{S}}\rightarrow \mathbb{R}$ which maps the current spatial field to the next spatial field via the integral (\ref{eq:ConvolutionIntegral}). The disturbance $e_{t}(\mathbf{s})$ is a zero-mean normally distributed noise process, spatially coloured but temporally independent, with covariance 
-\begin{equation}
-cov\left(e_{t}\left(\mathbf{s}\right),e_{t+\tau}\left(\mathbf{r}\right)\right)=
-\begin{cases}
-\eta\left(\mathbf{s}-\mathbf{r}\right), & \tau=0 \\
-0 & \mathrm{otherwise}
-\end{cases}
-\label{eq:FieldCovariance}
-\end{equation}
-for any $\tau \in \mathbb{Z}$, where $\eta\left(\mathbf s-\mathbf r \right)$ is a  spatially homogeneous covariance function. The spatial field is observed by
+where $t\in \mathbb{Z}_0 $ denotes discrete time, $\mathbf{s},\mathbf{r} \in \mathcal{S} \subset \mathbb{R}^{n_\mathcal{S}}$ are spatial locations in $n_{\mathcal S}$-dimensional physical space, where $n_{\mathcal S} \in \left\lbrace 1,2,3 \right\rbrace $. The continuous spatial field at time $t$ and at location $\mathbf s$ is denoted $z_t\left(\mathbf s\right)$. The model dynamics  are defined by the homogeneous time invariant spatial mixing kernel, $k\left(\mathbf{s}-\mathbf{r}\right):\mathbb{R}^{n_\mathcal{S}}\rightarrow \mathbb{R}$ which maps the current spatial field to the next spatial field via the integral (\ref{eq:ConvolutionIntegral}) and $e_t(\mathbf s)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{s}-\mathbf{r}))$.  Here $\mathcal{GP}(\mathbf 0,\eta(\mathbf{s}-\mathbf{r}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{s}-\mathbf{r})$~\cite{Rasmussen2005}. The spatial field is observed by
 \begin{equation}
  \mathbf{y}_{t}=\mathbf{z}_{t}+\mathbf{v}_t
 \label{eq:observation equation}
@@ -802,9 +793,11 @@ The state-space representation of the spatio-temporal IDE proposed in \cite{Dewa
 where $\boldsymbol\Lambda_{x}, \boldsymbol\Lambda_{\theta} \in \mathbb{R}^{n_x \times n_x}$. The spatial IDE model in (\ref{eq:ConvolutionIntegral}) and (\ref{eq:observation equation}) can be represented as linear state-space model of the form  
 \begin{equation}
  \mathbf{x}_{t+1}=\mathbf{A}\left(\boldsymbol\theta\right)\mathbf{x}_t+\mathbf{w}_t
+\label{eq:StateEquation}
 \end{equation}
 \begin{equation}
 \mathbf{y}_t=\mathbf{C}\mathbf{x}_t+\mathbf{v}_t
+\label{eq:ObservationEquation}
 \end{equation}
 where 
 \begin{equation}
@@ -921,7 +914,7 @@ $
 \left\langle \psi^{3}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right), \psi^{3}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle $. \\ \\
 Using these expansions it becomes straightforward to calculate the integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2}). In this work, 4th order cardinal B-spline scaling and wavelet functions are used therefore, to compute the integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2})  the $8$th and $12$th order B-spline values at integer points are  required and can be found in \cite{Goswami1999}.
 \section{Estimation of the Multiresolution Spatio-temporal IDE Model}
-A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm to infer both the kernel and the spatial field from the noise corrupted spatio-temporal data. In this context, the EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the spatial mixing kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$ \cite{Gibsona2005}. This can be achieved for the state-space representation of the IDE model via Theorem 2 of \cite{Dewar2009} under very mild conditions.
+A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm to infer both the kernel and the spatial field from the noise corrupted spatio-temporal data. In this context, the EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the spatial mixing kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$ \cite{McLachlan1997}. In the E-step, given an estimate of $\boldsymbol\theta$, filtering methods can be used to determine the posterior state sequence. Here we compare three techniques namely based on  the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005}, Ensemble Kalman Smoother (EnKS) \cite{Evensen2003} and a heuristic separable RTS to solve the joint estimation problem. For the first method we modify the framework proposed in \cite{Dewar2009} by computing the required elements once instead of at each iteration, the modified algorithm is computationally less demanding. see Appendix ...
 
 
 In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother can be employed to determine the posterior state sequence. It can be shown that \cite{Dempster1977,Gibsona2005} every EM iteration increases the lower bound on the likelihood function and hence improving the state and parameter estimates. The stopping criterion is usually associated  with  either the change in the parameter estimates or the log-likelihood variation \cite{McLachlan1997}. The stopping rule adopted herein is
@@ -1130,6 +1123,31 @@ Therefore
 \end{IEEEeqnarray}
 \setlength{\arraycolsep}{5pt}
 \end{IEEEproof}
+\section*{Reducing the computational complexity}
+The state-space representation of the spatio-temporal IDE \eqref{eq:StateEquation} and \eqref{eq:ObservationEquation} has a quadratic $\mathcal Q$-function in a form of \cite{Dewar2009}
+\begin{equation}
+\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)=2 \boldsymbol\theta^\top\boldsymbol\upsilon -\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta
+\label{eq:QFunction}
+\end{equation}
+which has a maximum at
+\begin{equation}
+ \boldsymbol\theta=\boldsymbol\Upsilon^{-1}\boldsymbol\upsilon
+\end{equation}
+where
+\begin{equation}
+ \boldsymbol\Upsilon=\sum_{i,j,k,m=1}^{n_x}\left[ \Xi_1\right] _{ij}\boldsymbol\gamma^{\left(k,j\right)}\left[\boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1} \boldsymbol\Lambda_{x}^{-1}\right]_{km} \boldsymbol\gamma^{\left(m,i\right)\mathsf{T}}
+\end{equation}
+and
+\begin{equation}
+ \boldsymbol \upsilon=\sum_{i,j=1}^{n_x}\left[\Xi_0\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1} \right]_{ij}\boldsymbol\gamma^{\left(j,i\right)} 
+\end{equation}
+where
+\begin{equation}
+ \boldsymbol\gamma^{(i,j)}=\int_{\mathcal S}\left[ \mu(s)\right]_i\left[ \mathbf M(s)\right] _{:j}ds
+\end{equation}
+and $\left[ \mathbf M(s)\right] _{:j}$ denotes the $j$th column of $\mathbf M(s)$. The definitions of the $\Xi_0$ and $\Xi_1$ are the same as in \cite{Dewar2009}. Note that constant values with respect to $\boldsymbol \theta$ are ignored in \eqref{eq:QFunction}.
+
+
 
 
 
