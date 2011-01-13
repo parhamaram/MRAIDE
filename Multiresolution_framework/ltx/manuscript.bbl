@@ -211,6 +211,11 @@ S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
 G.~Evensen, ``The ensemble kalman filter: theoretical formulation and practical
   implementation,'' \emph{Ocean Dynamics}, vol.~53, pp. 343--367, 2003.
 
+\bibitem{Houtekamer2005}
+P.~Houtekamer and H.~Mitchell, ``Ensemble kalman filtering,'' \emph{Quarterly
+  Journal of the Royal Meteorological Society}, vol. 131, no. 613, pp.
+  3269--3289, 2005.
+
 \bibitem{Dempster1977}
 A.~P. Dempster, N.~M. Laird, and D.~B. Rubin, ``Maximum likelihood from
   incomplete data via the {EM} algorithm,'' \emph{J, Roy. Statist., Ser. B},

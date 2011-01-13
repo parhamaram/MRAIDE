@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2010.9.1)  8 NOV 2010 19:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  13 JAN 2011 20:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -22,7 +22,7 @@ LaTeX Font Info:    Try loading font information for OT1+ptm on input line 366.
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 -- Using 8.5in x 11in (letter) paper.
--- Using DVI output.
+-- Using PDF output.
 \@IEEEnormalsizeunitybaselineskip=\dimen104
 -- This is an 11 point document.
 \CLASSINFOnormalsizebaselineskip=\dimen105
@@ -108,10 +108,11 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 (/etc/texmf/tex/latex/config/graphics.cfg
 File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: dvips.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+\Gread@gobject=\count91
 ))
 \Gin@req@height=\dimen117
 \Gin@req@width=\dimen118
@@ -136,13 +137,13 @@ Package: amsbsy 1999/11/29 v1.2d
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count91
+\inf@bad=\count92
 LaTeX Info: Redefining \frac on input line 211.
-\uproot@=\count92
-\leftroot@=\count93
+\uproot@=\count93
+\leftroot@=\count94
 LaTeX Info: Redefining \overline on input line 307.
-\classnum@=\count94
-\DOTSCASE@=\count95
+\classnum@=\count95
+\DOTSCASE@=\count96
 LaTeX Info: Redefining \ldots on input line 379.
 LaTeX Info: Redefining \dots on input line 382.
 LaTeX Info: Redefining \cdots on input line 467.
@@ -151,15 +152,15 @@ LaTeX Info: Redefining \cdots on input line 467.
 \big@size=\dimen121
 LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
-\macc@depth=\count96
-\c@MaxMatrixCols=\count97
+\macc@depth=\count97
+\c@MaxMatrixCols=\count98
 \dotsspace@=\muskip10
-\c@parentequation=\count98
-\dspbrk@lvl=\count99
+\c@parentequation=\count99
+\dspbrk@lvl=\count100
 \tag@help=\toks17
-\row@=\count100
-\column@=\count101
-\maxfields@=\count102
+\row@=\count101
+\column@=\count102
+\maxfields@=\count103
 \andhelp@=\toks18
 \eqnshift@=\dimen122
 \alignsep@=\dimen123
@@ -192,10 +193,10 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigbottomskip=\skip49
 \subfigcapmargin=\dimen129
 \subfiglabelskip=\skip50
-\c@subfigure=\count103
-\c@lofdepth=\count104
-\c@subtable=\count105
-\c@lotdepth=\count106
+\c@subfigure=\count104
+\c@lofdepth=\count105
+\c@subtable=\count106
+\c@lotdepth=\count107
 
 ****************************************
 * Local config file subfigure.cfg used *
@@ -206,172 +207,150 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 )
 (/usr/share/texmf-texlive/tex/latex/sttools/stfloats.sty
 Package: stfloats 1999/10/22
-\@dblbotnum=\count107
-\c@dblbotnumber=\count108
-) (./manuscript.aux)
+\@dblbotnum=\count108
+\c@dblbotnumber=\count109
+)
+(/usr/share/texmf-texlive/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count110
+\float@exts=\toks21
+\float@box=\box29
+\@float@everytoks=\toks22
+\@floatcapt=\box30
+)
+\@float@every@algorithm=\toks23
+\c@algorithm=\count111
+ (./manuscript.aux)
 \openout1 = `manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 414.
-LaTeX Font Info:    ... okay on input line 414.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 414.
-LaTeX Font Info:    ... okay on input line 414.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 414.
-LaTeX Font Info:    ... okay on input line 414.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 414.
-LaTeX Font Info:    ... okay on input line 414.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 414.
-LaTeX Font Info:    ... okay on input line 414.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 414.
-LaTeX Font Info:    ... okay on input line 414.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 418.
+LaTeX Font Info:    ... okay on input line 418.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 418.
+LaTeX Font Info:    ... okay on input line 418.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 418.
+LaTeX Font Info:    ... okay on input line 418.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 418.
+LaTeX Font Info:    ... okay on input line 418.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 418.
+LaTeX Font Info:    ... okay on input line 418.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 418.
+LaTeX Font Info:    ... okay on input line 418.
 
-Underfull \hbox (badness 6675) in paragraph at lines 487--487
+(/usr/share/texmf/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count112
+\scratchdimen=\dimen130
+\scratchbox=\box31
+\nofMPsegments=\count113
+\nofMParguments=\count114
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count115
+\MPscratchDim=\dimen131
+\MPnumerator=\count116
+\everyMPtoPDFconversion=\toks25
+)
+Underfull \hbox (badness 6675) in paragraph at lines 490--490
 [][][]\OT1/ptm/m/n/9 M. De-war is with the School of In-for-mat-ics, Uni-ver-si
 ty of Ed-in-burgh, Ed-in-burgh, EH8 9AB, U.K. (e-
  []
 
-[0]
-** ATTENTION: \IEEEPARstart is disabled in draft mode (line 539).
+[0{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+** ATTENTION: \IEEEPARstart is disabled in draft mode (line 542).
 [1
 
 ]
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 682.
-LaTeX Font Info:    Try loading font information for U+msa on input line 682.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 685.
+LaTeX Font Info:    Try loading font information for U+msa on input line 685.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 682.
+LaTeX Font Info:    Try loading font information for U+msb on input line 685.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
 
-LaTeX Warning: Citation `Rasmussen2005' on page 2 undefined on input line 686.
+LaTeX Warning: Citation `Rasmussen2005' on page 2 undefined on input line 689.
 
 [2] [3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 806--817
+Underfull \hbox (badness 10000) in paragraph at lines 809--820
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 806--817
+Underfull \hbox (badness 10000) in paragraph at lines 809--820
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 806--817
+Underfull \hbox (badness 10000) in paragraph at lines 809--820
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 806--817
+Underfull \hbox (badness 10000) in paragraph at lines 809--820
 
  []
 
 [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 877--879
+Underfull \hbox (badness 10000) in paragraph at lines 880--882
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 907--916
+Underfull \hbox (badness 10000) in paragraph at lines 910--919
 
  []
 
-[8]
-File: ./Graph/aram1.eps Graphic file (type eps)
- <./Graph/aram1.eps>
-File: ./Graph/aram2.eps Graphic file (type eps)
- <./Graph/aram2.eps>
-File: ./Graph/aram35.eps Graphic file (type eps)
- <./Graph/aram35.eps>
-File: ./Graph/aram310.eps Graphic file (type eps)
+[8] [9]
 
-<./Graph/aram310.eps>
-File: ./Graph/aram350.eps Graphic file (type eps)
- <./Graph/aram350.eps>
-File: ./Graph/aram3100.eps Graphic file (type eps)
- <./Graph/aram3100.eps>
-File: ./Graph/aram3200.eps Graphic file (type eps)
+LaTeX Warning: Reference `fig:SpatialMixingKernel' on page 10 undefined on inpu
+t line 986.
 
-<./Graph/aram3200.eps>
-File: ./Graph/aram3300.eps Graphic file (type eps)
- <./Graph/aram3300.eps>
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 952--958
-[][] [] [] 
- []
+[10]
+
+LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 11 undefined
+ on input line 1019.
 
 
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 952--958
-[] [] [] 
- []
+LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 11 undefined
+ on input line 1032.
+
+
+LaTeX Warning: Reference `fig:1DFieldEstimation' on page 11 undefined on input 
+line 1032.
+
+
+LaTeX Warning: Reference `fig:FieldVariance' on page 11 undefined on input line
+ 1032.
+
+[11]
+
+LaTeX Warning: Reference `fig:FieldVariance' on page 12 undefined on input line
+ 1037.
+
+
+LaTeX Warning: Reference `fig:2DHist' on page 12 undefined on input line 1045.
+
+
+LaTeX Warning: Reference `fig:2DFieldEstimation1' on page 12 undefined on input
+ line 1045.
+
+
+LaTeX Warning: Reference `fig:2DFieldEstimation3' on page 12 undefined on input
+ line 1045.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[9] [10] [11]
-File: ./Graph/aram4.eps Graphic file (type eps)
- <./Graph/aram4.eps> [12]
-File: ./Graph/aram5.eps Graphic file (type eps)
- <./Graph/aram5.eps>
-File: ./Graph/aram6a.eps Graphic file (type eps)
-
-<./Graph/aram6a.eps>
-File: ./Graph/aram6b.eps Graphic file (type eps)
- <./Graph/aram6b.eps>
-File: ./Graph/aram6c.eps Graphic file (type eps)
- <./Graph/aram6c.eps>
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 1004--1007
-[][] [] [] 
- []
+[12]
+\c@lemma=\count117
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1004--1007
+LaTeX Warning: Reference `eq:FieldCovariance' on page 13 undefined on input lin
+e 1112.
 
- []
-
-File: ./Graph/aram7a.eps Graphic file (type eps)
-<./Graph/aram7a.eps>
-File: ./Graph/aram7b.eps Graphic file (type eps)
- <./Graph/aram7b.eps>
-File: ./Graph/aram7c.eps Graphic file (type eps)
- <./Graph/aram7c.eps>
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 1009--1012
-[][] [] [] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1009--1012
-
- []
-
-File: ./Graph/aram8a.eps Graphic file (type eps)
-<./Graph/aram8a.eps>
-File: ./Graph/aram8b.eps Graphic file (type eps)
- <./Graph/aram8b.eps>
-File: ./Graph/aram8c.eps Graphic file (type eps)
- <./Graph/aram8c.eps>
-Overfull \hbox (7.9491pt too wide) in paragraph at lines 1014--1017
-[][] [] [] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[13]
-
-LaTeX Warning: Text page 14 contains only floats.
-
-[14]
-\c@lemma=\count109
-
-
-LaTeX Warning: Reference `eq:FieldCovariance' on page 15 undefined on input lin
-e 1063.
-
-[15] [16] [17] (./manuscript.bbl [18]) [19] (./manuscript.aux)
+[13] [14] [15] [16] (./manuscript.bbl [17]) [18] (./manuscript.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 2.25pt have occurred.
@@ -382,16 +361,41 @@ LaTeX Warning: There were undefined references.
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 996 ({)
-### simple group (level 1) entered at line 983 ({)
+### simple group (level 2) entered at line 1045 ({)
+### simple group (level 1) entered at line 1032 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 2602 strings out of 495062
- 36498 string characters out of 1182645
- 88054 words of memory out of 3000000
- 5743 multiletter control sequences out of 15000+50000
- 39230 words of font info for 109 fonts, out of 3000000 for 9000
+ 3023 strings out of 495061
+ 41950 string characters out of 1182622
+ 96686 words of memory out of 3000000
+ 6161 multiletter control sequences out of 15000+50000
+ 53418 words of font info for 122 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,21n,24p,1647b,332s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,21n,24p,2469b,334s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi5.pfb
+></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm7.pfb
+></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-t
+exlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/u
+rw/times/utmri8a.pfb>
+Output written on manuscript.pdf (19 pages, 295886 bytes).
+PDF statistics:
+ 157 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on manuscript.dvi (20 pages, 67912 bytes).

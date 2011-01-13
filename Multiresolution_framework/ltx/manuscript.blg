@@ -14,45 +14,45 @@ Warning--I didn't find a database entry for "Rasmussen2005"
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 41 entries,
+You've used 42 entries,
             4039 wiz_defined-function locations,
-            1497 strings with 21557 characters,
-and the built_in function-call counts, 33865 in all, are:
-= -- 2924
-> -- 679
-< -- 374
-+ -- 394
-- -- 95
-* -- 1660
-:= -- 5104
-add.period$ -- 82
-call.type$ -- 41
-change.case$ -- 35
-chr.to.int$ -- 813
-cite$ -- 41
-duplicate$ -- 2375
-empty$ -- 2497
-format.name$ -- 123
-if$ -- 7810
+            1505 strings with 21727 characters,
+and the built_in function-call counts, 34854 in all, are:
+= -- 3012
+> -- 698
+< -- 387
++ -- 406
+- -- 97
+* -- 1708
+:= -- 5246
+add.period$ -- 84
+call.type$ -- 42
+change.case$ -- 36
+chr.to.int$ -- 843
+cite$ -- 42
+duplicate$ -- 2441
+empty$ -- 2564
+format.name$ -- 126
+if$ -- 8040
 int.to.chr$ -- 0
-int.to.str$ -- 41
-missing$ -- 362
-newline$ -- 146
-num.names$ -- 41
-pop$ -- 650
+int.to.str$ -- 42
+missing$ -- 371
+newline$ -- 149
+num.names$ -- 42
+pop$ -- 665
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2641
+skip$ -- 2720
 stack$ -- 0
-substring$ -- 1933
-swap$ -- 2188
-text.length$ -- 103
+substring$ -- 2004
+swap$ -- 2252
+text.length$ -- 106
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 41
+type$ -- 42
 warning$ -- 0
-while$ -- 174
-width$ -- 43
-write$ -- 447
+while$ -- 179
+width$ -- 44
+write$ -- 458
 (There was 1 error message)
