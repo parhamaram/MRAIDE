@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  14 FEB 2011 18:22
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  14 FEB 2011 20:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -224,6 +224,9 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 
 LaTeX Warning: Label `DiscreteTimeModel' multiply defined.
 
+
+LaTeX Warning: Label `eq:ObservationEquation' multiply defined.
+
 )
 \openout1 = `manuscript.aux'.
 
@@ -271,82 +274,79 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
 ] [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 801--812
+Underfull \hbox (badness 10000) in paragraph at lines 792--803
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 801--812
+Underfull \hbox (badness 10000) in paragraph at lines 792--803
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 801--812
+Underfull \hbox (badness 10000) in paragraph at lines 792--803
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 801--812
+Underfull \hbox (badness 10000) in paragraph at lines 792--803
 
  []
 
 [4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 872--874
+Underfull \hbox (badness 10000) in paragraph at lines 863--865
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 902--911
+Underfull \hbox (badness 10000) in paragraph at lines 893--902
 
  []
 
 [7] [8]
 
 LaTeX Warning: Reference `fig:SpatialMixingKernel' on page 9 undefined on input
- line 978.
+ line 969.
 
 [9]
 
 LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 10 undefined
- on input line 1011.
+ on input line 1002.
 
 
 LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 10 undefined
- on input line 1024.
+ on input line 1015.
 
 
 LaTeX Warning: Reference `fig:1DFieldEstimation' on page 10 undefined on input 
-line 1024.
+line 1015.
 
 
 LaTeX Warning: Reference `fig:FieldVariance' on page 10 undefined on input line
- 1024.
+ 1015.
+
+
+LaTeX Warning: Reference `fig:FieldVariance' on page 10 undefined on input line
+ 1020.
 
 [10]
 
-LaTeX Warning: Reference `fig:FieldVariance' on page 11 undefined on input line
- 1029.
-
-
-LaTeX Warning: Reference `fig:2DHist' on page 11 undefined on input line 1037.
+LaTeX Warning: Reference `fig:2DHist' on page 11 undefined on input line 1028.
 
 
 LaTeX Warning: Reference `fig:2DFieldEstimation1' on page 11 undefined on input
- line 1037.
+ line 1028.
 
 
 LaTeX Warning: Reference `fig:2DFieldEstimation3' on page 11 undefined on input
- line 1037.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+ line 1028.
 
 [11]
 \c@lemma=\count117
 
 
 LaTeX Warning: Reference `eq:FieldCovariance' on page 12 undefined on input lin
-e 1104.
+e 1095.
 
 [12] [13] [14] [15] (./manuscript.bbl) [16] (./manuscript.aux)
 
@@ -362,13 +362,13 @@ LaTeX Warning: There were multiply-defined labels.
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 1037 ({)
-### simple group (level 1) entered at line 1024 ({)
+### simple group (level 2) entered at line 1028 ({)
+### simple group (level 1) entered at line 1015 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
  2992 strings out of 495061
  41595 string characters out of 1182622
- 96626 words of memory out of 3000000
+ 96628 words of memory out of 3000000
  6131 multiletter control sequences out of 15000+50000
  52812 words of font info for 120 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
@@ -392,7 +392,7 @@ blic/amsfonts/symbols/msbm10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
 msfonts/symbols/msbm7.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8
 a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/te
 xmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (17 pages, 274034 bytes).
+Output written on manuscript.pdf (17 pages, 273468 bytes).
 PDF statistics:
  142 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
