@@ -71,8 +71,8 @@
 \newcommand{\parham}[1]{\textsf{\emph{\textbf{\textcolor{blue}{#1}}}}} 
 \newcommand{\ken}[1]{\textsf{\emph{\textbf{\textcolor{magenta}{#1}}}}} 
 %    \documentclass[journal,a4paper]{IEEEtran}
-%     \documentclass[10pt,twocolumn,twoside]{IEEEtran}
-     \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
+     \documentclass[10pt,twocolumn,twoside]{IEEEtran}
+%     \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
 %         \topmargin       -6.0mm
 %          \oddsidemargin      0mm
 %          \evensidemargin     0mm
@@ -644,7 +644,7 @@ To Do
 % stfloats package.
 \section{Integro-Difference Equation Neural Field Model}
 The stochastic  integro-difference equation (IDE) form of the model based on the Wilson-Cowan \cite{Wilson1973} or Amari neural field \cite{Amari1977} formulation is given by (cite NeuroImage paper)
-\begin{equation}\label{DiscreteTimeModel} 
+\begin{equation}
 	v_{t+T_s}\left(\mathbf{r}\right) = 
 	\xi v_t\left(\mathbf{r}\right) + 
 	T_s \int_\Omega { 
@@ -654,7 +654,7 @@ The stochastic  integro-difference equation (IDE) form of the model based on the
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
 where the local post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$, parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$ where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The spatial connectivity between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$, for an isotropic and homogeneous neural field. The connectivity kernel is typically a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the sigmoidal activation function $f\left(.\right)$. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. For simplicity, we denote hereafter the current time step by $t$ and the future time step by $t+1$. Here we assume that the sigmoid activation function, $f(\cdot)$, can be approximated by the piecewise function
-\begin{equation}
+\begin{equation}\label{DiscreteTimeModel} 
 	\hat{f}(v_t(\mathbf{r}')) = \left\{ \begin{array}{ll}
 		0, & v_t(\mathbf{r}') \le v_1 \\
 		\varsigma v_t(\mathbf{r}'), &  v_1 < v_t(\mathbf{r}') < v_2 \\
@@ -677,62 +677,62 @@ observation equation is given by
 \end{equation}
 where electrophysiological recordings $\mathbf{y}_{t}=[y_t(\mathbf{r}_1) y_t(\mathbf{r}_2)\cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations and at time $t$ via the observation kernel  $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$, is corrupted by an i.i.d normally distributed zero-mean white noise $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$ with $\mathbf{\Sigma}_{\epsilon}=\sigma_{\epsilon}^2\mathbf I_{n_y} $. The superscript $\top$ denotes the transpose operator.
 \section{MRA of the IDE in State-Space}
-Assuming $z_t(.)$ and $k(.)$ are square-integrable functions, MRA of the one-dimensional IDE can be obtained by expanding  both the field and the kernel in the integral (\ref{eq:ConvolutionIntegral}) in terms of the translations and dilations of a scaling function $\phi(s)$ and a mother wavelet $\psi(s)$. For the one-dimensional kernel this is given by,
+Assuming $v_t(.)$ and $w(.)$ are square-integrable functions, MRA of the one-dimensional IDE can be obtained by expanding  both the field and the kernel in the equation (\ref{DiscreteTimeModel}) in terms of the translations and dilations of a scaling function $\phi(s)$ and a mother wavelet $\psi(s)$. For the one-dimensional kernel this is given by,
 \begin{equation}
- k\left(s-r\right)=\sum_{l \in \mathbb{Z}}\alpha_{j_0,l}\phi_{j_0,l}\left(s-r\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{j,l}\left(s-r\right) 
+ w\left(r-r'\right)=\sum_{l \in \mathbb{Z}}\alpha_{j_0,l}\phi_{j_0,l}\left(r-r'\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{j,l}\left(r-r'\right) 
 \label{eq:KernelExpansion}
 \end{equation}
-In this expansion, $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$ and $ \beta_{j,l}$ represent the detail coefficients at different scales $j$, with $\phi_{j,l}\left(s\right)=2^{\frac{j}{2}}\phi\left(2^js-l\right) $ and $\psi_{j,l}\left(s\right)=2^{\frac{j}{2}}\psi\left(2^js-l\right)$. Integers $j$ and $l$ are called scale and translation parameters accordingly. The one-dimensional field can similarly be decomposed as
+In this expansion, $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$ and $ \beta_{j,l}$ represent the detail coefficients at different scales $j$, with $\phi_{j,l}\left(r\right)=2^{\frac{j}{2}}\phi\left(2^jr-l\right) $ and $\psi_{j,l}\left(r\right)=2^{\frac{j}{2}}\psi\left(2^jr-l\right)$. Integers $j$ and $l$ are called scale and translation parameters accordingly. The one-dimensional field can similarly be decomposed as
 \begin{equation}
- z_t\left(s\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l}\phi_{j_{0},l}\left(s\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{j,l}\left(s\right)
+ v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l}\phi_{j_{0},l}\left(r\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{j,l}\left(r\right)
 \label{eq:FieldExpansion}
 \end{equation}
 where $ x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion at time $t$.
 A  two-dimensional MRA can be implemented using 2-D scaling and wavelet functions built up  using the tensor-product approach \cite{Meyer1992,Mallat1998}. We write the 2-D scaling function as
 \begin{equation}
- \phi_{j,\mathbf{l}}\left(s_1,s_2\right)=\phi_{j,l_1}\left(s_1\right)\phi_{j,l_2}\left(s_2\right)
+ \phi_{j,\mathbf{l}}\left(r_1,r_2\right)=\phi_{j,l_1}\left(r_1\right)\phi_{j,l_2}\left(r_2\right)
 \label{eq:2Dscalingfunction}
 \end{equation}
-and three 2-D wavelet functions $ \psi^{(n)} \left(\mathbf{s}\right)$ where $n=1,2,3$ as
+and three 2-D wavelet functions $ \psi^{(n)} \left(\mathbf{r}\right)$ where $n=1,2,3$ as
 \begin{equation}
- \psi_{j,\mathbf{l}}^{(1)}\left(s_1,s_2\right)=\phi_{j,l_1}\left(s_1\right)\psi_{j,l_2}\left(s_2\right)
+ \psi_{j,\mathbf{l}}^{(1)}\left(r_1,r_2\right)=\phi_{j,l_1}\left(r_1\right)\psi_{j,l_2}\left(r_2\right)
 \label{eq:2Dwavelet_1}
 \end{equation}
 \begin{equation}
- \psi_{j,\mathbf{l}}^{(2)}\left(s_1,s_2\right)=\psi_{j,l_1}\left(s_1\right)\phi_{j,l_2}\left(s_2\right)
+ \psi_{j,\mathbf{l}}^{(2)}\left(r_1,r_2\right)=\psi_{j,l_1}\left(r_1\right)\phi_{j,l_2}\left(r_2\right)
 \label{eq:2Dwavelet_2}
 \end{equation}
 \begin{equation}
- \psi_{j,\mathbf{l}}^{(3)}\left(s_1,s_2\right)=\psi_{j,l_1}\left(s_1\right)\psi_{j,l_2}\left(s_2\right)
+ \psi_{j,\mathbf{l}}^{(3)}\left(r_1,r_2\right)=\psi_{j,l_1}\left(r_1\right)\psi_{j,l_2}\left(r_2\right)
 \label{eq:2Dwavelet_3}
 \end{equation}
 for $j \in \mathbb{Z}$ and, $\mathbf{l} \in \mathbb{Z}^2$, where $\psi_{j,\mathbf{l}}^{(1)},  \psi_{j,\mathbf{l}}^{(2)}$ and $\psi_{j,\mathbf{l}}^{(3)} $ extract fine features of the 2-D field at vertical, horizontal and diagonal orientations respectively.
 This can be generalised to $d$-dimensional MRA by introducing the scaling function
 \setlength{\arraycolsep}{0.0em}
 \begin{eqnarray}
-  \phi_{j,\mathbf{l}}\left(s_1,s_2, \cdots s_d\right)&=&\phi_{j,l_1}\left(s_1\right)\phi_{j,l_2}\left(s_2\right) \cdots \phi_{j,l_d}\left(s_d\right) \label{eq:d-dimensionalscalingfunction}\\
+  \phi_{j,\mathbf{l}}\left(r_1,r_2, \cdots r_d\right)&=&\phi_{j,l_1}\left(r_1\right)\phi_{j,l_2}\left(r_2\right) \cdots \phi_{j,l_d}\left(r_d\right) \label{eq:d-dimensionalscalingfunction}\\
  &&j \in \mathbb{Z}, \quad \mathbf{l} \in \mathbb{Z}^d \nonumber
 \end{eqnarray}
 \setlength{\arraycolsep}{5pt}
-and $2^d-1$ wavelet functions $ \psi^{(n)} \left(\mathbf{s}\right), n=1, \cdots,2^d-1$ with a procedure similar to the 2-D case. Using these basis functions, multi-dimensional MRA of the kernel and the field can be obtained by
+and $2^d-1$ wavelet functions $ \psi^{(n)} \left(\mathbf{r}\right), n=1, \cdots,2^d-1$ with a procedure similar to the 2-D case. Using these basis functions, multi-dimensional MRA of the kernel and the field can be obtained by
 \setlength{\arraycolsep}{0.0em}
 \begin{eqnarray}
- k\left(\mathbf{s}-\mathbf{r}\right)&=&\sum_{\mathbf{l}\in \mathbb{Z}^d}\alpha_{j_0,\mathbf{l}}\phi_{j_0,\mathbf{l}}\left(\mathbf{s}-\mathbf{r}\right) \nonumber \\
-&+&\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1}\beta_{j,\mathbf{l}}^{(i)} \psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{s}-\mathbf{r}\right) 
+ k\left(\mathbf{r}-\mathbf{r'}\right)&=&\sum_{\mathbf{l}\in \mathbb{Z}^d}\alpha_{j_0,\mathbf{l}}\phi_{j_0,\mathbf{l}}\left(\mathbf{r}-\mathbf{r'}\right) \nonumber \\
+&+&\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1}\beta_{j,\mathbf{l}}^{(i)} \psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{r}-\mathbf{r'}\right) 
 \label{eq:MultidimensionalKernelExpansion}
 \end{eqnarray}
 \setlength{\arraycolsep}{5pt}
 \begin{equation}
-z_t\left(\mathbf{s}\right)=\sum_{\mathbf{l}\in \mathbb{Z}^d}x_{t,j_{0},\mathbf{l}}\phi_{j_{0},\mathbf{l}}\left(\mathbf{s}\right)+\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1} \check{x}_{t,j,\mathbf{l}}^{(i)}\psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{s}\right)
+z_t\left(\mathbf{r}\right)=\sum_{\mathbf{l}\in \mathbb{Z}^d}x_{t,j_{0},\mathbf{l}}\phi_{j_{0},\mathbf{l}}\left(\mathbf{r}\right)+\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1} \check{x}_{t,j,\mathbf{l}}^{(i)}\psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{r}\right)
 \label{eq:MultidimensionalFieldExpansion}
 \end{equation}
 Equations (\ref{eq:MultidimensionalKernelExpansion}) and (\ref{eq:MultidimensionalFieldExpansion}) are infinite series expansions. For practical implementation, (\ref{eq:MultidimensionalKernelExpansion}) and (\ref{eq:MultidimensionalFieldExpansion}) must be truncated at some level $j$, therefore we have
  \begin{equation}
- k\left(\mathbf{s}-\mathbf{r}\right)\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{s}-\mathbf{r}\right)
+ w\left(\mathbf{r}-\mathbf{r'}\right)\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r'}\right)
 \label{eq:KernelFiniteExpansion}
 \end{equation}
 \begin{equation}
- z_t\left(\mathbf{s}\right)\approx\boldsymbol\mu\left(\mathbf{s}\right)^\top\mathbf{x}_t
+ v_t\left(\mathbf{r}\right)\approx\boldsymbol\mu\left(\mathbf{r}\right)^\top\mathbf{x}_t
 \label{eq:FieldFiniteExpansion}
 \end{equation}
 where the unknown parameter vector $ \boldsymbol\theta \in \mathbb{R}^{n_{\theta}}$ and the unknown state vector $ \mathbf{x}_t \in \mathbb{R}^{n_x}$ are defined as 
@@ -755,12 +755,12 @@ where the vector $\boldsymbol\beta_{j}^{(i)}$ contains all the coefficient $\lef
 %and  $\boldsymbol\lambda(\mathbf{s}-\mathbf{r})$ is the vector of the kernel scaling and wavelet functions and   $\boldsymbol\mu(\mathbf{s})$ is the vector of the field scaling and wavelet functions. 
  The vector of the kernel scaling and wavelet functions $\boldsymbol\lambda: \mathbb{R}^{n_{\mathcal S}}\rightarrow \mathbb{R}^{n_{\theta}}$ and the vector of the field scaling and wavelet functions $\boldsymbol\mu: \mathbb{R}^{n_{\mathcal S}}\rightarrow \mathbb{R}^{n_x}$ are defined by
 \begin{eqnarray}
- \boldsymbol\lambda^\top(\mathbf s-\mathbf r)&=&\left[ \boldsymbol\phi_{j_0}^\top(\mathbf s-\mathbf r) \quad \boldsymbol\psi_{j_0}^\top(\mathbf s-\mathbf r) \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf s-\mathbf r) \right. \nonumber \\
+ \boldsymbol\lambda^\top(\mathbf r-\mathbf r')&=&\left[ \boldsymbol\phi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf r-\mathbf r') \right. \nonumber \\
 &&\left. \cdots \quad \boldsymbol\psi_{j}^\top(\mathbf s-\mathbf r)\right]
 \label{KernelBasisVector} 
 \end{eqnarray}
 \begin{equation}
- \boldsymbol\mu^\top(\mathbf s)=\left[ \boldsymbol\phi_{j_0}^\top(\mathbf s) \quad \boldsymbol\psi_{j_0}^\top(\mathbf s) \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf s) \cdots \boldsymbol\psi_{j}^\top(\mathbf s) \right] 
+ \boldsymbol\mu^\top(\mathbf r)=\left[ \boldsymbol\phi_{j_0}^\top(\mathbf r) \quad \boldsymbol\psi_{j_0}^\top(\mathbf r) \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf r) \cdots \boldsymbol\psi_{j}^\top(\mathbf r) \right] 
 \label{FieldBasisVector}
 \end{equation}
 Each vector of basis functions on the right hand-side of (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in a way similar to their corresponding weight vectors in (\ref{KernelWeights}) and (\ref{FieldWeights}). Note that the identified IDE model will approximate the underlying spatio-temporal dynamics at different spatial scales. In this way both macroscopic and microscopic behaviour of the system can be represented simultaneously. 

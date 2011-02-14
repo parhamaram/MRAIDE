@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  14 FEB 2011 20:10
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  14 FEB 2011 21:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -24,13 +24,17 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 -- Using 8.5in x 11in (letter) paper.
 -- Using PDF output.
 \@IEEEnormalsizeunitybaselineskip=\dimen104
--- This is an 11 point document.
+-- This is a 10 point document.
 \CLASSINFOnormalsizebaselineskip=\dimen105
 \CLASSINFOnormalsizeunitybaselineskip=\dimen106
 \IEEEnormaljot=\dimen107
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 724.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <6> not available
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 724.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 724.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 724.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 724.
@@ -255,25 +259,42 @@ LaTeX Font Info:    ... okay on input line 418.
 \MPnumerator=\count116
 \everyMPtoPDFconversion=\toks25
 )
-Underfull \hbox (badness 6675) in paragraph at lines 490--490
-[][][]\OT1/ptm/m/n/9 M. De-war is with the School of In-for-mat-ics, Uni-ver-si
-ty of Ed-in-burgh, Ed-in-burgh, EH8 9AB, U.K. (e-
- []
-
-[0{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 647.
 LaTeX Font Info:    Try loading font information for U+msa on input line 647.
-
-(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+ (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 647.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [1
+)
+Underfull \hbox (badness 10000) in paragraph at lines 677--679
+\OT1/ptm/m/n/10 where elec-tro-phys-i-o-log-i-cal record-ings $\OT1/cmr/bx/n/10
+ y[] \OT1/cmr/m/n/10 =
+ []
 
-] [2] [3]
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 753--757
+\OT1/ptm/m/n/10 where the vec-tor $[][]$ con-tains all the co-ef-fi-cient
+ []
+
+
+Overfull \hbox (2.22876pt too wide) in alignment at lines 757--761
+ [][][] []
+ []
+
+
+LaTeX Warning: Reference `eq:ConvolutionIntegral' on page 2 undefined on input 
+line 779.
+
+
+LaTeX Warning: Reference `eq:observation equation' on page 2 undefined on input
+ line 779.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 792--803
 
  []
@@ -293,66 +314,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 792--803
 
  []
 
-[4] [5]
+[2]
 Underfull \hbox (badness 10000) in paragraph at lines 863--865
 
  []
 
-[6]
+
 Underfull \hbox (badness 10000) in paragraph at lines 893--902
 
  []
 
-[7] [8]
 
-LaTeX Warning: Reference `fig:SpatialMixingKernel' on page 9 undefined on input
+Underfull \hbox (badness 4647) in paragraph at lines 893--902
+\OT1/ptm/m/n/10 Using these ex-pan-sions it be-comes straight-for-ward to
+ []
+
+[3]
+Overfull \hbox (4.96461pt too wide) detected at line 927
+\OT1/cmr/bx/n/10 P[] \OT1/cmr/m/n/10 = [] [] [] [][]
+ []
+
+
+Overfull \hbox (27.5248pt too wide) detected at line 936
+\OT1/cmr/bx/n/10 X[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t \OT1/cmr/m/n/10 + 1) = 
+[] []([] \OMS/cmsy/m/n/10 ^^@ []\OT1/cmr/m/n/10 )[]\OMS/cmsy/m/n/10 K[]\OT1/cmr
+/m/n/10 (\OT1/cmr/bx/n/10 Y[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 C[]\OT1/cmr
+/m/n/10 )
+ []
+
+
+LaTeX Warning: Reference `fig:SpatialMixingKernel' on page 4 undefined on input
  line 969.
 
-[9]
 
-LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 10 undefined
- on input line 1002.
+LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 4 undefined 
+on input line 1002.
 
+[4]
 
-LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 10 undefined
- on input line 1015.
-
-
-LaTeX Warning: Reference `fig:1DFieldEstimation' on page 10 undefined on input 
-line 1015.
+LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 5 undefined 
+on input line 1015.
 
 
-LaTeX Warning: Reference `fig:FieldVariance' on page 10 undefined on input line
- 1015.
+LaTeX Warning: Reference `fig:1DFieldEstimation' on page 5 undefined on input l
+ine 1015.
 
 
-LaTeX Warning: Reference `fig:FieldVariance' on page 10 undefined on input line
- 1020.
-
-[10]
-
-LaTeX Warning: Reference `fig:2DHist' on page 11 undefined on input line 1028.
+LaTeX Warning: Reference `fig:FieldVariance' on page 5 undefined on input line 
+1015.
 
 
-LaTeX Warning: Reference `fig:2DFieldEstimation1' on page 11 undefined on input
- line 1028.
+LaTeX Warning: Reference `fig:FieldVariance' on page 5 undefined on input line 
+1020.
 
 
-LaTeX Warning: Reference `fig:2DFieldEstimation3' on page 11 undefined on input
- line 1028.
+LaTeX Warning: Reference `fig:2DHist' on page 5 undefined on input line 1028.
 
-[11]
+
+LaTeX Warning: Reference `fig:2DFieldEstimation1' on page 5 undefined on input 
+line 1028.
+
+
+LaTeX Warning: Reference `fig:2DFieldEstimation3' on page 5 undefined on input 
+line 1028.
+
 \c@lemma=\count117
 
+LaTeX Warning: Reference `eq:FieldCovariance' on page 5 undefined on input line
+ 1095.
 
-LaTeX Warning: Reference `eq:FieldCovariance' on page 12 undefined on input lin
-e 1095.
+[5] [6] (./manuscript.bbl) [7
 
-[12] [13] [14] [15] (./manuscript.bbl) [16] (./manuscript.aux)
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 2.25pt have occurred.
-
+] (./manuscript.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -366,35 +399,36 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1015 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 2992 strings out of 495061
- 41595 string characters out of 1182622
- 96628 words of memory out of 3000000
- 6131 multiletter control sequences out of 15000+50000
- 52812 words of font info for 120 fonts, out of 3000000 for 9000
+ 2935 strings out of 495061
+ 40683 string characters out of 1182622
+ 106466 words of memory out of 3000000
+ 6080 multiletter control sequences out of 15000+50000
+ 47134 words of font info for 101 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,21n,24p,2469b,291s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,21n,24p,2465b,283s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/
+xlive/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publi
 c/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share
+cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
 /texmf-texlive/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-r9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr
+msfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
+r8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr
 /share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texm
 f-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fo
-nts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/pu
+nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
 msfonts/symbols/msbm7.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/te
-xmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (17 pages, 273468 bytes).
+a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/t
+exmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/t
+ype1/urw/times/utmri8a.pfb>
+Output written on manuscript.pdf (7 pages, 276211 bytes).
 PDF statistics:
- 142 PDF objects out of 1000 (max. 8388607)
+ 115 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
