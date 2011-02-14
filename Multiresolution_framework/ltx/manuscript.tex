@@ -492,7 +492,7 @@
 
 \begin{abstract}
 %\boldmath
-The Integro Difference Equation (IDE) is an increasingly popular model of spatio-temporal processes. Here we develop a Multiresolution Approximation (MRA) framework for the IDE based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is approached in a Maximum Likelihood (ML) framework using the Expectation Maximisation (EM) algorithm. Examples are given to demonstrate the features of the model.
+% The Integro Difference Equation (IDE) is an increasingly popular model of spatio-temporal processes. Here we develop a Multiresolution Approximation (MRA) framework for the IDE based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is approached in a Maximum Likelihood (ML) framework using the Expectation Maximisation (EM) algorithm. Examples are given to demonstrate the features of the model.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -524,6 +524,7 @@ Dynamic spatio-temporal modelling, Expectation Maximisation (EM) algorithm, Inte
 
 
 \section{Introduction}
+To Do
 % The very first letter is a 2 line initial drop letter followed
 % by the rest of the first word in caps.
 % 
@@ -539,46 +540,7 @@ Dynamic spatio-temporal modelling, Expectation Maximisation (EM) algorithm, Inte
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{C}{omplex} spatio-temporal behaviour is found in many different systems such as aquatic ecosystems \cite{Schofield2002}, meteorological forecasting \cite{Xu2005}, air pollution \cite{Romanowicz2006}, soil temperature  \cite{Bond-Lamberty2005}, thermal processes \cite{Deng2005}, disease spread \cite{Kuo2009} and real estate markets \cite{Sun2005}. Spatio-temporal modelling aims to represent dynamic system behaviour across time and space. %WEINAND1972
-
-Techniques for modelling spatio-temporal systems are generating growing interest, both in the applied and theoretical literature. Of particular interest are the class of dynamic spatio-temporal models, including Cellular Automata (CA) \cite{Wolfram1984}, Coupled Map Lattices (CMLs) \cite{Billings2002}, Lattice Dynamical Wavelet Neural Network (LDWNN) \cite{Wei2009} and spatially correlated time series  \cite{Pfeifer1980,Glasbey2008,Dewar2007} which have all been used in a system identification context. The extent of the spatial interactions in these models is determined by a discrete neighbourhood structure.
-
-
-Another such model is the Integro-Difference Equation (IDE). These models have received much attention in population ecology as models for the spatio-temporal spread of organisms \cite{Kot1992,Kot1996}. IDE models combine discrete temporal dynamics with a continuous spatial representation. The dynamics of this model are given by a spatial mixing kernel, which defines the mapping between the current spatial field and the previous spatial field. The IDE model can be applied to data sampled both regularly and irregularly in space due to the continuous representation of each spatial field. Estimating the underlying spatial field in time is of particular interest, and is not straightforward especially when the field displays structure at different spatial scales. Estimation of the underlying spatial field can be achieved by estimating the associated spatial mixing kernel from measured data, and then using this in a filtering framework. 
-
-
-Wikle \cite{Wikle2002} describes the IDE using a state-space formulation by decomposing the kernel and the field using a set of spectral basis functions. An alternative approach for the decomposition of the IDE was introduced in \cite{Dewar2009} where the resulting state and parameter space dimensions are independent of the number of observation locations. This is crucial not only for model parsimony but also has implications for studying systems observed at a high spatial resolution. In this method an Expectation-Maximisation (EM)  algorithm  was used to estimate both the field and the kernel from the observed data. A similar approach is adopted by \cite{Scerri2009} which developed a model selection procedure by considering various spatial scales at which to represent the system. %choose the appropriate model amongst models of varying Gaussian scale parameters incorporating spatio-temporal frequency domain properties of the data.
-%  when the system spatial bandwidth and the kernel support are unknown.
-
-Behaviour of the spatial field is often of interest at a variety of scales \cite{Wiens1989,Chelton1994,Schmidt2005,Ribba2006}. At each scale, an appropriate model should be adopted to adequately reflect the underlying phenomenon. The spatial field may have features at multiple scales either naturally or as a consequence of the measurement process \cite{Wilsky2002} and hence modelling methods that represent the field at multiple scales are essential. Multiresolution Approximation (MRA) \cite{Mallat1989a,Mallat1989b,Walnut2002} provides such a modelling framework in which information at different scales can be represented simultaneously.
-%  and can be used for the analysis and modelling of systems in which the spatio-temporal dispersal patterns are markedly different at the global and local scales \cite{Chelton1994,WIKLE2003,Schnell2007}. At each scale, an appropriate model should be adopted to adequately reflect the underlying dynamics. 
-
-% At the same time, a successful multiresolution representation opens up possibilities to further investigate the system in order to develop more efficient modelling schemes. For instance, in irregular observation scenario information at different scales can be integrated in a model with varying scales each suited for a specific region. %Often a proper scale is not known a priori and hence MRA can gives insight to appropriate levels is necessary to adequately capture the behaviour of the system.
-
-% three distinct
-% ways in which multiresolution features can enter into a signal or image analysis problem. 
-
-% The spatial field may have features at multiple scales by nature,  or regardless the underlying nature of the field ,  observations might be collected at several different resolutions. In such cases, modelling methods that represent the field at multiple scales are better suited than single scale models.
-
-% The spatial field may possess features at multiple scales by nature,  or regardless the underlying nature of the field ,  observations might be collected at several different resolutions. Therefore modelling methods that represent the field at multiple scales are better suited than single scale models. Multiresolution approximation (MRA) \cite{Meyer1993,Mallat1989a}  provides such modelling framework in which information at different scales can be obtained simultaneously. 
-
-% One example is multiresolution representation of the gravity field in which a global trend (coarse level) is computed from the satellite data and the regional and local information (fine level) is obtained from terrestrial and airbone data sets \cite{Schmidt2005}. 
-
-% In addition to representing a phenomenon at different scales, MRA approximation properties make them attractive for many identification problems. MRA has been implemented in both static and dynamic spatio-temporal  modelling contexts, for example in static modelling it has been used to provide a multiresolution covariance structure for non-stationary models which can adapt to heterogeneous spatial correlations \cite{D.Nychka2002}. In dynamic modelling MRA is used to identify CML models, which infer spatio-temporal patterns from measured data \cite{Billings2006}.
-
-
-%   Semi-orthogonal B-spline wavelets are compactly supported and optimally localised in time and frequency. 
-
-In practice, MRA can be implemented using different types of wavelet and scaling functions. Semi-orthogonal B-spline wavelets \cite{Chui1992,Unser1993} benefit from distinctive properties which are useful for system identification purposes. They are compactly supported and have a closed-form analytic expression which allows simple manipulations such as integration \cite{Unser1992,Chui1992a}. This class of wavelets has been successfully applied in approximation schemes such as wavelet networks\cite{G.P.Liu2000,Jun2005} and wavelet based CML models \cite{Billings2006}. 
-
-
-In this paper a multiresolution approximation of the IDE based on the model proposed in \cite{Dewar2009} is presented. B-spline scaling and wavelet functions are used to decompose both the kernel and the spatial field. Maximum likelihood estimates of the derived parametric state-space model are obtained using the EM-based algorithm of  \cite{Dewar2009}.  In this model, the kernel and the spatio-temporal dynamics of the field are viewed at different spatial scales. Whereas in \cite{Scerri2009} different spatial scales were examined and one chosen, the work presented herein represents the system at a number of different spatial scales concurrently.
-% - a property that the alternative models described above do not typically share.
-% Gaussian Radial Basis Functions have been used by  to identify the appropriate scale for the IDE to represent the underlying spatio-temporal dynamic however not in a MRA framework.
-
-
-  The rest of this paper is set out as follows: in Section 2, the IDE model is briefly reviewed and the MRA of the IDE is presented. Section 3 introduces the B-spline wavelet IDE model and provides necessary formulation  to construct such a model in state-space. Section 4 briefly reviews the EM-based approach for parameter and state estimation. In Section 5, synthetic examples are given to demonstrate the ability of the developed MRA model in estimation of the hidden spatio-temporal field and the spatial mixing kernel. Finally conclusions are drawn in Section 6.
-
+% \IEEEPARstart{C}{omplex} 
 
 
 
@@ -680,6 +642,36 @@ In this paper a multiresolution approximation of the IDE based on the model prop
 % Note that, LaTeX2e, unlike IEEE journals, places footnotes above bottom
 % floats. This can be corrected via the \fnbelowfloat command of the
 % stfloats package.
+\section{Integro-Difference Equation Neural Field Model}
+The stochastic  integro-difference equation (IDE) form of the model based on the Wilson-Cowan \cite{Wilson1973} or Amari neural field \cite{Amari1977} formulation is given by (cite NeuroImage paper)
+\begin{equation}\label{DiscreteTimeModel} 
+	v_{t+T_s}\left(\mathbf{r}\right) = 
+	\xi v_t\left(\mathbf{r}\right) + 
+	T_s \int_\Omega { 
+	    w\left(\mathbf{r},\mathbf{r'}\right)
+	    f\left(v_t\left(\mathbf{r}'\right)\right) 
+	\, d\mathbf{r}'} 
+	+ e_t\left(\mathbf{r}\right), 
+\end{equation}
+where the local post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$, parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$ where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The spatial connectivity between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$, for an isotropic and homogeneous neural field. The connectivity kernel is typically a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the sigmoidal activation function $f\left(.\right)$. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{s}-\mathbf{r}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{s}-\mathbf{r}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{s}-\mathbf{r})$~\cite{Rasmussen2005}. Here we assume that the sigmoid activation function, $f(\cdot)$, can be approximated by the piecewise function
+\begin{equation}
+	\hat{f}(v_t(\mathbf{r}')) = \left\{ \begin{array}{ll}
+		0, & v_t(\mathbf{r}') \le v_1 \\
+		\varsigma v_t(\mathbf{r}'), &  v_1 < v_t(\mathbf{r}') < v_2 \\
+		1, & v_t(\mathbf{r}') \ge v_2 \\ 
+		\end{array}\right.
+\end{equation}
+where the parameter $\varsigma$ governs the slope of the sigmoid. Furthermore, we assume the field is in the linear region of the piecewise function giving
+\begin{equation}\label{DiscreteTimeModel} 
+	v_{t+1}\left(\mathbf{r}\right) = 
+	\xi v_t\left(\mathbf{r}\right) + 
+	T_s \varsigma\int_\Omega { 
+	    w\left(\mathbf{r}-\mathbf{r'}\right)
+	    v_t\left(\mathbf{r}'\right) 
+	\, d\mathbf{r}'} 
+	+ e_t\left(\mathbf{r}\right), 
+\end{equation}
+For simplicity, 
 \section{MRA of the IDE in State-Space}
 The spatially homogeneous, linear IDE is given by
 \begin{equation}
