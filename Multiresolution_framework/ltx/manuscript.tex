@@ -66,12 +66,9 @@
 
 
  % TO DELETE
-\newcommand{\mike}[1]{\textsf{\emph{\textbf{\textcolor{red}{#1}}}}} 
-\newcommand{\dean}[1]{\textsf{\emph{\textbf{\textcolor{green}{#1}}}}} 
-\newcommand{\parham}[1]{\textsf{\emph{\textbf{\textcolor{blue}{#1}}}}} 
-\newcommand{\ken}[1]{\textsf{\emph{\textbf{\textcolor{magenta}{#1}}}}} 
-%    \documentclass[journal,a4paper]{IEEEtran}
-     \documentclass[10pt,twocolumn,twoside]{IEEEtran}
+
+    \documentclass[journal,a4paper]{IEEEtran}
+ %    \documentclass[10pt,twocolumn,twoside]{IEEEtran}
 %     \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
 %         \topmargin       -6.0mm
 %          \oddsidemargin      0mm
@@ -79,7 +76,11 @@
 %          \textheight     223.5mm
 %         \textwidth      170.0mm
 
-
+\usepackage{color}
+\newcommand{\mike}[1]{\textsf{\emph{\textbf{\textcolor{red}{#1}}}}} 
+\newcommand{\dean}[1]{\textsf{\emph{\textbf{\textcolor{green}{#1}}}}} 
+\newcommand{\parham}[1]{\textsf{\emph{\textbf{\textcolor{blue}{#1}}}}} 
+\newcommand{\ken}[1]{\textsf{\emph{\textbf{\textcolor{magenta}{#1}}}}} 
 
 
 % If IEEEtran.cls has not been installed into the LaTeX system files,
@@ -677,7 +678,7 @@ observation equation is given by
 \end{equation}
 where electrophysiological recordings $\mathbf{y}_{t}=[y_t(\mathbf{r}_1) y_t(\mathbf{r}_2)\cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations and at time $t$ via the observation kernel  $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$, is corrupted by an i.i.d normally distributed zero-mean white noise $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$ with $\mathbf{\Sigma}_{\epsilon}=\sigma_{\epsilon}^2\mathbf I_{n_y} $. The superscript $\top$ denotes the transpose operator.
 \section{MRA of the IDE in State-Space}
-Assuming $v_t(.)$ and $w(.)$ are square-integrable functions, MRA of the one-dimensional IDE can be obtained by expanding  both the field and the kernel in the equation (\ref{DiscreteTimeModel}) in terms of the translations and dilations of a scaling function $\phi(s)$ and a mother wavelet $\psi(s)$. For the one-dimensional kernel this is given by,
+Assuming $v_t(.)$ and $w(.)$ are square-integrable functions, MRA of the one-dimensional IDE can be obtained by expanding  both the field and the kernel in the equation (\ref{DiscreteTimeModel}) in terms of the translations and dilations of a scaling function $\phi(r)$ and a mother wavelet $\psi(r)$. For the one-dimensional kernel this is given by,
 \begin{equation}
  w\left(r-r'\right)=\sum_{l \in \mathbb{Z}}\alpha_{j_0,l}\phi_{j_0,l}\left(r-r'\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{j,l}\left(r-r'\right) 
 \label{eq:KernelExpansion}
@@ -764,7 +765,7 @@ where the vector $\boldsymbol\beta_{j}^{(i)}$ contains all the coefficient $\lef
 \label{FieldBasisVector}
 \end{equation}
 Each vector of basis functions on the right hand-side of (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in a way similar to their corresponding weight vectors in (\ref{KernelWeights}) and (\ref{FieldWeights}). Note that the identified IDE model will approximate the underlying spatio-temporal dynamics at different spatial scales. In this way both macroscopic and microscopic behaviour of the system can be represented simultaneously. 
-
+\parham{Mike you can add state-space derivation using Galerkin projection here.}
 % however it can be tailored to capture underlying dynamics with desired accuracy for a sufficiently large value of $j$, a value between zero and three is usually sufficient in many applications \cite{Wei2006}. Note that number of translation parameters is always finite and depends on the range of measured data.
 
 The state-space representation of the spatio-temporal IDE proposed in \cite{Dewar2009} is derived for an arbitrary set of basis functions and hence this derivation can be applied using scaling and wavelet basis functions. Let

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  14 FEB 2011 21:13
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  15 FEB 2011 11:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -21,7 +21,7 @@ LaTeX Font Info:    Try loading font information for OT1+ptm on input line 366.
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
--- Using 8.5in x 11in (letter) paper.
+-- Using 210mm x 297mm (a4) paper.
 -- Using PDF output.
 \@IEEEnormalsizeunitybaselineskip=\dimen104
 -- This is a 10 point document.
@@ -91,7 +91,19 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \@IEEEtmpitemindent=\dimen116
 \c@IEEEbiography=\count90
 \@IEEEtranrubishbin=\box26
-) (/usr/share/texmf-texlive/tex/latex/cite/cite.sty
+) (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/etc/texmf/tex/latex/config/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+\Gread@gobject=\count91
+))
+(/usr/share/texmf-texlive/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 285.
 LaTeX Info: Redefining \nocite on input line 356.
 Package: cite 2009/08/29  v 5.2
@@ -113,11 +125,7 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
-
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
-\Gread@gobject=\count91
-))
+)
 \Gin@req@height=\dimen117
 \Gin@req@width=\dimen118
 )
@@ -234,18 +242,18 @@ LaTeX Warning: Label `eq:ObservationEquation' multiply defined.
 )
 \openout1 = `manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 418.
-LaTeX Font Info:    ... okay on input line 418.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 418.
-LaTeX Font Info:    ... okay on input line 418.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 418.
-LaTeX Font Info:    ... okay on input line 418.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 418.
-LaTeX Font Info:    ... okay on input line 418.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 418.
-LaTeX Font Info:    ... okay on input line 418.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 418.
-LaTeX Font Info:    ... okay on input line 418.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 419.
+LaTeX Font Info:    ... okay on input line 419.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 419.
+LaTeX Font Info:    ... okay on input line 419.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 419.
+LaTeX Font Info:    ... okay on input line 419.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 419.
+LaTeX Font Info:    ... okay on input line 419.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 419.
+LaTeX Font Info:    ... okay on input line 419.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 419.
+LaTeX Font Info:    ... okay on input line 419.
  (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count112
@@ -259,16 +267,16 @@ LaTeX Font Info:    ... okay on input line 418.
 \MPnumerator=\count116
 \everyMPtoPDFconversion=\toks25
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 647.
+LaTeX Font Info:    Try loading font information for U+msa on input line 648.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 647.
+LaTeX Font Info:    Try loading font information for U+msb on input line 648.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 677--679
+Underfull \hbox (badness 10000) in paragraph at lines 678--680
 \OT1/ptm/m/n/10 where elec-tro-phys-i-o-log-i-cal record-ings $\OT1/cmr/bx/n/10
  y[] \OT1/cmr/m/n/10 =
  []
@@ -277,65 +285,77 @@ Underfull \hbox (badness 10000) in paragraph at lines 677--679
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 753--757
+Underfull \hbox (badness 10000) in paragraph at lines 754--758
 \OT1/ptm/m/n/10 where the vec-tor $[][]$ con-tains all the co-ef-fi-cient
  []
 
 
-Overfull \hbox (2.22876pt too wide) in alignment at lines 757--761
+Overfull \hbox (2.22876pt too wide) in alignment at lines 758--762
  [][][] []
  []
 
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 768.
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 768.
+LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <10> not available
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 768.
+LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 768.
+
 
 LaTeX Warning: Reference `eq:ConvolutionIntegral' on page 2 undefined on input 
-line 779.
+line 780.
 
 
 LaTeX Warning: Reference `eq:observation equation' on page 2 undefined on input
- line 779.
+ line 780.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 792--803
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 792--803
+Underfull \hbox (badness 10000) in paragraph at lines 793--804
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 792--803
+Underfull \hbox (badness 10000) in paragraph at lines 793--804
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 792--803
+Underfull \hbox (badness 10000) in paragraph at lines 793--804
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 793--804
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 863--865
+Underfull \hbox (badness 10000) in paragraph at lines 864--866
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 893--902
+Underfull \hbox (badness 10000) in paragraph at lines 894--903
 
  []
 
 
-Underfull \hbox (badness 4647) in paragraph at lines 893--902
+Underfull \hbox (badness 4647) in paragraph at lines 894--903
 \OT1/ptm/m/n/10 Using these ex-pan-sions it be-comes straight-for-ward to
  []
 
 [3]
-Overfull \hbox (4.96461pt too wide) detected at line 927
+Overfull \hbox (4.96461pt too wide) detected at line 928
 \OT1/cmr/bx/n/10 P[] \OT1/cmr/m/n/10 = [] [] [] [][]
  []
 
 
-Overfull \hbox (27.5248pt too wide) detected at line 936
+Overfull \hbox (27.5248pt too wide) detected at line 937
 \OT1/cmr/bx/n/10 X[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t \OT1/cmr/m/n/10 + 1) = 
 [] []([] \OMS/cmsy/m/n/10 ^^@ []\OT1/cmr/m/n/10 )[]\OMS/cmsy/m/n/10 K[]\OT1/cmr
 /m/n/10 (\OT1/cmr/bx/n/10 Y[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 C[]\OT1/cmr
@@ -344,44 +364,44 @@ Overfull \hbox (27.5248pt too wide) detected at line 936
 
 
 LaTeX Warning: Reference `fig:SpatialMixingKernel' on page 4 undefined on input
- line 969.
+ line 970.
 
 
 LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 4 undefined 
-on input line 1002.
+on input line 1003.
 
 [4]
 
 LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 5 undefined 
-on input line 1015.
+on input line 1016.
 
 
 LaTeX Warning: Reference `fig:1DFieldEstimation' on page 5 undefined on input l
-ine 1015.
+ine 1016.
 
 
 LaTeX Warning: Reference `fig:FieldVariance' on page 5 undefined on input line 
-1015.
+1016.
 
 
 LaTeX Warning: Reference `fig:FieldVariance' on page 5 undefined on input line 
-1020.
+1021.
 
 
-LaTeX Warning: Reference `fig:2DHist' on page 5 undefined on input line 1028.
+LaTeX Warning: Reference `fig:2DHist' on page 5 undefined on input line 1029.
 
 
 LaTeX Warning: Reference `fig:2DFieldEstimation1' on page 5 undefined on input 
-line 1028.
+line 1029.
 
 
 LaTeX Warning: Reference `fig:2DFieldEstimation3' on page 5 undefined on input 
-line 1028.
+line 1029.
 
 \c@lemma=\count117
 
 LaTeX Warning: Reference `eq:FieldCovariance' on page 5 undefined on input line
- 1095.
+ 1096.
 
 [5] [6] (./manuscript.bbl) [7
 
@@ -395,17 +415,17 @@ LaTeX Warning: There were multiply-defined labels.
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 1028 ({)
-### simple group (level 1) entered at line 1015 ({)
+### simple group (level 2) entered at line 1029 ({)
+### simple group (level 1) entered at line 1016 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 2935 strings out of 495061
- 40683 string characters out of 1182622
- 106466 words of memory out of 3000000
- 6080 multiletter control sequences out of 15000+50000
- 47134 words of font info for 101 fonts, out of 3000000 for 9000
+ 3038 strings out of 495061
+ 42101 string characters out of 1182622
+ 107609 words of memory out of 3000000
+ 6171 multiletter control sequences out of 15000+50000
+ 50168 words of font info for 105 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,21n,24p,2465b,283s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,21n,24p,2465b,291s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-texlive/fonts/
@@ -422,13 +442,14 @@ r8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr
 f-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fo
 nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/symbols/msbm7.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/t
-exmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/t
-ype1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (7 pages, 276211 bytes).
+msfonts/symbols/msbm7.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uh
+vbo8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/shar
+e/texmf-texlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fon
+ts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/u
+tmri8a.pfb>
+Output written on manuscript.pdf (7 pages, 285143 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
+ 119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
