@@ -900,51 +900,6 @@ A state-space representation of the IDE model allows the use of the Expectation 
 
 % represents the predicted state covariance matrix, $\mathbf P_{t|t+1}$ using a large stochastic ensemble of the predicted states $\hat{\mathbf x}_{t+1|t}$.
 
-\begin{algorithm}
-\caption{Ensemble Kalman smoother}
-\label{alg:EnKS}
-% \begin{tabbing}
-\begin{enumerate}
-\item Initialise:
-\begin{center}
- $\hat{\mathbf x}_0 $, $\mathbf P_0$  
-\end{center}
-\item
-for $t\in\left\lbrace 0, \dots, T\right\rbrace $, calculate the state ensembles $\hat{\mathbf X}_t$ and the model errors ensemble $\mathbf W_t$ and propogate through the state equation:
-\begin{equation*}
-\hat{\mathbf X}_{i,t+1}^f=\mathbf A \hat{\mathbf X}_{i,t}^a+\mathbf W_{i,t}
-\end{equation*}
-calculate the predicted state and the predicted covariance matrix
-\begin{equation*}
- \hat{\mathbf x}_{t+1}^f=\frac{1}{N}\sum_{i=1}^{N}\hat{\mathbf X}_{i,t+1}^f
-\end{equation*}
-\begin{equation*}
- \mathbf P_{t+1}^f=\frac{1}{N-1}\sum_{i=1}^{N}\left( \hat{\mathbf X}_{i,t+1}^f- \hat{\mathbf x}_{t+1}^f\right)\left( \hat{\mathbf X}_{i,t+1}^f- \hat{\mathbf x}_{t+1}^f\right)^\top
-\end{equation*}
-\item
-compute $\mathbf X_4(t+1)$ and $\mathbf X_5(t+1)$ and the filtered state and the filtered covariance matrix:
-\begin{equation*}
- \mathcal K_t=\mathbf C^{\top}(\mathbf C\mathbf{P}_{t+1}^f\mathbf C^{\top}+\boldsymbol\Sigma_v)^{-1}
-\end{equation*}
-
-\begin{equation*}
- \mathbf X_4(t+1)=\frac{1}{N-1}\sum_{i=1}^{N}(\hat{\mathbf X}_{i,t+1}^f-\hat{\mathbf x}^f_{t+1} )^\top\mathcal K_t (\mathbf Y_{i,t+1}-\mathbf C\hat{\mathbf{X}}_{i,t+1}^f)
-\end{equation*}
-\begin{equation*}
- \mathbf X_5(t+1)= \mathbf I +\mathbf X_4(t+1)
-\end{equation*}
-\begin{equation*}
- \hat{\mathbf X}_{t+1}^a=\hat{\mathbf X}_{t+1}^f \mathbf X_5(t+1)
-\end{equation*}
-\item compute the smooth ensemble for $t\in\left\lbrace 0, \dots, T\right\rbrace $
-\begin{equation*}
- \hat{\mathbf{X}}_{t}^s=\hat{\mathbf X}_{t}^a \prod_{j=t+1}^{T}X_5(j)
-\end{equation*}
-\end{enumerate}
-% \end{tabbing}
-\end{algorithm}
-
-
 In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother can be employed to determine the posterior state sequence. It can be shown that \cite{Dempster1977,Gibsona2005} every EM iteration increases the lower bound on the likelihood function and hence improving the state and parameter estimates. The stopping criterion is usually associated  with  either the change in the parameter estimates or the log-likelihood variation \cite{McLachlan1997}. The stopping rule adopted herein is
 \begin{equation}
 \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\varepsilon 
@@ -963,12 +918,37 @@ k\left(s-r\right)&=& -\phi_{4;0,-3}\left(s-r\right)+\phi_{4;0,-2}\left(s-r\right
 \end{eqnarray}
 \setlength{\arraycolsep}{5pt}
 The kernel and its decomposition are plotted in  \figurename{\ref{fig:SpatialMixingKernel}}. The dynamics associated with the IDE defined by (\ref{eq:1DSimulationKernel}) will be oscillatory and dissipative to initial conditions. The field is decomposed using scaling functions $\phi_{4;0,k} $ and the associated wavelet functions $\psi_{4;j,k} $ with $j=0,1$. Observations are then generated from (\ref{eq:ConstructionIntegral1}-\ref{eq:Pi}) for spatial domain defined as $\mathcal{S}=\left[0,10 \right] $ in response to an initial condition where $\boldsymbol\Sigma_v=0.2 \times \mathbf{I}_{n_y}$ and $ \eta(s-r)=2.5\times\phi_{4,3,-2}(s-r)$. The response was sampled at 50 irregularly spaced random locations, at $t=1, \cdots 400 $.
-% \begin{figure}[!h] 
-% \centering
-% \includegraphics[width=0.5\textwidth]{./Graph/aram1.eps}
-% \caption{Multiresolution decomposition of a complex spatial mixing kernel (dark line) and the corresponding scaling and wavelet basis functions (light lines).}
-% \label{fig:SpatialMixingKernel}
-% \end{figure} 
+\begin{figure}[!h] 
+ \centering
+ \includegraphics[scale=1]{./Graph/ObservationFreqResponse.pdf}
+ \caption{The average (over time) power in dB of the spatial frequency of the observations. The dashed line shows the cutoff frequency (-3 dB point).}
+ \label{fig:FreqResponse}
+ \end{figure} 
+\begin{figure}[!h] 
+ \centering
+ \includegraphics[scale=1]{./Graph/Hist.pdf}
+ \caption{Histograms of the parameter estimates over 100 realizations. In each of the subplots
+the solid lines show the actual parameter values and the dotted lines show the means of the estimated
+parameters. Left panel: The histogram of the central excitatory connectivity kernel basis function parameter
+estimates, $\theta_0$. Right panel: The histogram of the surround inhibition connectivity kernel basis function parameter
+estimates, $\theta_1$.}
+ \label{fig:ParametersHistogram}
+ \end{figure} 
+\begin{figure}[!h] 
+ \centering
+ %\includegraphics[width=0.5\textwidth]{./Graph/RMSE.pdf}
+\includegraphics[scale=1]{./Graph/RMSE.pdf}
+ \caption{RMSE of the estimated field at different spatial resolution.}
+ \label{fig:RMSE}
+ \end{figure} 
+\begin{figure}[!h] 
+ \centering
+ \includegraphics[scale=1]{./Graph/Field.pdf}
+ \caption{Spatial field at one time instant for different spatial resolutions; estimated and true fields are
+shown by dashed and solid lines respectively.}
+ \label{fig:FreqResponse}
+ \end{figure} 
+
 % \begin{figure}[!h] 
 % \centering
 % \includegraphics[width=0.5\textwidth]{./Graph/aram2.eps}
@@ -1020,31 +1000,6 @@ where $\mathbf P_{t|T} $ is the covariance matrix associated with the  state est
 % \caption{Variance of the field at each spatial location for $j=0$ (dotted line) and $j=1$ (solid line). The observation locations are described with a cross.}
 % \label{fig:FieldVariance}
 % \end{figure} 
-\subsection{Two dimensional example}
-In order to demonstrate the ability of the developed model in higher dimensions, a two dimensional IDE model with a single B-spline kernel $\phi_{4;0,\mathbf{l}}\left(s_1-r_1,s_2-r_2\right) $ and $\mathbf l=[-2,-2]^ \top$ is used with parameter $\theta=1$. In this example spatial region $\mathcal{S}=[0,4]^2 $ is simulated over $t=\left\lbrace1 \cdots 200  \right\rbrace $ using $7$ scaling and wavelet functions at $j=0$ together with $24$ wavelet functions at $j=1$. Univariate cubic B-spline scaling and wavelet functions are used to generate 2-D basis functions using (\ref{eq:2Dscalingfunction}-\ref{eq:2Dwavelet_3}). A set of $250$ random  observation locations is used; $\mathbf{\Sigma}_v$ is taken the same as that in example 1 and $ \eta\left(s_1-r_1,s_2-r_2\right) =2.5\times\phi_{4,3,\mathbf{l}}\left(s_1-r_1,s_2-r_2\right)$ where $\mathbf l=[-2,-2]^ \top$. The histogram of the parameter estimates  in \figurename{\ref{fig:2DHist} is generated using 500 runs of the EM algorithm. For comparison, snapshots for the original and the corresponding coarse and fine field estimates at time instants 5, 50 and 150 are illustrated in \figurename{\ref{fig:2DFieldEstimation1}-\ref{fig:2DFieldEstimation3}}. In addition, the MISE of the dynamic field at some time instants are presented in Table \ref{table:ValidationResultField}.  This shows that the multiresolution IDE model can estimate the spatio-temporal dynamics of the original system accurately. The accuracy of the estimation remains consistent over time. Performance is improved significantly at $j=1$ compared to the case where $j=0$.
-% \begin{figure}[!t] 
-% \centering
-% \includegraphics[width=0.5\textwidth]{./Graph/aram5.eps}
-% \caption{Distribution of the parameter estimate for 2-D Example over 500 runs of the EM algorithm. The dotted line indicates the true parameter.}
-% \label{fig:2DHist}
-% \end{figure}
-% \begin{figure*}[!th] 
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram6a.eps}}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram6b.eps}}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram6c.eps}}\\ 
-% \caption{Spatial field at t=5; a: True field; b: Estimated field with maximmum scale $j=0$; c: Estimated field with maximmum scale $j=1$.}
-% \label{fig:2DFieldEstimation1}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram7a.eps}}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram7b.eps}} 
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram7c.eps}}\\
-% \caption{Spatial field at t=50; a: True field; b: Estimated field with maximmum scale $j=0$; c: Estimated field with maximmum scale $j=1$.}
-% \label{fig:2DFieldEstimation2}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram8a.eps}}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram8b.eps}} 
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram8c.eps}}
-% \caption{Spatial field at t=150; a: True field; b: Estimated field with maximmum scale $j=0$; c: Estimated field with maximmum scale $j=1$.}
-% \label{fig:2DFieldEstimation3}
-% \end{figure*}
 \begin{table}[!h]
 \renewcommand{\arraystretch}{1.3}
 \caption {MISE  at particular scale between measured and estimated 2D-field  at a particular time}
@@ -1088,38 +1043,6 @@ By considering different levels of decomposition, the proposed approach could be
 %
 \newtheorem{lemma}{Lemma}
 \begin{lemma}
-Consider the zero-mean process $e_t\left(s\right)$ with covariance as defined by (\ref{eq:FieldCovariance}) then
-\begin{equation}
- \mathbf{w}_t=\mathbf{\Lambda}_{x}^{-1}\int_{\mathcal{S}}\boldsymbol\mu \left(\mathbf{s}\right)e_t\left(\mathbf{s}\right)d\mathbf{s}
-\label{eq:AppendixWt}
-\end{equation}
-is a vector valued, zero mean normally distributed white noise process with covariance
-\begin{equation}
-\boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\boldsymbol\Pi\mathbf{\Lambda}_{x}^{- \top}
-\end{equation}
-and
-\begin{equation}
- \boldsymbol\Pi=\iint\limits_{\mathcal{S}}\boldsymbol\mu\left(\mathbf s\right)\eta\left(\mathbf s-\mathbf r\right)\boldsymbol\mu\left(\mathbf r\right)^\top d\mathbf{r}d\mathbf{s}
-\end{equation}
-\label{lemma:FieldCovariance}
-\end{lemma}
-\begin{IEEEproof}
- Equation (\ref{eq:AppendixWt}) is a linear function of $e_t(\mathbf s)$ and hence $\mathbf{w}_t$ is also normally distributed. The expected value of $\mathbf w_t$ is given by 
-\begin{eqnarray}
- \mathbf E\left[ \mathbf w_t\right]&=& \mathbf{\Lambda}_{x}^{-1}\int_{\mathcal{S}}\boldsymbol\mu \left(\mathbf{s}\right)\mathbf E\left[e_t\left(\mathbf{s}\right)\right] d\mathbf{s} \nonumber \\
-&=&0
-\end{eqnarray}
-and 
-\begin{eqnarray}
-\mathbf \Sigma_w&{}={}&\mathbf E[ \mathbf w_t \mathbf w_{t}^{\top}]\nonumber\\
-&=& \mathbf{\Lambda}_{x}^{-1}\mathbf E[\int_{\mathcal{S}}\boldsymbol\mu\left(\mathbf s\right)e_t\left(\mathbf s\right)d\mathbf s\int_{\mathcal{S}}\boldsymbol\mu\left(\mathbf r\right)^{\top}e_t\left(\mathbf r\right)d\mathbf r]\mathbf{\Lambda}_{x}^{- \top} \nonumber \\
-&=&\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\mathcal{S}}\boldsymbol\mu\left(\mathbf s\right) \mathbf E[e_t\left(\mathbf s\right)e_t\left(\mathbf r\right)]\boldsymbol\mu\left(\mathbf r\right)^{\top}d\mathbf r d\mathbf s\mathbf{\Lambda}_{x}^{- \top} \nonumber\\
-&=&{}\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\mathcal{S}}\boldsymbol\mu\left(\mathbf s\right) \eta\left(\mathbf s- \mathbf r \right)\boldsymbol\mu\left(\mathbf r\right)^{\top}d\mathbf r d\mathbf s\mathbf{\Lambda}_{x}^{- \top} \nonumber\\
-&=&\mathbf{\Lambda}_{x}^{-1}\boldsymbol\Pi\mathbf{\Lambda}_{x}^{- \top}
-\end{eqnarray}
-\setlength{\arraycolsep}{5pt}
-\end{IEEEproof}
-\begin{lemma}
 Let $N_m\left(s-l_1\right)$ and $N_{m'}\left(s-l_2\right)$ be shifted B-spline functions of order $m$ and $m'$ respectively. Then the inner product of  $N_m\left(s-l_1\right)$  and $N_{m'}\left(s-l_2\right)$ can be calculated by 
 \setlength{\arraycolsep}{0.0em}
 \begin{eqnarray}
@@ -1151,44 +1074,6 @@ Therefore
 \end{IEEEeqnarray}
 \setlength{\arraycolsep}{5pt}
 \end{IEEEproof}
-\section*{Reducing the computational complexity}\label{App:ReducedRTS}
-The state-space representation of the spatio-temporal IDE \eqref{eq:StateEquation} and \eqref{eq:ObservationEquation} has a quadratic $\mathcal Q$-function in a form of \cite{Dewar2009}
-\begin{equation}
-\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)=2 \boldsymbol\theta^\top\boldsymbol\upsilon -\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta
-\label{eq:QFunction}
-\end{equation}
-which has a maximum at
-\begin{equation}
- \boldsymbol\theta=\boldsymbol\Upsilon^{-1}\boldsymbol\upsilon
-\end{equation}
-where
-\begin{equation}\label{eq:Upsilon}
- \boldsymbol\Upsilon=\sum_{i,j,k,m=1}^{n_x}\left[ \Xi_1\right] _{ij}\boldsymbol\gamma^{\left(k,j\right)}\left[\boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1} \boldsymbol\Lambda_{x}^{-1}\right]_{km} \boldsymbol\gamma^{\left(m,i\right)\mathsf{T}}
-\end{equation}
-and
-\begin{equation}
- \boldsymbol \upsilon=\sum_{i,j=1}^{n_x}\left[\Xi_0\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1} \right]_{ij}\boldsymbol\gamma^{\left(j,i\right)} 
-\end{equation}
-where
-\begin{equation}
- \boldsymbol\gamma^{(i,j)}=\int_{\mathcal S}\left[ \mu(s)\right]_i\left[ \mathbf M(s)\right] _{:j}ds
-\end{equation}
-and $\left[ \mathbf M(s)\right] _{:j}$ denotes the $j$th column of $\mathbf M(s)$. The definitions of the $\Xi_0$ and $\Xi_1$ are the same as in \cite{Dewar2009}. Note that constant values with respect to $\boldsymbol \theta$ are ignored in \eqref{eq:QFunction}.
-We define $n_x \times n_x$ block matrix $\mathbf U$ such that
-\begin{equation}\label{eq:UMatrix}
- [\mathbf U]_{i,j}=\boldsymbol\gamma^{(i,j)\mathsf{T}}
-\end{equation}
-substituting \eqref{eq:UMatrix} in \eqref{eq:Upsilon} we get
-\begin{equation}\label{eq:UpsilonU}
- \boldsymbol\Upsilon=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T} \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf{U}]_{j,i}
-\end{equation}
-and similarly substituting \eqref{eq:UMatrix} in \eqref{eq:Upsilon} we have
-\begin{equation}\label{eq:upsilonU}
- \boldsymbol\upsilon=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i}
-\end{equation}
-with this substitution the second terms in \eqref{eq:UpsilonU} and \eqref{eq:upsilonU} can be pre-calculated and stored. This lowers the comutational complexity of the estimation algorithm and provides a dramatic increase in estimation speed.
-\section*{Cross covariance matrix}\label{App:EnCrossCov}
-
 
 
 %\appendices

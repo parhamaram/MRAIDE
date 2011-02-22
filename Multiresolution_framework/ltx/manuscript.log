@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  22 FEB 2011 13:07
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  22 FEB 2011 18:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -232,7 +232,11 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 )
 \@float@every@algorithm=\toks23
 \c@algorithm=\count111
- (./manuscript.aux)
+ (./manuscript.aux
+
+LaTeX Warning: Label `fig:FreqResponse' multiply defined.
+
+)
 \openout1 = `manuscript.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 419.
@@ -247,8 +251,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 419.
 LaTeX Font Info:    ... okay on input line 419.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 419.
 LaTeX Font Info:    ... okay on input line 419.
-
-(/usr/share/texmf/tex/context/base/supp-pdf.mkii
+ (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count112
 \scratchdimen=\dimen130
@@ -352,112 +355,122 @@ Underfull \hbox (badness 4647) in paragraph at lines 889--898
 \OT1/ptm/m/n/10 Using these ex-pan-sions it be-comes straight-for-ward to
  []
 
+
+LaTeX Warning: Reference `App:ReducedRTS' on page 3 undefined on input line 899
+.
+
+
+LaTeX Warning: Reference `alg:EnKS' on page 3 undefined on input line 899.
+
 [3]
-Overfull \hbox (4.96461pt too wide) detected at line 923
-\OT1/cmr/bx/n/10 P[] \OT1/cmr/m/n/10 = [] [] [] [][]
- []
-
-
-Overfull \hbox (27.5248pt too wide) detected at line 932
-\OT1/cmr/bx/n/10 X[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t \OT1/cmr/m/n/10 + 1) = 
-[] []([] \OMS/cmsy/m/n/10 ^^@ []\OT1/cmr/m/n/10 )[]\OMS/cmsy/m/n/10 K[]\OT1/cmr
-/m/n/10 (\OT1/cmr/bx/n/10 Y[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 C[]\OT1/cmr
-/m/n/10 )
- []
-
 
 LaTeX Warning: Reference `fig:SpatialMixingKernel' on page 4 undefined on input
- line 965.
+ line 920.
 
 
 LaTeX Warning: Reference `eq:ConstructionIntegral1' on page 4 undefined on inpu
-t line 965.
+t line 920.
 
 
-LaTeX Warning: Reference `eq:Pi' on page 4 undefined on input line 965.
+LaTeX Warning: Reference `eq:Pi' on page 4 undefined on input line 920.
+
+<./Graph/ObservationFreqResponse.pdf, id=31, 225.14615pt x 144.31694pt>
+File: ./Graph/ObservationFreqResponse.pdf Graphic file (type pdf)
+
+<use ./Graph/ObservationFreqResponse.pdf>
+<./Graph/Hist.pdf, id=32, 230.59436pt x 137.88824pt>
+File: ./Graph/Hist.pdf Graphic file (type pdf)
+ <use ./Graph/Hist.pdf>
+<./Graph/RMSE.pdf, id=33, 247.84685pt x 117.0707pt>
+File: ./Graph/RMSE.pdf Graphic file (type pdf)
+ <use ./Graph/RMSE.pdf>
+<./Graph/Field.pdf, id=34, 230.46185pt x 279.42856pt>
+File: ./Graph/Field.pdf Graphic file (type pdf)
+ <use ./Graph/Field.pdf>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 4 undefined 
-on input line 998.
+on input line 978.
 
-[4]
+[4 <./Graph/ObservationFreqResponse.pdf> <./Graph/Hist.pdf> <./Graph/RMSE.pdf>]
 
 LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 5 undefined 
-on input line 1011.
+on input line 991.
 
 
 LaTeX Warning: Reference `fig:1DFieldEstimation' on page 5 undefined on input l
-ine 1011.
+ine 991.
 
 
 LaTeX Warning: Reference `fig:FieldVariance' on page 5 undefined on input line 
-1011.
+991.
 
 
 LaTeX Warning: Reference `fig:FieldVariance' on page 5 undefined on input line 
-1016.
+996.
 
-
-LaTeX Warning: Reference `fig:2DHist' on page 5 undefined on input line 1024.
-
-
-LaTeX Warning: Reference `fig:2DFieldEstimation1' on page 5 undefined on input 
-line 1024.
-
-
-LaTeX Warning: Reference `fig:2DFieldEstimation3' on page 5 undefined on input 
-line 1024.
-
+[5 <./Graph/Field.pdf>]
 \c@lemma=\count117
-
-LaTeX Warning: Reference `eq:FieldCovariance' on page 5 undefined on input line
- 1091.
-
-[5] [6] (./manuscript.bbl) [7
-
-] (./manuscript.aux)
+ (./manuscript.bbl) [6] (./manuscript.aux)
 
 LaTeX Warning: There were undefined references.
 
- )
-(\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 1024 ({)
-### simple group (level 1) entered at line 1011 ({)
+LaTeX Warning: There were multiply-defined labels.
+
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 991 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 3042 strings out of 495061
- 42150 string characters out of 1182622
- 106590 words of memory out of 3000000
- 6175 multiletter control sequences out of 15000+50000
- 50168 words of font info for 105 fonts, out of 3000000 for 9000
+ 3049 strings out of 495061
+ 42422 string characters out of 1182622
+ 106567 words of memory out of 3000000
+ 6179 multiletter control sequences out of 15000+50000
+ 49263 words of font info for 102 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,21n,24p,2465b,291s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,21n,24p,2465b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publi
 c/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-r8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr
-/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fo
-nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/symbols/msam10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/symbols/msbm10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/symbols/msbm7.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.
-pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texm
-f-texlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/typ
-e1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a
-.pfb>
-Output written on manuscript.pdf (7 pages, 292676 bytes).
+cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi5.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fo
+nts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/ms
+am10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.p
+fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm7.pfb></us
+r/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-tex
+live/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/fonts/type1
+/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhv
+ro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share
+/texmf-texlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/font
+s/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
+mri8a.pfb>
+Output written on manuscript.pdf (6 pages, 560595 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
+ 177 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
