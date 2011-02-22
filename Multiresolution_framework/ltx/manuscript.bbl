@@ -43,10 +43,11 @@ Y.~Meyer, \emph{Wavelets and Operators}.\hskip 1em plus 0.5em minus 0.4em\relax
 S.~G. Mallat, \emph{A Wavelet Tour of Signal Processing}.\hskip 1em plus 0.5em
   minus 0.4em\relax San Diego, CA: Academic Press, 1998.
 
-\bibitem{Dewar2009}
-M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
-  modeling using the integro-difference equation,'' \emph{Signal Processing,
-  IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
+\bibitem{Scerri2009}
+K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and \text{M}odel
+  \text{S}election for an \text{IDE}-\text{B}ased \text{S}patio-\text{T}emporal
+  \text{M}odel,'' \emph{Signal Processing, IEEE Transactions on}, vol.~57,
+  no.~2, pp. 482--492, Feb. 2009.
 
 \bibitem{Chui1992}
 C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
@@ -75,6 +76,11 @@ S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
 \bibitem{Evensen2003}
 G.~Evensen, ``The ensemble kalman filter: theoretical formulation and practical
   implementation,'' \emph{Ocean Dynamics}, vol.~53, pp. 343--367, 2003.
+
+\bibitem{Dewar2009}
+M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
+  modeling using the integro-difference equation,'' \emph{Signal Processing,
+  IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
 
 \bibitem{Houtekamer2005}
 P.~Houtekamer and H.~Mitchell, ``Ensemble kalman filtering,'' \emph{Quarterly

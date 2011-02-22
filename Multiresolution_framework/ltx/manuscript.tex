@@ -655,7 +655,7 @@ The stochastic  integro-difference equation (IDE) form of the model based on the
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
 where the local post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$, parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$ where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The spatial connectivity between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$, for an isotropic and homogeneous neural field. The connectivity kernel is typically a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the sigmoidal activation function $f\left(.\right)$. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. For simplicity, we denote hereafter the current time step by $t$ and the future time step by $t+1$. Here we assume that the sigmoid activation function, $f(\cdot)$, can be approximated by the piecewise function
-\begin{equation}\label{DiscreteTimeModel} 
+\begin{equation}\label{eq:PiecewiseSigmoid} 
 	\hat{f}(v_t(\mathbf{r}')) = \left\{ \begin{array}{ll}
 		0, & v_t(\mathbf{r}') \le v_1 \\
 		\varsigma v_t(\mathbf{r}'), &  v_1 < v_t(\mathbf{r}') < v_2 \\
@@ -666,13 +666,13 @@ where the parameter $\varsigma$ governs the slope of the sigmoid. Furthermore, w
 \begin{equation}\label{DiscreteTimeModel} 
 	v_{t+1}\left(\mathbf{r}\right) = 
 	\xi v_t\left(\mathbf{r}\right) + 
-	T_s \varsigma\int_\Omega { 
+	T_s \int_\Omega { 
 	    w\left(\mathbf{r}-\mathbf{r'}\right)
 	    v_t\left(\mathbf{r}'\right) 
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-observation equation is given by 
+Note that the parameter $\varsigma$ is absorbed into the kernel for simplicity. Oservation equation is given by 
 \begin{equation}\label{eq:ObservationEquation}
 	\mathbf y_t = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t, 
 \end{equation}
@@ -765,55 +765,54 @@ where the vector $\boldsymbol\beta_{j}^{(i)}$ contains all the coefficient $\lef
 \label{FieldBasisVector}
 \end{equation}
 Each vector of basis functions on the right hand-side of (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in a way similar to their corresponding weight vectors in (\ref{KernelWeights}) and (\ref{FieldWeights}). Note that the identified IDE model will approximate the underlying spatio-temporal dynamics at different spatial scales. In this way both macroscopic and microscopic behaviour of the system can be represented simultaneously. 
-\parham{Mike you can add state-space derivation using Galerkin projection here.}
-% however it can be tailored to capture underlying dynamics with desired accuracy for a sufficiently large value of $j$, a value between zero and three is usually sufficient in many applications \cite{Wei2006}. Note that number of translation parameters is always finite and depends on the range of measured data.
 
-The state-space representation of the spatio-temporal IDE proposed in \cite{Dewar2009} is derived for an arbitrary set of basis functions and hence this derivation can be applied using scaling and wavelet basis functions. Let
-\begin{equation}
- \mathbf{\Lambda}_{x}=\int_{\mathcal{S}}\boldsymbol\mu\left(\mathbf{s}\right)\boldsymbol\mu\left(\mathbf{s}\right)^\top d\mathbf{s}
-\label{eq:ConstructionIntegral1}
+To derive the state-space representation of the model we substitute decompositions \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} into equation \eqref{DiscreteTimeModel} and then cross-multiply the decomposed model by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the spatial domain, $\Omega$, giving
+\begin{align}\label{eq:DecomposedModel2} 
+	&\int_{\Omega} \boldsymbol\mu  \left(\mathbf{r}\right)\boldsymbol\mu\left(\mathbf{r}\right)^\top  d\mathbf{r}\mathbf{x}_{t+1}= 
+	\xi\int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\mu\left(\mathbf{r}\right)^\top d\mathbf{r}\mathbf{x}_t \nonumber \\
+	&+T_s \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right) \int_\Omega { 
+	   \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r'}\right)
+	    \boldsymbol\mu^\top\left(\mathbf{r'}\right)\mathbf{x}_t 
+	\, d\mathbf{r}'d\mathbf{r}}
+	+ \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)d\mathbf{r}, 
+\end{align}
+Now defning 
+\begin{equation}\label{eq:Lambdax}
+ \mathbf{\Lambda}_{x} \triangleq \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\mu^\top\left(\mathbf{r}\right) d\mathbf{r}
 \end{equation}
-\begin{equation}
- \mathbf{\Lambda}_{\theta}=\iint\limits_{\mathcal{S}}\boldsymbol\mu\left(\mathbf{s}\right)\boldsymbol\theta^\top \boldsymbol\lambda\left(\mathbf{s-r}\right)\boldsymbol\mu\left(\mathbf{r}\right)^\top d\mathbf{r}d\mathbf{s}
-\label{eq:ConstructionIntegral2}
+\begin{equation}\label{eq:Lambdatheta}
+ \mathbf{\Lambda}_{\theta}\triangleq\int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right) \int_\Omega { 
+	   \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r'}\right)
+	    \boldsymbol\mu^\top\left(\mathbf{r'}\right)\mathbf{x}_t 
+	\, d\mathbf{r}'d\mathbf{r}}
 \end{equation}
-where $\boldsymbol\Lambda_{x}, \boldsymbol\Lambda_{\theta} \in \mathbb{R}^{n_x \times n_x}$. The spatial IDE model in (\ref{eq:ConvolutionIntegral}) and (\ref{eq:observation equation}) can be represented as linear state-space model of the form  
-\begin{equation}
- \mathbf{x}_{t+1}=\mathbf{A}\left(\boldsymbol\theta\right)\mathbf{x}_t+\mathbf{w}_t
-\label{eq:StateEquation}
+and substituting these into \eqref{eq:DecomposedModel2} and cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ yields
+\begin{equation}\label{eq:StateEquation}
+ \mathbf x_{t+1}=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t
 \end{equation}
-\begin{equation}
-\mathbf{y}_t=\mathbf{C}\mathbf{x}_t+\mathbf{v}_t
-\label{eq:ObservationEquation}
+where
+\begin{equation}\label{eq:A_theta}
+ \mathbf A(\boldsymbol \theta)=(T_s\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I)
 \end{equation}
-where 
-\begin{equation}
- \mathbf{A}\left(\boldsymbol\theta\right)=\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda_{\theta}}
-\label{eq:TransitionMatrix}
+and $\mathbf I$ is the identity matrix, and 
+\begin{equation}\label{eq:Disturbance}
+\mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)d\mathbf{r}
 \end{equation}
-and  \\ \\ 
-$\mathbf{C}=$
-$\begin{pmatrix}
-\boldsymbol\phi_{j_0}\left(\mathbf{s}_1\right) & \boldsymbol\phi_{j_0}\left(\mathbf{s}_2\right)  &\cdots &\boldsymbol\phi_{j_0}\left(\mathbf{s}_{n_y}\right) \\
-\boldsymbol\psi_{j_0}\left(\mathbf{s}_1\right) & \boldsymbol\psi_{j_0}\left(\mathbf{s}_2\right)  &\cdots &\boldsymbol\psi_{j_0}\left(\mathbf{s}_{n_y}\right) \\
-\boldsymbol\psi_{j_0+1}\left(\mathbf{s}_1\right) & \boldsymbol\psi_{j_0+1}\left(\mathbf{s}_2\right)  &\cdots &\boldsymbol\psi_{j_0+1}\left(\mathbf{s}_{n_y}\right) \\
-\vdots & \vdots & \ddots& \vdots \\
-\boldsymbol\psi_{j}\left(\mathbf{s}_1\right) & \boldsymbol\psi_{j}\left(\mathbf{s}_2\right)  &\cdots &\boldsymbol\psi_{j}\left(\mathbf{s}_{n_y}\right) \\
-\end{pmatrix}^{\top}$ \\ \\
-\\ \\ and where 
+which is a vector valued, zero-mean normally distributed white noise process with covariance \cite{Scerri2009}
 \begin{equation}
- \mathbf{w}_t=\mathbf{\Lambda}_{x}^{-1}\int_{\mathcal{S}}\boldsymbol\mu \left(\mathbf{s}\right)e_t\left(\mathbf{s}\right)d\mathbf{s}
-\label{CovofField}
+\boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\eta\left(\mathbf{r}-\mathbf{r'}\right)\boldsymbol\mu^{\top}\left(\mathbf{r'}\right)d\mathbf{r'}d\mathbf{r}\mathbf{\Lambda}_{x}^{-\top}.
 \end{equation}
- is a vector valued, zero-mean normally distributed white noise process with covariance given by (Lemma \ref{lemma:FieldCovariance}, Appendix)
+Similarly, the observation equation of the state-space model is found by substituting decomposition \eqref{eq:FieldFiniteExpansion}
+ into equation \eqref{eq:ObservationEquation} giving
+\begin{equation}\label{ObservationEquation} 
+	\mathbf{y}_t = \mathbf{C}\mathbf{x}_t + \boldsymbol{\varepsilon}_t,
+\end{equation}
+where each element of the observation matrix is 
 \begin{equation}
-\boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\boldsymbol\Pi\mathbf{\Lambda}_{x}^{-\top}
+	\mathbf{C}_{ij} \triangleq \int_{\Omega}m(\mathbf{r}_i - \mathbf{r}')\boldsymbol{\mu}_j(\mathbf{r}') \, d\mathbf{r}'.
 \end{equation}
-and
-\begin{equation}
- \boldsymbol\Pi=\iint\limits_{\mathcal{S}}\boldsymbol\mu\left(\mathbf{s}\right)\eta\left(\mathbf{s}-\mathbf{r}\right)\boldsymbol\mu\left(\mathbf{r}\right)^{\top}d\mathbf{r}d\mathbf{s}
-\label{eq:Pi}
-\end{equation}
+
+\parham{Mike you can add state-space derivation using Galerkin projection here.}
 By substituting the  parameter vector $\boldsymbol\theta$, the  state vector $\mathbf{x_t}$, the vector of kernel basis functions $\boldsymbol\lambda$ and the vector of field basis functions $\boldsymbol\mu$ in (\ref{eq:ConstructionIntegral1}-\ref{eq:Pi}), the state-space representation of the multiresolution approximation of the IDE can be achieved. It should be noted that the complexity of the model is independent of the number of observation locations, providing more flexibility in handling high resolution data. %The model is also capable of being applicable to scenarios with irregular observation locations.
 
 % In practice, MRA can be implemented using different types of wavelet and scaling functions.  Semi-orthogonal B-spline wavelets are compactly supported and optimally localised in time and frequency. This class of wavelets has been applied in approximation schemes such as wavelet networks\cite{G.P.Liu2000,Jun2005} and wavelet based CML models \cite{Billings2006}.
