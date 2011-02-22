@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  22 FEB 2011 12:57
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  22 FEB 2011 13:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -304,66 +304,61 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <10> not available
 (Font)              Font shape `OT1/phv/b/it' tried instead on input line 815.
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
 (Font)              Font shape `OT1/phv/b/sl' tried instead on input line 815.
-
-
-LaTeX Warning: Reference `eq:ConstructionIntegral1' on page 2 undefined on inpu
-t line 816.
-
-[2]
+ [2]
 
 LaTeX Warning: Reference `eq:ConstructionIntegral1' on page 3 undefined on inpu
-t line 837.
+t line 833.
 
 
 LaTeX Warning: Reference `eq:ConstructionIntegral2' on page 3 undefined on inpu
-t line 837.
+t line 833.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 863--865
+Underfull \hbox (badness 10000) in paragraph at lines 859--861
 
  []
 
 
 LaTeX Warning: Reference `eq:ConstructionIntegral1' on page 3 undefined on inpu
-t line 870.
+t line 866.
 
 
 LaTeX Warning: Reference `eq:ConstructionIntegral2' on page 3 undefined on inpu
-t line 870.
+t line 866.
 
 
 LaTeX Warning: Reference `eq:ConstructionIntegral1' on page 3 undefined on inpu
-t line 901.
+t line 897.
 
 
 LaTeX Warning: Reference `eq:ConstructionIntegral2' on page 3 undefined on inpu
-t line 901.
+t line 897.
 
 
 LaTeX Warning: Reference `eq:ConstructionIntegral1' on page 3 undefined on inpu
-t line 901.
+t line 897.
 
 
 LaTeX Warning: Reference `eq:ConstructionIntegral2' on page 3 undefined on inpu
-t line 901.
+t line 897.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 893--902
+Underfull \hbox (badness 10000) in paragraph at lines 889--898
 
  []
 
 
-Underfull \hbox (badness 4647) in paragraph at lines 893--902
+Underfull \hbox (badness 4647) in paragraph at lines 889--898
 \OT1/ptm/m/n/10 Using these ex-pan-sions it be-comes straight-for-ward to
  []
 
 [3]
-Overfull \hbox (4.96461pt too wide) detected at line 927
+Overfull \hbox (4.96461pt too wide) detected at line 923
 \OT1/cmr/bx/n/10 P[] \OT1/cmr/m/n/10 = [] [] [] [][]
  []
 
 
-Overfull \hbox (27.5248pt too wide) detected at line 936
+Overfull \hbox (27.5248pt too wide) detected at line 932
 \OT1/cmr/bx/n/10 X[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t \OT1/cmr/m/n/10 + 1) = 
 [] []([] \OMS/cmsy/m/n/10 ^^@ []\OT1/cmr/m/n/10 )[]\OMS/cmsy/m/n/10 K[]\OT1/cmr
 /m/n/10 (\OT1/cmr/bx/n/10 Y[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 C[]\OT1/cmr
@@ -372,48 +367,51 @@ Overfull \hbox (27.5248pt too wide) detected at line 936
 
 
 LaTeX Warning: Reference `fig:SpatialMixingKernel' on page 4 undefined on input
- line 969.
+ line 965.
 
 
 LaTeX Warning: Reference `eq:ConstructionIntegral1' on page 4 undefined on inpu
-t line 969.
+t line 965.
+
+
+LaTeX Warning: Reference `eq:Pi' on page 4 undefined on input line 965.
 
 
 LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 4 undefined 
-on input line 1002.
+on input line 998.
 
 [4]
 
 LaTeX Warning: Reference `fig:SpatialMixingKernelEstimate' on page 5 undefined 
-on input line 1015.
+on input line 1011.
 
 
 LaTeX Warning: Reference `fig:1DFieldEstimation' on page 5 undefined on input l
-ine 1015.
+ine 1011.
 
 
 LaTeX Warning: Reference `fig:FieldVariance' on page 5 undefined on input line 
-1015.
+1011.
 
 
 LaTeX Warning: Reference `fig:FieldVariance' on page 5 undefined on input line 
-1020.
+1016.
 
 
-LaTeX Warning: Reference `fig:2DHist' on page 5 undefined on input line 1028.
+LaTeX Warning: Reference `fig:2DHist' on page 5 undefined on input line 1024.
 
 
 LaTeX Warning: Reference `fig:2DFieldEstimation1' on page 5 undefined on input 
-line 1028.
+line 1024.
 
 
 LaTeX Warning: Reference `fig:2DFieldEstimation3' on page 5 undefined on input 
-line 1028.
+line 1024.
 
 \c@lemma=\count117
 
 LaTeX Warning: Reference `eq:FieldCovariance' on page 5 undefined on input line
- 1095.
+ 1091.
 
 [5] [6] (./manuscript.bbl) [7
 
@@ -421,20 +419,17 @@ LaTeX Warning: Reference `eq:FieldCovariance' on page 5 undefined on input line
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 1028 ({)
-### simple group (level 1) entered at line 1015 ({)
+### simple group (level 2) entered at line 1024 ({)
+### simple group (level 1) entered at line 1011 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 3044 strings out of 495061
- 42183 string characters out of 1182622
- 106617 words of memory out of 3000000
- 6177 multiletter control sequences out of 15000+50000
+ 3042 strings out of 495061
+ 42150 string characters out of 1182622
+ 106590 words of memory out of 3000000
+ 6175 multiletter control sequences out of 15000+50000
  50168 words of font info for 105 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  27i,21n,24p,2465b,291s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -460,7 +455,7 @@ pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texm
 f-texlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on manuscript.pdf (7 pages, 293147 bytes).
+Output written on manuscript.pdf (7 pages, 292676 bytes).
 PDF statistics:
  123 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

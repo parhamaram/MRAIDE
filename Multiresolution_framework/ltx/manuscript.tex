@@ -811,12 +811,8 @@ where each element of the observation matrix is
 \begin{equation}
 	\mathbf{C}_{ij} \triangleq \int_{\Omega}m(\mathbf{r}_i - \mathbf{r}')\boldsymbol{\mu}_j(\mathbf{r}') \, d\mathbf{r}'.
 \end{equation}
-
+This completes the state-space representation of the multiresolution approximation of the neural field model. 
 \parham{Mike you can add state-space derivation using Galerkin projection here.}
-By substituting the  parameter vector $\boldsymbol\theta$, the  state vector $\mathbf{x_t}$, the vector of kernel basis functions $\boldsymbol\lambda$ and the vector of field basis functions $\boldsymbol\mu$ in (\ref{eq:ConstructionIntegral1}-\ref{eq:Pi}), the state-space representation of the multiresolution approximation of the IDE can be achieved. It should be noted that the complexity of the model is independent of the number of observation locations, providing more flexibility in handling high resolution data. %The model is also capable of being applicable to scenarios with irregular observation locations.
-
-% In practice, MRA can be implemented using different types of wavelet and scaling functions.  Semi-orthogonal B-spline wavelets are compactly supported and optimally localised in time and frequency. This class of wavelets has been applied in approximation schemes such as wavelet networks\cite{G.P.Liu2000,Jun2005} and wavelet based CML models \cite{Billings2006}.
-
 \section{B-spline wavelet IDE model}
 Multiresolution approximation can be implemented using different classes of scaling and wavelet functions. In order to determine the matrices $ \boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$ convolution and inner product expressions of the basis functions need to be computable. B-spline wavelet and scaling functions are particularly convenient in the above decomposition as their convolution and inner product expressions can be found analytically.
 
