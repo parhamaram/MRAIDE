@@ -21,135 +21,33 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{Schofield2002}
-O.~Schofield, T.~Bergmann, P.~Bissett, J.~Grassle, D.~Haidvogel, J.~Kohut,
-  M.~Moline, and S.~Glenn, ``The long-term ecosystem observatory: an integrated
-  coastal observatory,'' \emph{Oceanic Engineering, IEEE Journal of}, vol.~27,
-  no.~2, pp. 146--154, Apr. 2002.
+\bibitem{Wilson1973}
+H.~Wilson and J.~Cowan, ``{A mathematical theory of the functional dynamics of
+  cortical and thalamic nervous tissue},'' \emph{Biological Cybernetics},
+  vol.~13, no.~2, pp. 55--80, 1973.
 
-\bibitem{Xu2005}
-K.~Xu, W.~C. K, and F.~Neil, ``A kernel-based spatio-temporal dynamical model
-  for nowcasting weather radar reflectivities,'' \emph{Journal of the American
-  Statistical Association}, vol. 100, no. 472, pp. 1133--1144, Dec. 2005.
+\bibitem{Amari1977}
+S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
+  fields},'' \emph{Biological Cybernetics}, vol.~27, no.~2, pp. 77--87, 1977.
 
-\bibitem{Romanowicz2006}
-R.~Romanowicz, P.~Young, P.~Brown, and P.~Diggle, ``A recursive estimation
-  approach to the spatio-temporal analysis and modelling of air quality data,''
-  \emph{Environmental Modelling \& Software}, vol.~21, no.~6, pp. 759--769,
-  Jun. 2006.
+\bibitem{Rasmussen2005}
+C.~Rasmussen and C.~Williams, \emph{{Gaussian Processes for Machine Learning
+  (Adaptive Computation and Machine Learning)}}.\hskip 1em plus 0.5em minus
+  0.4em\relax The MIT Press, Cambridge MA, 2005.
 
-\bibitem{Bond-Lamberty2005}
-B.~Bond-Lamberty, C.~Wang, and S.~Gower, ``Spatiotemporal measurement and
-  modeling of stand-level boreal forest soil temperatures,'' \emph{Agricultural
-  and Forest Meteorology}, vol. 131, no. 1-2, pp. 27--40, Jul. 2005.
+\bibitem{Meyer1992}
+Y.~Meyer, \emph{Wavelets and Operators}.\hskip 1em plus 0.5em minus 0.4em\relax
+  New York: Cambridge Univ. Press, 1992.
 
-\bibitem{Deng2005}
-H.~Deng, H.-X. Li, and G.~Chen, ``Spectral approximation based intelligent
-  modelling for distributed thermal process,'' \emph{IEEE Trans. Control Syst.
-  Technol.}, vol.~13, no.~5, pp. 686--700, May. 2005.
-
-\bibitem{Kuo2009}
-H.-I. Kuo, C.-L. Lu, W.-C. Tseng, and H.-A. Li, ``A spatiotemporal statistical
-  model of the risk factors of human cases of {H5N1} avian influenza in
-  {S}outh-east {A}sian countries and {C}hina,'' \emph{Public Health}, vol. 123,
-  no.~2, pp. 188--193, Feb. 2009.
-
-\bibitem{Sun2005}
-H.~Sun, Y.~Tu, and S.-M. Yu, ``A spatio-temporal {A}utoregressive model for
-  multi-unit residential market analysis*,'' \emph{The Journal of Real Estate
-  Finance and Economics}, vol.~31, no.~2, pp. 155--187, Sep. 2005.
-
-\bibitem{Wolfram1984}
-S.~Wolfram, ``Universality and complexity in cellular automata,'' \emph{Physica
-  D}, vol.~10, no. 1-2, pp. 1 -- 35, 1984.
-
-\bibitem{Billings2002}
-S.~A. Billings and D.~Coca, ``Identification of coupled map lattice models of
-  deterministic distributed parameter systems,'' \emph{Int J Syst. Sci.},
-  vol.~33, no.~8, pp. 623--634, 2002.
-
-\bibitem{Wei2009}
-{H}ua-{L}iang Wei, S.~A. Billings, Y.~Zhao, and L.~Guo, ``Lattice dynamical
-  wavelet neural networks implemented using particle swarm optimization for
-  spatio-temporal system identification,'' \emph{Neural Networks, IEEE
-  Transactions on}, vol.~20, no.~1, pp. 181--185, Jan. 2009.
-
-\bibitem{Pfeifer1980}
-P.~E. Pfeifer and S.~J. Deutsch, ``Identification and interpretation of first
-  order space-time {ARMA} models,'' \emph{Technometrics}, vol.~22, no.~3, pp.
-  397--408, 1980.
-
-\bibitem{Glasbey2008}
-C.~A. Glasbey and D.~J. Allcroft, ``A spatiotemporal auto-regressive moving
-  average model for solar radiation,'' \emph{Journal of the Royal Statistical
-  Society}, vol.~57, no.~3, pp. 343--355, Jun. 2008.
-
-\bibitem{Dewar2007}
-M.~Dewar and V.~Kadirkamanathan, ``A canonical space-time state space model:
-  State and parameter estimation,'' \emph{Signal Processing, IEEE Transactions
-  on}, vol.~55, no.~10, pp. 4862--4870, Oct. 2007.
-
-\bibitem{Kot1992}
-M.~Kot, ``Discrete-time travelling waves: Ecological examples,'' \emph{Journal
-  of Mathematical Biology}, vol.~30, no.~4, pp. 413--436, Feb. 1992.
-
-\bibitem{Kot1996}
-M.~Kot, M.~A. Lewis, and P.~van~den Driessche, ``Dispersal data and the spread
-  of invading organisms,'' \emph{Ecology}, vol.~77, no.~7, pp. 2027--2042, Oct.
-  1996.
-
-\bibitem{Wikle2002}
-C.~K. Wikle, ``A kernel-based spectral model for non-\text{G}aussian
-  spatio-temporal processes,'' \emph{Statist. Model.}, vol.~2, pp. 299--314,
-  2004.
-
-\bibitem{Dewar2009}
-M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
-  modeling using the integro-difference equation,'' \emph{Signal Processing,
-  IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
+\bibitem{Mallat1998}
+S.~G. Mallat, \emph{A Wavelet Tour of Signal Processing}.\hskip 1em plus 0.5em
+  minus 0.4em\relax San Diego, CA: Academic Press, 1998.
 
 \bibitem{Scerri2009}
 K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and \text{M}odel
   \text{S}election for an \text{IDE}-\text{B}ased \text{S}patio-\text{T}emporal
   \text{M}odel,'' \emph{Signal Processing, IEEE Transactions on}, vol.~57,
   no.~2, pp. 482--492, Feb. 2009.
-
-\bibitem{Wiens1989}
-J.~A. Wiens, ``Spatial scaling in ecology,'' \emph{Functional Ecology}, vol.~3,
-  no.~4, pp. 385--397, 1989.
-
-\bibitem{Chelton1994}
-D.~B. Chelton, ``Physical oceanography: A brief overview for statisticians,''
-  \emph{Statistical Science}, vol.~9, no.~2, pp. 150--166, May 1994.
-
-\bibitem{Schmidt2005}
-M.~Schmidt, O.~Fabert, and C.~Shum, ``On the estimation of a multi-resolution
-  representation of the gravity field based on spherical harmonics and
-  wavelets,'' \emph{Journal of Geodynamics}, vol.~39, no.~5, pp. 512--526, Jul.
-  2005.
-
-\bibitem{Ribba2006}
-B.~Ribba, T.~Colin, and S.~Schnell, ``A multiscale mathematical model of
-  cancer, and its use in analyzing irradiation therapies,'' \emph{Theoretical
-  Biology and Medical Modelling}, vol.~3, no.~1, p.~7, Feb. 2006.
-
-\bibitem{Wilsky2002}
-A.~S. Willsky, ``Multiresolution markov models for signal and image
-  processing,'' \emph{Proc. IEEE}, vol.~90, no.~8, pp. 1396?--1458, Aug. 2002.
-
-\bibitem{Mallat1989a}
-S.~G. Mallat, ``A theory for multiresolution signal decomposition: the wavelet
-  representation,'' \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, vol.~2,
-  no.~7, pp. 674--693, Jul. 1989.
-
-\bibitem{Mallat1989b}
-------, ``Multiresolution approximations and wavelet orthonormal bases of
-  {$L\sp 2({\bf R})$},'' \emph{Trans. Amer. Math. Soc.}, vol. 315, no.~1, pp.
-  69--87, 1989.
-
-\bibitem{Walnut2002}
-D.~F. Walnut, \emph{An introduction to wavelet analysis}.\hskip 1em plus 0.5em
-  minus 0.4em\relax Boston, MA: Birkh\"auser, 2002.
 
 \bibitem{Chui1992}
 C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
@@ -160,38 +58,6 @@ C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
 M.~Unser, A.~Aldroubi, and M.~Eden, ``A family of polynomial spline wavelet
   transforms,'' \emph{Signal Process.}, vol.~30, no.~2, pp. 141--162, Jan.
   1993.
-
-\bibitem{Unser1992}
-------, ``On the asymptotic convergence of \text{B}-spline wavelets to
-  \text{G}abor functions,'' \emph{Information Theory, IEEE Transactions on},
-  vol.~38, no.~2, pp. 864--872, Mar. 1992.
-
-\bibitem{Chui1992a}
-C.~K. Chui, \emph{An Introduction to Wavelets}.\hskip 1em plus 0.5em minus
-  0.4em\relax Boston, MA: Academic Press, 1992.
-
-\bibitem{G.P.Liu2000}
-G.~P. Liu, S.~A. Billings, and V.~Kadirkamanathan, ``Nonlinear system
-  identification using wavelet networks,'' \emph{International Journal of
-  Systems Science}, vol.~31, no.~12, pp. 1531--1541, Dec. 2000.
-
-\bibitem{Jun2005}
-W.~Jun and P.~Hong, ``Constructing fuzzy wavelet network modeling,''
-  \emph{International Journal of Information Technology}, vol.~11, no.~6, pp.
-  68--74, 2005.
-
-\bibitem{Billings2006}
-S.~A. Billings, L.~Z. Guo, and H.~L. Wei, ``Identification of coupled map
-  lattice models for spatio-temporal patterns using wavelets,'' \emph{Intern.
-  J. Syst. Sci.}, vol.~37, no.~14, pp. 1021--1038, Nov. 2006.
-
-\bibitem{Meyer1992}
-Y.~Meyer, \emph{Wavelets and Operators}.\hskip 1em plus 0.5em minus 0.4em\relax
-  New York: Cambridge Univ. Press, 1992.
-
-\bibitem{Mallat1998}
-S.~G. Mallat, \emph{A Wavelet Tour of Signal Processing}.\hskip 1em plus 0.5em
-  minus 0.4em\relax San Diego, CA: Academic Press, 1998.
 
 \bibitem{Goswami1999}
 J.~C. Goswami and A.~Chan, \emph{Fundamentals of Wavelets: Theory, Algorithms,
@@ -210,6 +76,11 @@ S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
 \bibitem{Evensen2003}
 G.~Evensen, ``The ensemble kalman filter: theoretical formulation and practical
   implementation,'' \emph{Ocean Dynamics}, vol.~53, pp. 343--367, 2003.
+
+\bibitem{Dewar2009}
+M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
+  modeling using the integro-difference equation,'' \emph{Signal Processing,
+  IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
 
 \bibitem{Houtekamer2005}
 P.~Houtekamer and H.~Mitchell, ``Ensemble kalman filtering,'' \emph{Quarterly
