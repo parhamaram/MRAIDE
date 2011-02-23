@@ -672,7 +672,7 @@ where the parameter $\varsigma$ governs the slope of the sigmoid. Furthermore, w
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-Note that the parameter $\varsigma$ is absorbed into the kernel for simplicity. Oservation equation is given by 
+Note that the parameter $\varsigma$ is absorbed into the kernel for simplicity. Observation equation is given by 
 \begin{equation}\label{eq:ObservationEquation}
 	\mathbf y_t = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t, 
 \end{equation}
@@ -689,45 +689,45 @@ In this expansion, $\alpha_{j_0,l}$ are the approximation coefficients at the lo
 \label{eq:FieldExpansion}
 \end{equation}
 where $ x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion at time $t$.
-A  two-dimensional MRA can be implemented using 2-D scaling and wavelet functions built up  using the tensor-product approach \cite{Meyer1992,Mallat1998}. We write the 2-D scaling function as
-\begin{equation}
- \phi_{j,\mathbf{l}}\left(r_1,r_2\right)=\phi_{j,l_1}\left(r_1\right)\phi_{j,l_2}\left(r_2\right)
-\label{eq:2Dscalingfunction}
-\end{equation}
-and three 2-D wavelet functions $ \psi^{(n)} \left(\mathbf{r}\right)$ where $n=1,2,3$ as
-\begin{equation}
- \psi_{j,\mathbf{l}}^{(1)}\left(r_1,r_2\right)=\phi_{j,l_1}\left(r_1\right)\psi_{j,l_2}\left(r_2\right)
-\label{eq:2Dwavelet_1}
-\end{equation}
-\begin{equation}
- \psi_{j,\mathbf{l}}^{(2)}\left(r_1,r_2\right)=\psi_{j,l_1}\left(r_1\right)\phi_{j,l_2}\left(r_2\right)
-\label{eq:2Dwavelet_2}
-\end{equation}
-\begin{equation}
- \psi_{j,\mathbf{l}}^{(3)}\left(r_1,r_2\right)=\psi_{j,l_1}\left(r_1\right)\psi_{j,l_2}\left(r_2\right)
-\label{eq:2Dwavelet_3}
-\end{equation}
-for $j \in \mathbb{Z}$ and, $\mathbf{l} \in \mathbb{Z}^2$, where $\psi_{j,\mathbf{l}}^{(1)},  \psi_{j,\mathbf{l}}^{(2)}$ and $\psi_{j,\mathbf{l}}^{(3)} $ extract fine features of the 2-D field at vertical, horizontal and diagonal orientations respectively.
-This can be generalised to $d$-dimensional MRA by introducing the scaling function
-\setlength{\arraycolsep}{0.0em}
-\begin{eqnarray}
-  \phi_{j,\mathbf{l}}\left(r_1,r_2, \cdots r_d\right)&=&\phi_{j,l_1}\left(r_1\right)\phi_{j,l_2}\left(r_2\right) \cdots \phi_{j,l_d}\left(r_d\right) \label{eq:d-dimensionalscalingfunction}\\
- &&j \in \mathbb{Z}, \quad \mathbf{l} \in \mathbb{Z}^d \nonumber
-\end{eqnarray}
-\setlength{\arraycolsep}{5pt}
-and $2^d-1$ wavelet functions $ \psi^{(n)} \left(\mathbf{r}\right), n=1, \cdots,2^d-1$ with a procedure similar to the 2-D case. Using these basis functions, multi-dimensional MRA of the kernel and the field can be obtained by
-\setlength{\arraycolsep}{0.0em}
-\begin{eqnarray}
- k\left(\mathbf{r}-\mathbf{r'}\right)&=&\sum_{\mathbf{l}\in \mathbb{Z}^d}\alpha_{j_0,\mathbf{l}}\phi_{j_0,\mathbf{l}}\left(\mathbf{r}-\mathbf{r'}\right) \nonumber \\
-&+&\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1}\beta_{j,\mathbf{l}}^{(i)} \psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{r}-\mathbf{r'}\right) 
-\label{eq:MultidimensionalKernelExpansion}
-\end{eqnarray}
-\setlength{\arraycolsep}{5pt}
-\begin{equation}
-z_t\left(\mathbf{r}\right)=\sum_{\mathbf{l}\in \mathbb{Z}^d}x_{t,j_{0},\mathbf{l}}\phi_{j_{0},\mathbf{l}}\left(\mathbf{r}\right)+\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1} \check{x}_{t,j,\mathbf{l}}^{(i)}\psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{r}\right)
-\label{eq:MultidimensionalFieldExpansion}
-\end{equation}
-Equations (\ref{eq:MultidimensionalKernelExpansion}) and (\ref{eq:MultidimensionalFieldExpansion}) are infinite series expansions. For practical implementation, (\ref{eq:MultidimensionalKernelExpansion}) and (\ref{eq:MultidimensionalFieldExpansion}) must be truncated at some level $j$, therefore we have
+% A  two-dimensional MRA can be implemented using 2-D scaling and wavelet functions built up  using the tensor-product approach \cite{Meyer1992,Mallat1998}. We write the 2-D scaling function as
+% \begin{equation}
+%  \phi_{j,\mathbf{l}}\left(r_1,r_2\right)=\phi_{j,l_1}\left(r_1\right)\phi_{j,l_2}\left(r_2\right)
+% \label{eq:2Dscalingfunction}
+% \end{equation}
+% and three 2-D wavelet functions $ \psi^{(n)} \left(\mathbf{r}\right)$ where $n=1,2,3$ as
+% \begin{equation}
+%  \psi_{j,\mathbf{l}}^{(1)}\left(r_1,r_2\right)=\phi_{j,l_1}\left(r_1\right)\psi_{j,l_2}\left(r_2\right)
+% \label{eq:2Dwavelet_1}
+% \end{equation}
+% \begin{equation}
+%  \psi_{j,\mathbf{l}}^{(2)}\left(r_1,r_2\right)=\psi_{j,l_1}\left(r_1\right)\phi_{j,l_2}\left(r_2\right)
+% \label{eq:2Dwavelet_2}
+% \end{equation}
+% \begin{equation}
+%  \psi_{j,\mathbf{l}}^{(3)}\left(r_1,r_2\right)=\psi_{j,l_1}\left(r_1\right)\psi_{j,l_2}\left(r_2\right)
+% \label{eq:2Dwavelet_3}
+% \end{equation}
+% for $j \in \mathbb{Z}$ and, $\mathbf{l} \in \mathbb{Z}^2$, where $\psi_{j,\mathbf{l}}^{(1)},  \psi_{j,\mathbf{l}}^{(2)}$ and $\psi_{j,\mathbf{l}}^{(3)} $ extract fine features of the 2-D field at vertical, horizontal and diagonal orientations respectively.
+% This can be generalised to $d$-dimensional MRA by introducing the scaling function
+% \setlength{\arraycolsep}{0.0em}
+% \begin{eqnarray}
+%   \phi_{j,\mathbf{l}}\left(r_1,r_2, \cdots r_d\right)&=&\phi_{j,l_1}\left(r_1\right)\phi_{j,l_2}\left(r_2\right) \cdots \phi_{j,l_d}\left(r_d\right) \label{eq:d-dimensionalscalingfunction}\\
+%  &&j \in \mathbb{Z}, \quad \mathbf{l} \in \mathbb{Z}^d \nonumber
+% \end{eqnarray}
+% \setlength{\arraycolsep}{5pt}
+% and $2^d-1$ wavelet functions $ \psi^{(n)} \left(\mathbf{r}\right), n=1, \cdots,2^d-1$ with a procedure similar to the 2-D case. Using these basis functions, multi-dimensional MRA of the kernel and the field can be obtained by
+% \setlength{\arraycolsep}{0.0em}
+% \begin{eqnarray}
+%  k\left(\mathbf{r}-\mathbf{r'}\right)&=&\sum_{\mathbf{l}\in \mathbb{Z}^d}\alpha_{j_0,\mathbf{l}}\phi_{j_0,\mathbf{l}}\left(\mathbf{r}-\mathbf{r'}\right) \nonumber \\
+% &+&\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1}\beta_{j,\mathbf{l}}^{(i)} \psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{r}-\mathbf{r'}\right) 
+% \label{eq:MultidimensionalKernelExpansion}
+% \end{eqnarray}
+% \setlength{\arraycolsep}{5pt}
+% \begin{equation}
+% z_t\left(\mathbf{r}\right)=\sum_{\mathbf{l}\in \mathbb{Z}^d}x_{t,j_{0},\mathbf{l}}\phi_{j_{0},\mathbf{l}}\left(\mathbf{r}\right)+\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1} \check{x}_{t,j,\mathbf{l}}^{(i)}\psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{r}\right)
+% \label{eq:MultidimensionalFieldExpansion}
+% \end{equation}
+Equations \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite series expansions. For practical implementation,  \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} must be truncated at some level $j$, therefore we have
  \begin{equation}
  w\left(\mathbf{r}-\mathbf{r'}\right)\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r'}\right)
 \label{eq:KernelFiniteExpansion}
@@ -764,7 +764,8 @@ where the vector $\boldsymbol\beta_{j}^{(i)}$ contains all the coefficient $\lef
  \boldsymbol\mu^\top(\mathbf r)=\left[ \boldsymbol\phi_{j_0}^\top(\mathbf r) \quad \boldsymbol\psi_{j_0}^\top(\mathbf r) \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf r) \cdots \boldsymbol\psi_{j}^\top(\mathbf r) \right] 
 \label{FieldBasisVector}
 \end{equation}
-Each vector of basis functions on the right hand-side of (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in a way similar to their corresponding weight vectors in (\ref{KernelWeights}) and (\ref{FieldWeights}). Note that the identified IDE model will approximate the underlying spatio-temporal dynamics at different spatial scales. In this way both macroscopic and microscopic behaviour of the system can be represented simultaneously. 
+Each vector of basis functions on the right hand-side of (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in a way similar to their corresponding weight vectors in (\ref{KernelWeights}) and (\ref{FieldWeights}). 
+% Note that the identified IDE model will approximate the underlying spatio-temporal dynamics at different spatial scales. In this way both macroscopic and microscopic behaviour of the system can be represented simultaneously. 
 
 To derive the state-space representation of the model we substitute decompositions \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} into equation \eqref{DiscreteTimeModel} and then cross-multiply the decomposed model by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the spatial domain, $\Omega$, giving
 \begin{align}\label{eq:DecomposedModel2} 
@@ -812,7 +813,7 @@ where each element of the observation matrix is
 	\mathbf{C}_{ij} \triangleq \int_{\Omega}m(\mathbf{r}_i - \mathbf{r}')\boldsymbol{\mu}_j(\mathbf{r}') \, d\mathbf{r}'.
 \end{equation}
 This completes the state-space representation of the multiresolution approximation of the neural field model. 
-\parham{Mike you can add state-space derivation using Galerkin projection here.}
+% \parham{Mike you can add state-space derivation using Galerkin projection here.}
 \section{B-spline wavelet IDE model}
 Multiresolution approximation can be implemented using different classes of scaling and wavelet functions. In order to determine the matrices $ \boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$ convolution and inner product expressions of the basis functions need to be computable. B-spline wavelet and scaling functions are particularly convenient in the above decomposition as their convolution and inner product expressions can be found analytically.
 
@@ -832,24 +833,20 @@ N_{1}\left(s\right)=
 \end{equation}
 In order to compute the  integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2}) we need to be able to calculate the convolution and inner product of B-spline scaling functions. Equation (\ref{SplineConvolutionIntegral}) can be rewritten as $(m-1)$ times convolution of indicator function with itself 
 \begin{equation}
- N_{m}\left(s\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(s\right)
+ N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right)
 \end{equation}
 then by using the associativity property of the convolution operator, it is clear that
 \setlength{\arraycolsep}{0.0em}
+\begin{align}\label{eq:BsplineConvolution}
+N_{m}\left( r\right) \ast N_{m'}\left(r\right)&=\underbrace{\overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m-1 \quad \text{convolutions}}\left(r\right) \ast \overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m'-1\quad \text{convolutions}}}_{m+m'-1 \quad \text{convolutions}}\left(r\right)\nonumber\\
+&=N_{m+m'}\left(r\right)
+\end{align}
+A direct consequence of \eqref{eq:BsplineConvolution} is 
 \begin{eqnarray}
-N_{m}\left(s\right) \ast N_{m'}\left(s\right)&=&\underbrace{\overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m-1 \quad \text{convolutions}}\left(s\right) \ast \overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m'-1\quad \text{convolutions}}}_{m+m'-1 \quad \text{convolutions}}\left(s\right)\nonumber\\
-&=&N_{m+m'}\left(s\right)
-\label{eq:BsplineConvolution}
-\end{eqnarray}
-\setlength{\arraycolsep}{5pt}
-This result can be used to show that (Lemma \ref{lemma:InProduct}, Appendix)
-\setlength{\arraycolsep}{0.0em}
-\begin{eqnarray}
- \left\langle N_{m}\left(s-l_{1}\right), N_{m'}\left(s-l_{2}\right)\right\rangle&=&N_{m+m'}\left(m+l_{1}-l_{2}\right)\nonumber \\
+ \left\langle N_{m}\left(r-l_{1}\right), N_{m'}\left(r-l_{2}\right)\right\rangle&=&N_{m+m'}\left(m+l_{1}-l_{2}\right)\nonumber \\
 &=&N_{m+m'}\left(m'+l_{2}-l_{1}\right)
 \label{eq:BsplineInnerProduct}
 \end{eqnarray}
-\setlength{\arraycolsep}{5pt}
 where $\left\langle  .,.\right\rangle $ denotes the inner product.
 
 
@@ -872,56 +869,53 @@ By exploiting properties (\ref{eq:BsplineConvolution}) and (\ref{eq:BsplineInner
  \left\langle \phi_{m;j_1,l_1}(s),\psi_{m;j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2
 \label{PhiPsiOrthogonality}
 \end{equation}
-Where the subscript $m$ is introduced to $\phi_{j,l}(s)$ and $\psi_{j,l}(s) $ to indicate the $m$th order B-spline scaling and wavelet functions. In the two dimensional case, the convolution integral can be factorised as follows, e.g. 
-\setlength{\arraycolsep}{0.14em}
-\begin{IEEEeqnarray}{!l l }
- \phi_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right)\ast \psi^{1}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)&=\left[\phi_{m;j,l_1}\left(s_{1}\right)\ast\phi_{m;j,l'_1}\left(s_{1}\right)\right] \nonumber \\
-&\times \left[ \phi_{m;j,l_2}\left(s_{2}\right) \ast \psi_{m;j,l'_2}\left(s_{2}\right)\right] \nonumber \\
-&
-\end{IEEEeqnarray}
-\setlength{\arraycolsep}{5pt}
-The preceding factorisation can be also applied to the 2D-inner product integral. Non-zero quantities can  be then expressed by
-\setlength{\arraycolsep}{0.14em}
-\begin{IEEEeqnarray}{!l l }
-\left\langle \phi_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right),\phi_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle &=\left\langle \phi_{m;j,l_1}\left(s_{1}\right),\phi_{m;j,l'_1}\left(s_{1}\right)\right\rangle \nonumber \\
-& \times\left\langle \phi_{m;j,l_2}\left(s_{2}\right) , \phi_{m;j,l'_2}\left(s_{2}\right)\right\rangle \nonumber \\
-&
-\end{IEEEeqnarray}
-\setlength{\arraycolsep}{5pt}
-likewise we can compute 
-$\left\langle  \psi^{1}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right),\psi^{1}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle$
-, \\
-$\left\langle  \psi^{2}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right),\psi^{2}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle$ and \\
-$
-\left\langle \psi^{3}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right), \psi^{3}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle $. \\ \\
-Using these expansions it becomes straightforward to calculate the integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2}). In this work, 4th order cardinal B-spline scaling and wavelet functions are used therefore, to compute the integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2})  the $8$th and $12$th order B-spline values at integer points are  required and can be found in \cite{Goswami1999}.
+% Where the subscript $m$ is introduced to $\phi_{j,l}(s)$ and $\psi_{j,l}(s) $ to indicate the $m$th order B-spline scaling and wavelet functions. In the two dimensional case, the convolution integral can be factorised as follows, e.g. 
+% \setlength{\arraycolsep}{0.14em}
+% \begin{IEEEeqnarray}{!l l }
+%  \phi_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right)\ast \psi^{1}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)&=\left[\phi_{m;j,l_1}\left(s_{1}\right)\ast\phi_{m;j,l'_1}\left(s_{1}\right)\right] \nonumber \\
+% &\times \left[ \phi_{m;j,l_2}\left(s_{2}\right) \ast \psi_{m;j,l'_2}\left(s_{2}\right)\right] \nonumber \\
+% &
+% \end{IEEEeqnarray}
+% \setlength{\arraycolsep}{5pt}
+% The preceding factorisation can be also applied to the 2D-inner product integral. Non-zero quantities can  be then expressed by
+% \setlength{\arraycolsep}{0.14em}
+% \begin{IEEEeqnarray}{!l l }
+% \left\langle \phi_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right),\phi_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle &=\left\langle \phi_{m;j,l_1}\left(s_{1}\right),\phi_{m;j,l'_1}\left(s_{1}\right)\right\rangle \nonumber \\
+% & \times\left\langle \phi_{m;j,l_2}\left(s_{2}\right) , \phi_{m;j,l'_2}\left(s_{2}\right)\right\rangle \nonumber \\
+% &
+% \end{IEEEeqnarray}
+% \setlength{\arraycolsep}{5pt}
+% likewise we can compute 
+% $\left\langle  \psi^{1}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right),\psi^{1}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle$
+% , \\
+% $\left\langle  \psi^{2}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right),\psi^{2}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle$ and \\
+% $
+% \left\langle \psi^{3}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right), \psi^{3}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle $. \\ \\
+In this work, 4th order cardinal B-spline scaling and wavelet functions are used therefore, to compute the integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2})  the $8$th and $12$th order B-spline values at integer points are  required and can be found in \cite{Goswami1999}.
 \section{Estimation of the Multiresolution Spatio-temporal IDE Model}
 A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm to infer both the kernel and the spatial field from the noise corrupted spatio-temporal data. In this context, the EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the spatial mixing kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$ \cite{McLachlan1997}. In the E-step, given an estimate of $\boldsymbol\theta$, filtering methods can be used to determine the posterior state sequence. Here we compare three techniques namely based on  the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005}, Ensemble Kalman smoother (EnKs) \cite{Evensen2003} and a heuristic separable RTS smoother for state estimation problem. For the first method we modify the framework proposed in \cite{Dewar2009} by computing and storing the required elements prior to the iterative estimation algorithm, the modified algorithm is computationally less demanding (see Appendix \ref{App:ReducedRTS}). In Ensemble Kalman filter (EKf) an ensemble of model states, $\mathbf X_t \in \mathbb R^{n_x \times N} \sim \mathcal N(\mathbf x_t,\mathbf P_t)$ is propogated through the state equation to calculate the forecast estimates $\hat{\mathbf x}^f_t$ and the error covariance of the predicted model state, $\mathbf P_t^f$ where $N$ is the number of ensemble members. Then  the model state is updated to compute analysed estimates, $\hat {\mathbf x}_t^a$.  This is important for model with high dimensional state space where standard Kalman filter  is computationally infeasible to implement as the state covariance matrix needs to be stored and propogated in time. The EnKs updates the filtered ensembles at the current and all prior times every time a new set of measurements becomes available. The algorithm is given in Algorithm \ref{alg:EnKS} for completeness. It is essential that the observations be also treated as an ensemble of random variables, $\mathbf Y_t$, having a distribution with mean equal to the observed value, $\mathbf y_t$ and covariance equal to $\boldsymbol\Sigma_v$ \cite{Houtekamer2005}. 
 
 % represents the predicted state covariance matrix, $\mathbf P_{t|t+1}$ using a large stochastic ensemble of the predicted states $\hat{\mathbf x}_{t+1|t}$.
 
-In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother can be employed to determine the posterior state sequence. It can be shown that \cite{Dempster1977,Gibsona2005} every EM iteration increases the lower bound on the likelihood function and hence improving the state and parameter estimates. The stopping criterion is usually associated  with  either the change in the parameter estimates or the log-likelihood variation \cite{McLachlan1997}. The stopping rule adopted herein is
-\begin{equation}
-\left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\varepsilon 
-\end{equation}
-where $\varepsilon$ is a threshold value and $\parallel \mathbf{A} \parallel_{F}^{(i)}$ and $ \parallel \mathbf{A} \parallel_{F}^{(i-1)}$ are the Frobenius norm  of the successive estimates of $\mathbf{A} $ matrices. It has been shown \cite{Dewar2009} that the state dimension is a critical factor in the complexity of the estimation procedure, however using the above decomposition, this is decoupled from the number of observation locations.
+In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother can be employed to determine the posterior state sequence. It can be shown that \cite{Dempster1977,Gibsona2005} every EM iteration increases the lower bound on the likelihood function and hence improving the state and parameter estimates.
 % The complexity of this algorithm is $O\left(n_{x}^2n_{\theta}^2\right)+O \left(Tn_{x}^{3}\right)+O\left(Tn_{y}^3\right) $ showing that
 \section{Simulation}
 In this section, we compare the performance of the different algorithms mentioned above on a synthetic example .....This section demonstrates the identification of the proposed IDE model. Primarily, the MRA of a synthetic model is demonstrated, which is able to represent the system at different spatial scales. In addition, the complexity of the field decomposition is shown to be independent to the number and spatial regularity of the observation locations. This allows the construction of parsimonious models using spatially dense observations, and demonstrates the utility of the approach to situations where the observations are not arranged on a regular lattice, i.e. sensor networks \cite{Sahu2008}.
 \subsection{One dimensional example}
  Consider the following homogeneous multiscale spatial mixing kernel 
-\setlength{\arraycolsep}{0.0em}
-\begin{eqnarray}
-k\left(s-r\right)&=& -\phi_{4;0,-3}\left(s-r\right)+\phi_{4;0,-2}\left(s-r\right)\nonumber\\
-&&{-}\:0.5\psi_{4;1,-6}\left(s-r\right)+0.5\psi_{4;1,-3}\left(s-r\right)
-\label{eq:1DSimulationKernel}
-\end{eqnarray}
-\setlength{\arraycolsep}{5pt}
+% \setlength{\arraycolsep}{0.0em}
+% \begin{eqnarray}
+% k\left(s-r\right)&=& -\phi_{4;0,-3}\left(s-r\right)+\phi_{4;0,-2}\left(s-r\right)\nonumber\\
+% &&{-}\:0.5\psi_{4;1,-6}\left(s-r\right)+0.5\psi_{4;1,-3}\left(s-r\right)
+% \label{eq:1DSimulationKernel}
+% \end{eqnarray}
+% \setlength{\arraycolsep}{5pt}
 The kernel and its decomposition are plotted in  \figurename{\ref{fig:SpatialMixingKernel}}. The dynamics associated with the IDE defined by (\ref{eq:1DSimulationKernel}) will be oscillatory and dissipative to initial conditions. The field is decomposed using scaling functions $\phi_{4;0,k} $ and the associated wavelet functions $\psi_{4;j,k} $ with $j=0,1$. Observations are then generated from (\ref{eq:ConstructionIntegral1}-\ref{eq:Pi}) for spatial domain defined as $\mathcal{S}=\left[0,10 \right] $ in response to an initial condition where $\boldsymbol\Sigma_v=0.2 \times \mathbf{I}_{n_y}$ and $ \eta(s-r)=2.5\times\phi_{4,3,-2}(s-r)$. The response was sampled at 50 irregularly spaced random locations, at $t=1, \cdots 400 $.
 \begin{figure}[!h] 
  \centering
  \includegraphics[scale=1]{./Graph/ObservationFreqResponse.pdf}
- \caption{The average (over time) power in dB of the spatial frequency of the observations. The dashed line shows the cutoff frequency (-3 dB point).}
+ \caption{(a) Mexican-hat connectivity kernel. The kernel is a composite of two B-spline
+functions (dashed lines), representing local excitation and lateral inhibition. (b) The average (over time) power in dB of the spatial frequency of the observations generated by the kernel in (a). The dashed line shows the cutoff frequency (-3 dB point).}
  \label{fig:FreqResponse}
  \end{figure} 
 \begin{figure}[!h] 
@@ -944,8 +938,8 @@ estimates, $\theta_1$.}
 \begin{figure}[!h] 
  \centering
  \includegraphics[scale=1]{./Graph/Field.pdf}
- \caption{Spatial field at one time instant for different spatial resolutions; estimated and true fields are
-shown by dashed and solid lines respectively.}
+ \caption{Spatial field at one time instant for different spatial resolutions, estimated and true fields are
+shown by dashed and solid lines respectively; (a) $j=0$, $n_x=17$. (b) $j=1$, $n_x=33$. (c) $j=2$, $n_x=65$. (d) $j=3$, $n_x=131$. (e) $j=4$, $n_x=263$.}
  \label{fig:FreqResponse}
  \end{figure} 
 
@@ -967,14 +961,14 @@ shown by dashed and solid lines respectively.}
 % \label{fig:1DFieldEstimation}
 % \end{figure*}
 In order to estimate the spatial mixing kernel and the spatio-temporal field, the  kernel and the field are decomposed using
-\begin{equation}
- k\left(s-r\right)=\sum_{l \in \mathbb{Z}}\alpha_{0,l}\phi_{4;0,l}\left(s-r\right)+\sum_{j=0}^{1} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{4;j,l}\left(s-r\right)
-\label{1DKernelDecompositionForSimulation}
-\end{equation}
-\begin{equation}
- z_t\left(s\right)=\sum_{l \in \mathbb{Z}}x_{t,0,l}\phi_{4;0,l}\left(s\right)+\sum_{j=0}^{1} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{4;j,l}\left(s\right)
-\label{1DFieldDecompositionForSimulation}
-\end{equation}
+% \begin{equation}
+%  k\left(s-r\right)=\sum_{l \in \mathbb{Z}}\alpha_{0,l}\phi_{4;0,l}\left(s-r\right)+\sum_{j=0}^{1} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{4;j,l}\left(s-r\right)
+% \label{1DKernelDecompositionForSimulation}
+% \end{equation}
+% \begin{equation}
+%  z_t\left(s\right)=\sum_{l \in \mathbb{Z}}x_{t,0,l}\phi_{4;0,l}\left(s\right)+\sum_{j=0}^{1} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{4;j,l}\left(s\right)
+% \label{1DFieldDecompositionForSimulation}
+% \end{equation}
 Note that the number of translation operations depends on the spatial range of the data. It follows that the total number of terms in (\ref{1DKernelDecompositionForSimulation}) and (\ref{1DFieldDecompositionForSimulation}) are 8 and 47 respectively. The estimated kernel in \figurename{\ref{fig:SpatialMixingKernelEstimate} } is obtained for the cubic B-spline, with initial scale 0 and maximum scale 1. The EM algorithm is allowed to run for 30 iterations to avoid any issues regarding early stopping, though typically the change in $\parallel \mathbf{A} \parallel_{F}$ falls below $10^{-4} $ after less than 15 iterations. A total number of 500 estimation experiments are performed, where $v_t$ and $w_t$ are re-generated each trial.
 
 
@@ -1000,39 +994,39 @@ where $\mathbf P_{t|T} $ is the covariance matrix associated with the  state est
 % \caption{Variance of the field at each spatial location for $j=0$ (dotted line) and $j=1$ (solid line). The observation locations are described with a cross.}
 % \label{fig:FieldVariance}
 % \end{figure} 
-\begin{table}[!h]
-\renewcommand{\arraystretch}{1.3}
-\caption {MISE  at particular scale between measured and estimated 2D-field  at a particular time}
-\label{table:ValidationResultField}
-\centering
-\begin{tabular}{cccc}
-\hline \hline
-\multicolumn{2}{r}{Time}&\multicolumn{2}{c}{MISE} \\
-\cline{3-4}
-&&$j=0$&$j=1$ \\ 
-\hline 
-&$5$ &$5.424$&$0.609$ \\
-&$20$ &$5.422$&$0.596$ \\
-&$50$ &$5.519$&$0.626$ \\
-&$100$ &$5.488$&$0.611$ \\
-&$150$ &$5.494$&$0.587$ \\
-\hline \hline
-\end{tabular}
-\end {table}
-\section{Conclusion}
-A multi-resolution approach to modelling spatio-temporal systems has been presented. This model is able to represent continuous-space, discrete-time dynamics at a number of spatial scales simultaneously. This ability greatly extends the class of system which the Integro-Difference Equation can represent.
-
-
-By decomposing both the spatial field and the spatial mixing kernel using a wavelet decomposition, it becomes possible to represent small scale details in the field at the same time as large scale details. This is an essential component of any practical spatio-temporal model, without which the model must be artificially separated into global and local modes a-priori.
-
-
-The complexity of the model is not affected by the spatial resolution of the observation process, rather it reflects the underlying complexity of the system under study. Therefore, increasing the resolution at which the system is observed does not necessarily increase the complexity of the system identification problem. However the developed algorithm is sensitive to the state dimension, equivalent to the detail represented in the field, and hence intelligent approaches to reduce the number of basis functions is noted as future work. 
-
-By considering different levels of decomposition, the proposed approach could be used as a method of determining the appropriate scales of decomposition, within a model-selection framework. Combined with an approach to sparsely modelling spatial heterogeneity, such as boundary conditions, this would allow the application of this work to a real-world data set.
+% \begin{table}[!h]
+% \renewcommand{\arraystretch}{1.3}
+% \caption {MISE  at particular scale between measured and estimated 2D-field  at a particular time}
+% \label{table:ValidationResultField}
+% \centering
+% \begin{tabular}{cccc}
+% \hline \hline
+% \multicolumn{2}{r}{Time}&\multicolumn{2}{c}{MISE} \\
+% \cline{3-4}
+% &&$j=0$&$j=1$ \\ 
+% \hline 
+% &$5$ &$5.424$&$0.609$ \\
+% &$20$ &$5.422$&$0.596$ \\
+% &$50$ &$5.519$&$0.626$ \\
+% &$100$ &$5.488$&$0.611$ \\
+% &$150$ &$5.494$&$0.587$ \\
+% \hline \hline
+% \end{tabular}
+% \end {table}
+% \section{Conclusion}
+% A multi-resolution approach to modelling spatio-temporal systems has been presented. This model is able to represent continuous-space, discrete-time dynamics at a number of spatial scales simultaneously. This ability greatly extends the class of system which the Integro-Difference Equation can represent.
+% 
+% 
+% By decomposing both the spatial field and the spatial mixing kernel using a wavelet decomposition, it becomes possible to represent small scale details in the field at the same time as large scale details. This is an essential component of any practical spatio-temporal model, without which the model must be artificially separated into global and local modes a-priori.
+% 
+% 
+% The complexity of the model is not affected by the spatial resolution of the observation process, rather it reflects the underlying complexity of the system under study. Therefore, increasing the resolution at which the system is observed does not necessarily increase the complexity of the system identification problem. However the developed algorithm is sensitive to the state dimension, equivalent to the detail represented in the field, and hence intelligent approaches to reduce the number of basis functions is noted as future work. 
+% 
+% By considering different levels of decomposition, the proposed approach could be used as a method of determining the appropriate scales of decomposition, within a model-selection framework. Combined with an approach to sparsely modelling spatial heterogeneity, such as boundary conditions, this would allow the application of this work to a real-world data set.
 % if have a single appendix:
 %\appendix[Proof of the Zonklar Equations]
 % or
-\appendix  % for no appendix heading
+% \appendix  % for no appendix heading
 % do not use \section anymore after \appendix, only \section*
 % is possibly needed
 % use appendices with more than one appendix
@@ -1041,39 +1035,39 @@ By considering different levels of decomposition, the proposed approach could be
 % \subsection or using \label (\appendices by itself
 % starts a section numbered zero.)
 %
-\newtheorem{lemma}{Lemma}
-\begin{lemma}
-Let $N_m\left(s-l_1\right)$ and $N_{m'}\left(s-l_2\right)$ be shifted B-spline functions of order $m$ and $m'$ respectively. Then the inner product of  $N_m\left(s-l_1\right)$  and $N_{m'}\left(s-l_2\right)$ can be calculated by 
-\setlength{\arraycolsep}{0.0em}
-\begin{eqnarray}
-\left\langle N_{m}\left(s-l_{1}\right), N_{m'}\left(s-l_{2}\right)\right\rangle&=&N_{m+m'}\left(m+l_{1}-l_{2}\right) \nonumber \\
-&=&N_{m+m'}\left(m'+l_{2}-l_{1}\right) 
-\end{eqnarray}
-\setlength{\arraycolsep}{5pt}
-\label{lemma:InProduct}
-\end{lemma}
-\begin{IEEEproof}
-The support of $N_m\left(s\right)$ is $\left[ 0,m\right]$ and  is symmetric with respect to $s=\frac{m}{2}$, i.e.
-\begin{equation}
- N_{m}\left(\frac{m}{2}+s\right)=N_{m}\left(\frac{m}{2}-s\right)
-\label{SymmetrySplieEq}
-\end{equation}
-A direct consequence of (\ref{SymmetrySplieEq}) is 
-\begin{equation}
- N_{m}\left(s\right)=N_{m}\left(m-s\right)
-\end{equation}
-Therefore
-\setlength{\arraycolsep}{0.0em}
-\begin{IEEEeqnarray}{l}
-\int_{-\infty}^{+\infty}N_{m}\left(s-l_{1}\right)N_{m'}\left(s-l_{2}\right)ds \nonumber \\
-\qquad=\int_{-\infty}^{+\infty}N_{m}\left(m-s+l_{1}\right)N_{m'}\left(s-l_{2}\right)ds \nonumber \\
-\qquad=\int_{-\infty}^{+\infty}N_{m}\left(m+l_{1}-l_{2}-u\right)N_{m'}\left(u\right)du \nonumber \\
-\qquad=\left(N_m \ast N_m'\right) \left(m+l_{1}-l_{2}\right) \nonumber \\
-\qquad=N_{m+m'}\left(m+l_{1}-l_{2}\right) \nonumber \\
-\qquad=N_{m+m'}\left(m'+l_{2}-l_{1}\right) \nonumber
-\end{IEEEeqnarray}
-\setlength{\arraycolsep}{5pt}
-\end{IEEEproof}
+% \newtheorem{lemma}{Lemma}
+% \begin{lemma}
+% Let $N_m\left(s-l_1\right)$ and $N_{m'}\left(s-l_2\right)$ be shifted B-spline functions of order $m$ and $m'$ respectively. Then the inner product of  $N_m\left(s-l_1\right)$  and $N_{m'}\left(s-l_2\right)$ can be calculated by 
+% \setlength{\arraycolsep}{0.0em}
+% \begin{eqnarray}
+% \left\langle N_{m}\left(s-l_{1}\right), N_{m'}\left(s-l_{2}\right)\right\rangle&=&N_{m+m'}\left(m+l_{1}-l_{2}\right) \nonumber \\
+% &=&N_{m+m'}\left(m'+l_{2}-l_{1}\right) 
+% \end{eqnarray}
+% \setlength{\arraycolsep}{5pt}
+% \label{lemma:InProduct}
+% \end{lemma}
+% \begin{IEEEproof}
+% The support of $N_m\left(s\right)$ is $\left[ 0,m\right]$ and  is symmetric with respect to $s=\frac{m}{2}$, i.e.
+% \begin{equation}
+%  N_{m}\left(\frac{m}{2}+s\right)=N_{m}\left(\frac{m}{2}-s\right)
+% \label{SymmetrySplieEq}
+% \end{equation}
+% A direct consequence of (\ref{SymmetrySplieEq}) is 
+% \begin{equation}
+%  N_{m}\left(s\right)=N_{m}\left(m-s\right)
+% \end{equation}
+% Therefore
+% \setlength{\arraycolsep}{0.0em}
+% \begin{IEEEeqnarray}{l}
+% \int_{-\infty}^{+\infty}N_{m}\left(s-l_{1}\right)N_{m'}\left(s-l_{2}\right)ds \nonumber \\
+% \qquad=\int_{-\infty}^{+\infty}N_{m}\left(m-s+l_{1}\right)N_{m'}\left(s-l_{2}\right)ds \nonumber \\
+% \qquad=\int_{-\infty}^{+\infty}N_{m}\left(m+l_{1}-l_{2}-u\right)N_{m'}\left(u\right)du \nonumber \\
+% \qquad=\left(N_m \ast N_m'\right) \left(m+l_{1}-l_{2}\right) \nonumber \\
+% \qquad=N_{m+m'}\left(m+l_{1}-l_{2}\right) \nonumber \\
+% \qquad=N_{m+m'}\left(m'+l_{2}-l_{1}\right) \nonumber
+% \end{IEEEeqnarray}
+% \setlength{\arraycolsep}{5pt}
+% \end{IEEEproof}
 
 
 %\appendices
