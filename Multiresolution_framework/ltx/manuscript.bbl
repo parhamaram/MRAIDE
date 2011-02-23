@@ -84,9 +84,4 @@ A.~P. Dempster, N.~M. Laird, and D.~B. Rubin, ``Maximum likelihood from
   incomplete data via the {EM} algorithm,'' \emph{J, Roy. Statist., Ser. B},
   vol.~39, no.~1, pp. 1--38, 1977.
 
-\bibitem{Sahu2008}
-S.~K. Sahu and P.~Challenor, ``A space-time model for joint modeling of ocean
-  temperature and salinity levels as measured by \text{A}rgo floats,''
-  \emph{Environmetrics}, vol.~19, no.~5, pp. 509--528, Aug. 2008.
-
 \end{thebibliography}

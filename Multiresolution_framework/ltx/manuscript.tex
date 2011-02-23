@@ -663,7 +663,7 @@ where the local post-synaptic membrane voltage at time $t$ of a population of ne
 		\end{array}\right.
 \end{equation}
 where the parameter $\varsigma$ governs the slope of the sigmoid. Furthermore, we assume the field is in the linear region of the piecewise function giving
-\begin{equation}\label{DiscreteTimeModel} 
+\begin{equation}\label{eq:DiscreteTimeModel} 
 	v_{t+1}\left(\mathbf{r}\right) = 
 	\xi v_t\left(\mathbf{r}\right) + 
 	T_s \int_\Omega { 
@@ -678,7 +678,7 @@ Note that the parameter $\varsigma$ is absorbed into the kernel for simplicity. 
 \end{equation}
 where electrophysiological recordings $\mathbf{y}_{t}=[y_t(\mathbf{r}_1) y_t(\mathbf{r}_2)\cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations and at time $t$ via the observation kernel  $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$, is corrupted by an i.i.d normally distributed zero-mean white noise $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$ with $\mathbf{\Sigma}_{\epsilon}=\sigma_{\epsilon}^2\mathbf I_{n_y} $. The superscript $\top$ denotes the transpose operator.
 \section{MRA of the IDE in State-Space}
-Assuming $v_t(.)$ and $w(.)$ are square-integrable functions, MRA of the one-dimensional IDE can be obtained by expanding  both the field and the kernel in the equation (\ref{DiscreteTimeModel}) in terms of the translations and dilations of a scaling function $\phi(r)$ and a mother wavelet $\psi(r)$. For the one-dimensional kernel this is given by,
+Assuming $v_t(.)$ and $w(.)$ are square-integrable functions, MRA of the one-dimensional IDE can be obtained by expanding  both the field and the kernel in the equation (\ref{eq:DiscreteTimeModel}) in terms of the translations and dilations of a scaling function $\phi(r)$ and a mother wavelet $\psi(r)$. For the one-dimensional kernel this is given by,
 \begin{equation}
  w\left(r-r'\right)=\sum_{l \in \mathbb{Z}}\alpha_{j_0,l}\phi_{j_0,l}\left(r-r'\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{j,l}\left(r-r'\right) 
 \label{eq:KernelExpansion}
@@ -767,7 +767,7 @@ where the vector $\boldsymbol\beta_{j}^{(i)}$ contains all the coefficient $\lef
 Each vector of basis functions on the right hand-side of (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in a way similar to their corresponding weight vectors in (\ref{KernelWeights}) and (\ref{FieldWeights}). 
 % Note that the identified IDE model will approximate the underlying spatio-temporal dynamics at different spatial scales. In this way both macroscopic and microscopic behaviour of the system can be represented simultaneously. 
 
-To derive the state-space representation of the model we substitute decompositions \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} into equation \eqref{DiscreteTimeModel} and then cross-multiply the decomposed model by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the spatial domain, $\Omega$, giving
+To derive the state-space representation of the model we substitute decompositions \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} into equation \eqref{eq:DiscreteTimeModel} and then cross-multiply the decomposed model by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the spatial domain, $\Omega$, giving
 \begin{align}\label{eq:DecomposedModel2} 
 	&\int_{\Omega} \boldsymbol\mu  \left(\mathbf{r}\right)\boldsymbol\mu\left(\mathbf{r}\right)^\top  d\mathbf{r}\mathbf{x}_{t+1}= 
 	\xi\int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\mu\left(\mathbf{r}\right)^\top d\mathbf{r}\mathbf{x}_t \nonumber \\
@@ -900,24 +900,18 @@ A state-space representation of the IDE model allows the use of the Expectation 
 In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother can be employed to determine the posterior state sequence. It can be shown that \cite{Dempster1977,Gibsona2005} every EM iteration increases the lower bound on the likelihood function and hence improving the state and parameter estimates.
 % The complexity of this algorithm is $O\left(n_{x}^2n_{\theta}^2\right)+O \left(Tn_{x}^{3}\right)+O\left(Tn_{y}^3\right) $ showing that
 \section{Simulation}
-In this section, we compare the performance of the different algorithms mentioned above on a synthetic example .....This section demonstrates the identification of the proposed IDE model. Primarily, the MRA of a synthetic model is demonstrated, which is able to represent the system at different spatial scales. In addition, the complexity of the field decomposition is shown to be independent to the number and spatial regularity of the observation locations. This allows the construction of parsimonious models using spatially dense observations, and demonstrates the utility of the approach to situations where the observations are not arranged on a regular lattice, i.e. sensor networks \cite{Sahu2008}.
-\subsection{One dimensional example}
- Consider the following homogeneous multiscale spatial mixing kernel 
-% \setlength{\arraycolsep}{0.0em}
-% \begin{eqnarray}
-% k\left(s-r\right)&=& -\phi_{4;0,-3}\left(s-r\right)+\phi_{4;0,-2}\left(s-r\right)\nonumber\\
-% &&{-}\:0.5\psi_{4;1,-6}\left(s-r\right)+0.5\psi_{4;1,-3}\left(s-r\right)
-% \label{eq:1DSimulationKernel}
-% \end{eqnarray}
-% \setlength{\arraycolsep}{5pt}
-The kernel and its decomposition are plotted in  \figurename{\ref{fig:SpatialMixingKernel}}. The dynamics associated with the IDE defined by (\ref{eq:1DSimulationKernel}) will be oscillatory and dissipative to initial conditions. The field is decomposed using scaling functions $\phi_{4;0,k} $ and the associated wavelet functions $\psi_{4;j,k} $ with $j=0,1$. Observations are then generated from (\ref{eq:ConstructionIntegral1}-\ref{eq:Pi}) for spatial domain defined as $\mathcal{S}=\left[0,10 \right] $ in response to an initial condition where $\boldsymbol\Sigma_v=0.2 \times \mathbf{I}_{n_y}$ and $ \eta(s-r)=2.5\times\phi_{4,3,-2}(s-r)$. The response was sampled at 50 irregularly spaced random locations, at $t=1, \cdots 400 $.
-\begin{figure}[!h] 
+This section demonstrates the identification of the proposed IDE model. The MRA of a synthetic model is demonstrated, which is able to represent the system at different spatial scales. The spectral analysis was used to choose the spatial scale adequate to represent the spatial field.
+
+One second of data was generated using equations \eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation} in response to an initial condition where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $ \eta(r-r')=1.5\times\phi_{4,3,-2}(r-r')$. Sampling time and the synaptic time constant are set to 1 and 10 milliseconds respectively. The sensors were arranged regularly where the distance between adjacent sensors was set to 0.5 mm resulting into 161 observation locations. Sensors are modelled using $\phi_{4,4,k}$, providing a width of 0.8 mm at half the maximum amplitude of the observation kernel. The connectivity kernel and its decomposition are plotted in  \figurename{\ref{fig:KernelAndFreqResponse}} (a). The spatial frequency of the observed field is shown in \figurename{\ref{fig:KernelAndFreqResponse}} (b). The observed field has an approximate spatial bandwidth $1.38$ cycles/mm. This suggests the use of wavelets upto level $j=3$. 
+
+% is obtained  and The dynamics associated with the IDE defined by (\ref{eq:1DSimulationKernel}) will be oscillatory and dissipative to initial conditions. The field is decomposed using scaling functions $\phi_{4;0,k} $ and the associated wavelet functions $\psi_{4;j,k} $ with $j=0,1$.
+\begin{figure}[!h]
  \centering
  \includegraphics[scale=1]{./Graph/ObservationFreqResponse.pdf}
  \caption{(a) Mexican-hat connectivity kernel. The kernel is a composite of two B-spline
 functions (dashed lines), representing local excitation and lateral inhibition. (b) The average (over time) power in dB of the spatial frequency of the observations generated by the kernel in (a). The dashed line shows the cutoff frequency (-3 dB point).}
- \label{fig:FreqResponse}
- \end{figure} 
+\label{fig:KernelAndFreqResponse} 
+  \end{figure} 
 \begin{figure}[!h] 
  \centering
  \includegraphics[scale=1]{./Graph/Hist.pdf}
@@ -943,51 +937,27 @@ shown by dashed and solid lines respectively; (a) $j=0$, $n_x=17$. (b) $j=1$, $n
  \label{fig:FreqResponse}
  \end{figure} 
 
-% \begin{figure}[!h] 
-% \centering
-% \includegraphics[width=0.5\textwidth]{./Graph/aram2.eps}
-% \caption{Spatial mixing kernel; estimated and true kernels are shown by solid and dashed line respectively; top panel is estimation with maximmum scale $j=0$ and bottom panel is estimation with maximum scale $j=1$. }
-% \label{fig:SpatialMixingKernelEstimate}
-% \end{figure}
-% \begin{figure*}[!hb] 
-% % \renewcommand*{\thesubfigure}{}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram35.eps}}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram310.eps}}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram350.eps}}\\ 
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram3100.eps}}
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram3200.eps}} 
-% \subfigure[][]{\includegraphics[width=2.18in]{./Graph/aram3300.eps}}
-% \caption{Spatial field at a number of time instants; estimated and true fields are shown by solid and dashed line respectively; the top panel of each plot is the estimate with maximmum scale $j=0$ and the bottom panel is the estimate with maximum scale $j=1$.}
-% \label{fig:1DFieldEstimation}
-% \end{figure*}
-In order to estimate the spatial mixing kernel and the spatio-temporal field, the  kernel and the field are decomposed using
-% \begin{equation}
-%  k\left(s-r\right)=\sum_{l \in \mathbb{Z}}\alpha_{0,l}\phi_{4;0,l}\left(s-r\right)+\sum_{j=0}^{1} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{4;j,l}\left(s-r\right)
-% \label{1DKernelDecompositionForSimulation}
-% \end{equation}
-% \begin{equation}
-%  z_t\left(s\right)=\sum_{l \in \mathbb{Z}}x_{t,0,l}\phi_{4;0,l}\left(s\right)+\sum_{j=0}^{1} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{4;j,l}\left(s\right)
-% \label{1DFieldDecompositionForSimulation}
-% \end{equation}
-Note that the number of translation operations depends on the spatial range of the data. It follows that the total number of terms in (\ref{1DKernelDecompositionForSimulation}) and (\ref{1DFieldDecompositionForSimulation}) are 8 and 47 respectively. The estimated kernel in \figurename{\ref{fig:SpatialMixingKernelEstimate} } is obtained for the cubic B-spline, with initial scale 0 and maximum scale 1. The EM algorithm is allowed to run for 30 iterations to avoid any issues regarding early stopping, though typically the change in $\parallel \mathbf{A} \parallel_{F}$ falls below $10^{-4} $ after less than 15 iterations. A total number of 500 estimation experiments are performed, where $v_t$ and $w_t$ are re-generated each trial.
+
+% In order to estimate the spatial mixing kernel and the spatio-temporal field, the  kernel and the field are decomposed using
+% Note that the number of translation operations depends on the spatial range of the data. It follows that the total number of terms in (\ref{1DKernelDecompositionForSimulation}) and (\ref{1DFieldDecompositionForSimulation}) are 8 and 47 respectively. The estimated kernel in \figurename{\ref{fig:SpatialMixingKernelEstimate} } is obtained for the cubic B-spline, with initial scale 0 and maximum scale 1. The EM algorithm is allowed to run for 30 iterations to avoid any issues regarding early stopping, though typically the change in $\parallel \mathbf{A} \parallel_{F}$ falls below $10^{-4} $ after less than 15 iterations. A total number of 500 estimation experiments are performed, where $v_t$ and $w_t$ are re-generated each trial.
 
 
- The performance measure employed here is the Mean Integrated Squared Error (MISE) defined as
-\begin{equation}
- \mathbf{E}\left[\int_{\mathcal{S}}\left[e\left(s\right) \right]^2ds  \right]
-\label{MISE} 
-\end{equation}
- where  $e\left(s\right)$ is the error between the unknown function, $f\left( s\right) $ and its estimate, $\hat{f}\left( s\right) $. In this example the original kernel and the field are known and hence the integral in  (\ref{MISE}) can be computed analytically. For spatial mixing kernel we have
-\begin{eqnarray}
- \lefteqn{\int_{\mathcal{S}}\left[e\left(s\right)\right]^2ds}\nonumber \\  &=\left(\boldsymbol{\theta}-\hat{\boldsymbol{\theta}}\right)^\top\left[ \int_{\mathcal{S}}\boldsymbol\lambda\left(s\right)\boldsymbol\lambda\left(s\right)^\top ds\right] \left(\boldsymbol{\theta}-\hat{\boldsymbol{\theta}}\right)&
-\label{MISEKernel}
-\end{eqnarray}
-  Here, we are particularly interested in assessing the performance improvement as the scale of the details in MRA is increased. Performance based on (\ref{MISEKernel}) at different spatial scales and over 500 trials have been evaluated. The MISE of the model at $j=0$ is 0.024 and reduces to 0.005 when $\psi_{4;1,k}$ terms are also included in the model, in fact estimation performance is improved by a factor of 4.8. The coarsest approximation of the kernel along with its approximation at $j=1$ are illustrated in \figurename{\ref{fig:SpatialMixingKernelEstimate}. It can be seen that the model is able to estimate both slowly and rapidly varying segments of the  kernel with very high accuracy.  Field estimates  at a selection of time instants are shown in \figurename{\ref{fig:1DFieldEstimation}}. It is clearly observed that the coarse and fine features of the original field have been captured accurately over regions where observations are available. Observation locations are generated randomly, as shown in \figurename{ \ref{fig:FieldVariance}}. Assuming the observed field can be fully described by the  decomposed IDE model, the variance of the field can be computed to express the  uncertainty of the estimation, at each point in space and at time $t$ we have 
-\begin{equation}
- \text{Var}(\hat z_t(s_i))=\boldsymbol\mu^{\top}(s_i) \mathbf P_{t|T}\boldsymbol\mu(s_i)
-\label{eq:FieldVariance}
-\end{equation}
-where $\mathbf P_{t|T} $ is the covariance matrix associated with the  state estimates obtained from the RTS smoother. Variance based on (\ref{eq:FieldVariance}) at each spatial location and at $t=50$ is shown in \figurename{\ref{fig:FieldVariance}}. The uncertainty of the estimation is higher at almost  every spatial location at $j=1$ compared to $j=0$. This is to be expected as there are more wavelet basis functions at higher resolution and hence more associated weights need to be estimated. Peaks in the variance of the field coincide with regions where no observations have been made. Increasing the number of observation locations, or using equally spaced observation locations would reduce the variance of the field estimation.
+%  The performance measure employed here is the Mean Integrated Squared Error (MISE) defined as
+% \begin{equation}
+%  \mathbf{E}\left[\int_{\mathcal{S}}\left[e\left(s\right) \right]^2ds  \right]
+% \label{MISE} 
+% \end{equation}
+%  where  $e\left(s\right)$ is the error between the unknown function, $f\left( s\right) $ and its estimate, $\hat{f}\left( s\right) $. In this example the original kernel and the field are known and hence the integral in  (\ref{MISE}) can be computed analytically. For spatial mixing kernel we have
+% \begin{eqnarray}
+%  \lefteqn{\int_{\mathcal{S}}\left[e\left(s\right)\right]^2ds}\nonumber \\  &=\left(\boldsymbol{\theta}-\hat{\boldsymbol{\theta}}\right)^\top\left[ \int_{\mathcal{S}}\boldsymbol\lambda\left(s\right)\boldsymbol\lambda\left(s\right)^\top ds\right] \left(\boldsymbol{\theta}-\hat{\boldsymbol{\theta}}\right)&
+% \label{MISEKernel}
+% \end{eqnarray}
+%   Here, we are particularly interested in assessing the performance improvement as the scale of the details in MRA is increased. Performance based on (\ref{MISEKernel}) at different spatial scales and over 500 trials have been evaluated. The MISE of the model at $j=0$ is 0.024 and reduces to 0.005 when $\psi_{4;1,k}$ terms are also included in the model, in fact estimation performance is improved by a factor of 4.8. The coarsest approximation of the kernel along with its approximation at $j=1$ are illustrated in \figurename{\ref{fig:SpatialMixingKernelEstimate}. It can be seen that the model is able to estimate both slowly and rapidly varying segments of the  kernel with very high accuracy.  Field estimates  at a selection of time instants are shown in \figurename{\ref{fig:1DFieldEstimation}}. It is clearly observed that the coarse and fine features of the original field have been captured accurately over regions where observations are available. Observation locations are generated randomly, as shown in \figurename{ \ref{fig:FieldVariance}}. Assuming the observed field can be fully described by the  decomposed IDE model, the variance of the field can be computed to express the  uncertainty of the estimation, at each point in space and at time $t$ we have 
+% \begin{equation}
+%  \text{Var}(\hat z_t(s_i))=\boldsymbol\mu^{\top}(s_i) \mathbf P_{t|T}\boldsymbol\mu(s_i)
+% \label{eq:FieldVariance}
+% \end{equation}
+% where $\mathbf P_{t|T} $ is the covariance matrix associated with the  state estimates obtained from the RTS smoother. Variance based on (\ref{eq:FieldVariance}) at each spatial location and at $t=50$ is shown in \figurename{\ref{fig:FieldVariance}}. The uncertainty of the estimation is higher at almost  every spatial location at $j=1$ compared to $j=0$. This is to be expected as there are more wavelet basis functions at higher resolution and hence more associated weights need to be estimated. Peaks in the variance of the field coincide with regions where no observations have been made. Increasing the number of observation locations, or using equally spaced observation locations would reduce the variance of the field estimation.
 % \begin{figure}[!h] 
 % \centering
 % \includegraphics[width=0.5\textwidth]{./Graph/aram4.eps}
