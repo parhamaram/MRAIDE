@@ -745,14 +745,8 @@ where the unknown parameter vector $ \boldsymbol\theta \in \mathbb{R}^{n_{\theta
  \mathbf{x}_{t}^\top=\left[\mathbf{x}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}+1}^\top \cdots \check{\mathbf{x}}_{t,j}^\top\right] 
 \label{FieldWeights}
 \end{equation}
-and where the kernel approximation coefficient vector $\boldsymbol \alpha_{j_0}$  and the field approximation coefficient vector $\mathbf{x}_{t,j_{0}}$ comprise all the coefficients $\left\lbrace\alpha_{j_0,\mathbf l}:\mathbf{l} \in \mathbb{Z}^d \right\rbrace $ and $\left\lbrace x_{t,j_0,\mathbf l}: \mathbf{l} \in \mathbb{Z}^d\right\rbrace$ respectively. The kernel detail coefficient vectors $\boldsymbol \beta_{j}$ and the field detail coefficient vectors $\check{\mathbf{x}}_{t,j}$ are defined by
-\begin{equation}
- \boldsymbol\beta_{j}^\top=\left[\boldsymbol\beta_{j}^{(1)\top} \quad \boldsymbol\beta_{j}^{(2)\top} \cdots \boldsymbol\beta_{j}^{(2^d-1)\top}\right] 
-\end{equation}
-\begin{equation}
-\check{\mathbf{x}}_{t,j}^\top=\left[\check{\mathbf{x}}_{t,j}^{(1)\top} \quad \check{\mathbf{x}}_{t,j}^{(2)\top} \cdots \check{\mathbf{x}}_{t,j}^{(2^d-1)\top}\right] 
-\end{equation}
-where the vector $\boldsymbol\beta_{j}^{(i)}$ contains all the coefficient $\left\lbrace \beta_{j,\mathbf l}^{(i)} :\mathbf{l} \in \mathbb{Z}^d\right\rbrace$ and the vector $\check{\mathbf{x}}_{t,j}^{(i)}$ contains all the coefficient $\left\lbrace  \check x_{t,j,\mathbf l}^{(i)}:\mathbf{l} \in \mathbb{Z}^d\right\rbrace$. 
+and where the kernel approximation coefficient vector $\boldsymbol \alpha_{j_0}$  and the field approximation coefficient vector $\mathbf{x}_{t,j_{0}}$ comprise all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$ respectively. 
+Similarly the kernel detail coefficient vectors $\boldsymbol\beta_{j}$ contains all the coefficient $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and the vector $\check{\mathbf{x}}_{t,j}$ contains all the coefficient $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$. 
 %and  $\boldsymbol\lambda(\mathbf{s}-\mathbf{r})$ is the vector of the kernel scaling and wavelet functions and   $\boldsymbol\mu(\mathbf{s})$ is the vector of the field scaling and wavelet functions. 
  The vector of the kernel scaling and wavelet functions $\boldsymbol\lambda: \mathbb{R}^{n_{\mathcal S}}\rightarrow \mathbb{R}^{n_{\theta}}$ and the vector of the field scaling and wavelet functions $\boldsymbol\mu: \mathbb{R}^{n_{\mathcal S}}\rightarrow \mathbb{R}^{n_x}$ are defined by
 \begin{eqnarray}
@@ -860,39 +854,8 @@ with the coefficients given by:\\
 \end{equation}
 
 
-By exploiting properties (\ref{eq:BsplineConvolution}) and (\ref{eq:BsplineInnerProduct}) the  integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2}) can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, scaling and wavelet basis functions should be expanded  in terms of $N_m$ at the appropriate scale. It is important to note that B-spline scaling and wavelet functions possess the following orthogonality properties \cite{Unser1993}: 
-\begin{equation}
- \left\langle \psi_{m;j_1,l_1}(s),\psi_{m;j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\neq j_2
-\label{PsiPsiOrthogonality}
-\end{equation}
-\begin{equation}
- \left\langle \phi_{m;j_1,l_1}(s),\psi_{m;j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2
-\label{PhiPsiOrthogonality}
-\end{equation}
- Where the subscript $m$ is introduced to $\phi_{j,l}(s)$ and $\psi_{j,l}(s) $ to indicate the $m$th order B-spline scaling and wavelet functions.  
-% In the two dimensional case, the convolution integral can be factorised as follows, e.g. 
-% \setlength{\arraycolsep}{0.14em}
-% \begin{IEEEeqnarray}{!l l }
-%  \phi_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right)\ast \psi^{1}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)&=\left[\phi_{m;j,l_1}\left(s_{1}\right)\ast\phi_{m;j,l'_1}\left(s_{1}\right)\right] \nonumber \\
-% &\times \left[ \phi_{m;j,l_2}\left(s_{2}\right) \ast \psi_{m;j,l'_2}\left(s_{2}\right)\right] \nonumber \\
-% &
-% \end{IEEEeqnarray}
-% \setlength{\arraycolsep}{5pt}
-% The preceding factorisation can be also applied to the 2D-inner product integral. Non-zero quantities can  be then expressed by
-% \setlength{\arraycolsep}{0.14em}
-% \begin{IEEEeqnarray}{!l l }
-% \left\langle \phi_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right),\phi_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle &=\left\langle \phi_{m;j,l_1}\left(s_{1}\right),\phi_{m;j,l'_1}\left(s_{1}\right)\right\rangle \nonumber \\
-% & \times\left\langle \phi_{m;j,l_2}\left(s_{2}\right) , \phi_{m;j,l'_2}\left(s_{2}\right)\right\rangle \nonumber \\
-% &
-% \end{IEEEeqnarray}
-% \setlength{\arraycolsep}{5pt}
-% likewise we can compute 
-% $\left\langle  \psi^{1}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right),\psi^{1}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle$
-% , \\
-% $\left\langle  \psi^{2}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right),\psi^{2}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle$ and \\
-% $
-% \left\langle \psi^{3}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right), \psi^{3}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle $. \\ \\
-In this work, 4th order cardinal B-spline scaling and wavelet functions are used therefore, to compute the integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2})  the $8$th and $12$th order B-spline values at integer points are  required and can be found in \cite{Goswami1999}.
+By exploiting properties (\ref{eq:BsplineConvolution}) and (\ref{eq:BsplineInnerProduct}) the  integrals (\ref{eq:Lambdax}) and (\ref{eq:Lambdatheta}) can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, scaling and wavelet basis functions should be expanded  in terms of $N_m$ at the appropriate scale. 
+In this work, 4th order cardinal B-spline scaling and wavelet functions are used therefore, to compute the integrals (\ref{eq:Lambdax}) and (\ref{eq:Lambdatheta})  the $8$th and $12$th order B-spline values at integer points are  required and can be found in \cite{Goswami1999}.
 \section{Estimation of the Multiresolution Spatio-temporal IDE Model}
 A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm to infer both the kernel and the field from the electrophysiological data. The EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the connectivity kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$ \cite{McLachlan1997}. In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005} can be employed to determine the posterior state sequence. 
 The state-space representation of the IDE defined by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation} has a $\mathcal Q\left(\boldsymbol\theta,\boldsymbol \theta'\right)$ in a form of
@@ -904,15 +867,11 @@ with a maximum at
  \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top).
 \end{align}
 Where
-\begin{equation}\label{eq:upsilon0}
- \boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i} \quad,
-\end{equation}
-\begin{equation}\label{eq:upsilon1}
- \boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i} \quad,
-\end{equation}
-\begin{equation}\label{eq:Upsilon}
- \boldsymbol\Upsilon=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T} \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf{U}]_{j,i},
-\end{equation}
+\begin{align}\label{eq:upsilon0}
+ \boldsymbol\upsilon_0&=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i}\\ 
+ \boldsymbol\upsilon_1&=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i}\label{eq:upsilon1} \\
+ \boldsymbol\Upsilon&=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T} \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf{U}]_{j,i}\label{eq:Upsilon}
+\end{align}
 and $\beta$ is constant with respect to the connectivity kernel parameters. The $\left(i,j\right)^{th}$ element of the  block matrix $\mathbf U_{n_x \times n_x}$ is given by
 \begin{align}
 \left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}[\mu(\mathbf r)]_i[\int_{\boldsymbol\Omega}\boldsymbol\mu\left(\mathbf{r'}\right)\boldsymbol\lambda^\top\left(\mathbf{r-r'}\right) d\mathbf{r'}]_{j:}d\mathbf r.
