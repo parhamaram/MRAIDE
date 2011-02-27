@@ -805,7 +805,7 @@ which is a vector valued, zero-mean normally distributed white noise process wit
 \end{equation}
 Similarly, the observation equation of the state-space model is found by substituting decomposition \eqref{eq:FieldFiniteExpansion}
  into equation \eqref{eq:ObservationEquation} giving
-\begin{equation}\label{ObservationEquation} 
+\begin{equation}\label{eq:ReducedObservationEquation} 
 	\mathbf{y}_t = \mathbf{C}\mathbf{x}_t + \boldsymbol{\varepsilon}_t,
 \end{equation}
 where each element of the observation matrix is 
@@ -893,11 +893,31 @@ By exploiting properties (\ref{eq:BsplineConvolution}) and (\ref{eq:BsplineInner
 % \left\langle \psi^{3}_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right), \psi^{3}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)\right\rangle $. \\ \\
 In this work, 4th order cardinal B-spline scaling and wavelet functions are used therefore, to compute the integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2})  the $8$th and $12$th order B-spline values at integer points are  required and can be found in \cite{Goswami1999}.
 \section{Estimation of the Multiresolution Spatio-temporal IDE Model}
-A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm to infer both the kernel and the spatial field from the noise corrupted spatio-temporal data. In this context, the EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the spatial mixing kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$ \cite{McLachlan1997}. In the E-step, given an estimate of $\boldsymbol\theta$, filtering methods can be used to determine the posterior state sequence. Here we compare three techniques namely based on  the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005}, Ensemble Kalman smoother (EnKs) \cite{Evensen2003} and a heuristic separable RTS smoother for state estimation problem. For the first method we modify the framework proposed in \cite{Dewar2009} by computing and storing the required elements prior to the iterative estimation algorithm, the modified algorithm is computationally less demanding (see Appendix \ref{App:ReducedRTS}). In Ensemble Kalman filter (EKf) an ensemble of model states, $\mathbf X_t \in \mathbb R^{n_x \times N} \sim \mathcal N(\mathbf x_t,\mathbf P_t)$ is propogated through the state equation to calculate the forecast estimates $\hat{\mathbf x}^f_t$ and the error covariance of the predicted model state, $\mathbf P_t^f$ where $N$ is the number of ensemble members. Then  the model state is updated to compute analysed estimates, $\hat {\mathbf x}_t^a$.  This is important for model with high dimensional state space where standard Kalman filter  is computationally infeasible to implement as the state covariance matrix needs to be stored and propogated in time. The EnKs updates the filtered ensembles at the current and all prior times every time a new set of measurements becomes available. The algorithm is given in Algorithm \ref{alg:EnKS} for completeness. It is essential that the observations be also treated as an ensemble of random variables, $\mathbf Y_t$, having a distribution with mean equal to the observed value, $\mathbf y_t$ and covariance equal to $\boldsymbol\Sigma_v$ \cite{Houtekamer2005}. 
-
-% represents the predicted state covariance matrix, $\mathbf P_{t|t+1}$ using a large stochastic ensemble of the predicted states $\hat{\mathbf x}_{t+1|t}$.
-
-In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother can be employed to determine the posterior state sequence. It can be shown that \cite{Dempster1977,Gibsona2005} every EM iteration increases the lower bound on the likelihood function and hence improving the state and parameter estimates.
+A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm to infer both the kernel and the field from the electrophysiological data. The EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the connectivity kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$ \cite{McLachlan1997}. In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005} can be employed to determine the posterior state sequence. 
+The state-space representation of the IDE defined by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation} has a $\mathcal Q\left(\boldsymbol\theta,\boldsymbol \theta'\right)$ in a form of
+\begin{equation}
+ \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=2T_s\boldsymbol\upsilon_0-T_s\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta-2T_s\boldsymbol\upsilon_1
+\end{equation}
+with a maximum at
+\begin{align}
+ \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top).
+\end{align}
+Where
+\begin{equation}
+ \boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i} \quad,
+\end{equation}
+\begin{equation}
+ \boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i} \quad,
+\end{equation}
+and
+\begin{equation}
+ \boldsymbol\Upsilon=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T} \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf{U}]_{j,i}.
+\end{equation}
+The $\left(i,j\right)^{th}$ element of the  block matrix $\mathbf U_{n_x \times n_x}$ is given by
+\begin{align}
+\left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}[\mu(\mathbf r)]_i[\int_{\boldsymbol\Omega}\boldsymbol\mu\left(\mathbf{r'}\right)\boldsymbol\lambda^\top\left(\mathbf{r-r'}\right) d\mathbf{r'}]_{j:}d\mathbf r.
+\end{align}
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix.
 % The complexity of this algorithm is $O\left(n_{x}^2n_{\theta}^2\right)+O \left(Tn_{x}^{3}\right)+O\left(Tn_{y}^3\right) $ showing that
 \section{Simulation}
 This section demonstrates the identification of the proposed IDE model. The MRA of a synthetic model is demonstrated, which is able to represent the system at different spatial scales. The spectral analysis was used to choose the spatial scale adequate to represent the spatial field.
