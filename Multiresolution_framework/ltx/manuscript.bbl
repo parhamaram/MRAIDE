@@ -46,47 +46,28 @@ C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
   principle,'' \emph{Trans. Amer. Math. Soc.}, vol. 330, no.~2, pp. 903--915,
   1992.
 
-\bibitem{Unser1993}
-M.~Unser, A.~Aldroubi, and M.~Eden, ``A family of polynomial spline wavelet
-  transforms,'' \emph{Signal Process.}, vol.~30, no.~2, pp. 141--162, Jan.
-  1993.
-
 \bibitem{Goswami1999}
 J.~C. Goswami and A.~Chan, \emph{Fundamentals of Wavelets: Theory, Algorithms,
   and Applications}.\hskip 1em plus 0.5em minus 0.4em\relax New York: Wiley,
   1999.
-
-\bibitem{McLachlan1997}
-G.~J. McLachlan and T.~Krishnan, \emph{The EM Algorithm and Extensions}.\hskip
-  1em plus 0.5em minus 0.4em\relax New York: Wiley, 1997.
-
-\bibitem{Gibsona2005}
-S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
-  multivariable dynamic systems,'' \emph{Automatica}, vol.~41, no.~10, pp.
-  1667--1682, Oct. 2005.
-
-\bibitem{Evensen2003}
-G.~Evensen, ``The ensemble kalman filter: theoretical formulation and practical
-  implementation,'' \emph{Ocean Dynamics}, vol.~53, pp. 343--367, 2003.
-
-\bibitem{Dewar2009}
-M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
-  modeling using the integro-difference equation,'' \emph{Signal Processing,
-  IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
-
-\bibitem{Houtekamer2005}
-P.~Houtekamer and H.~Mitchell, ``Ensemble kalman filtering,'' \emph{Quarterly
-  Journal of the Royal Meteorological Society}, vol. 131, no. 613, pp.
-  3269--3289, 2005.
 
 \bibitem{Dempster1977}
 A.~P. Dempster, N.~M. Laird, and D.~B. Rubin, ``Maximum likelihood from
   incomplete data via the {EM} algorithm,'' \emph{J, Roy. Statist., Ser. B},
   vol.~39, no.~1, pp. 1--38, 1977.
 
-\bibitem{Sahu2008}
-S.~K. Sahu and P.~Challenor, ``A space-time model for joint modeling of ocean
-  temperature and salinity levels as measured by \text{A}rgo floats,''
-  \emph{Environmetrics}, vol.~19, no.~5, pp. 509--528, Aug. 2008.
+\bibitem{Shumway2000}
+R.~Shumway and D.~Stoffer, \emph{Time series analysis and its
+  applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Verlag, 2000.
+
+\bibitem{Gibsona2005}
+S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
+  multivariable dynamic systems,'' \emph{Automatica}, vol.~41, no.~10, pp.
+  1667--1682, Oct. 2005.
+
+\bibitem{Dewar2009}
+M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
+  modeling using the integro-difference equation,'' \emph{Signal Processing,
+  IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
 
 \end{thebibliography}
