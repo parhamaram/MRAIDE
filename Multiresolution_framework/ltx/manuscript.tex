@@ -746,8 +746,7 @@ where the unknown parameter vector $ \boldsymbol\theta \in \mathbb{R}^{n_{\theta
 \label{FieldWeights}
 \end{equation}
 and where the kernel approximation coefficient vector $\boldsymbol \alpha_{j_0}$  and the field approximation coefficient vector $\mathbf{x}_{t,j_{0}}$ comprise all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$ respectively. 
-Similarly the kernel detail coefficient vectors $\boldsymbol\beta_{j}$ contains all the coefficient $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and the vector $\check{\mathbf{x}}_{t,j}$ contains all the coefficient $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$. 
-%and  $\boldsymbol\lambda(\mathbf{s}-\mathbf{r})$ is the vector of the kernel scaling and wavelet functions and   $\boldsymbol\mu(\mathbf{s})$ is the vector of the field scaling and wavelet functions. 
+Similarly the kernel detail coefficient vectors $\boldsymbol\beta_{j}$ contains all the coefficient $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and the vector $\check{\mathbf{x}}_{t,j}$ contains all the coefficient $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$.
  The vector of the kernel scaling and wavelet functions $\boldsymbol\lambda: \mathbb{R}^{n_{\mathcal S}}\rightarrow \mathbb{R}^{n_{\theta}}$ and the vector of the field scaling and wavelet functions $\boldsymbol\mu: \mathbb{R}^{n_{\mathcal S}}\rightarrow \mathbb{R}^{n_x}$ are defined by
 \begin{eqnarray}
  \boldsymbol\lambda^\top(\mathbf r-\mathbf r')&=&\left[ \boldsymbol\phi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf r-\mathbf r') \right. \nonumber \\
@@ -825,7 +824,7 @@ N_{1}\left(s\right)=
 0 & \mathrm{elsewhere}
 \end{cases}
 \end{equation}
-In order to compute the  integrals (\ref{eq:ConstructionIntegral1}) and (\ref{eq:ConstructionIntegral2}) we need to be able to calculate the convolution and inner product of B-spline scaling functions. Equation (\ref{SplineConvolutionIntegral}) can be rewritten as $(m-1)$ times convolution of indicator function with itself 
+In order to compute the  integrals (\ref{eq:Lambdax}) and (\ref{eq:Lambdatheta}) we need to be able to calculate the convolution and inner product of B-spline scaling functions. Equation (\ref{SplineConvolutionIntegral}) can be rewritten as $(m-1)$ times convolution of indicator function with itself 
 \begin{equation}
  N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right)
 \end{equation}
@@ -856,8 +855,8 @@ with the coefficients given by:\\
 
 By exploiting properties (\ref{eq:BsplineConvolution}) and (\ref{eq:BsplineInnerProduct}) the  integrals (\ref{eq:Lambdax}) and (\ref{eq:Lambdatheta}) can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, scaling and wavelet basis functions should be expanded  in terms of $N_m$ at the appropriate scale. 
 In this work, 4th order cardinal B-spline scaling and wavelet functions are used therefore, to compute the integrals (\ref{eq:Lambdax}) and (\ref{eq:Lambdatheta})  the $8$th and $12$th order B-spline values at integer points are  required and can be found in \cite{Goswami1999}.
-\section{Estimation of the Multiresolution Spatio-temporal IDE Model}
-A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm to infer both the kernel and the field from the electrophysiological data. The EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the connectivity kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$ \cite{McLachlan1997}. In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005} can be employed to determine the posterior state sequence. 
+\section{State and Parameter Estimation}
+A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the kernel and the field from the electrophysiological data. The EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the connectivity kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$. In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005} can be employed to determine the posterior state sequence. 
 The state-space representation of the IDE defined by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation} has a $\mathcal Q\left(\boldsymbol\theta,\boldsymbol \theta'\right)$ in a form of
 \begin{equation}
  \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta
@@ -876,7 +875,7 @@ and $\beta$ is constant with respect to the connectivity kernel parameters. The 
 \begin{align}
 \left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}[\mu(\mathbf r)]_i[\int_{\boldsymbol\Omega}\boldsymbol\mu\left(\mathbf{r'}\right)\boldsymbol\lambda^\top\left(\mathbf{r-r'}\right) d\mathbf{r'}]_{j:}d\mathbf r.
 \end{align}
-where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in equations (\ref{eq:upsilon0}-\ref{eq:Upsilon}) can be computed before EM implementation which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}. $\Xi$-variables can be calculated using the smoother outputs, i.e., state estimates, $\hat{\mathbf x}_t$ along with their covariance matrix, $\mathbf P_t$ and the cross-covariance matrix $\mathbf M_t$ using \cite{Shumway2000}
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in equations (\ref{eq:upsilon0}-\ref{eq:Upsilon}) can be computed before EM implementation which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}. $\Xi$-variables can be calculated using the smoother outputs, i.e., state estimates, $\hat{\mathbf x}_t$ along with their covariance matrix, $\mathbf P_t$ and the cross-covariance matrix $\mathbf M_t$ using \cite{Gibsona2005}
 \begin{align}\label{eq:Xivariables}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right)
@@ -885,8 +884,6 @@ where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in equati
 This section demonstrates the identification of the proposed IDE model. The MRA of a synthetic model is demonstrated, which is able to represent the system at different spatial scales. The spectral analysis was used to choose the spatial scale adequate to represent the spatial field.
 
 One second of data was generated using equations \eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation} in response to an initial condition where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $ \eta(r-r')=1\times\phi_{4,3,-2}(r-r')$. Sampling time and the synaptic time constant are set to 1 and 10 milliseconds respectively. The sensors were arranged regularly where the distance between adjacent sensors was set to 0.5 mm resulting into 161 observation locations. Sensors are modelled using $\phi_{4,4,k}$, providing a width of 0.8 mm at half the maximum amplitude of the observation kernel, allowing for some cross talk in the recordings. The connectivity kernel and its decomposition are plotted in  \figurename{\ref{fig:KernelAndFreqResponse}} (a). The spatial frequency of the observed field is shown in \figurename{\ref{fig:KernelAndFreqResponse}} (b). The observed field has an approximate spatial bandwidth $1.38$ cycles/mm. This suggests the use of wavelets up to level $j=3$. Field reconstruction at different level of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. The figure confirms that $j=3$ is adequate to capture the dynamic of the underlying field. Root mean square error (RMSE) of the field estimates is shown in \figurename{\ref{fig:RMSE}}. The histogram of the parameter estimates in \figurename{\ref{fig:ParametersHistogram}} is generated using 100 runs of the EM algorithm, although the estimates of $\theta_1$ is biased (7.4 \%) the RMSE between the true and estimated kernels is $1.83$.
-
-% is obtained  and The dynamics associated with the IDE defined by (\ref{eq:1DSimulationKernel}) will be oscillatory and dissipative to initial conditions. The field is decomposed using scaling functions $\phi_{4;0,k} $ and the associated wavelet functions $\psi_{4;j,k} $ with $j=0,1$.
 \begin{figure}[!h]
  \centering
  \includegraphics[scale=1]{./Graph/ObservationFreqResponse.pdf}

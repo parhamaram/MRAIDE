@@ -51,9 +51,14 @@ J.~C. Goswami and A.~Chan, \emph{Fundamentals of Wavelets: Theory, Algorithms,
   and Applications}.\hskip 1em plus 0.5em minus 0.4em\relax New York: Wiley,
   1999.
 
-\bibitem{McLachlan1997}
-G.~J. McLachlan and T.~Krishnan, \emph{The EM Algorithm and Extensions}.\hskip
-  1em plus 0.5em minus 0.4em\relax New York: Wiley, 1997.
+\bibitem{Dempster1977}
+A.~P. Dempster, N.~M. Laird, and D.~B. Rubin, ``Maximum likelihood from
+  incomplete data via the {EM} algorithm,'' \emph{J, Roy. Statist., Ser. B},
+  vol.~39, no.~1, pp. 1--38, 1977.
+
+\bibitem{Shumway2000}
+R.~Shumway and D.~Stoffer, \emph{Time series analysis and its
+  applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Verlag, 2000.
 
 \bibitem{Gibsona2005}
 S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
@@ -64,9 +69,5 @@ S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
 M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
   modeling using the integro-difference equation,'' \emph{Signal Processing,
   IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
-
-\bibitem{Shumway2000}
-R.~Shumway and D.~Stoffer, \emph{Time series analysis and its
-  applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Verlag, 2000.
 
 \end{thebibliography}
