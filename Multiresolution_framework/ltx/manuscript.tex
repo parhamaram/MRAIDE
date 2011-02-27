@@ -736,7 +736,7 @@ Equations \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite 
  v_t\left(\mathbf{r}\right)\approx\boldsymbol\mu\left(\mathbf{r}\right)^\top\mathbf{x}_t
 \label{eq:FieldFiniteExpansion}
 \end{equation}
-where the unknown parameter vector $ \boldsymbol\theta \in \mathbb{R}^{n_{\theta}}$ and the unknown state vector $ \mathbf{x}_t \in \mathbb{R}^{n_x}$ are defined as 
+where the unknown parameter $ \boldsymbol\theta \in \mathbb{R}^{n_{\theta}}$ and the unknown state  $ \mathbf{x}_t \in \mathbb{R}^{n_x}$ are defined as 
 \begin{equation}
  \boldsymbol\theta^\top=\left[ \boldsymbol\alpha_{j_0}^\top \quad \boldsymbol\beta_{j_0}^\top \quad \boldsymbol\beta_{j_0+1}^\top \cdots \boldsymbol\beta_{j}^\top\right] 
 \label{KernelWeights}
@@ -745,14 +745,13 @@ where the unknown parameter vector $ \boldsymbol\theta \in \mathbb{R}^{n_{\theta
  \mathbf{x}_{t}^\top=\left[\mathbf{x}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}+1}^\top \cdots \check{\mathbf{x}}_{t,j}^\top\right] 
 \label{FieldWeights}
 \end{equation}
-and where the kernel approximation coefficient vector $\boldsymbol \alpha_{j_0}$  and the field approximation coefficient vector $\mathbf{x}_{t,j_{0}}$ comprise all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$ respectively. 
-Similarly the kernel detail coefficient vectors $\boldsymbol\beta_{j}$ contains all the coefficient $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and the vector $\check{\mathbf{x}}_{t,j}$ contains all the coefficient $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$.
- The vector of the kernel scaling and wavelet functions $\boldsymbol\lambda: \mathbb{R}^{n_{\mathcal S}}\rightarrow \mathbb{R}^{n_{\theta}}$ and the vector of the field scaling and wavelet functions $\boldsymbol\mu: \mathbb{R}^{n_{\mathcal S}}\rightarrow \mathbb{R}^{n_x}$ are defined by
-\begin{eqnarray}
- \boldsymbol\lambda^\top(\mathbf r-\mathbf r')&=&\left[ \boldsymbol\phi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf r-\mathbf r') \right. \nonumber \\
-&&\left. \cdots \quad \boldsymbol\psi_{j}^\top(\mathbf s-\mathbf r)\right]
+and where the kernel approximation coefficient vector $\boldsymbol \alpha_{j_0}$  and the field approximation coefficient vector $\mathbf{x}_{t,j_{0}}$ comprise all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$ respectively. Similarly the kernel and the field detail coefficient vectors, $\boldsymbol\beta_{j}$ and  $\check{\mathbf{x}}_{t,j}$ contain all the coefficient $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$ accordingly.
+ The vector of the kernel scaling and wavelet functions $\boldsymbol\lambda$ and the vector of the field scaling and wavelet functions $\boldsymbol\mu$ are defined by
+\begin{align}
+ \boldsymbol\lambda^\top(\mathbf r-\mathbf r')=&\left[ \boldsymbol\phi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf r-\mathbf r') \right. \nonumber \\
+&\left. \cdots \quad \boldsymbol\psi_{j}^\top(\mathbf s-\mathbf r)\right]
 \label{KernelBasisVector} 
-\end{eqnarray}
+\end{align}
 \begin{equation}
  \boldsymbol\mu^\top(\mathbf r)=\left[ \boldsymbol\phi_{j_0}^\top(\mathbf r) \quad \boldsymbol\psi_{j_0}^\top(\mathbf r) \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf r) \cdots \boldsymbol\psi_{j}^\top(\mathbf r) \right] 
 \label{FieldBasisVector}
@@ -767,8 +766,8 @@ To derive the state-space representation of the model we substitute decompositio
 	&+T_s \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right) \int_\Omega { 
 	   \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r'}\right)
 	    \boldsymbol\mu^\top\left(\mathbf{r'}\right)\mathbf{x}_t 
-	\, d\mathbf{r}'d\mathbf{r}}
-	+ \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)d\mathbf{r}, 
+	\, d\mathbf{r}'d\mathbf{r}} \nonumber \\
+	+& \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)d\mathbf{r}, 
 \end{align}
 Now defning 
 \begin{equation}\label{eq:Lambdax}
@@ -780,7 +779,7 @@ Now defning
 	    \boldsymbol\mu^\top\left(\mathbf{r'}\right)\mathbf{x}_t 
 	\, d\mathbf{r}'d\mathbf{r}}
 \end{equation}
-and substituting these into \eqref{eq:DecomposedModel2} and cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ yields
+and substituting these into \eqref{eq:DecomposedModel2} and then cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ yields
 \begin{equation}\label{eq:StateEquation}
  \mathbf x_{t+1}=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t
 \end{equation}
