@@ -654,7 +654,7 @@ The stochastic  integro-difference equation (IDE) form of the model based on the
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the local post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$, parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$ where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The spatial connectivity between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$, for an isotropic and homogeneous neural field. The connectivity kernel is typically a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the sigmoidal activation function $f\left(.\right)$. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. For simplicity, we denote hereafter the current time step by $t$ and the future time step by $t+1$. Here we assume that the sigmoid activation function, $f(\cdot)$, can be approximated by the piecewise function
+where the local post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$, parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$ where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The spatial connectivity between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$, for an isotropic and homogeneous neural field. The connectivity kernel is typically a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the sigmoidal activation function $f\left(.\right)$. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. For simplicity, we denote hereafter the current time step by $t$ and the future time step by $t+1$. \parham{Dean, can you replace it by linear firing rate plus referencing plz?}Here we assume that the sigmoid activation function, $f(\cdot)$, can be approximated by the piecewise function
 \begin{equation}\label{eq:PiecewiseSigmoid} 
 	\hat{f}(v_t(\mathbf{r}')) = \left\{ \begin{array}{ll}
 		0, & v_t(\mathbf{r}') \le v_1 \\
@@ -795,7 +795,7 @@ where
 \begin{equation}\label{eq:A_theta}
  \mathbf A(\boldsymbol \theta)=(T_s\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I)
 \end{equation}
-and $\mathbf I$ is the identity matrix, and 
+and where $\mathbf I$ is the identity matrix, and 
 \begin{equation}\label{eq:Disturbance}
 \mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)d\mathbf{r}
 \end{equation}
@@ -808,7 +808,7 @@ Similarly, the observation equation of the state-space model is found by substit
 \begin{equation}\label{eq:ReducedObservationEquation} 
 	\mathbf{y}_t = \mathbf{C}\mathbf{x}_t + \boldsymbol{\varepsilon}_t,
 \end{equation}
-where each element of the observation matrix is 
+where each element of the observation matrix, $\mathbf C$ is given by
 \begin{equation}
 	\mathbf{C}_{ij} \triangleq \int_{\Omega}m(\mathbf{r}_i - \mathbf{r}')\boldsymbol{\mu}_j(\mathbf{r}') \, d\mathbf{r}'.
 \end{equation}
@@ -869,7 +869,8 @@ By exploiting properties (\ref{eq:BsplineConvolution}) and (\ref{eq:BsplineInner
  \left\langle \phi_{m;j_1,l_1}(s),\psi_{m;j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2
 \label{PhiPsiOrthogonality}
 \end{equation}
-% Where the subscript $m$ is introduced to $\phi_{j,l}(s)$ and $\psi_{j,l}(s) $ to indicate the $m$th order B-spline scaling and wavelet functions. In the two dimensional case, the convolution integral can be factorised as follows, e.g. 
+ Where the subscript $m$ is introduced to $\phi_{j,l}(s)$ and $\psi_{j,l}(s) $ to indicate the $m$th order B-spline scaling and wavelet functions.  
+% In the two dimensional case, the convolution integral can be factorised as follows, e.g. 
 % \setlength{\arraycolsep}{0.14em}
 % \begin{IEEEeqnarray}{!l l }
 %  \phi_{m;j,\mathbf{l}}\left(s_{1},s_{2}\right)\ast \psi^{1}_{m;j,\mathbf{l'}}\left(s_{1},s_{2}\right)&=\left[\phi_{m;j,l_1}\left(s_{1}\right)\ast\phi_{m;j,l'_1}\left(s_{1}\right)\right] \nonumber \\
@@ -903,21 +904,24 @@ with a maximum at
  \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top).
 \end{align}
 Where
-\begin{equation}
+\begin{equation}\label{eq:upsilon0}
  \boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i} \quad,
 \end{equation}
-\begin{equation}
+\begin{equation}\label{eq:upsilon1}
  \boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i} \quad,
 \end{equation}
-\begin{equation}
+\begin{equation}\label{eq:Upsilon}
  \boldsymbol\Upsilon=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T} \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf{U}]_{j,i},
 \end{equation}
 and $\beta$ is constant with respect to the connectivity kernel parameters. The $\left(i,j\right)^{th}$ element of the  block matrix $\mathbf U_{n_x \times n_x}$ is given by
 \begin{align}
 \left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}[\mu(\mathbf r)]_i[\int_{\boldsymbol\Omega}\boldsymbol\mu\left(\mathbf{r'}\right)\boldsymbol\lambda^\top\left(\mathbf{r-r'}\right) d\mathbf{r'}]_{j:}d\mathbf r.
 \end{align}
-where $[.]_{j:} $ denotes $j^{th}$ row of the matrix.
-% The complexity of this algorithm is $O\left(n_{x}^2n_{\theta}^2\right)+O \left(Tn_{x}^{3}\right)+O\left(Tn_{y}^3\right) $ showing that
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in equations (\ref{eq:upsilon0}-\ref{eq:Upsilon}) can be computed before EM implementation which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}. $\Xi$-variables can be calculated using the smoother outputs, i.e., state estimates, $\hat{\mathbf x}_t$ along with their covariance matrix, $\mathbf P_t$ and the cross-covariance matrix $\mathbf M_t$ using \cite{Shumway2000}
+\begin{align}\label{eq:Xivariables}
+\boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
+ \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right)
+\end{align}
 \section{Simulation}
 This section demonstrates the identification of the proposed IDE model. The MRA of a synthetic model is demonstrated, which is able to represent the system at different spatial scales. The spectral analysis was used to choose the spatial scale adequate to represent the spatial field.
 
