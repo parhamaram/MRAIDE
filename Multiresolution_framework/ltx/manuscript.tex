@@ -504,7 +504,7 @@
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Dynamic spatio-temporal modelling, Expectation Maximisation (EM) algorithm, Integro-Difference Equation (IDE), Multiresolution Approximation (MRA), wavelets.
+Neural field model, Expectation Maximisation (EM) algorithm, Multiresolution Approximation (MRA), wavelets.
 \end{IEEEkeywords}
 
 
@@ -857,7 +857,7 @@ By exploiting properties (\ref{eq:BsplineConvolution}) and (\ref{eq:BsplineInner
 In this work, 4th order cardinal B-spline scaling and wavelet functions are used therefore, to compute the integrals (\ref{eq:Lambdax}) and (\ref{eq:Lambdatheta})  the $8$th and $12$th order B-spline values at integer points are  required and can be found in \cite{Goswami1999}.
 \section{State and Parameter Estimation}
 A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the kernel and the field from the electrophysiological data. The EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the connectivity kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$. In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005} can be employed to determine the posterior state sequence. 
-The state-space representation of the IDE defined by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation} has a $\mathcal Q\left(\boldsymbol\theta,\boldsymbol \theta'\right)$ in a form of
+The state-space representation of the IDE defined by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation} has a quadratic $\mathcal Q\left(\boldsymbol\theta,\boldsymbol \theta'\right)$ in a form of
 \begin{equation}
  \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta
 \end{equation}
