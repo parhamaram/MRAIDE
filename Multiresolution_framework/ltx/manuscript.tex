@@ -618,9 +618,9 @@ The kernel and field approximation coefficient vectors $\boldsymbol \alpha_{j_0}
 
 The vectors \dean{(block matrices?)} of the kernel and the field scaling and wavelet functions, $\boldsymbol\lambda$ and $\boldsymbol\mu$ respectively, are defined by
 \begin{align}
- \boldsymbol\lambda^\top(r-r')=&\left[ \boldsymbol\phi_{j_0}^\top(r-r') \quad \boldsymbol\psi_{j_0}^\top(r-r') \quad \boldsymbol\psi_{j_0+1}^\top(r-r') \right. \nonumber \\
+ \boldsymbol\lambda^\top & (r-r')=\left[ \boldsymbol\phi_{j_0}^\top(r-r') \quad \boldsymbol\psi_{j_0}^\top(r-r') \quad \boldsymbol\psi_{j_0+1}^\top(r-r') \right. \nonumber \\
 &\left. \cdots \quad \boldsymbol\psi_{j}^\top(r-r')\right] \label{KernelBasisVector} \\
- \boldsymbol\mu^\top(r)=&\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right]. 
+ \boldsymbol\mu^\top & (r)=\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right]. 
 \label{FieldBasisVector}
 \end{align}
 The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). 
@@ -670,7 +670,7 @@ where each element of the observation matrix is given by
 This completes derivation of the state-space representation of the multiresolution approximation of the neural field model. 
 % \parham{Mike you can add state-space derivation using Galerkin projection here.}
 
-\section{B-spline wavelet IDE model}
+% \section{B-spline wavelet IDE model}
 The multiresolution approximation can be implemented using various classes of scaling and wavelet functions. B-spline functions were chosen due their compact support and the ability to analytically calculate convolution and inner product to form the matrices $ \boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$. To show how the matrices are formed, the $m^{th}$ order cardinal B-spline scaling function is defined by the recurrence relation \cite{Chui1992} 
 \begin{align}
 N_{m}\left(r\right)=&\left(N_{m-1}\ast N_{1}\right)\left(r\right)\nonumber \\
