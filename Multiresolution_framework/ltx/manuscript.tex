@@ -375,8 +375,6 @@ where $[.]_{j:} $ denotes $j^{th}$ row of the matrix.\cut{The second terms in Eq
 Hence, the algorithm has two distinct steps: the E-step which computes $\Xi_0$ and $\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step which updates the paramter estimates by computing the (analytic) maximum of $Q(\theta,\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge; multiple restarts are required to avoid convergence on a local maxima. 
 
 
-\cut{\dean{Number of iterations and stopping criteria?}The stopping criterion is usually associated  with  either the change in the parameter estimates or the log-likelihood variation \cite{McLachlan1997}.}
-
 \section{Results}
 To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=\phi_{3,-2}(r-r')$. The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. \parham{The observation kernel is modeled by $\phi_{4,k}(r-r')$} \dean{?}, providing a width of 0.8 mm at half the maximum amplitude of the observation kernel, allowing for some cross talk in the recordings. The actual connectivity kernel and its decomposition are plotted in \figurename{\ref{fig:KernelAndFreqResponse}} (a). 
 
