@@ -704,7 +704,7 @@ A direct consequence of Eq.~\eqref{eq:BsplineConvolution} is (see \cite{Chui1992
 =&N_{m+m'}\left(m'+l_{2}-l_{1}\right),
 \label{eq:BsplineInnerProduct}
 \end{align}
-where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. The $m^{th}$ order compactly supported \dean{(is there a non-compactly supported B-spline?)} B-spline wavelet function is defined as (see \cite{Chui1992}) 
+where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. The $m^{th}$ order B-spline wavelet function is defined as (see \cite{Chui1992}) 
 \begin{align}
  \varphi & _{m}\left(r\right) = \sum_{n=0}^{3m-2} q_n N_{m}\left(2r-n\right) \\
  q & _n = \frac{\left(-1\right)^n}{2^{m-1}} \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$},
@@ -738,9 +738,9 @@ where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in Eqs. \
 \dean{Number of iterations and stopping criteria?}The stopping criterion is usually associated  with  either the change in the parameter estimates or the log-likelihood variation \cite{McLachlan1997}.
 
 \section{Results}
-To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated with an initial condition of $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=1\times\phi_{4,3,-2}(r-r')$. The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. The observation kernel width was set to \dean{?}, providing a width of 0.8 mm at half the maximum amplitude of the observation kernel, allowing for some cross talk in the recordings. The actual connectivity kernel and its decomposition are plotted in \figurename{\ref{fig:KernelAndFreqResponse}} (a). 
+To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=\phi_{3,-2}(r-r')$. The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. \parham{The observation kernel is modeled by $\phi_{4,k}(r-r')$} \dean{?}, providing a width of 0.8 mm at half the maximum amplitude of the observation kernel, allowing for some cross talk in the recordings. The actual connectivity kernel and its decomposition are plotted in \figurename{\ref{fig:KernelAndFreqResponse}} (a). 
 
-The spatial frequency of the observed field is shown in \figurename{\ref{fig:KernelAndFreqResponse}} (b). The observed field has an approximate spatial bandwidth $1.38$ cycles/mm. This suggests the use of wavelets up to level $j=3$ \dean{since... why?}. 
+The spatial frequency of the observed field is shown in \figurename{\ref{fig:KernelAndFreqResponse}} (b), showing a spatially band-limited signal. This suggests the use of wavelets up to level $j=3$ (with the bandwidth $\approx[4.8,8]$ cycles/mm) can fully represent the field. Note that wavelets due to their bandpass filter characteristics extract successively lower and lower frequency components.
 
 Field reconstruction \dean{using the results of the EM algorithm} at different levels of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. \dean{Needs more info.} The figure confirms that $j=3$ is adequate to capture the dynamic of the underlying field \dean{since the error converges?}. The root mean square error (RMSE) of the field estimates is shown in \figurename{\ref{fig:RMSE}}. 
 
@@ -769,7 +769,7 @@ functions (dashed lines), representing local excitation and lateral inhibition. 
  \centering
  \includegraphics[scale=1]{./Graph/Hist.pdf}
  \caption{Histograms of the parameter estimates over 100 realizations. In each of the subplots
-the solid lines show the actual parameter values and the dotted lines show the means of the estimated parameters. Left panel: The histogram of the central excitatory connectivity kernel basis function parameter estimates, $\theta_0$. Right panel: The histogram of the surround inhibition connectivity kernel basis function parameter estimates, $\theta_1$.}
+the solid lines show the actual parameter values and the dotted lines show the means of the estimated parameters. (a) The histogram of the central excitatory connectivity kernel basis function parameter estimates, $\theta_0$. (b) The histogram of the surround inhibition connectivity kernel basis function parameter estimates, $\theta_1$.}
  \label{fig:ParametersHistogram}
  \end{figure} 
 
