@@ -21,6 +21,52 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{Valdes1999}
+P.~Valdes, J.~Jimenez, J.~Riera, R.~Biscay, and T.~Ozaki, ``{Nonlinear EEG
+  analysis based on a neural mass model},'' \emph{Biological cybernetics},
+  vol.~81, no.~5, pp. 415--424, 1999, local linearisation.
+
+\bibitem{LopesDaSilva1976}
+F.~Lopes Da~Silva, A.~Van~Rotterdam, P.~Barts, E.~Van~Heusden, and W.~Burr,
+  ``{Models of neuronal populations: the basic mechanisms of rhythmicity},''
+  \emph{Progress in brain research}, vol.~45, pp. 281--308, 1976.
+
+\bibitem{Zetterberg1978}
+L.~Zetterberg, L.~Kristiansson, and K.~Mossberg, ``{Performance of a model for
+  a local neuron population},'' \emph{Biological cybernetics}, vol.~31, no.~1,
+  pp. 15--26, 1978.
+
+\bibitem{Jansen1995}
+B.~Jansen and V.~Rit, ``{Electroencephalogram and visual evoked potential
+  generation in a mathematical model of coupled cortical columns},''
+  \emph{Biological Cybernetics}, vol.~73, no.~4, pp. 357--366, 1995.
+
+\bibitem{David2003}
+O.~David and K.~Friston, ``{A neural mass model for MEG/EEG: coupling and
+  neuronal dynamics},'' \emph{NeuroImage}, vol.~20, no.~3, pp. 1743--1755,
+  2003.
+
+\bibitem{Galka2008}
+A.~Galka, T.~Ozaki, H.~Muhle, U.~Stephani, and M.~Siniatchkin, ``{A data-driven
+  model of the generation of human EEG based on a spatially distributed
+  stochastic wave equation},'' \emph{Cognitive Neurodynamics}, vol.~2, no.~2,
+  pp. 101--113, 2008.
+
+\bibitem{schiff2008kalman}
+S.~Schiff and T.~Sauer, ``{Kalman filter control of a model of spatiotemporal
+  cortical dynamics},'' \emph{Journal Neural Engineering}, vol.~5, pp. 1--8,
+  2008.
+
+\bibitem{Daunizeau2009}
+J.~Daunizeau, S.~Kiebel, and K.~Friston, ``{Dynamic causal modelling of
+  distributed electromagnetic responses},'' \emph{NeuroImage}, vol.~47, no.~2,
+  pp. 590--601, 2009.
+
+\bibitem{Freestone2011}
+D.~R. Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~B. Grayden, and
+  V.~Kadirkamanathan, ``{A data-driven framework for neural field modeling},''
+  \emph{NeuroImage}, 2011.
+
 \bibitem{Amari1977}
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
   fields},'' \emph{Biological Cybernetics}, vol.~27, no.~2, pp. 77--87, 1977.
