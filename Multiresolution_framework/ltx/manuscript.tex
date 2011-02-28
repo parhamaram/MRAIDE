@@ -504,7 +504,7 @@
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Neural field model, Expectation Maximization (EM) algorithm, Multiresolution Approximation (MRA), wavelets.
+Neural field model, multiresolution approximation (MRA), expectation maximization (EM) algorithm, wavelets.
 \end{IEEEkeywords}
 
 
@@ -709,24 +709,24 @@ where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. The $m
 where $q_n$ are the coefficients. By exploiting properties Eqs.~\ref{eq:BsplineConvolution} and \ref{eq:BsplineInnerProduct} the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta} can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale.  In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta}.
 
 \section{State and Parameter Estimation}
-A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the kernel and the field from the electrophysiological data. The EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the connectivity kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$. In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005} can be employed to determine the posterior state sequence. 
-The state-space representation of the IDE defined by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation} has a quadratic $\mathcal Q\left(\boldsymbol\theta,\boldsymbol \theta'\right)$ in a form of
+The state-space representation allows the use of the expectation maximization (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the kernel and the field from the electrophysiological data. The EM algorithm is a two-part iterative algorithm that yields the maximum likelihood estimate of the connectivity kernel parameters (M-step) and the posterior distribution of the field weights (E-step). The M-step finds an estimate of $\boldsymbol\theta$ that maximizes the lower bound, $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$, of the complete-data log-likelihood,  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$. The E-step uses the estimate of $\boldsymbol\theta$, $\boldsymbol\theta'$ and the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005} to estimate the posterior state sequence. 
+The bound on the log-likelihood is a quadratic in the form of
 \begin{equation}
- \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta
+ \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
 with a maximum at
 \begin{align}
- \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top).
+ \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top),
 \end{align}
-Where
+where
 \begin{align}\label{eq:upsilon0}
  \boldsymbol\upsilon_0&=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i}\\ 
  \boldsymbol\upsilon_1&=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i}\label{eq:upsilon1} \\
- \boldsymbol\Upsilon&=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T} \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf{U}]_{j,i}\label{eq:Upsilon}
+ \boldsymbol\Upsilon&=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T} \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf{U}]_{j,i}\label{eq:Upsilon}.
 \end{align}
-and $\beta$ is constant with respect to the connectivity kernel parameters. The $\left(i,j\right)^{th}$ element of the  block matrix $\mathbf U_{n_x \times n_x}$ is given by
+The $\left(i,j\right)^{th}$ element of the block matrix $\mathbf U_{n_x \times n_x}$ is given by
 \begin{align}
-\left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}[\mu(\mathbf r)]_i[\int_{\boldsymbol\Omega}\boldsymbol\mu\left(\mathbf{r'}\right)\boldsymbol\lambda^\top\left(\mathbf{r-r'}\right) d\mathbf{r'}]_{j:}d\mathbf r.
+\left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(\mathbf{r-r'}\right) dr'\right]_{j:} dr.
 \end{align}
 where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in equations (\ref{eq:upsilon0}-\ref{eq:Upsilon}) can be computed before EM implementation which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}. $\Xi$-variables can be calculated using the smoother outputs, i.e., state estimates, $\hat{\mathbf x}_t$ along with their covariance matrix, $\mathbf P_t$ and the cross-covariance matrix $\mathbf M_t$ using \cite{Gibsona2005}
 \begin{align}\label{eq:Xivariables}
