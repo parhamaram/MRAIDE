@@ -544,11 +544,11 @@ The stochastic integro-difference equation (IDE) form of the Amari neural field 
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f\left(.\right)$. \dean{The activation function is of the form $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r}) + v_0$}. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. For simplicity, we denote the current time step by $t$ and the future time step by $t+1$. The observation equation is given by 
+where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f\left(.\right)$. \dean{The activation function is of the form $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r}) + v_0$}. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. For simplicity, we denote the current time step by $t$ and the future time step by $t+1$. The observation equation describing the electrophysiological recordings is given by 
 \begin{equation}\label{eq:ObservationEquation}
 	\mathbf y_t = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t, 
 \end{equation}
-where electrophysiological recordings $\mathbf{y}_{t}=[y_t(\mathbf{r}_1) y_t(\mathbf{r}_2)\cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations and at time $t$ via the observation kernel $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$, is corrupted by an i.i.d normally distributed zero-mean white noise $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$ with $\mathbf{\Sigma}_{\epsilon}=\sigma_{\epsilon}^2\mathbf I_{n_y} $. The superscript $\top$ denotes the transpose operator.
+where $\mathbf{y}_{t} = [y_t(\mathbf{r}_1) y_t(\mathbf{r}_2) \cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations at time $t$ via the observation kernel $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$, is corrupted by an i.i.d normally distributed zero-mean white noise $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$ with $\mathbf{\Sigma}_{\epsilon}=\sigma_{\epsilon}^2\mathbf I_{n_y} $. The superscript $\top$ denotes the transpose operator.
 
 \section{MRA of the IDE in State-Space}
 The multiresolution approximation (MRA) of the neural IDE is be obtained by decomposing both the field, $v_t(.)$, and the connectivity kernel, $w(.)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering a one-dimensional field, the connectivity kernel is decomposed by,
@@ -620,7 +620,7 @@ The vectors \dean{(block matrices?)} of the kernel and the field scaling and wav
 \begin{align}
  \boldsymbol\lambda^\top(r-r')=&\left[ \boldsymbol\phi_{j_0}^\top(r-r') \quad \boldsymbol\psi_{j_0}^\top(r-r') \quad \boldsymbol\psi_{j_0+1}^\top(r-r') \right. \nonumber \\
 &\left. \cdots \quad \boldsymbol\psi_{j}^\top(r-r')\right] \label{KernelBasisVector} \\
- \boldsymbol\mu^\top(r)=&\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right] 
+ \boldsymbol\mu^\top(r)=&\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right]. 
 \label{FieldBasisVector}
 \end{align}
 The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). 
@@ -635,7 +635,7 @@ To derive the state-space model, Eqs.~\eqref{eq:KernelFiniteExpansion} and \eqre
 	\, dr'd\mathbf{r}} \nonumber \\
 	+& \int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)dr.
 \end{align}
-The simplify the model we define 
+The simplify the model we define the matrices
 \begin{align}\label{eq:Lambdax}
  \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) dr \\
 \label{eq:Lambdatheta}
@@ -644,81 +644,70 @@ The simplify the model we define
 	    \boldsymbol\mu^\top\left(r\right)\mathbf{x}_t 
 	\, dr'dr}
 \end{align}
-and substitute it into Eq.~\eqref{eq:DecomposedModel2}. Then cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ yields
-\begin{equation}\label{eq:StateEquation}
- \mathbf x_{t+1}=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t,
-\end{equation}
-where
-\begin{equation}\label{eq:A_theta}
- \mathbf A(\boldsymbol \theta)=(T_s\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I),
-\end{equation}
-and where $\mathbf I$ is the identity matrix, and 
+and substitute them into Eq.~\eqref{eq:DecomposedModel2}. Then we cross-multiply by $\mathbf{\Lambda}_{x}^{-1}$ giving
+\begin{align}\label{eq:StateEquation}
+ \mathbf x_{t+1} &=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t \\
+\label{eq:A_theta}
+ \mathbf A(\boldsymbol \theta) &= (T_s\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I),
+\end{align}
+where $\mathbf I$ is the identity matrix. The disturbance becomes 
 \begin{equation}\label{eq:Disturbance}
-\mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)d\mathbf{r}
+\mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)d\mathbf{r},
 \end{equation}
-which is a vector valued, zero-mean normally distributed white noise process with covariance \cite{Scerri2009}
+which is a vector valued, zero-mean normally distributed white noise process with covariance (see \cite{Scerri2009} for proof)
 \begin{equation}
 \boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(r\right) \eta\left(r-r'\right)\boldsymbol\mu^{\top}\left(r'\right)dr'dr\mathbf{\Lambda}_{x}^{-\top}.
 \end{equation}
-Similarly, the observation equation of the state-space model is found by substituting decomposition \eqref{eq:FieldFiniteExpansion}
+The observation equation of the state-space model is found by substituting decomposition \eqref{eq:FieldFiniteExpansion}
  into equation \eqref{eq:ObservationEquation} giving
 \begin{equation}\label{eq:ReducedObservationEquation} 
 	\mathbf{y}_t = \mathbf{C}\mathbf{x}_t + \boldsymbol{\varepsilon}_t,
 \end{equation}
-where each element of the observation matrix, $\mathbf C$ is given by
+where each element of the observation matrix is given by
 \begin{equation}
 	\mathbf{C}_{ij} \triangleq \int_{\Omega}m(\mathbf{r}_i - \mathbf{r}')\boldsymbol{\mu}_j(\mathbf{r}') \, d\mathbf{r}'.
 \end{equation}
-This completes the state-space representation of the multiresolution approximation of the neural field model. 
+This completes derivation of the state-space representation of the multiresolution approximation of the neural field model. 
 % \parham{Mike you can add state-space derivation using Galerkin projection here.}
-\section{B-spline wavelet IDE model}
-Multiresolution approximation can be implemented using different classes of scaling and wavelet functions. In order to determine the matrices $ \boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$ convolution and inner product expressions of the basis functions need to be computable. B-spline wavelet and scaling functions are particularly convenient in the above decomposition as their convolution and inner product expressions can be found analytically.
 
-The  $m$th order cardinal B-spline scaling function is defined by the recurrence relation \cite{Chui1992} 
-\begin{eqnarray}
-N_{m}\left(s\right)&=&\left(N_{m-1}\ast N_{1}\right)\left(s\right)\nonumber \\
-&=&\int_0^{1} N_{m-1}\left( s-r\right)dr \quad m>1 
+\section{B-spline wavelet IDE model}
+The multiresolution approximation can be implemented using various classes of scaling and wavelet functions. B-spline functions were chosen due their compact support and the ability to analytically calculate convolution and inner product to form the matrices $ \boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$. To show how the matrices are formed, the $m^{th}$ order cardinal B-spline scaling function is defined by the recurrence relation \cite{Chui1992} 
+\begin{align}
+N_{m}\left(r\right)=&\left(N_{m-1}\ast N_{1}\right)\left(r\right)\nonumber \\
+=&\int_0^{1} N_{m-1}\left( r-r'\right)dr' \quad m>1,
 \label{SplineConvolutionIntegral}
-\end{eqnarray}
-Here $\ast$ denotes the convolution operator and $N_1\left(s\right)$ is the characteristic function of the unit interval  $\left[ 0,1\right) $
+\end{align}
+where $\ast$ denotes convolution and $N_1\left(s\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$
 \begin{equation}
-N_{1}\left(s\right)=
+N_{1}\left(r\right)=
 \begin{cases}
-1 & \text{if $ 0\le s<1$}, \\
-0 & \mathrm{elsewhere}
+1 & \text{if $ 0\le r<1$}, \\
+0 & \mathrm{elsewhere}.
 \end{cases}
 \end{equation}
-In order to compute the  integrals (\ref{eq:Lambdax}) and (\ref{eq:Lambdatheta}) we need to be able to calculate the convolution and inner product of B-spline scaling functions. Equation (\ref{SplineConvolutionIntegral}) can be rewritten as $(m-1)$ times convolution of indicator function with itself 
+Eq.~\ref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ times convolution of indicator function with itself since
 \begin{equation}
- N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right)
+ N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right).
 \end{equation}
-then by using the associativity property of the convolution operator, it is clear that
+Using the associativity property of convolution we have
 \setlength{\arraycolsep}{0.0em}
 \begin{align}\label{eq:BsplineConvolution}
 N_{m}\left( r\right) \ast N_{m'}\left(r\right)&=\underbrace{\overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m-1 \quad \text{convolutions}}\left(r\right) \ast \overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m'-1\quad \text{convolutions}}}_{m+m'-1 \quad \text{convolutions}}\left(r\right)\nonumber\\
-&=N_{m+m'}\left(r\right)
+&=N_{m+m'}\left(r\right).
 \end{align}
-A direct consequence of \eqref{eq:BsplineConvolution} is \cite{Chui1992} 
-\begin{eqnarray}
- \left\langle N_{m}\left(r-l_{1}\right), N_{m'}\left(r-l_{2}\right)\right\rangle&=&N_{m+m'}\left(m+l_{1}-l_{2}\right)\nonumber \\
-&=&N_{m+m'}\left(m'+l_{2}-l_{1}\right)
+A direct consequence of Eq.~\eqref{eq:BsplineConvolution} is (see \cite{Chui1992} for proof) 
+\begin{align}
+ \left\langle N_{m}\left(r-l_{1}\right), N_{m'}\left(r-l_{2}\right)\right\rangle=&N_{m+m'}\left(m+l_{1}-l_{2}\right)\nonumber \\
+=&N_{m+m'}\left(m'+l_{2}-l_{1}\right),
 \label{eq:BsplineInnerProduct}
-\end{eqnarray}
-where $\left\langle  .,.\right\rangle $ denotes the inner product.
+\end{align}
+where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. The $m^{th}$ order compactly supported \dean{(is there a non-compactly supported B-spline?)} B-spline wavelet function is defined as (see \cite{Chui1992}) 
+\begin{align}
+ \varphi & _{m}\left(r\right) = \sum_{n=0}^{3m-2} q_n N_{m}\left(2r-n\right) \\
+ q & _n = \frac{\left(-1\right)^n}{2^{m-1}} \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$},
+\end{align}
+where $q_n$ are the coefficients. By exploiting properties Eqs.~\ref{eq:BsplineConvolution} and \ref{eq:BsplineInnerProduct} the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta} can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale.  In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta}.
 
-
-The $m$th order compactly supported B-spline wavelet function is defined as \cite{Chui1992} 
-\begin{equation}
- \varphi_{m}\left(s\right)=\sum_{n=0}^{3m-2} q_n N_{m}\left(2s-n\right)
-\end{equation}
-with the coefficients given by:\\ 
-\begin{equation}
- q_n= \frac{\left(-1\right)^n}{2^{m-1}} \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right) \quad \text{ $0\le n\le 3m-2$}
-\end{equation}
-
-
-By exploiting properties (\ref{eq:BsplineConvolution}) and (\ref{eq:BsplineInnerProduct}) the  integrals (\ref{eq:Lambdax}) and (\ref{eq:Lambdatheta}) can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, scaling and wavelet basis functions should be expanded  in terms of $N_m$ at the appropriate scale. 
-In this work, 4th order cardinal B-spline scaling and wavelet functions are used therefore, to compute the integrals (\ref{eq:Lambdax}) and (\ref{eq:Lambdatheta})  the $8$th and $12$th order B-spline values at integer points are  required and can be found in \cite{Goswami1999}.
 \section{State and Parameter Estimation}
 A state-space representation of the IDE model allows the use of the Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the kernel and the field from the electrophysiological data. The EM algorithm is a two part iterative algorithm that yields the maximum likelihood estimate of the connectivity kernel parameters and the posterior distribution of the field weights. In the M-step a lower bound $\mathcal{Q}\left(\boldsymbol\theta,\boldsymbol\theta'\right)$ of the complete-data log-likelihood  $p\left(\mathbf{X},\mathbf{Y} \mid \boldsymbol\theta \right)$, is maximised under the assumption of the system parameters being $\boldsymbol\theta'$. In the E-step, given an estimate of $\boldsymbol\theta$, the Rauch Tung Striebel (RTS) smoother \cite{Gibsona2005} can be employed to determine the posterior state sequence. 
 The state-space representation of the IDE defined by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation} has a quadratic $\mathcal Q\left(\boldsymbol\theta,\boldsymbol \theta'\right)$ in a form of
