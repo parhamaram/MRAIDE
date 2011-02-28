@@ -420,7 +420,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{A Multiresolution Framework for One Dimensional Neural Field Modelling }
+\title{Multiresolution Neural Field Estimation }
 %
 %
 % author names and IEEE memberships
@@ -504,7 +504,7 @@
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Neural field model, Expectation Maximisation (EM) algorithm, Multiresolution Approximation (MRA), wavelets.
+Neural field model, Expectation Maximization (EM) algorithm, Multiresolution Approximation (MRA), wavelets.
 \end{IEEEkeywords}
 
 
@@ -522,129 +522,17 @@ Neural field model, Expectation Maximisation (EM) algorithm, Multiresolution App
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
-
+We have a clear definition and where to stimulate and how to stimulate.
 
 \section{Introduction}
-To Do
-% The very first letter is a 2 line initial drop letter followed
-% by the rest of the first word in caps.
-% 
-% form to use if the first word consists of a single letter:
-% \IEEEPARstart{A}{demo} file is ....
-% 
-% form to use if you need the single drop letter followed by
-% normal text (unknown if ever used by IEEE):
-% \IEEEPARstart{A}{}demo file is ....
-% 
-% Some journals put the first two words in caps:
-% \IEEEPARstart{T}{his demo} file is ....
-% 
-% Here we have the typical use of a "T" for an initial drop letter
-% and "HIS" in caps to complete the first word.
-% \IEEEPARstart{C}{omplex} 
+\IEEEPARstart{T}{his} paper introduces a multiresolution data-driven framework for neural field modeling. Neural field models describe the meso and macroscopic dynamics of the human brain. Modeling the brain this level is extremely important, since diseases such as epilepsy and Parkinson's disease are manifested at this scale through pathological oscillations. The ability to create patient-specific neural field models will not only contribute to our knowledge base of poorly understood diseases such as epilepsy, but may also enable the development of new treatment strategies. This is particularly poignant with the advent of new devices that use therapeutic electrical stimulation. Presently, stimulation strategies for devices using corrective or modulating electrical stimulation operate in an open-loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists an enormous potential to improve the performance of these devices using systems theory. The design of a stimulation strategy using systems theory requires a model. Neural mass and neural field models are the ideal candidates for estimation and control algorithms. It is expected that parameters of the neural fields models will be patient specific and will therefore need to be inferred from data.
 
+Creating patient specific neural models has been approach from a number of different standpoints. \dean{need to add proper citations here.} Valdes et al. (1999) used the neural mass model of Lopes Da Silva (1976) and Zetterberg et al. (1978) to fit EEG data. This approach was extended by David and Friston (2003) to coupled neural masses (using the equations of Jansen and Ritt (1995)) through a Bayesian estimation scheme dubbed Dynamic Causal Modeling (DCM). Following this work, Galka et al. (2008), Sauer et al. (2008), Daunizeau et al. (2009), and Freestone et al (2011) developed the estimation frameworks for continuum neural field equations that explain the richer dynamics of spatiotemporal neural fields.  
 
+The work can be considered an extension to the framework of Freestone et al. (2011), where a finite element model of the neural field (via a global Galerkin projection) was formed, using a basis function decomposition, to transform the PDE neural field equations into a finite dimension system to facilitate state and parameter estimation. The basis function decomposition in this previous study did not account for all of the spatial dynamics. Thus, it can be improved.. In this current paper, a multiresolution approach is taken...
 
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-
-%\hfill mds
- 
-%\hfill January 11, 2007
-
-%\subsection{Subsection Heading Here}
-%Subsection text here.
-
-% needed in second column of first page if using \IEEEpubid
-%\IEEEpubidadjcol
-
-%\subsubsection{Subsubsection Heading Here}
-%Subsubsection text here.
-
-
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-%\caption{Simulation Results}
-%\label{fig_sim}
-%\end{figure}
-
-% Note that IEEE typically puts floats only at the top, even when this
-% results in a large percentage of a column being occupied by floats.
-
-
-% An example of a double column floating figure using two subfigures.
-% (The subfig.sty package must be loaded for this to work.)
-% The subfigure \label commands are set within each subfloat command, the
-% \label for the overall figure must come after \caption.
-% \hfil must be used as a separator to get equal spacing.
-% The subfigure.sty package works much the same way, except \subfigure is
-% used instead of \subfloat.
-%
-%\begin{figure*}[!t]
-%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
-%\label{fig_first_case}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
-%\label{fig_second_case}}}
-%\caption{Simulation results}
-%\label{fig_sim}
-%\end{figure*}
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
-
-
-% An example of a floating table. Note that, for IEEE style tables, the 
-% \caption command should come BEFORE the table. Table text will default to
-% \footnotesize as IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
-%\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-%\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-% \extrarowheight as needed to properly center the text within the cells
-%\caption{An Example of a Table}
-%\label{table_example}
-%\centering
-%% Some packages, such as MDW tools, offer better commands for making tables
-%% than the plain LaTeX2e tabular which is used here.
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{table}
-
-
-% Note that IEEE does not put floats in the very first column - or typically
-% anywhere on the first page for that matter. Also, in-text middle ("here")
-% positioning is not used. Most IEEE journals use top floats exclusively.
-% Note that, LaTeX2e, unlike IEEE journals, places footnotes above bottom
-% floats. This can be corrected via the \fnbelowfloat command of the
-% stfloats package.
 \section{Integro-Difference Equation Neural Field Model}
-The stochastic  integro-difference equation (IDE) form of the model based on the Wilson-Cowan \cite{Wilson1973} or Amari neural field \cite{Amari1977} formulation is given by (cite NeuroImage paper)
+The stochastic integro-difference equation (IDE) form of the Amari neural field  formulation~\cite{Amari1977} is given by (see \dean{cite NeuroImage paper} for a full derivation)
 \begin{equation}
 	v_{t+T_s}\left(\mathbf{r}\right) = 
 	\xi v_t\left(\mathbf{r}\right) + 
@@ -654,38 +542,21 @@ The stochastic  integro-difference equation (IDE) form of the model based on the
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the local post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$, parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$ where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The spatial connectivity between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$, for an isotropic and homogeneous neural field. The connectivity kernel is typically a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the sigmoidal activation function $f\left(.\right)$. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. For simplicity, we denote hereafter the current time step by $t$ and the future time step by $t+1$. \parham{Dean, can you replace it by linear firing rate plus referencing plz?}Here we assume that the sigmoid activation function, $f(\cdot)$, can be approximated by the piecewise function
-\begin{equation}\label{eq:PiecewiseSigmoid} 
-	\hat{f}(v_t(\mathbf{r}')) = \left\{ \begin{array}{ll}
-		0, & v_t(\mathbf{r}') \le v_1 \\
-		\varsigma v_t(\mathbf{r}'), &  v_1 < v_t(\mathbf{r}') < v_2 \\
-		1, & v_t(\mathbf{r}') \ge v_2 \\ 
-		\end{array}\right.
-\end{equation}
-where the parameter $\varsigma$ governs the slope of the sigmoid. Furthermore, we assume the field is in the linear region of the piecewise function giving
-\begin{equation}\label{eq:DiscreteTimeModel} 
-	v_{t+1}\left(\mathbf{r}\right) = 
-	\xi v_t\left(\mathbf{r}\right) + 
-	T_s \int_\Omega { 
-	    w\left(\mathbf{r}-\mathbf{r'}\right)
-	    v_t\left(\mathbf{r}'\right) 
-	\, d\mathbf{r}'} 
-	+ e_t\left(\mathbf{r}\right), 
-\end{equation}
-Note that the parameter $\varsigma$ is absorbed into the kernel for simplicity. Observation equation is given by 
+where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f\left(.\right)$. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. For simplicity, we denote the current time step by $t$ and the future time step by $t+1$. The observation equation is given by 
 \begin{equation}\label{eq:ObservationEquation}
 	\mathbf y_t = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t, 
 \end{equation}
-where electrophysiological recordings $\mathbf{y}_{t}=[y_t(\mathbf{r}_1) y_t(\mathbf{r}_2)\cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations and at time $t$ via the observation kernel  $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$, is corrupted by an i.i.d normally distributed zero-mean white noise $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$ with $\mathbf{\Sigma}_{\epsilon}=\sigma_{\epsilon}^2\mathbf I_{n_y} $. The superscript $\top$ denotes the transpose operator.
+where electrophysiological recordings $\mathbf{y}_{t}=[y_t(\mathbf{r}_1) y_t(\mathbf{r}_2)\cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations and at time $t$ via the observation kernel $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$, is corrupted by an i.i.d normally distributed zero-mean white noise $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$ with $\mathbf{\Sigma}_{\epsilon}=\sigma_{\epsilon}^2\mathbf I_{n_y} $. The superscript $\top$ denotes the transpose operator.
+
 \section{MRA of the IDE in State-Space}
-Assuming $v_t(.)$ and $w(.)$ are square-integrable functions, MRA of the one-dimensional IDE can be obtained by expanding  both the field and the kernel in the equation (\ref{eq:DiscreteTimeModel}) in terms of the translations and dilations of a scaling function $\phi(r)$ and a mother wavelet $\psi(r)$. For the one-dimensional kernel this is given by,
+The multiresolution approximation (MRA) of the neural IDE is be obtained by decomposing both the field, $v_t(.)$, and the connectivity kernel, $w(.)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering a one-dimensional field, the connectivity kernel is decomposed by,
 \begin{equation}
- w\left(r-r'\right)=\sum_{l \in \mathbb{Z}}\alpha_{j_0,l}\phi_{j_0,l}\left(r-r'\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{j,l}\left(r-r'\right) 
+ w\left(r-r'\right)=\sum_{l \in \mathbb{Z}}\alpha_{j_0,l}\phi_{j_0,l}\left(r-r'\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{j,l}\left(r-r'\right), 
 \label{eq:KernelExpansion}
 \end{equation}
-In this expansion, $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$ and $ \beta_{j,l}$ represent the detail coefficients at different scales $j$, with $\phi_{j,l}\left(r\right)=2^{\frac{j}{2}}\phi\left(2^jr-l\right) $ and $\psi_{j,l}\left(r\right)=2^{\frac{j}{2}}\psi\left(2^jr-l\right)$. Integers $j$ and $l$ are called scale and translation parameters accordingly. The one-dimensional field can similarly be decomposed as
+where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$, and $\beta_{j,l}$ are the detail coefficients at different scales $j$, with $\phi_{j,l}\left(r\right)=2^{\frac{j}{2}}\phi\left(2^jr-l\right) $ and $\psi_{j,l}\left(r\right)=2^{\frac{j}{2}}\psi\left(2^jr-l\right)$. Integers $j$ and $l$ are the scale and translation parameters respectively. The field is decomposed as
 \begin{equation}
- v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l}\phi_{j_{0},l}\left(r\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{j,l}\left(r\right)
+ v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l}\phi_{j_{0},l}\left(r\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{j,l}\left(r\right),
 \label{eq:FieldExpansion}
 \end{equation}
 where $ x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion at time $t$.
@@ -727,9 +598,9 @@ where $ x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expa
 % z_t\left(\mathbf{r}\right)=\sum_{\mathbf{l}\in \mathbb{Z}^d}x_{t,j_{0},\mathbf{l}}\phi_{j_{0},\mathbf{l}}\left(\mathbf{r}\right)+\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1} \check{x}_{t,j,\mathbf{l}}^{(i)}\psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{r}\right)
 % \label{eq:MultidimensionalFieldExpansion}
 % \end{equation}
-Equations \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite series expansions. For practical implementation,  \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} must be truncated at some level $j$, therefore we have
+Eqs \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite series expansions, but  for a practical implementation they must be truncated at some level $j$. Therefore, we have
  \begin{equation}
- w\left(\mathbf{r}-\mathbf{r'}\right)\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r'}\right)
+ w\left(r-r'\right)\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
 \label{eq:KernelFiniteExpansion}
 \end{equation}
 \begin{equation}
