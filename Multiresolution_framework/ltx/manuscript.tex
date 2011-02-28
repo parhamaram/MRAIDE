@@ -598,26 +598,23 @@ where $ x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expa
 % z_t\left(\mathbf{r}\right)=\sum_{\mathbf{l}\in \mathbb{Z}^d}x_{t,j_{0},\mathbf{l}}\phi_{j_{0},\mathbf{l}}\left(\mathbf{r}\right)+\sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l}\in \mathbb{Z}^d}\sum_{i=1}^{2^d-1} \check{x}_{t,j,\mathbf{l}}^{(i)}\psi_{j,\mathbf{l}}^{(i)}\left(\mathbf{r}\right)
 % \label{eq:MultidimensionalFieldExpansion}
 % \end{equation}
-Eqs \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite series expansions, but  for a practical implementation they must be truncated at some level $j$. Therefore, we have
- \begin{equation}
- w\left(r-r'\right)\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
-\label{eq:KernelFiniteExpansion}
-\end{equation}
-\begin{equation}
- v_t\left(\mathbf{r}\right)\approx\boldsymbol\mu\left(\mathbf{r}\right)^\top\mathbf{x}_t
+Eqs \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite series expansions, but  for a practical implementation they must be truncated at some level $j$. Therefore, the field and the connectivity kernel is approximated by
+ \begin{align}
+ w\left(r-r'\right) &\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right) 
+\label{eq:KernelFiniteExpansion} \\
+ v_t\left(r\right) &\approx \boldsymbol\mu\left(r\right)^\top\mathbf{x}_t,
 \label{eq:FieldFiniteExpansion}
-\end{equation}
-where the unknown parameter $ \boldsymbol\theta \in \mathbb{R}^{n_{\theta}}$ and the unknown state  $ \mathbf{x}_t \in \mathbb{R}^{n_x}$ are defined as 
-\begin{equation}
- \boldsymbol\theta^\top=\left[ \boldsymbol\alpha_{j_0}^\top \quad \boldsymbol\beta_{j_0}^\top \quad \boldsymbol\beta_{j_0+1}^\top \cdots \boldsymbol\beta_{j}^\top\right] 
-\label{KernelWeights}
-\end{equation}
-\begin{equation}
- \mathbf{x}_{t}^\top=\left[\mathbf{x}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}+1}^\top \cdots \check{\mathbf{x}}_{t,j}^\top\right] 
+\end{align}
+where the unknown parameter and state vectors \dean{(block matrices?)}, $\boldsymbol\theta \in \mathbb{R}^{n_{\theta}}$ and $\mathbf{x}_t \in \mathbb{R}^{n_x}$, are defined as 
+\begin{align}
+ \boldsymbol\theta^\top &=\left[ \boldsymbol\alpha_{j_0}^\top \quad \boldsymbol\beta_{j_0}^\top \quad \boldsymbol\beta_{j_0+1}^\top \cdots \boldsymbol\beta_{j}^\top\right] 
+\label{KernelWeights} \\
+ \mathbf{x}_{t}^\top &=\left[\mathbf{x}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}+1}^\top \cdots \check{\mathbf{x}}_{t,j}^\top\right].
 \label{FieldWeights}
-\end{equation}
-and where the kernel approximation coefficient vector $\boldsymbol \alpha_{j_0}$  and the field approximation coefficient vector $\mathbf{x}_{t,j_{0}}$ comprise all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$ respectively. Similarly the kernel and the field detail coefficient vectors, $\boldsymbol\beta_{j}$ and  $\check{\mathbf{x}}_{t,j}$ contain all the coefficient $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$ accordingly.
- The vector of the kernel scaling and wavelet functions $\boldsymbol\lambda$ and the vector of the field scaling and wavelet functions $\boldsymbol\mu$ are defined by
+\end{align}
+The kernel and field approximation coefficient vectors $\boldsymbol \alpha_{j_0}$ and $\mathbf{x}_{t,j_{0}}$ contain all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$ respectively. Similarly, the kernel and the field detail coefficient vectors, $\boldsymbol\beta_{j}$ and $\check{\mathbf{x}}_{t,j}$ contain all the coefficients $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$ respectively.
+
+The vector of the kernel scaling and wavelet functions $\boldsymbol\lambda$ and the vector of the field scaling and wavelet functions $\boldsymbol\mu$ are defined by
 \begin{align}
  \boldsymbol\lambda^\top(\mathbf r-\mathbf r')=&\left[ \boldsymbol\phi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0}^\top(\mathbf r-\mathbf r') \quad \boldsymbol\psi_{j_0+1}^\top(\mathbf r-\mathbf r') \right. \nonumber \\
 &\left. \cdots \quad \boldsymbol\psi_{j}^\top(\mathbf s-\mathbf r)\right]
