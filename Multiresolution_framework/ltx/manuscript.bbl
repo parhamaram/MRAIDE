@@ -69,4 +69,9 @@ S.~Roweis and Z.~Ghahramani, ``{A unifying review of linear Gaussian models},''
 R.~Shumway and D.~Stoffer, \emph{Time series analysis and its
   applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Verlag, 2000.
 
+\bibitem{RAUCH1965}
+H.~E. RAUCH, F.~TUNG, and C.~T. STRIEBEL, ``Maximum likelihood estimates of
+  linear dynamic systems,'' \emph{AIAA Journal}, vol.~3, no.~8, pp. 1445--1450,
+  1965.
+
 \end{thebibliography}
