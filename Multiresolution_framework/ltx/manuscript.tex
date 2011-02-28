@@ -81,7 +81,7 @@
 \newcommand{\dean}[1]{\textsf{\emph{\textbf{\textcolor{green}{#1}}}}} 
 \newcommand{\parham}[1]{\textsf{\emph{\textbf{\textcolor{blue}{#1}}}}} 
 \newcommand{\ken}[1]{\textsf{\emph{\textbf{\textcolor{magenta}{#1}}}}} 
-\newcommand{\cut}[1]{\textsf{\emph{\textbf{\textcolor{cyan}{#1}}}}} 
+\newcommand{\cut}[1]{\textcolor{cyan}{#1}} 
 
 
 
@@ -731,15 +731,21 @@ The $\left(i,j\right)^{th}$ element of the block matrix $\mathbf U_{n_x \times n
 \begin{align}
 \left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(\mathbf{r-r'}\right) dr'\right]_{j:} dr.
 \end{align}
-where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in equations (\ref{eq:upsilon0}-\ref{eq:Upsilon}) can be computed before EM implementation which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}. $\Xi$-variables can be calculated using the smoother outputs, i.e., state estimates, $\hat{\mathbf x}_t$ along with their covariance matrix, $\mathbf P_t$ and the cross-covariance matrix $\mathbf M_t$ using \cite{Gibsona2005}
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in Eqs. \ref{eq:upsilon0}, \ref{eq:upsilon1}, and \ref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}. $\Xi$-variables are calculated using the smoother outputs, i.e., state estimates, $\hat{\mathbf x}_t$ along with their covariance matrix, $\mathbf P_t$, and the cross-covariance matrix $\mathbf M_t$ using \cite{Gibsona2005}
 \begin{align}\label{eq:Xivariables}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
- \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right)
+ \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
 \end{align}
-\section{Simulation}
-This section demonstrates the identification of the proposed IDE model. The MRA of a synthetic model is demonstrated, which is able to represent the system at different spatial scales. The spectral analysis was used to choose the spatial scale adequate to represent the spatial field.
+\dean{Number of iterations and stopping criteria?}
 
-One second of data was generated using equations \eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation} in response to an initial condition where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $ \eta(r-r')=1\times\phi_{4,3,-2}(r-r')$. Sampling time and the synaptic time constant are set to 1 and 10 milliseconds respectively. The sensors were arranged regularly where the distance between adjacent sensors was set to 0.5 mm resulting into 161 observation locations. Sensors are modelled using $\phi_{4,4,k}$, providing a width of 0.8 mm at half the maximum amplitude of the observation kernel, allowing for some cross talk in the recordings. The connectivity kernel and its decomposition are plotted in  \figurename{\ref{fig:KernelAndFreqResponse}} (a). The spatial frequency of the observed field is shown in \figurename{\ref{fig:KernelAndFreqResponse}} (b). The observed field has an approximate spatial bandwidth $1.38$ cycles/mm. This suggests the use of wavelets up to level $j=3$. Field reconstruction at different level of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. The figure confirms that $j=3$ is adequate to capture the dynamic of the underlying field. Root mean square error (RMSE) of the field estimates is shown in \figurename{\ref{fig:RMSE}}. The histogram of the parameter estimates in \figurename{\ref{fig:ParametersHistogram}} is generated using 100 runs of the EM algorithm, although the estimates of $\theta_1$ is biased (7.4 \%) the RMSE between the true and estimated kernels is $1.83$.
+\section{Results}
+To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation} enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated with an initial condition of $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=1\times\phi_{4,3,-2}(r-r')$. The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms respectively. The sensors were spaced regularly, where the distance between adjacent sensors was $0.5$~mm resulting into 161 observations. The observation kernel width was set to \dean{?}, providing a width of 0.8 mm at half the maximum amplitude of the observation kernel, allowing for some cross talk in the recordings. The actual connectivity kernel and its decomposition are plotted in \figurename{\ref{fig:KernelAndFreqResponse}} (a). 
+
+The spatial frequency of the observed field is shown in \figurename{\ref{fig:KernelAndFreqResponse}} (b). The observed field has an approximate spatial bandwidth $1.38$ cycles/mm. This suggests the use of wavelets up to level $j=3$ \dean{since... why?}. 
+
+Field reconstruction \dean{using the results of the EM algorithm} at different levels of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. \dean{Needs more info.} The figure confirms that $j=3$ is adequate to capture the dynamic of the underlying field \dean{since the error converges?}. The root mean square error (RMSE) of the field estimates is shown in \figurename{\ref{fig:RMSE}}. 
+
+The histogram in \figurename{\ref{fig:ParametersHistogram}} demonstrates the performance of the parameter estimation. \dean{The results are good because the RMSE between the true and estimated kernels is $1.83$ (units?)... There is a bias of 7.4 \% in $\theta_1$ because..., which is not big deal.}
 \begin{figure}[!h]
  \centering
  \includegraphics[scale=1]{./Graph/ObservationFreqResponse.pdf}
@@ -757,20 +763,26 @@ functions (dashed lines), representing local excitation and lateral inhibition. 
 \begin{figure}[!h] 
  \centering
  \includegraphics[scale=1]{./Graph/Field.pdf}
- \caption{Spatial field at one time instant for different spatial resolutions, estimated and true fields are
-shown by dashed and solid lines respectively; (a) $j=0$, $n_x=17$. (b) $j=1$, $n_x=33$. (c) $j=2$, $n_x=65$. (d) $j=3$, $n_x=131$. (e) $j=4$, $n_x=263$.}
+ \caption{\dean{the label a) is missing from the figure.} Spatial field at one time instant for different spatial resolutions, estimated and true fields are shown by dashed and solid lines respectively; (a) $j=0$, $n_x=17$. (b) $j=1$, $n_x=33$. (c) $j=2$, $n_x=65$. (d) $j=3$, $n_x=131$. (e) $j=4$, $n_x=263$.}
  \label{fig:FieldEstimates}
  \end{figure} 
 \begin{figure}[!h] 
  \centering
  \includegraphics[scale=1]{./Graph/Hist.pdf}
  \caption{Histograms of the parameter estimates over 100 realizations. In each of the subplots
-the solid lines show the actual parameter values and the dotted lines show the means of the estimated
-parameters. Left panel: The histogram of the central excitatory connectivity kernel basis function parameter
-estimates, $\theta_0$. Right panel: The histogram of the surround inhibition connectivity kernel basis function parameter
-estimates, $\theta_1$.}
+the solid lines show the actual parameter values and the dotted lines show the means of the estimated parameters. Left panel: The histogram of the central excitatory connectivity kernel basis function parameter estimates, $\theta_0$. Right panel: The histogram of the surround inhibition connectivity kernel basis function parameter estimates, $\theta_1$.}
  \label{fig:ParametersHistogram}
  \end{figure} 
+
+\section{Discussion}
+Some discussion points
+\begin{itemize}
+	\item Brief summary of the novel aspects
+	\item Discuss how we are improving the previous work
+	\item Discuss heterogeneity and time delays (at larger spatial scales) and homogeneity (at smaller scales) 
+	\item Discuss assumptions, limitations and future work
+\end{itemize}
+
 
 % In order to estimate the spatial mixing kernel and the spatio-temporal field, the  kernel and the field are decomposed using
 % Note that the number of translation operations depends on the spatial range of the data. It follows that the total number of terms in (\ref{1DKernelDecompositionForSimulation}) and (\ref{1DFieldDecompositionForSimulation}) are 8 and 47 respectively. The estimated kernel in \figurename{\ref{fig:SpatialMixingKernelEstimate} } is obtained for the cubic B-spline, with initial scale 0 and maximum scale 1. The EM algorithm is allowed to run for 30 iterations to avoid any issues regarding early stopping, though typically the change in $\parallel \mathbf{A} \parallel_{F}$ falls below $10^{-4} $ after less than 15 iterations. A total number of 500 estimation experiments are performed, where $v_t$ and $w_t$ are re-generated each trial.
