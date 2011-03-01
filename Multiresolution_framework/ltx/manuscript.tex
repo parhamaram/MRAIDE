@@ -228,7 +228,7 @@ N_{m}\left(r\right)=&\left(N_{m-1}\ast N_{1}\right)\left(r\right)\nonumber \\
 =&\int_0^{1} N_{m-1}\left( r-r'\right)dr' \quad m>1,
 \label{SplineConvolutionIntegral}
 \end{align}
-where $\ast$ denotes convolution and $N_1\left(s\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$
+where $\ast$ denotes convolution and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$
 \begin{equation}
 N_{1}\left(r\right)=
 \begin{cases}
@@ -275,7 +275,7 @@ where
 \end{align}
 where $[.]_{i,j}$ denotes $\left(i,j\right)^{th}$ (block) element of the (block) matrix. Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix,  $\mathbf U$ is given by
 \begin{align}
-\left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(\mathbf{r-r'}\right) dr'\right]_{j:} dr.
+\left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
 \end{align}
 where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\Xi_0$ and $\Xi_1$ are calculated using the Rauch Tung Streibel (RTS)\cite{RAUCH1965} smoother outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ 
 \begin{align}\label{eq:Xivariables}
