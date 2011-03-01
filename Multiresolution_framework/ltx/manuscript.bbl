@@ -62,11 +62,6 @@ J.~Daunizeau, S.~Kiebel, and K.~Friston, ``{Dynamic causal modelling of
   distributed electromagnetic responses},'' \emph{NeuroImage}, vol.~47, no.~2,
   pp. 590--601, 2009.
 
-\bibitem{Freestone2011}
-D.~R. Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~B. Grayden, and
-  V.~Kadirkamanathan, ``{A data-driven framework for neural field modeling},''
-  \emph{NeuroImage}, 2011.
-
 \bibitem{Amari1977}
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
   fields},'' \emph{Biological Cybernetics}, vol.~27, no.~2, pp. 77--87, 1977.
@@ -116,7 +111,7 @@ R.~Shumway and D.~Stoffer, \emph{Time series analysis and its
   applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Verlag, 2000.
 
 \bibitem{RAUCH1965}
-H.~E. RAUCH, F.~TUNG, and C.~T. STRIEBEL, ``Maximum likelihood estimates of
+H.~E. Rauch, F.~Tung, and C.~T. Striebel, ``Maximum likelihood estimates of
   linear dynamic systems,'' \emph{AIAA Journal}, vol.~3, no.~8, pp. 1445--1450,
   1965.
 
