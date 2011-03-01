@@ -23,8 +23,8 @@
 
 \bibitem{Valdes1999}
 P.~Valdes, J.~Jimenez, J.~Riera, R.~Biscay, and T.~Ozaki, ``{Nonlinear EEG
-  analysis based on a neural mass model},'' \emph{Biological cybernetics},
-  vol.~81, no.~5, pp. 415--424, 1999.
+  analysis based on a neural mass model},'' \emph{Biol. Cybern.}, vol.~81,
+  no.~5, pp. 415--424, 1999.
 
 \bibitem{LopesDaSilva1976}
 F.~Lopes Da~Silva, A.~Van~Rotterdam, P.~Barts, E.~Van~Heusden, and W.~Burr,
@@ -33,13 +33,13 @@ F.~Lopes Da~Silva, A.~Van~Rotterdam, P.~Barts, E.~Van~Heusden, and W.~Burr,
 
 \bibitem{Zetterberg1978}
 L.~Zetterberg, L.~Kristiansson, and K.~Mossberg, ``{Performance of a model for
-  a local neuron population},'' \emph{Biological cybernetics}, vol.~31, no.~1,
-  pp. 15--26, 1978.
+  a local neuron population},'' \emph{Biol. Cybern.}, vol.~31, no.~1, pp.
+  15--26, 1978.
 
 \bibitem{Jansen1995}
 B.~Jansen and V.~Rit, ``{Electroencephalogram and visual evoked potential
   generation in a mathematical model of coupled cortical columns},''
-  \emph{Biological Cybernetics}, vol.~73, no.~4, pp. 357--366, 1995.
+  \emph{Biol. Cybern.}, vol.~73, no.~4, pp. 357--366, 1995.
 
 \bibitem{David2003}
 O.~David and K.~Friston, ``{A neural mass model for MEG/EEG: coupling and
@@ -49,13 +49,12 @@ O.~David and K.~Friston, ``{A neural mass model for MEG/EEG: coupling and
 \bibitem{Galka2008}
 A.~Galka, T.~Ozaki, H.~Muhle, U.~Stephani, and M.~Siniatchkin, ``{A data-driven
   model of the generation of human EEG based on a spatially distributed
-  stochastic wave equation},'' \emph{Cognitive Neurodynamics}, vol.~2, no.~2,
-  pp. 101--113, 2008.
+  stochastic wave equation},'' \emph{Cogn. Neurodynamics}, vol.~2, no.~2, pp.
+  101--113, 2008.
 
 \bibitem{schiff2008kalman}
 S.~Schiff and T.~Sauer, ``{Kalman filter control of a model of spatiotemporal
-  cortical dynamics},'' \emph{Journal Neural Engineering}, vol.~5, pp. 1--8,
-  2008.
+  cortical dynamics},'' \emph{J. Neural Eng.}, vol.~5, pp. 1--8, 2008.
 
 \bibitem{Daunizeau2009}
 J.~Daunizeau, S.~Kiebel, and K.~Friston, ``{Dynamic causal modelling of
@@ -69,7 +68,7 @@ D.~R. Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~B. Grayden, and
 
 \bibitem{Amari1977}
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
-  fields},'' \emph{Biological Cybernetics}, vol.~27, no.~2, pp. 77--87, 1977.
+  fields},'' \emph{Biol. Cybern.}, vol.~27, no.~2, pp. 77--87, 1977.
 
 \bibitem{Rasmussen2005}
 C.~Rasmussen and C.~Williams, \emph{{Gaussian Processes for Machine Learning
@@ -78,8 +77,8 @@ C.~Rasmussen and C.~Williams, \emph{{Gaussian Processes for Machine Learning
 
 \bibitem{Scerri2009}
 K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and model selection
-  for an \text{IDE}-based spatio-temporal model,'' \emph{Signal Processing,
-  IEEE Transactions on}, vol.~57, no.~2, pp. 482--492, Feb. 2009.
+  for an \text{IDE}-based spatio-temporal model,'' \emph{IEEE Trans. Signal
+  Process.}, vol.~57, no.~2, pp. 482--492, Feb. 2009.
 
 \bibitem{Chui1992}
 C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
@@ -98,8 +97,8 @@ A.~P. Dempster, N.~M. Laird, and D.~B. Rubin, ``Maximum likelihood from
 
 \bibitem{Dewar2009}
 M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
-  modeling using the integro-difference equation,'' \emph{Signal Processing,
-  IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
+  modeling using the integro-difference equation,'' \emph{IEEE Trans. Signal
+  Process.}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
 
 \bibitem{Gibsona2005}
 S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
@@ -108,7 +107,7 @@ S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
 
 \bibitem{Roweis1999}
 S.~Roweis and Z.~Ghahramani, ``{A unifying review of linear Gaussian models},''
-  \emph{Neural computation}, vol.~11, no.~2, pp. 305--345, 1999.
+  \emph{Neural Comput.}, vol.~11, no.~2, pp. 305--345, 1999.
 
 \bibitem{Shumway2000}
 R.~Shumway and D.~Stoffer, \emph{Time series analysis and its
