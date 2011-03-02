@@ -100,11 +100,6 @@ M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
   modeling using the integro-difference equation,'' \emph{IEEE Trans. Signal
   Process.}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
 
-\bibitem{Gibsona2005}
-S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
-  multivariable dynamic systems,'' \emph{Automatica}, vol.~41, no.~10, pp.
-  1667--1682, Oct. 2005.
-
 \bibitem{Roweis1999}
 S.~Roweis and Z.~Ghahramani, ``{A unifying review of linear Gaussian models},''
   \emph{Neural Comput.}, vol.~11, no.~2, pp. 305--345, 1999.
@@ -117,6 +112,11 @@ R.~Shumway and D.~Stoffer, \emph{Time Series Analysis and Its
 H.~E. Rauch, F.~Tung, and C.~T. Striebel, ``Maximum likelihood estimates of
   linear dynamic systems,'' \emph{AIAA Journal}, vol.~3, no.~8, pp. 1445--1450,
   1965.
+
+\bibitem{Gibsona2005}
+S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
+  multivariable dynamic systems,'' \emph{Automatica}, vol.~41, no.~10, pp.
+  1667--1682, Oct. 2005.
 
 \bibitem{Qubbaj2009}
 M.~Qubbaj and V.~Jirsa, ``{Neural field dynamics under variation of local and
