@@ -262,7 +262,7 @@ which has a maximum at
 \begin{align}
  \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top),
 \end{align}
-where
+\parham{where $\beta$ is constant with respect to $\boldsymbol\theta$ and }
 \begin{align}\label{eq:upsilon0}
  \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\\ 
  \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\label{eq:upsilon1} \\
@@ -281,7 +281,7 @@ where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\Xi_0$ and $
 %\cut{The second terms in Eqs. \ref{eq:upsilon0}, \ref{eq:upsilon1}, and \ref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}.}
 
 \section{Results}
-To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=\phi_{3,-2}(r-r')$. The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. The observation kernel is modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude of the observation kernel. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed. The actual connectivity kernel and its decomposition are plotted in \figurename{\ref{fig:KernelAndFreqResponse}} (a). 
+To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=\phi_{3,-2}(r-r')$. The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. \parham{Since $n_x<161$ at each level, this provides enough information for state estiamation due to the orthogonality properties of the basis functions.}  The observation kernel is modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude of the observation kernel. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed. The actual connectivity kernel and its decomposition are plotted in \figurename{\ref{fig:KernelAndFreqResponse}} (a). 
 
 The spatial cutoff frequency of the observed field was used to specify the level of decomposition required to represent the field using the wavelets. Fig.~\ref{fig:KernelAndFreqResponse} (b), shows the field spatial frequency and cutoff of \dean{??}. Therefore, wavelets up to level $j=2$ (with the bandwidth $\approx[2.5,4]$ cycles/mm) can represent the significant spatial characteristics of the field. \cut{Note that wavelets due to their bandpass filter characteristics extract successively higher and higher frequency components by increasing $j$.}
 
@@ -297,8 +297,8 @@ The histogram in \figurename{\ref{fig:ParametersHistogram}} demonstrates the per
 %   \end{figure} 
 \begin{figure}[!h] 
  \centering
- \includegraphics[scale=0.9]{./Graph/Field.pdf}
- \caption{Actual (solid line) and estimated (dashed line) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, RMSE = . (b) $j=1$, $n_x=33$, RMSE = . (c) $j=2$, $n_x=65$, RMSE = . (d) $j=3$, $n_x=131$, RMSE = . (e) $j=4$, $n_x=263$, RMSE = .}
+ \includegraphics[scale=1]{./Graph/Field.pdf}
+ \caption{Actual (black line) and estimated (gray line) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, RMSE =4.44 . (b) $j=1$, $n_x=33$, RMSE =1.87 . (c) $j=2$, $n_x=65$, RMSE =1.2 . (d) $j=3$, $n_x=131$, RMSE = 1.04 . (e) $j=4$, $n_x=263$, RMSE = 1.04 .}
  \label{fig:FieldEstimates}
  \end{figure} 
 % \begin{figure}[!h] 
@@ -309,8 +309,8 @@ The histogram in \figurename{\ref{fig:ParametersHistogram}} demonstrates the per
 %  \end{figure} 
 \begin{figure}[!h] 
  \centering
- \includegraphics[scale=1]{./Graph/KernelEstimate.pdf}
- \caption{The actual connectivity kernel is shown the the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std). The 7 weighted kernel basis functions are shown by the black dashed lines.}
+ \includegraphics[scale=1]{./Graph/Kernel.pdf}
+ \caption{The actual connectivity kernel is shown with the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std). The 7 weighted kernel basis functions are shown by the black dashed lines.}
  \label{fig:KernelEstimate}
  \end{figure}
 
