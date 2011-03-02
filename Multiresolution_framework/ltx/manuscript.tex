@@ -176,19 +176,9 @@ The vectors of the kernel and the field scaling and wavelet functions, $\boldsym
  \boldsymbol\mu^\top & (r)=\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right]. 
 \label{FieldBasisVector}
 \end{align}
-The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). 
-
-To derive the state-space model, Eqs.~\eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} are substituted into Eq. \eqref{eq:DiscreteTimeModel}, then we cross-multiply by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the space giving
-\begin{align}\label{eq:DecomposedModel2} 
-	&\int_{\Omega} \boldsymbol\mu  \left(r\right)\boldsymbol\mu\left(r\right)^\top  dr\mathbf{x}_{t+1}= 
-	\xi\int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu\left(r\right)^\top dr\mathbf{x}_t \nonumber \\
-	&+T_s \int_{\Omega}\boldsymbol\mu\left(r\right) \int_\Omega { 
-	   \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
-	    \boldsymbol\mu^\top\left(r'\right)\mathbf{x}_t 
-	\, dr'dr} \nonumber \\
-	+& \int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)dr.
-\end{align}
-In order to simplify the model we define the matrices
+The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}).
+ 
+\parham{To derive the state-space model, we first define the matrices}
 \begin{align}\label{eq:Lambdax}
  \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) dr \\
 \label{eq:Lambdatheta}
@@ -197,9 +187,14 @@ In order to simplify the model we define the matrices
 	    \boldsymbol\mu^\top\left(r\right)\mathbf{x}_t 
 	\, dr'dr}
 \end{align}
-and substitute them into Eq.~\eqref{eq:DecomposedModel2}. Then we cross-multiply by $\mathbf{\Lambda}_{x}^{-1}$ giving
+Eqs.~\eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} are then substituted into Eq. \eqref{eq:DiscreteTimeModel}, then we cross-multiply by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the space giving
+\begin{align}\label{eq:DecomposedModel2} 
+	&\mathbf{\Lambda}_{x} \mathbf{x}_{t+1}= 
+	\xi\mathbf{\Lambda}_{x} \mathbf{x}_t +T_s \mathbf{\Lambda}_{\theta}\mathbf{x}_t +\int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)dr.
+\end{align}
+Then we cross-multiply by $\mathbf{\Lambda}_{x}^{-1}$ giving
 \begin{align}\label{eq:StateEquation}
- \mathbf x_{t+1} &=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t \\
+ \mathbf x_{t+1} &=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t\\
 \label{eq:A_theta}
  \mathbf A(\boldsymbol \theta) &= (T_s\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I),
 \end{align}
@@ -258,7 +253,7 @@ where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. The $m
 \end{align}
 where $q_n$ are the coefficients. By exploiting properties Eqs.~\ref{eq:BsplineConvolution} and \ref{eq:BsplineInnerProduct} the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta} can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale.  In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta}.
 \section{State and Parameter Estimation}
-The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Gibsona2005,Roweis1999,Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For a multivariate linear dynamic system, the bound used is a quadratic of the form
+The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Roweis1999,Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For a multivariate linear dynamic system, the bound used is a quadratic of the form
 \begin{equation}
  \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
@@ -266,17 +261,17 @@ which has a maximum at
 \begin{align}
  \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top),
 \end{align}
-where
+\parham{where $\beta$ is constant with respect to $\boldsymbol\theta$ and }
 \begin{align}\label{eq:upsilon0}
- \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i}\\ 
- \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf U]_{j,i}\label{eq:upsilon1} \\
- \boldsymbol\Upsilon&=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T} \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\mathbf{U}]_{j,i}\label{eq:Upsilon}.
+ \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\\ 
+ \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\label{eq:upsilon1} \\
+ \boldsymbol\Upsilon&=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T}\odot \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf{U}]_{j,i}\label{eq:Upsilon}.
 \end{align}
-where $[.]_{i,j}$ denotes $\left(i,j\right)^{th}$ (block) element of the (block) matrix. Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix,  $\mathbf U$ is given by
+\parham{where $\odot$ denotes block-wise matrix multiplication} and  $[.]_{i,j}$ denotes $\left(i,j\right)^{th}$ (block) element of the (block) matrix. Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix,  $\mathbf U$ is given by
 \begin{align}
 \left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
 \end{align}
-where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\Xi_0$ and $\Xi_1$ are calculated using the Rauch Tung Streibel (RTS)\cite{RAUCH1965} smoother outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ 
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\Xi_0$ and $\Xi_1$ are calculated using the Rauch Tung Streibel (RTS)\cite{RAUCH1965} smoother outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005}
 \begin{align}\label{eq:Xivariables}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
@@ -285,7 +280,7 @@ where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\Xi_0$ and $
 %\cut{The second terms in Eqs. \ref{eq:upsilon0}, \ref{eq:upsilon1}, and \ref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}.}
 
 \section{Results}
-To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=\phi_{3,-2}(r-r')$. The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. The observation kernel is modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude of the observation kernel. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed. The actual connectivity kernel and its decomposition are plotted in \figurename{\ref{fig:KernelAndFreqResponse}} (a). 
+To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=\phi_{3,-2}(r-r')$. The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. \parham{Since $n_x<161$ at each level, this provides enough information for state estiamation due to the orthogonality properties of the basis functions.}  The observation kernel is modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude of the observation kernel. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed. The actual connectivity kernel and its decomposition are plotted in \figurename{\ref{fig:KernelAndFreqResponse}} (a). 
 
 The spatial cutoff frequency of the observed field was used to specify the level of decomposition required to represent the field using the wavelets. Fig.~\ref{fig:KernelAndFreqResponse} (b), shows the field spatial frequency and cutoff of \dean{??}. Therefore, wavelets up to level $j=2$ (with the bandwidth $\approx[2.5,4]$ cycles/mm) can represent the significant spatial characteristics of the field. \cut{Note that wavelets due to their bandpass filter characteristics extract successively higher and higher frequency components by increasing $j$.}
 
@@ -301,8 +296,8 @@ The histogram in \figurename{\ref{fig:ParametersHistogram}} demonstrates the per
 %   \end{figure} 
 \begin{figure}[!h] 
  \centering
- \includegraphics[scale=0.9]{./Graph/Field.pdf}
- \caption{Actual (solid line) and estimated (dashed line) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, RMSE = . (b) $j=1$, $n_x=33$, RMSE = . (c) $j=2$, $n_x=65$, RMSE = . (d) $j=3$, $n_x=131$, RMSE = . (e) $j=4$, $n_x=263$, RMSE = .}
+ \includegraphics[scale=1]{./Graph/Field.pdf}
+ \caption{Actual (black line) and estimated (gray line) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, RMSE =4.44 . (b) $j=1$, $n_x=33$, RMSE =1.87 . (c) $j=2$, $n_x=65$, RMSE =1.2 . (d) $j=3$, $n_x=131$, RMSE = 1.04 . (e) $j=4$, $n_x=263$, RMSE = 1.04 .}
  \label{fig:FieldEstimates}
  \end{figure} 
 % \begin{figure}[!h] 
@@ -313,8 +308,8 @@ The histogram in \figurename{\ref{fig:ParametersHistogram}} demonstrates the per
 %  \end{figure} 
 \begin{figure}[!h] 
  \centering
- \includegraphics[scale=1]{./Graph/KernelEstimate.pdf}
- \caption{The actual connectivity kernel is shown the the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std). The 7 weighted kernel basis functions are shown by the black dashed lines.}
+ \includegraphics[scale=1]{./Graph/Kernel.pdf}
+ \caption{The actual connectivity kernel is shown with the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std). The 7 weighted kernel basis functions are shown by the black dashed lines.}
  \label{fig:KernelEstimate}
  \end{figure}
 
