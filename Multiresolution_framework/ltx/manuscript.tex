@@ -176,7 +176,17 @@ The vectors of the kernel and the field scaling and wavelet functions, $\boldsym
  \boldsymbol\mu^\top & (r)=\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right]. 
 \label{FieldBasisVector}
 \end{align}
-The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). 
+The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}).
+ 
+To derive the state-space model, we first define the matrices
+\begin{align}\label{eq:Lambdax}
+ \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) dr \\
+\label{eq:Lambdatheta}
+ \mathbf{\Lambda}_{\theta} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right) \int_\Omega { 
+	   \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
+	    \boldsymbol\mu^\top\left(r\right)\mathbf{x}_t 
+	\, dr'dr}
+\end{align}
 
 To derive the state-space model, Eqs.~\eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} are substituted into Eq. \eqref{eq:DiscreteTimeModel}, then we cross-multiply by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the space giving
 \begin{align}\label{eq:DecomposedModel2} 
