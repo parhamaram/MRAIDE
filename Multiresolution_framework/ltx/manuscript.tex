@@ -11,8 +11,8 @@
 
 \usepackage{color}
 \newcommand{\mike}[1]{\textsf{\emph{\textbf{\textcolor{red}{#1}}}}} 
-\newcommand{\dean}[1]{\textsf{\emph{\textbf{\textcolor{green}{#1}}}}} 
-\newcommand{\parham}[1]{\textsf{\emph{\textbf{\textcolor{blue}{#1}}}}} 
+\newcommand{\dean}[1]{\textcolor{green}{#1}}
+\newcommand{\parham}[1]{\textcolor{blue}{#1}} 
 \newcommand{\ken}[1]{\textsf{\emph{\textbf{\textcolor{magenta}{#1}}}}} 
 \newcommand{\cut}[1]{\textcolor{cyan}{#1}} 
 
@@ -63,7 +63,7 @@
 \title{Multiresolution Neural Field Estimation }
 
 
-\author{In no particular order: \parham{P. Aram}, \mike{M. Dewar}, \dean{D.R. Freestone,~\IEEEmembership{Graduate Student Member,~IEEE,}}, \ken{K.Scerri}, D.B. Grayden,~\IEEEmembership{Member,~IEEE,} and V. Kadirkamanathan~\IEEEmembership{Member,~IEEE} % <-this % stops a space
+\author{In no particular order: \parham{P. Aram}, \mike{M. Dewar}, \dean{D.R. Freestone~\IEEEmembership{Graduate Student Member,~IEEE,}}, \ken{K.Scerri}, D.B. Grayden~\IEEEmembership{Member,~IEEE,} and V. Kadirkamanathan~\IEEEmembership{Member,~IEEE} % <-this % stops a space
 \thanks{P. Aram* and V. Kadirkamanathan are with the Department of Automatic Control and Systems Engineering, University of Sheffield, Sheffield, S1 3JD, U.K. (e-mail:p.aram@sheffield.ac.uk; visakan@sheffield.ac.uk).}% <-this % stops a space
 \thanks{D.\ R.\ Freestone and D.\ B.\ Grayden are with the Department
 of Electrical and Electronic Engineering, The University of Melbourne, and The Bionic Ear Institute, VIC, Australia}
@@ -116,13 +116,9 @@ Neural field model, multiresolution approximation (MRA), Expectation Maximizatio
 
 Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. They typically describe the macroscopic dynamics of the human brain, but are also descriptive of finer-scale neurodynamics. The ability to create patient-specific neural models will contribute to our knowledge base of poorly understood diseases such as epilepsy, and furthermore, may also enable the development of new treatment strategies. This is particularly poignant with the advent of new devices that use therapeutic electrical stimulation. Presently, stimulation strategies for devices operate in an open-loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists an enormous potential to improve the performance of these devices using systems theory, but first a suitable model is required. Neural mass and neural field models are the ideal candidates for estimation and control algorithms, due to their strong links with the underlying physiology and their parsimony. It is expected that parameters of the neural fields models will be patient specific and will therefore need to be inferred from data.
 
-The first work describing data-driven mesoscopic neural modeling~\cite{Valdes1999} used a neural mass model~\cite{LopesDaSilva1976,Zetterberg1978} to fit EEG data. This approach was extended to coupled neural masses (using another model~\cite{Jansen1995}) through a Bayesian estimation scheme dubbed Dynamic Causal Modeling (DCM)~\cite{David2003}. Following this work, data-driven modeling was extended to continuum field equations that explain the richer dynamics of spatiotemporal neural fields \cite{Galka2008,schiff2008kalman,Daunizeau2009}. Most recently a framework was developed where a finite element model of the neural field (via a global Galerkin projection) was formed, using a basis function decomposition, to transform the PDE neural field equations into a finite dimension system to facilitate efficient state and parameter estimation~\cite{Freestone2011}.  
+The first work describing data-driven mesoscopic neural modeling~\cite{Valdes1999} used a neural mass model~\cite{LopesDaSilva1976,Zetterberg1978} to fit EEG data. This approach was extended to coupled neural masses (using another model~\cite{Jansen1995}) through a Bayesian estimation scheme dubbed Dynamic Causal Modeling (DCM)~\cite{David2003}. Following this work, data-driven modeling was extended to continuum field equations that explain the richer dynamics of spatiotemporal neural fields \cite{Galka2008,schiff2008kalman,Daunizeau2009}. Most recently a framework was developed where a finite element model of the neural field (via a global Galerkin projection) was formed, using a basis function decomposition, to transform the PDE neural field equations into a finite dimension system to facilitate efficient state and parameter estimation~\cite{Freestone2011}. The current paper is an extension to this recent study, where we derive a neural field state-space model that accounts for the multi-resolution architecture and spatial dynamics of the human cortex. In this way a flexible framework is created where both macroscopic and microscopic behaviour of the system can be represented simultaneously.
 
-This paper is an extension to this recent study~\cite{Freestone2011}. The basis function decomposition in this previous study did not account for multiresolution architecture and spatial dynamics of the human cortex. Thus, it can be improved.. In this current paper, a multiresolution approach is taken...
-
-By taking the multiresolution approach, the identified IDE model will approximate the underlying spatio-temporal dynamics at different spatial scales. In this way both macroscopic and microscopic behaviour of the system can be represented simultaneously...
-
-\section{Integro-Difference Equation Neural Field Model}
+\section{IDE Neural Field Model}
 The stochastic integro-difference equation (IDE) form of the Amari neural field  formulation~\cite{Amari1977} is given by (see~\cite{Freestone2011} for a full derivation)
 \begin{equation}\label{eq:DiscreteTimeModel}
 	v_{t+1}\left(\mathbf{r}\right) = 
@@ -133,13 +129,11 @@ The stochastic integro-difference equation (IDE) form of the Amari neural field 
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f\left(.\right)$. \dean{The activation function is of the form $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r}) + v_0$}. A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function.
-
-The observation equation describing the electrophysiological recordings is given by 
+where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an $i.i.d.$ disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f\left(.\right)$. \dean{The activation function is of the form $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r}) + v_0$}. A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function. The observation equation describing the electrophysiological recordings is given by 
 \begin{equation}\label{eq:ObservationEquation}
 	\mathbf y_t = \int_{\Omega} { m\left(\mathbf{r}_{n}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t, 
 \end{equation}
-where $\mathbf{y}_{t} = [y_t(\mathbf{r}_1) y_t(\mathbf{r}_2) \cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations at time $t$ via the observation kernel $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$, is corrupted by an i.i.d normally distributed zero-mean white noise $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$ with $\mathbf{\Sigma}_{\epsilon}=\sigma_{\epsilon}^2\mathbf I_{n_y} $. The superscript $\top$ denotes the transpose operator.
+where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel and the observation noise is an i.i.d. white noise process and $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$. % $\mathbf{y}_{t} = [y_t(\mathbf{r}_1) y_t(\mathbf{r}_2) \cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations at time $t$ via the observation kernel , is corrupted by The superscript $\top$ denotes the transpose operator.
 \section{MRA of the IDE in State-Space}
 The multiresolution approximation (MRA) of the neural IDE is obtained by decomposing both the field, $v_t(.)$, and the connectivity kernel, $w(.)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering a one-dimensional field, the connectivity kernel is decomposed by,
 \begin{equation}
@@ -151,9 +145,9 @@ where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j
  v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l}\phi_{j_{0},l}\left(r\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{j,l}\left(r\right),
 \label{eq:FieldExpansion}
 \end{equation}
-where $ x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion at time $t$.
+where $x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion at time $t$. \dean{Need to define these guys as the states here!}
 
-Eqs. \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite series expansions, but  for a practical implementation they must be truncated at some level $j$. Therefore, the field and the connectivity kernel is approximated by
+Eqs.\eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite series expansions \cut{, but  for a practical implementation they } (and) must be truncated at some level $j$. The field and the connectivity kernel is approximated by
  \begin{align}
  w\left(r-r'\right) &\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right) 
 \label{eq:KernelFiniteExpansion} \\
@@ -254,24 +248,24 @@ where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. The $m
 where $q_n$ are the coefficients. By exploiting properties Eqs.~\ref{eq:BsplineConvolution} and \ref{eq:BsplineInnerProduct} the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta} can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale.  In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta}.
 \section{State and Parameter Estimation}
 The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Roweis1999,Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For a multivariate linear dynamic system, the bound used is a quadratic of the form
-\begin{equation}
+\begin{equation}\label{eq:Qfunction}
  \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
-which has a maximum at
+\parham{where $\beta$ is constant with respect to $\boldsymbol\theta$. Eq.~\ref{eq:Qfunction} is maximum at
 \begin{align}
  \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top),
 \end{align}
-\parham{where $\beta$ is constant with respect to $\boldsymbol\theta$ and }
+where }
 \begin{align}\label{eq:upsilon0}
  \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\\ 
  \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\label{eq:upsilon1} \\
  \boldsymbol\Upsilon&=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T}\odot \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf{U}]_{j,i}\label{eq:Upsilon}.
 \end{align}
-\parham{where $\odot$ denotes block-wise matrix multiplication} and  $[.]_{i,j}$ denotes $\left(i,j\right)^{th}$ (block) element of the (block) matrix. Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix,  $\mathbf U$ is given by
+\parham{The operator $\odot$ denotes block-wise matrix multiplication} and  $[.]_{i,j}$ denotes $\left(i,j\right)^{th}$ (block) element of the (block) matrix. Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix,  $\mathbf U$ is given by
 \begin{align}
 \left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
 \end{align}
-where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\Xi_0$ and $\Xi_1$ are calculated using the Rauch Tung Streibel (RTS)\cite{RAUCH1965} smoother outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005}
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\Xi_0$ and $\Xi_1$ are calculated using the Rauch Tung Streibel smoother \cite{RAUCH1965} outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005}
 \begin{align}\label{eq:Xivariables}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
@@ -280,13 +274,10 @@ where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\Xi_0$ and $
 %\cut{The second terms in Eqs. \ref{eq:upsilon0}, \ref{eq:upsilon1}, and \ref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}.}
 
 \section{Results}
-To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=\phi_{3,-2}(r-r')$. The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. \parham{Since $n_x<161$ at each level, this provides enough information for state estiamation due to the orthogonality properties of the basis functions.}  The observation kernel is modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude of the observation kernel. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed. The actual connectivity kernel and its decomposition are plotted in \figurename{\ref{fig:KernelAndFreqResponse}} (a). 
+To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=\phi_{3,-2}(r-r')$ (\dean{Defining the covariance this way is confusing, just like it was for the sensor kernel. It implies that the disturbance covariance to directly related to the field, or the basis was chosen because of the disturbance. Can we simply say that the disturbance covariance was a b-spline with dilation xx?}). 
+The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms, respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. \parham{Since $n_x<161$ at each level, this provides enough information for state estimation due to orthogonality of the basis functions.}  The observation kernel is modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude of the observation kernel. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed. The spatial cutoff frequency of the observed field, $y_t(r_n)$, was used to specify the level of decomposition required to represent the field using the wavelets. The spatial cutoff frequency was \dean{??} cycles/mm. Therefore, wavelets up to level $j=2$ (with the bandwidth $\approx[2.5,4]$ cycles/mm) can represent the significant spatial characteristics of the field. \cut{Note that wavelets due to their bandpass filter characteristics extract successively higher and higher frequency components by increasing $j$.}
 
-The spatial cutoff frequency of the observed field was used to specify the level of decomposition required to represent the field using the wavelets. Fig.~\ref{fig:KernelAndFreqResponse} (b), shows the field spatial frequency and cutoff of \dean{??}. Therefore, wavelets up to level $j=2$ (with the bandwidth $\approx[2.5,4]$ cycles/mm) can represent the significant spatial characteristics of the field. \cut{Note that wavelets due to their bandpass filter characteristics extract successively higher and higher frequency components by increasing $j$.}
-
-Field reconstruction \dean{using the results of the EM algorithm} at different levels of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. \dean{Needs more info.} The figure confirms that $j=3$ is adequate to capture the dynamic of the underlying field \dean{since the root mean square error (RMSE) converges to 1.04.} 
-
-The histogram in \figurename{\ref{fig:ParametersHistogram}} demonstrates the performance of the parameter estimation. \dean{The results are good because the RMSE between the true and estimated kernels is $1.83$ (units?)... There is a bias of 7.4 \% in $\theta_1$ because..., which is not big deal.}
+Field reconstruction \dean{using the results of the EM algorithm} at different levels of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. \dean{Needs more info. Like that the results are great!} The figure confirms that $j=2$ is adequate to capture the dynamics of the underlying field, where the RMSE converges to a steady value of \dean{xx}. \dean{j=3 seems like where it converges?} The actual connectivity kernel and the decomposition is plotted in \figurename{\ref{fig:KernelEstimate}}. \dean{The results are good because the RMSE between the true and estimated kernels is $1.83$ (units?)... There is a bias of 7.4 \% in $\theta_1$ because..., which is not big deal.}
 % \begin{figure}[!h]
 %  \centering
 %  \includegraphics[scale=.9]{./Graph/ObservationFreqResponse.pdf}
