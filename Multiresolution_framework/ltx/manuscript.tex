@@ -60,7 +60,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Multiresolution Neural Field Estimation }
+\title{Multi-resolution Neural Field Estimation }
 
 
 \author{In no particular order: \parham{P. Aram}, \mike{M. Dewar}, \dean{D.R. Freestone~\IEEEmembership{Graduate Student Member,~IEEE,}}, \ken{K.Scerri}, D.B. Grayden~\IEEEmembership{Member,~IEEE,} and V. Kadirkamanathan~\IEEEmembership{Member,~IEEE} % <-this % stops a space
@@ -170,7 +170,7 @@ The vectors of the kernel and the field scaling and wavelet functions, $\boldsym
  \boldsymbol\mu^\top & (r)=\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right]. 
 \label{FieldBasisVector}
 \end{align}
-The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}).
+The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). \dean{Comment on how the kernel basis functions are placed.}
  
 \parham{To derive the state-space model, we first define the matrices}
 \begin{align}\label{eq:Lambdax}
@@ -277,17 +277,17 @@ where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\Xi_0$ and $
 To demonstrate the performance of the MRA estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated where $\boldsymbol\Sigma_v=0.1 \times \mathbf{I}_{n_y}$ and $\eta(r-r')=\phi_{3,-2}(r-r')$ (\dean{Defining the covariance this way is confusing, just like it was for the sensor kernel. It implies that the disturbance covariance to directly related to the field, or the basis was chosen because of the disturbance. Can we simply say that the disturbance covariance was a b-spline with dilation xx?}). 
 The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms, respectively. The distance between adjacent sensors was $0.5$~mm resulting into 161 observations. \parham{Since $n_x<161$ at each level, this provides enough information for state estimation due to orthogonality of the basis functions.}  The observation kernel is modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude of the observation kernel. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed. The spatial cutoff frequency of the observed field, $y_t(r_n)$, was used to specify the level of decomposition required to represent the field using the wavelets. The spatial cutoff frequency was \dean{??} cycles/mm. Therefore, wavelets up to level $j=2$ (with the bandwidth $\approx[2.5,4]$ cycles/mm) can represent the significant spatial characteristics of the field. \cut{Note that wavelets due to their bandpass filter characteristics extract successively higher and higher frequency components by increasing $j$.}
 
-Field reconstruction \dean{using the results of the EM algorithm} at different levels of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. \dean{Needs more info. Like that the results are great!} The figure confirms that $j=2$ is adequate to capture the dynamics of the underlying field, where the RMSE converges to a steady value of \dean{xx}. \dean{j=3 seems like where it converges?} The actual connectivity kernel and the decomposition is plotted in \figurename{\ref{fig:KernelEstimate}}. The reconstructed kernel is in good accordance with the actual kernel, where the actual kernel lies inside the confidence interval. The small error in the estimate results is attributed to the MRA of the true field used to form the estimator.
+Field reconstruction \dean{using the results of the EM algorithm} at different levels of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. \dean{Needs more info. Like that the results are great!} The figure confirms that $j=2$ is adequate to capture the dynamics of the underlying field, where the RMSE converges to a steady value of \dean{xx}. \dean{j=3 seems like where it converges?} The actual connectivity kernel and the decomposition is plotted in \figurename{\ref{fig:KernelEstimate}}. The reconstructed kernel is in good accordance with the actual kernel, where the actual kernel lies inside the confidence interval. The small error in the estimate is attributed to the MRA of the system used to form the estimator.
 \begin{figure}[!h] 
 	\centering
 		\includegraphics[scale=1]{./Graph/Field.pdf}
-		\caption{Actual (black line) and estimated (gray line) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, RMSE =4.44 . (b) $j=1$, $n_x=33$, RMSE =1.87 . (c) $j=2$, $n_x=65$, RMSE =1.2 . (d) $j=3$, $n_x=131$, RMSE = 1.04 . (e) $j=4$, $n_x=263$, RMSE = 1.04 .}
+		\caption{Actual (grey line) and estimated (black line) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, RMSE = 4.44. (b) $j=1$, $n_x=33$, RMSE = 1.87. (c) $j=2$, $n_x=65$, RMSE = 1.2. (d) $j=3$, $n_x=131$, RMSE = 1.04. (e) $j=4$, $n_x=263$, RMSE=1.04.}
 	\label{fig:FieldEstimates}
 \end{figure} 
 \begin{figure}[!h] 
 	\centering
 		\includegraphics[scale=1]{./Graph/Kernel.pdf}
-		\caption{The actual connectivity kernel is shown with the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std). The 7 weighted kernel basis functions are shown by the black dashed lines.}
+		\caption{The actual connectivity kernel is shown with the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std.). The 7 weighted kernel basis functions are shown by the black dashed lines.}
 	\label{fig:KernelEstimate}
 \end{figure}
 \section{Discussion}
@@ -295,7 +295,7 @@ In this paper, we have presented a novel model-based framework for estimating co
 
 This work extends previous work by... alternative ARMA model... The MRA IDE can be applied to fluid dynamics, weather systems, ....
 
-Other groups have previously highlighted the importance of a multiresolution approach in neural field modeling. For example, it is thought that the connectivity structure differs at different spatial scales, where at a fine scale a homogeneous connectivity exists and at a larger scale the connectivity become~\cite{Qubbaj2009}....
+Other groups have previously highlighted the importance of a multi-resolution approach in neural field modeling. For example, it is thought that the connectivity structure differs at different spatial scales, where at a fine scale a homogeneous connectivity exists and at a larger scale the connectivity become~\cite{Qubbaj2009}....
 
 In order to apply the framework to real data several assumptions must be made, such as stationarity of the parameters over the estimation period. Perhaps the most critical assumption is that the model provides an apt description of the cortical dynamics. The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. An obvious discrepancy is, for example, the linear activation function. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. Furthermore, the theory presented in this paper can be adapted to more sophisticated nonlinear forms of the field equations. The key development in this paper is the multiresolution decomposition forming the state-space model, which holds for a nonlinear activation function. If a nonlinear activation function was used, then unscented RTSS should be used in the E-step of the estimation algorithm. 
 
