@@ -284,7 +284,7 @@ To demonstrate the performance of the MRA estimation framework, data was generat
 
 The spatial cutoff frequency of the observed field was used to specify the level of decomposition required to represent the field using the wavelets. Fig.~\ref{fig:KernelAndFreqResponse} (b), shows the field spatial frequency and cutoff of \dean{??}. Therefore, wavelets up to level $j=2$ (with the bandwidth $\approx[2.5,4]$ cycles/mm) can represent the significant spatial characteristics of the field. \cut{Note that wavelets due to their bandpass filter characteristics extract successively higher and higher frequency components by increasing $j$.}
 
-Field reconstruction \dean{using the results of the EM algorithm} at different levels of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. \dean{Needs more info.} The figure confirms that $j=2$ is adequate to capture the dynamic of the underlying field \dean{since the error converges?}. The root mean square error (RMSE) of the field estimates is shown in \figurename{\ref{fig:ParametersHistogram}} (a). 
+Field reconstruction \dean{using the results of the EM algorithm} at different levels of approximations is shown in \figurename{\ref{fig:FieldEstimates}}. \dean{Needs more info.} The figure confirms that $j=3$ is adequate to capture the dynamic of the underlying field \dean{since the root mean square error (RMSE) converges to 1.04.} 
 
 The histogram in \figurename{\ref{fig:ParametersHistogram}} demonstrates the performance of the parameter estimation. \dean{The results are good because the RMSE between the true and estimated kernels is $1.83$ (units?)... There is a bias of 7.4 \% in $\theta_1$ because..., which is not big deal.}
 % \begin{figure}[!h]
