@@ -129,7 +129,7 @@ The stochastic integro-difference equation (IDE) form of the Amari neural field 
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an i.i.d. disturbance, such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function \dean{$f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r}) + v_0$}. A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function. The observation equation describing the electrophysiological recordings is given by 
+where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an i.i.d. disturbance, such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$. A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function. The observation equation describing the electrophysiological recordings is given by 
 \begin{equation}\label{eq:ObservationEquation}
 	\mathbf y_t = \int_{\Omega} { m\left(\mathbf{r}_{n}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t, 
 \end{equation}
@@ -140,7 +140,7 @@ The multi-resolution approximation of the neural IDE (MRAIDE) is obtained by dec
  w\left(r-r'\right)=\sum_{l \in \mathbb{Z}}\alpha_{j_0,l}\phi_{j_0,l}\left(r-r'\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{j,l}\left(r-r'\right), 
 \label{eq:KernelExpansion}
 \end{equation}
-where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$, and $\beta_{j,l}$ are the detail coefficients at different scales $j$, with $\phi_{j,l}\left(r\right)=2^{\frac{j}{2}}\phi\left(2^jr-l\right) $ and $\psi_{j,l}\left(r\right)=2^{\frac{j}{2}}\psi\left(2^jr-l\right)$. Integers $j$ and $l$ are the scale and translation parameters, respectively. \parham{ Scaling functions retain the lowest frequency components, whilst the wavelet functions extract successively higher frequency components (by increasing $j$) due their low and band-pass spectral characteristics, respectively.} The field is decomposed as
+where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$, and $\beta_{j,l}$ are the detail coefficients at different scales $j$, with $\phi_{j,l}\left(r\right)=2^{\frac{j}{2}}\phi\left(2^jr-l\right) $ and $\psi_{j,l}\left(r\right)=2^{\frac{j}{2}}\psi\left(2^jr-l\right)$. Integers $j$ and $l$ are the scale and translation parameters, respectively. Scaling functions retain the lowest frequency components, whilst the wavelet functions extract successively higher frequency components (by increasing $j$) due their low and band-pass spectral characteristics, respectively. The field is decomposed as
 \begin{equation}
  v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l}\phi_{j_{0},l}\left(r\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{j,l}\left(r\right),
 \label{eq:FieldExpansion}
@@ -170,9 +170,9 @@ The vectors of the kernel and the field scaling and wavelet functions, $\boldsym
  \boldsymbol\mu^\top & (r)=\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right]. 
 \label{FieldBasisVector}
 \end{align}
-The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). \dean{Comment on how the kernel basis functions are placed.}
+The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). 
  
-\parham{To derive the state-space model, we first define the matrices}
+To derive the state-space model, we first define the matrices
 \begin{align}\label{eq:Lambdax}
  \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) dr \\
 \label{eq:Lambdatheta}
@@ -234,43 +234,43 @@ Using the associativity property of convolution we have
 N_{m}\left( r\right) \ast N_{m'}\left(r\right)&=\underbrace{\overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m-1 \quad \text{convolutions}}\left(r\right) \ast \overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m'-1\quad \text{convolutions}}}_{m+m'-1 \quad \text{convolutions}}\left(r\right)\nonumber\\
 &=N_{m+m'}\left(r\right).
 \end{align}
-A direct consequence of Eq.~\eqref{eq:BsplineConvolution} is 
+A direct consequence of Eq.~\eqref{eq:BsplineConvolution} is \dean{the inner product between two B-splines is another translated B-spline, such that}
 \begin{align}
  \left\langle N_{m}\left(r-l_{1}\right), N_{m'}\left(r-l_{2}\right)\right\rangle=&N_{m+m'}\left(m+l_{1}-l_{2}\right)\nonumber \\
 =&N_{m+m'}\left(m'+l_{2}-l_{1}\right),
 \label{eq:BsplineInnerProduct}
 \end{align}
-\parham{where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This holds as $N_m\left(r\right)$ is symmetric with respect to $r=\frac{m}{2}$}. The $m^{th}$-order B-spline wavelet function is defined as (see \cite{Chui1992}) 
+where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This holds as $N_m\left(r\right)$ is isotropic. The $m^{th}$-order B-spline wavelet function is defined as (see \cite{Chui1992}) 
 \begin{align}
  \varphi & _{m}\left(r\right) = \sum_{n=0}^{3m-2} q_n N_{m}\left(2r-n\right) \\
  q & _n = \frac{\left(-1\right)^n}{2^{m-1}} \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$},
 \end{align}
-where $q_n$ are the coefficients. By exploiting properties Eqs.~\ref{eq:BsplineConvolution} and \ref{eq:BsplineInnerProduct} the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta} can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. \parham{It is important to note that B-spline scaling and wavelet functions have the following orthogonality properties \cite{Unser1993}: 
+where $q_n$ are the coefficients. By exploiting properties Eqs.~\ref{eq:BsplineConvolution} and \ref{eq:BsplineInnerProduct} the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta} can be computed. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. It is important to note that B-spline scaling and wavelet functions have the following orthogonality properties \cite{Unser1993}: 
 \begin{equation}
  \left\langle \psi_{j_1,l_1}(s),\psi_{j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\neq j_2
 \label{PsiPsiOrthogonality}
 \end{equation}
 \begin{equation}
- \left\langle \phi_{j_1,l_1}(s),\psi_{j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2
+ \left\langle \phi_{j_1,l_1}(s),\psi_{j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2.
 \label{PhiPsiOrthogonality}
-\end{equation}}
- \parham{In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used.} Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta}.
+\end{equation}
+In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta}.
 \section{State and Parameter Estimation}
 The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Roweis1999,Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For a multivariate linear dynamic system, the bound used is a quadratic of the form
 \begin{equation}\label{eq:Qfunction}
  \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
-\parham{where $\beta$ is constant with respect to $\boldsymbol\theta$. Eq.~\ref{eq:Qfunction} is maximum at
+where $\beta$ is constant with respect to $\boldsymbol\theta$. Eq.~\ref{eq:Qfunction} is maximum at
 \begin{align}
  \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top),
 \end{align}
-where }
+where
 \begin{align}\label{eq:upsilon0}
  \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\\ 
  \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\label{eq:upsilon1} \\
  \boldsymbol\Upsilon&=T_s\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T}\odot \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf{U}]_{j,i}\label{eq:Upsilon}.
 \end{align}
-\parham{The operator $\odot$ denotes block-wise matrix multiplication} and  $[.]_{i,j}$ denotes $\left(i,j\right)^{th}$ (block) element of the (block) matrix. Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix,  $\mathbf U$ is given by
+The operator $\odot$ denotes block-wise matrix multiplication and  $[.]_{i,j}$ denotes $\left(i,j\right)^{th}$ (block) element of the (block) matrix. Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix,  $\mathbf U$ is given by
 \begin{align}
 \left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
 \end{align}
@@ -279,14 +279,14 @@ where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\boldsymbol\
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
 \end{align}
- \cut{The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\theta,\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge.} 
+The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\theta,\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge.
 %\cut{The second terms in Eqs. \ref{eq:upsilon0}, \ref{eq:upsilon1}, and \ref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}.}
 
 \section{Results}
-To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated. \dean{The observation noise was set to $\boldsymbol\Sigma_{\epsilon}=0.1 \times \mathbf{I}_{n_y}$ and the disturbance covariance was set to $\eta(r-r') = \phi_{3,0}(r-r')$ (B-spline, $j=3$).} The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms, respectively. \dean{The number of states $n_x = ??$.} The distance between adjacent sensors was $0.5$~mm resulting into $n_y = 161$ observations. \dean{With this number of observations, the estimation problem was well-posed, since the wavelet are orthogonal and the number of states, $n_x < n_y$ at each level of the decomposition.} \parham{Since $n_x<161$ at each level, this provides enough information for state estimation due to orthogonality of the basis functions.}  The observation kernel is modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude of the observation kernel. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed. The spatial cutoff frequency of the observed field, $y_t(r_n)$, was used to specify the level of decomposition required to represent the field using the wavelets. The spatial cutoff frequency was \dean{??} cycles/mm. Therefore, wavelets up to level $j=3$ (with the bandwidth $\approx[5,8]$ cycles/mm) can represent the significant spatial characteristics of the field. 
+To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using Eqs.~\ref{eq:DiscreteTimeModel} and \ref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 100 realizations of 1 second of data were generated. The observation noise was set to $\boldsymbol\Sigma_{\epsilon}=0.1 \times \mathbf{I}_{n_y}$ and the disturbance covariance was set to $\eta(r-r') = \phi_{3,-2}(r-r')$ (B-spline, $j=3$). The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms, respectively. \dean{The number of states $n_x = ??$.} The distance between adjacent sensors was $0.5$~mm resulting into $n_y = 161$ observations. \dean{With this number of observations, the estimation problem was well-posed, since the wavelet are orthogonal and the number of states, $n_x < n_y$ at each level of the decomposition.} The observation kernel is modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude of the observation kernel. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed. The spatial cutoff frequency of the observed field, $y_t(r_n)$, was used to specify the level of decomposition required to represent the field using the wavelets. Using an oversampling parameter of \dean{6?}, the cutoff spatial frequency was \dean{$\nu_{cy} = ??$} cycles/mm \cite{freestone2011}. Therefore, wavelets up to level $j=3$ (with the bandwidth $\approx[5,8]$ cycles/mm) can represent the significant spatial characteristics of the field. 
 % \cut{Note that wavelets due to their bandpass filter characteristics extract successively higher and higher frequency components by increasing $j$.}
 
-\parham{Field reconstruction obtained by applying the EM algorithm at different levels of approximations separately using same observation set. (\figurename{\ref{fig:FieldEstimates}})}. \dean{Needs more info. Like that the results are great!} The figure confirms that $j=3$ is adequate to capture the dynamics of the underlying field, where the RMSE converges to a steady value of \dean{0.72}.  The actual connectivity kernel and the decomposition is plotted in \figurename{\ref{fig:KernelEstimate}}. The reconstructed kernel is in good accordance with the actual kernel, where the actual kernel lies inside the confidence interval. The small error in the estimate is attributed to the MRA of the system used to form the estimator.
+\parham{Field reconstruction obtained using the state estimates of the EM algorithm at different levels of approximations separately using same observation set. (\figurename{\ref{fig:FieldEstimates}})}. The figure confirms that $j=3$ is adequate to capture the dynamics of the underlying field, where the RMSE converges to a steady value of 0.72. The confirms good state estimation performance, where the estimated field is in good accordance with the true field. The actual connectivity kernel and the decomposition is plotted in \figurename{\ref{fig:KernelEstimate}}. The reconstructed kernel is in good accordance with the actual kernel, where the actual kernel lies inside the confidence interval. The small error in the estimate is attributed to the MRA of the system used to form the estimator.
 \begin{figure}[!h] 
 	\centering
 		\includegraphics[scale=1]{./Graph/Field.pdf}
