@@ -245,16 +245,17 @@ where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This h
  \varphi & _{m}\left(r\right) = \sum_{n=0}^{3m-2} q_n N_{m}\left(2r-n\right) \\
  q & _n = \frac{\left(-1\right)^n}{2^{m-1}} \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$},
 \end{align}
-where $q_n$ are the coefficients. By exploiting \cut{properties} Eqs.~\ref{eq:BsplineConvolution} and \ref{eq:BsplineInnerProduct} the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta} can be computed analytically. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale\mike{\cite{Goswami1999}}.\cut{ It is important to note that B-spline scaling and wavelet functions have the following orthogonality properties \cite{Unser1993}: 
-\begin{equation}
- \left\langle \psi_{j_1,l_1}(s),\psi_{j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\neq j_2
-\label{PsiPsiOrthogonality}
-\end{equation}
-\begin{equation}
- \left\langle \phi_{j_1,l_1}(s),\psi_{j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2.
-\label{PhiPsiOrthogonality}
-\end{equation}
-In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta}.}
+where $q_n$ are the coefficients. By exploiting \cut{properties} Eqs.~\ref{eq:BsplineConvolution} and \ref{eq:BsplineInnerProduct} the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta} can be computed analytically. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in Eqs.~\ref{eq:Lambdax} and \ref{eq:Lambdatheta}.
+
+% \cut{ It is important to note that B-spline scaling and wavelet functions have the following orthogonality properties \cite{Unser1993}: 
+% \begin{equation}
+%  \left\langle \psi_{j_1,l_1}(s),\psi_{j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\neq j_2
+% \label{PsiPsiOrthogonality}
+% \end{equation}
+% \begin{equation}
+%  \left\langle \phi_{j_1,l_1}(s),\psi_{j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2.
+% \label{PhiPsiOrthogonality}
+% \end{equation}
 \section{State and Parameter Estimation}
 The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Roweis1999,Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For a multivariate linear dynamic system, the bound used is a quadratic of the form
 \begin{equation}\label{eq:Qfunction}
@@ -274,7 +275,12 @@ The operator $\odot$ denotes block-wise matrix multiplication \mike{this still d
 \begin{align}
 \left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
 \end{align}
-where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the Rauch Tung Streibel smoother \cite{RAUCH1965} outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005}
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
+\begin{equation}
+\left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right] _{i,j}\boldsymbol\theta^\top
+\end{equation}
+
+The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the Rauch Tung Streibel smoother \cite{RAUCH1965} outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005}
 \begin{align}\label{eq:Xivariables}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
