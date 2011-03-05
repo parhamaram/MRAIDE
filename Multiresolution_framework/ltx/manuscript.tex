@@ -129,11 +129,11 @@ The stochastic integro-difference equation (IDE) form of the Amari neural field 
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the \mike{connectivity} kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an i.i.d. disturbance, such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$\mike{:}\cut{, where $\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$  denotes} a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$. A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function. The observation equation describing the electrophysiological recordings is given by \mike{should the $r_n$ be $r_{n_y}$ below?} 
+where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an i.i.d. disturbance, such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$: a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$~\cite{Rasmussen2005}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$. A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function. The observation equation describing the electrophysiological recordings is given by
 \begin{equation}\label{eq:ObservationEquation}
-	y_t(\mathbf{r}_n) = \int_{\Omega} { m\left(\mathbf{r}_{n}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t, 
+	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
 \end{equation}
-where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel and the observation noise is an i.i.d. \mike{Gaussian} white noise process and $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$. % $\mathbf{y}_{t} = [y_t(\mathbf{r}_1) y_t(\mathbf{r}_2) \cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations at time $t$ via the observation kernel , is corrupted by The superscript $\top$ denotes the transpose operator.
+where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and the observation noise is an i.i.d. Gaussian white noise process and $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$. % $\mathbf{y}_{t} = [y_t(\mathbf{r}_1) y_t(\mathbf{r}_2) \cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations at time $t$ via the observation kernel , is corrupted by The superscript $\top$ denotes the transpose operator.
 \section{MRA of the IDE in State-Space}
 The multi-resolution approximation of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(.)$, and the connectivity kernel, $w(.)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(r)$ and a mother wavelet $\psi(r)$. Considering a one-dimensional field, the connectivity kernel is decomposed using,
 \begin{equation}
@@ -161,7 +161,7 @@ where the unknown parameter and state vectors, $\boldsymbol\theta \in \mathbb{R}
 \mathbf{x}_{t}^\top &=\left[\mathbf{x}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}}^\top \quad  \check{\mathbf{x}}_{t,j_{0}+1}^\top \cdots \check{\mathbf{x}}_{t,j}^\top\right].
 \label{FieldWeights}
 \end{align}
-\mike{I think it would be much clearer to simply define these vectors as vectors, rather than hoping that the reader will make the same mapping from the sets defined here to the vectors you actually use.} The kernel and field approximation coefficient vectors, $\boldsymbol \alpha_{j_0}$ and $\mathbf{x}_{t,j_{0}}$, contain all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$, respectively. Similarly, the kernel and the field detail coefficient vectors, $\boldsymbol\beta_{j}$ and $\check{\mathbf{x}}_{t,j}$ contain all the coefficients $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$ respectively.
+The kernel and field approximation coefficient vectors, $\boldsymbol \alpha_{j_0}$ and $\mathbf{x}_{t,j_{0}}$, contain all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$, respectively. Similarly, the kernel and the field detail coefficient vectors, $\boldsymbol\beta_{j}$ and $\check{\mathbf{x}}_{t,j}$ contain all the coefficients $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$ respectively.
 
 The vectors of the kernel and the field scaling and wavelet functions, $\boldsymbol\lambda$ and $\boldsymbol\mu$ respectively, are defined by
 \begin{align}
@@ -170,7 +170,7 @@ The vectors of the kernel and the field scaling and wavelet functions, $\boldsym
  \boldsymbol\mu^\top & (r)=\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right]. 
 \label{FieldBasisVector}
 \end{align}
-\mike{is it worth defining $s=r-r'$ somewhere and using that throughout? It may save some lines!} The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). 
+The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). 
  
 To derive the state-space model, we first define the matrices \mike{bold $r$s here and everywhere (or nowhere)?}
 \begin{align}\label{eq:Lambdax}
@@ -181,7 +181,7 @@ To derive the state-space model, we first define the matrices \mike{bold $r$s he
 	    \boldsymbol\mu^\top\left(r\right)\mathbf{x}_t 
 	\, dr'dr}
 \end{align}
-Eqs.~\eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} are then substituted into Eq. \eqref{eq:DiscreteTimeModel}, then we \mike{do you mean pre-multiply? - I'm not sure what cross multiply means here} cross-multiply by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the space giving
+Eqs.~\eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} are then substituted into Eq. \eqref{eq:DiscreteTimeModel}, then we pre-multiply by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the space giving
 \begin{align}\label{eq:DecomposedModel2} 
 	&\mathbf{\Lambda}_{x} \mathbf{x}_{t+1}= 
 	\xi\mathbf{\Lambda}_{x} \mathbf{x}_t +T_s \varsigma \mathbf{\Lambda}_{\theta}\mathbf{x}_t +\int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)dr.
@@ -234,7 +234,7 @@ Using the associativity property of convolution we have
 N_{m}\left( r\right) \ast N_{m'}\left(r\right)&=\underbrace{\overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m-1 \quad \text{convolutions}}\left(r\right) \ast \overbrace{\left(N_{1} \ast \cdots \ast N_{1}\right)}^{m'-1\quad \text{convolutions}}}_{m+m'-1 \quad \text{convolutions}}\left(r\right)\nonumber\\
 &=N_{m+m'}\left(r\right).
 \end{align}
-A direct consequence of Eq.~\eqref{eq:BsplineConvolution} is \dean{the inner product between two B-splines is another translated B-spline, such that}
+A direct consequence of Eq.~\eqref{eq:BsplineConvolution} is the inner product between two B-splines is another translated B-spline, such that
 \begin{align}
  \left\langle N_{m}\left(r-l_{1}\right), N_{m'}\left(r-l_{2}\right)\right\rangle=&N_{m+m'}\left(m+l_{1}-l_{2}\right)\nonumber \\
 =&N_{m+m'}\left(m'+l_{2}-l_{1}\right),
