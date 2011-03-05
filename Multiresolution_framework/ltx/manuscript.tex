@@ -172,7 +172,7 @@ The vectors of the kernel and the field scaling and wavelet functions, $\boldsym
 \end{align}
 The vectors in Eqs. (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in Eqs. (\ref{KernelWeights}) and (\ref{FieldWeights}). 
  
-To derive the state-space model, we first define the matrices \mike{bold $r$s here and everywhere (or nowhere)?}
+To derive the state-space model, we first define the matrices 
 \begin{align}\label{eq:Lambdax}
  \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) dr \\
 \label{eq:Lambdatheta}
@@ -210,7 +210,7 @@ where each element of the observation matrix is given by
 	\mathbf{C}_{ij} \triangleq \int_{\Omega}m(r_i - r')\boldsymbol{\mu}_j(r') \, d\mathbf{r}'.
 \end{equation}
 
-The MRAIDE can be implemented using various classes of scaling and wavelet functions. B-spline functions were chosen due their compact support and the ability to analytically calculate \cut{the convolution and inner product to form} the matrices $ \boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$. To show how the matrices are formed, the $m^{th}$ order cardinal B-spline scaling function is defined by the recurrence relation \cite{Chui1992} 
+The MRAIDE can be implemented using various classes of scaling and wavelet functions. B-spline functions were chosen due their compact support and the ability to analytically calculate the convolution and inner product to form the matrices $ \boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$. To show how the matrices are formed, the $m^{th}$ order cardinal B-spline scaling function is defined by the recurrence relation \cite{Chui1992} 
 \begin{align}
 N_{m}\left(r\right)=&\left(N_{m-1}\ast N_{1}\right)\left(r\right)\nonumber \\
 =&\int_0^{1} N_{m-1}\left( r-r'\right)dr' \quad m>1,
