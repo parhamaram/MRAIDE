@@ -277,7 +277,7 @@ The operator $\odot$ denotes block-wise matrix multiplication \mike{this still d
 \end{align}
 where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
 \begin{equation}
-\left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right] _{i,j}\boldsymbol\theta^\top
+\left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right] _{i,j}\boldsymbol\theta
 \end{equation}
 
 The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the Rauch Tung Streibel smoother \cite{RAUCH1965} outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005}
