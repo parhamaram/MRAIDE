@@ -246,16 +246,6 @@ where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This h
  q & _n = \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$},
 \end{align}
 where $q_n$ are the coefficients. By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct} the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta} can be computed analytically. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta}.
-
-% \cut{ It is important to note that B-spline scaling and wavelet functions have the following orthogonality properties \cite{Unser1993}: 
-% \begin{equation}
-%  \left\langle \psi_{j_1,l_1}(s),\psi_{j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\neq j_2
-% \label{PsiPsiOrthogonality}
-% \end{equation}
-% \begin{equation}
-%  \left\langle \phi_{j_1,l_1}(s),\psi_{j_2,l_2}(s)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2.
-% \label{PhiPsiOrthogonality}
-% \end{equation}
 \section{State and Parameter Estimation}
 The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Roweis1999,Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}, the bound used is a quadratic of the form
 \begin{equation}\label{eq:Qfunction}
@@ -267,15 +257,21 @@ where $\beta$ is constant with respect to $\boldsymbol\theta$. Equation \eqref{e
 \end{align}
 where
 \begin{align}\label{eq:upsilon0}
- \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}\left[ \sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\right] \\ 
- \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}\left[\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\right] \label{eq:upsilon1}\\
- \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}\left[\sum_{k,m=1}^{n_x}[\mathbf{U}^{\top}]^{i,m}[ \boldsymbol\Lambda_{x}^{-1}\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{m,k}[\mathbf{U}]^{k,j}\right]\label{eq:Upsilon}.
+ \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Gamma_1]^{j,i} \\ 
+ \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Gamma_2]^{j,i} \label{eq:upsilon1}\\
+ \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Gamma_3]^{j,i}\label{eq:Upsilon}.
 \end{align}
-where $[.]_{i,j}$ denotes $\left(i,j\right)$-element of the matrix, and $ [\mathbf U]^{i,j}$ denotes $\left(i,j\right)$-block of the $n_x \times n_x$ block matrix $\mathbf U$. Each $1\times n_{\theta}$ block of $\mathbf U$ is given by
+where $[.]_{i,j}$ denotes $\left(i,j\right)$-element of the matrix, and $ [.]^{i,j}$ denotes $\left(i,j\right)$-block of the  block matrix and where
+\begin{align}
+ [\Gamma_1]^{j,i} & =\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\label{eq:Gamma1} \\ 
+ [\Gamma_2]^{j,i} & =\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\label{eq:Gamma2} \\
+[\Gamma_3]^{j,i}&=\sum_{k,m=1}^{n_x}[\mathbf{U}^{\top}]^{i,m}[ \boldsymbol\Lambda_{x}^{-1}\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{m,k}[\mathbf{U}]^{k,j}\label{eq:Gamma3}.
+\end{align}
+ Each $1\times n_{\theta}$ block of $n_x \times n_x$ block matrix $\mathbf U$ is given by
 \begin{align}
 \left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
 \end{align}
-where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. All $\left(i,j\right)$-blocks in the second brackets in  (\ref{eq:upsilon0}-\ref{eq:Upsilon}) can be computed as a once-off before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. All blocks of $\Gamma_1$,$\Gamma_2$ and $\Gamma_3$  can be computed as a once-off before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
 \begin{equation}
 \left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right]^{i,j}\boldsymbol\theta
 \end{equation}
