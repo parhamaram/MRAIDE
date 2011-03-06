@@ -26,21 +26,6 @@ P.~Valdes, J.~Jimenez, J.~Riera, R.~Biscay, and T.~Ozaki, ``{Nonlinear EEG
   analysis based on a neural mass model},'' \emph{Biol. Cybern.}, vol.~81,
   no.~5, pp. 415--424, 1999.
 
-\bibitem{LopesDaSilva1976}
-F.~Lopes Da~Silva, A.~Van~Rotterdam, P.~Barts, E.~Van~Heusden, and W.~Burr,
-  ``{Models of neuronal populations: the basic mechanisms of rhythmicity},''
-  \emph{Progress in brain research}, vol.~45, pp. 281--308, 1976.
-
-\bibitem{Zetterberg1978}
-L.~Zetterberg, L.~Kristiansson, and K.~Mossberg, ``{Performance of a model for
-  a local neuron population},'' \emph{Biol. Cybern.}, vol.~31, no.~1, pp.
-  15--26, 1978.
-
-\bibitem{Jansen1995}
-B.~Jansen and V.~Rit, ``{Electroencephalogram and visual evoked potential
-  generation in a mathematical model of coupled cortical columns},''
-  \emph{Biol. Cybern.}, vol.~73, no.~4, pp. 357--366, 1995.
-
 \bibitem{David2003}
 O.~David and K.~Friston, ``{A neural mass model for MEG/EEG: coupling and
   neuronal dynamics},'' \emph{NeuroImage}, vol.~20, no.~3, pp. 1743--1755,
@@ -69,11 +54,6 @@ D.~R. Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~B. Grayden, and
 \bibitem{Amari1977}
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
   fields},'' \emph{Biol. Cybern.}, vol.~27, no.~2, pp. 77--87, 1977.
-
-\bibitem{Rasmussen2005}
-C.~Rasmussen and C.~Williams, \emph{{Gaussian Processes for Machine Learning
-  (Adaptive Computation and Machine Learning)}}.\hskip 1em plus 0.5em minus
-  0.4em\relax The MIT Press, Cambridge MA, 2005.
 
 \bibitem{Scerri2009}
 K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and model selection
