@@ -103,7 +103,7 @@ of Malta, Msida, MSD 2080, Malta.}}
 
 \begin{abstract}
 %\boldmath
-The Integro-difference equation (IDE) is an increasingly popular model of spatio-temporal processes. Here we develop a multiresolution approximation (MRA) framework for the IDE neural field equations based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is performed using the Expectation Maximisation (EM) algorithm. A synthetic example is given
+The Integro-difference equation (IDE) is an increasingly popular model of spatio-temporal processes. Here we develop a multi-resolution approximation (MRA) framework for the IDE neural field equations based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is performed using the Expectation Maximisation (EM) algorithm. A synthetic example is given
 to demonstrate the framework.
 \end{abstract}
 % Note that keywords are not normally used for peerreview papers.
@@ -129,7 +129,9 @@ The stochastic IDE form of the Amari neural field  formulation~\cite{Amari1977} 
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an i.i.d. disturbance, such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$: a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$. A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function. \ken{Doing something just for computational efficiency only might be weak ... is there other work we can reference that makes the linearity assumption? ... or are there practical situations when this known to be a good approximations?} The observation equation describing the electrophysiological recordings is given by
+where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=\left(1-\frac{ T_s}{\tau}\right)$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an i.i.d. disturbance, such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$: a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$. A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function. 
+\ken{Doing something just for computational efficiency only might be weak ... is there other work we can reference that makes the linearity assumption? ... or are there practical situations when this known to be a good approximations?} 
+The observation equation describing the electrophysiological recordings is given by
 \begin{equation}\label{eq:ObservationEquation}
 	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
 \end{equation}
@@ -165,12 +167,11 @@ The kernel and field approximation coefficient vectors, $\boldsymbol \alpha_{j_0
 
 The vectors of the kernel and the field scaling and wavelet functions, $\boldsymbol\lambda$ and $\boldsymbol\mu$ respectively, are defined by
 \begin{align}
- \boldsymbol\lambda^\top & (r-r')=\left[ \boldsymbol\phi_{j_0}^\top(r-r') \quad \boldsymbol\psi_{j_0}^\top(r-r') \quad \boldsymbol\psi_{j_0+1}^\top(r-r') \right. \nonumber \\
-&\left. \cdots \quad \boldsymbol\psi_{j}^\top(r-r')\right] \label{KernelBasisVector} \\
- \boldsymbol\mu^\top & (r)=\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \cdots \boldsymbol\psi_{j}^\top(r) \right]. 
+ \boldsymbol\lambda^\top & (s)=\left[ \boldsymbol\phi_{j_0}^\top(s) \quad \boldsymbol\psi_{j_0}^\top(s) \quad \boldsymbol\psi_{j_0+1}^\top(s) \quad \cdots \quad \boldsymbol\psi_{j}^\top(s)\right] \label{KernelBasisVector} \\
+ \boldsymbol\mu^\top & (r)=\left[ \boldsymbol\phi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0}^\top(r) \quad \boldsymbol\psi_{j_0+1}^\top(r) \quad \cdots \quad \boldsymbol\psi_{j}^\top(r) \right]. 
 \label{FieldBasisVector}
 \end{align}
-The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}). 
+where $s=r-r'$. The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}). 
  
 To derive the state-space model, we first define the matrices 
 \begin{align}\label{eq:Lambdax}
@@ -211,19 +212,18 @@ where each element of the observation matrix is given by
 \end{equation}
 
 The MRAIDE can be implemented using various classes of scaling and wavelet functions. B-spline functions were chosen due their compact support and the ability to analytically calculate the convolution and inner product to form the matrices $ \boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$. To show how the matrices are formed, the $m^{th}$ order cardinal B-spline scaling function is defined by the recurrence relation \cite{Chui1992} 
-\begin{align}
-N_{m}\left(r\right)=&\left(N_{m-1}\ast N_{1}\right)\left(r\right)\nonumber \\
-=&\int_0^{1} N_{m-1}\left( r-r'\right)dr' \quad m>1,
-\label{SplineConvolutionIntegral}
-\end{align}
-where $\ast$ denotes convolution and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$
 \begin{equation}
-N_{1}\left(r\right)=
-\begin{cases}
-1 & \text{if $ 0\le r<1$}, \\
-0 & \mathrm{elsewhere}.
-\end{cases}
+N_{m}\left(r\right) = \left(N_{m-1}\ast N_{1}\right)\left(r\right) = \int_0^{1} N_{m-1}\left( r-r'\right)dr',
+\label{SplineConvolutionIntegral}
 \end{equation}
+where $m>1$ and $\ast$ denotes convolution and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$ ($rect$ function).
+% \begin{equation}
+% N_{1}\left(r\right)=
+% \begin{cases}
+% 1 & \text{if $ 0\le r<1$}, \\
+% 0 & \mathrm{elsewhere}.
+% \end{cases}
+% \end{equation}
 Equation \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself since
 \begin{equation}
  N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right).
@@ -242,8 +242,8 @@ A direct consequence of \eqref{eq:BsplineConvolution} is the inner product betwe
 \end{align}
 where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This holds as $N_m\left(r\right)$ is isotropic. The $m^{th}$-order B-spline wavelet function is defined as (see \cite{Chui1992}) 
 \begin{align}
- \varphi & _{m}\left(r\right) = \sum_{n=0}^{3m-2} q_n N_{m}\left(2r-n\right) \\
- q & _n = \frac{\left(-1\right)^n}{2^{m-1}} \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$},
+ \varphi & _{m}\left(r\right) = \sum_{n=0}^{3m-2} \frac{\left(-1\right)^n}{2^{m-1}}  q_n N_{m}\left(2r-n\right) \\
+ q & _n = \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$},
 \end{align}
 where $q_n$ are the coefficients. By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct} the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta} can be computed analytically. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$ the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. In this paper $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta}.
 
@@ -289,7 +289,8 @@ The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $
 %\cut{The second terms in  \eqref{eq:upsilon0}, \eqref{eq:upsilon1}, and \eqref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}.}
 
 \section{Results}
-To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using \eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 200 realizations of 1 second of data were generated. The observation noise was set to $\boldsymbol\Sigma_{\epsilon}=0.1 \times \mathbf{I}_{n_y}$ and the disturbance covariance was set to $\eta(r-r') = \phi_{3,-2}(r-r')$ (B-spline, $j=3$). The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms, respectively. The firing rate slop, $\varsigma$ was set to $0.56~mV^{-1}$. The distance between adjacent sensors was $0.5$~mm, resulting into $n_y = 161$ observations. The observation kernel was modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed.  \ken{if we need to gain space I would remove the rest of this paragraph and put all parameters in a table} The spatial cutoff frequency of the observed field, $y_t(r_n)$, was used to specify the level of decomposition required to represent the field using the wavelets. Using an oversampling parameter of \dean{6?}, the cutoff spatial frequency was \dean{$\nu_{cy} = ??$} cycles/mm \cite{Freestone2011}. Therefore, wavelets up to level $j=3$ (with the bandwidth $\approx[5,8]$ cycles/mm) can represent the significant spatial characteristics of the field, yielding $n_x = 131$ states. 
+To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using \eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation}, enabling a comparison between true and estimated parameters. 200 realizations of 1 second of data were generated. The observation noise was set to $\boldsymbol\Sigma_{\epsilon}=0.1 \times \mathbf{I}_{n_y}$ and the disturbance covariance was set to $\eta(r-r') = \phi_{3,-2}(r-r')$ (B-spline, $j=3$). The sampling period and the synaptic time constant were set to $T_s = 1$~ms and $\tau = 10$~ms, respectively. The firing rate slop, $\varsigma$ was set to $0.56~mV^{-1}$. The distance between adjacent sensors was $0.5$~mm, resulting into $n_y = 161$ observations. The observation kernel was modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude. The spacing and bandwidth of the sensors allowed for the full spatial bandwidth of the field to be observed.  %\ken{if we need to gain space I would remove the rest of this paragraph and put all parameters in a table} 
+The spatial cutoff frequency of the observed field, $y_t(r_n)$, was used to specify the level of decomposition required to represent the field using the wavelets. Using an oversampling parameter of \dean{6?}, the cutoff spatial frequency was \dean{$\nu_{cy} = ??$} cycles/mm \cite{Freestone2011}. Therefore, wavelets up to level $j=3$ (with the bandwidth $\approx[5,8]$ cycles/mm) can represent the significant spatial characteristics of the field, yielding $n_x = 131$ states. 
 
 % \dean{With this number of observations, the estimation problem was well-posed, since the wavelets are orthogonal and the number of states, $n_x < n_y$ at each level of the decomposition.}  
 % \cut{Note that wavelets due to their bandpass filter characteristics extract successively higher and higher frequency components by increasing $j$.}
@@ -313,9 +314,9 @@ The actual connectivity kernel and the decomposition is plotted in \figurename{\
 \section{Discussion}
 In this paper, we have presented a novel model-based framework for estimating cortical dynamics from electrophysiological measurements. The novel and key developments of the paper include the multi-resolution FEM representation of the neural field, and the estimator for an intracortical connectivity kernel with an arbitrary shape. This work is significant, as the ability to create patient specific neural field models has the potential to contribute to our understanding and improve treatment of diseases resulting from abnormal neurodynamics, such as epilepsy. Other groups have previously highlighted the importance of a multi-resolution approach in neural field modeling. For example, it is thought that the dynamics and connectivity structure differs at different spatial scales~\cite{Qubbaj2009}.
 
-\cut{The MRAIDE approach is not limited to neural fields, where the framework can be applied modeling other multi-resolution spatiotemporal dynamical systems such as weather systems, ecological systems, and others\cite{Wikle2002,Xu2005,Fort2008} \ken{meteorology [76, 88, 94, 222, 232], epidemiology [123, 137, 218], physics [32, 85, 129, 231], environmental science [45, 87, 183, 204] and economics [31, 48, 165]. (This is copy and paste from my thesis ... parham I'll get you the references later)}. \parham{Mike,Ken: can add to this list?}}
+\cut{The MRAIDE approach is not limited to neural fields, where the framework can be applied modeling other multi-resolution spatiotemporal dynamical systems such as weather systems, ecological systems, and others\cite{Wikle2002,Xu2005,Fort2008}}. \ken{meteorology [76, 88, 94, 222, 232], epidemiology [123, 137, 218], physics [32, 85, 129, 231], environmental science [45, 87, 183, 204] and economics [31, 48, 165]. (This is copy and paste from my thesis ... parham I'll get you the references later)}. \parham{Mike,Ken: can add to this list?}
 
-In order to apply the framework to real data several \ken{better say some} assumptions must be made, such as stationarity of the parameters over the estimation period. Perhaps the most critical assumption is that the model provides an apt description of the cortical dynamics. The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The key development in this paper is the multi-resolution decomposition forming the state-space model. The decomposition holds for more sophisticated nonlinear forms of the field equations, where the unscented RTS smoother should be used in the E-step of the estimation algorithm. 
+In order to apply the framework to real data some assumptions must be made, such as stationarity of the parameters over the estimation period. Perhaps the most critical assumption is that the model provides an apt description of the cortical dynamics. The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The key development in this paper is the multi-resolution decomposition forming the state-space model. The decomposition holds for more sophisticated nonlinear forms of the field equations, where the unscented RTS smoother should be used in the E-step of the estimation algorithm. 
 
 Future work should be directed towards extending the framework to account for a second-order synaptic response kernel, heterogeneity in the connectivity and perhaps time delays at lower spatial resolutions. Most importantly, future work should be directed towards applying and validating the framework on real data.
 
