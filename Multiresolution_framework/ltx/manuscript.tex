@@ -251,11 +251,11 @@ The state-space representation of the MRAIDE allows the use of the well known Ex
 \begin{equation}\label{eq:Qfunction}
  \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
-where $\beta$ is constant with respect to $\boldsymbol\theta$. Equation \eqref{eq:Qfunction} is maximum at
-\begin{align}
- \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top),
-\end{align}
-where
+where $\beta$ is constant with respect to $\boldsymbol\theta$. Equation \eqref{eq:Qfunction} is maximum at $\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top)$ where
+% \begin{align}
+%  \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top),
+% \end{align}
+% where
 \begin{align}\label{eq:upsilon0}
  \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Gamma_1]^{j,i} \\ 
  \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Gamma_2]^{j,i} \label{eq:upsilon1}\\
@@ -273,7 +273,7 @@ where $[.]_{p,q}$ denotes $\left(p,q\right)$-element of the matrix, and $ [.]^{p
 \end{align}
 where $[.]_{p:} $ denotes $p^{th}$ row of the matrix. All $n_x^2$ blocks of $\Gamma_1$,$\Gamma_2$ and $\Gamma_3$  can be computed as a once-off before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
 \begin{equation}
-\left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right]^{i,j}\boldsymbol\theta
+\left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right]^{i,j}\boldsymbol\theta, 
 \end{equation}
 
 The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the Rauch Tung Streibel smoother \cite{RAUCH1965} outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005}
@@ -310,7 +310,9 @@ The actual connectivity kernel and the decomposition is plotted in \figurename{\
 \section{Discussion}
 In this paper, we have presented a novel model-based framework for estimating cortical dynamics from electrophysiological measurements. The novel and key developments of the paper include the multi-resolution FEM representation of the neural field, and the estimator for an intracortical connectivity kernel with an arbitrary shape. This work is significant, as the ability to create patient specific neural field models has the potential to contribute to our understanding and improve treatment of diseases resulting from abnormal neurodynamics, such as epilepsy. Other groups have previously highlighted the importance of a multi-resolution approach in neural field modeling. For example, it is thought that the dynamics and connectivity structure differs at different spatial scales~\cite{Qubbaj2009}.
 
-\cut{The MRAIDE approach is not limited to neural fields, where the framework can be applied modeling other multi-resolution spatiotemporal dynamical systems such as weather systems, ecological systems, and others\cite{Wikle2002,Xu2005,Fort2008}}. \ken{meteorology [76, 88, 94, 222, 232], epidemiology [123, 137, 218], physics [32, 85, 129, 231], environmental science [45, 87, 183, 204] and economics [31, 48, 165]. (This is copy and paste from my thesis ... parham I'll get you the references later)}. \parham{Mike,Ken: can add to this list?}
+ \cut{The MRAIDE approach is not limited to neural fields, where the framework can be applied modeling other multi-resolution spatiotemporal dynamical systems such as weather systems, ecological systems, and others\cite{Wikle2002,Xu2005,Fort2008}}.
+
+%  \ken{meteorology [76, 88, 94, 222, 232], epidemiology [123, 137, 218], physics [32, 85, 129, 231], environmental science [45, 87, 183, 204] and economics [31, 48, 165]. (This is copy and paste from my thesis ... parham I'll get you the references later)}. \parham{Mike,Ken: can add to this list?}
 
 In order to apply the framework to real data some assumptions must be made, such as stationarity of the parameters over the estimation period. Perhaps the most critical assumption is that the model provides an apt description of the cortical dynamics. The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The key development in this paper is the multi-resolution decomposition forming the state-space model. The decomposition holds for more sophisticated nonlinear forms of the field equations, where the unscented RTS smoother should be used in the E-step of the estimation algorithm. 
 
