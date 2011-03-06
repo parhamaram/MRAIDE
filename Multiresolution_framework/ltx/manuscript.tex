@@ -181,7 +181,7 @@ To derive the state-space model, we first define the matrices
 	    \boldsymbol\mu^\top\left(r\right) 
 	\, dr'dr}
 \end{align}
-Equations ~\eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} are then substituted into \eqref{eq:DiscreteTimeModel}, then we pre-multiply by $\boldsymbol\mu\left(\mathbf r\right)$ and integrate over the space giving \ken{Substituting Eqs.~\eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} in \eqref{eq:DiscreteTimeModel}, pre-multipling by $\boldsymbol\mu\left(\mathbf r\right)$ and integrating over the space gives}
+Substituting \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} in \eqref{eq:DiscreteTimeModel}, pre-multipling by $\boldsymbol\mu\left(\mathbf r\right)$ and integrating over the space gives
 \begin{align}\label{eq:DecomposedModel2} 
 	&\mathbf{\Lambda}_{x} \mathbf{x}_{t+1}= 
 	\xi\mathbf{\Lambda}_{x} \mathbf{x}_t +T_s \varsigma \mathbf{\Lambda}_{\theta}\mathbf{x}_t +\int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)dr.
@@ -257,7 +257,7 @@ where $q_n$ are the coefficients. By exploiting \eqref{eq:BsplineConvolution} an
 % \label{PhiPsiOrthogonality}
 % \end{equation}
 \section{State and Parameter Estimation}
-The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Roweis1999,Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. \parham{For the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}, the bound used is a quadratic of the form}
+The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Roweis1999,Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}, the bound used is a quadratic of the form
 \begin{equation}\label{eq:Qfunction}
  \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
@@ -267,17 +267,17 @@ where $\beta$ is constant with respect to $\boldsymbol\theta$. Equation \eqref{e
 \end{align}
 where
 \begin{align}\label{eq:upsilon0}
- \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\\ 
- \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\label{eq:upsilon1} \\
- \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T}\odot \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf{U}]_{j,i}\label{eq:Upsilon}.
+ \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}\left[ \sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\right] \\ 
+ \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}\left[\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\right] \label{eq:upsilon1}\\
+ \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}\left[\sum_{k,m=1}^{n_x}[\mathbf{U}^{\top}]^{i,m}[ \boldsymbol\Lambda_{x}^{-1}\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{m,k}[\mathbf{U}]^{k,j}\right]\label{eq:Upsilon}.
 \end{align}
-The operator $\odot$ denotes block-wise matrix multiplication \mike{this still doesn't work! block matrix multiplication isn't a different thing to regular matrix multiplication I think? Isn't it just a different way to do regular matrix multiplication? Also one still doesn't know if the indices in eqs 31-33 are block indices or element indices. Also it's hard to invent notation, and if you do you need to make sure it's defined! Maybe check out the tensor literature? (or simply just index all this properly)}and  $[.]_{i,j}$ denotes $\left(i,j\right)^{th}$ (block) element of the (block) matrix. Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix,  \ken{I am getting confused here too ... is this a matrix of $n_x \times n_x$ blocks or just an $n_x \times n_x$ matrix - what is the problem to define simple matrices?} $\mathbf U$ is given by
+where $[.]_{i,j}$ denotes $\left(i,j\right)$-element of the matrix, and $ [\mathbf U]^{i,j}$ denotes $\left(i,j\right)$-block of the $n_x \times n_x$ block matrix $\mathbf U$. Each $1\times n_{\theta}$ block of $\mathbf U$ is given by
 \begin{align}
-\left[ \mathbf U\right] _{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
+\left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
 \end{align}
-where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in  (\ref{eq:upsilon0}-\ref{eq:Upsilon}) can be computed as a once-off before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
 \begin{equation}
-\left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right] _{i,j}\boldsymbol\theta
+\left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right]^{i,j}\boldsymbol\theta
 \end{equation}
 
 The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the Rauch Tung Streibel smoother \cite{RAUCH1965} outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005}
