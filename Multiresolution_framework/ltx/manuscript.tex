@@ -268,7 +268,7 @@ where
 \begin{align}\label{eq:upsilon0}
  \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\\ 
  \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf U]_{j,i}\label{eq:upsilon1} \\
- \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T}\odot \boldsymbol\Lambda_{x}^{-1}\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf{U}]_{j,i}\label{eq:Upsilon}.
+ \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\mathbf{U}^{\mathsf T}\odot \boldsymbol\Lambda_{x}^{-1}\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}\odot\mathbf{U}]_{j,i}\label{eq:Upsilon}.
 \end{align}
 The operator $\odot$ denotes block-wise matrix multiplication \mike{this still doesn't work! block matrix multiplication isn't a different thing to regular matrix multiplication I think? Isn't it just a different way to do regular matrix multiplication? Also one still doesn't know if the indices in eqs 31-33 are block indices or element indices. Also it's hard to invent notation, and if you do you need to make sure it's defined! Maybe check out the tensor literature? (or simply just index all this properly)}and  $[.]_{i,j}$ denotes $\left(i,j\right)^{th}$ (block) element of the (block) matrix. Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix,  $\mathbf U$ is given by
 \begin{align}
