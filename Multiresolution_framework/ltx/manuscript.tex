@@ -276,7 +276,7 @@ where $[.]_{i,j}$ denotes $\left(i,j\right)$-element of the matrix, and $ [\math
 \begin{align}
 \left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
 \end{align}
-where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. The second terms in  (\ref{eq:upsilon0}-\ref{eq:Upsilon}) can be computed as a once-off before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
+where $[.]_{j:} $ denotes $j^{th}$ row of the matrix. All $\left(i,j\right)$-blocks in the second brackets in  (\ref{eq:upsilon0}-\ref{eq:Upsilon}) can be computed as a once-off before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
 \begin{equation}
 \left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right]^{i,j}\boldsymbol\theta
 \end{equation}
