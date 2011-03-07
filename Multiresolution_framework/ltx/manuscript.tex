@@ -216,7 +216,7 @@ The MRAIDE can be implemented using various classes of scaling and wavelet funct
 N_{m}\left(r\right) = \left(N_{m-1}\ast N_{1}\right)\left(r\right) = \int_0^{1} N_{m-1}\left( r-r'\right)dr',
 \label{SplineConvolutionIntegral}
 \end{equation}
-where $m>1$ and $\ast$ denotes convolution and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$ ($rect$ function).
+where $m>1$, $\ast$ denotes convolution and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$ ($rect$ function).
 % \begin{equation}
 % N_{1}\left(r\right)=
 % \begin{cases}
@@ -301,7 +301,7 @@ The actual connectivity kernel and the decomposition is plotted in \figurename{\
 \begin{figure}[!h] 
 	\centering
 		\includegraphics[scale=1]{./Graph/Field.pdf}
-		\caption{Actual (grey line) and estimated (black line) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, $RMSE = 2.10$. (b) $j=1$, $n_x=33$, $RMSE = 1.42$. (c) $j=2$, $n_x=65$, $RMSE = 0.80$. (d) $j=3$, $n_x=131$, $RMSE = 0.72$. (e) $j=4$, $n_x=263$, $RMSE=0.72$.}
+		\caption{Actual (grey) and estimated (black) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, $RMSE = 2.10$. (b) $j=1$, $n_x=33$, $RMSE = 1.42$. (c) $j=2$, $n_x=65$, $RMSE = 0.80$. (d) $j=3$, $n_x=131$, $RMSE = 0.72$. (e) $j=4$, $n_x=263$, $RMSE=0.72$.}
 	\label{fig:FieldEstimates}
 \end{figure} 
 \begin{figure}[!h] 
