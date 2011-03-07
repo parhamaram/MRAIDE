@@ -277,7 +277,7 @@ where $[.]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix, and $ [.
 \end{align}
 Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix $\mathbf U$ is given by \mike{just checking, does $n_x = \mathrm{constant} \times n_\theta$? or is each block $n_x \times n_x$ making $U$ something like $n_x \times n_xn_\theta$? It's probably worth being specific here, making sure that we use the idea of block matrices purely as a mechanism for fancy indexing, rather than treating them as special in some sense.}
 \begin{align}
-\left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr
+\left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr
 \end{align}
 \mike{bold $r$s?}where $[.]_{j:} $ denotes the $j^{th}$ row. All $n_x^2$ blocks of $\boldsymbol\Gamma_1$,$\boldsymbol\Gamma_2$ and $\boldsymbol\Gamma_3$  can be computed before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
 \begin{equation}
