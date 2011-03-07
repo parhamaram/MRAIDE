@@ -259,19 +259,19 @@ where $\beta$ is constant with respect to $\boldsymbol\theta$. Equation \eqref{e
 \begin{align}\label{eq:upsilon0}
  \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\Gamma_1]^{j,i} \\ 
  \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Gamma_2]^{j,i} \label{eq:upsilon1}\\
- \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Gamma_3]^{j,i}\label{eq:Upsilon}.
+ \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\Gamma_3]^{j,i}\label{eq:Upsilon}
 \end{align}
-where $[.]_{p,q}$ denotes $\left(p,q\right)$-element of the matrix, and $ [.]^{p,q}$ denotes $\left(p,q\right)$-block of the block matrix and where
+where $[.]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix, and $ [.]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix and where
 \begin{align}
  [\Gamma_1]^{j,i} & =\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\label{eq:Gamma1} \\ 
  [\Gamma_2]^{j,i} & =\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\label{eq:Gamma2} \\
 [\Gamma_3]^{j,i}&=\sum_{k,m=1}^{n_x}[\mathbf{U}^{\top}]^{j,m}[ \boldsymbol\Lambda_{x}^{-1}\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{m,k}[\mathbf{U}]^{k,i}\label{eq:Gamma3}.
 \end{align}
- Each $1\times n_{\theta}$ block of $n_x \times n_x$ block matrix $\mathbf U$ is given by
+Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix $\mathbf U$ is given by \mike{just checking, does $n_x = \mathrm{constant} \times n_\theta$? or is each block $n_x \times n_x$ making $U$ something like $n_x \times n_xn_\theta$? It's probably worth being specific here, making sure that we use the idea of block matrices purely as a mechanism for fancy indexing, rather than treating them as special in some sense.}
 \begin{align}
-\left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr.
+\left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr
 \end{align}
-where $[.]_{p:} $ denotes $p^{th}$ row of the matrix. All $n_x^2$ blocks of $\Gamma_1$,$\Gamma_2$ and $\Gamma_3$  can be computed as a once-off before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
+\mike{bold $r$s?}where $[.]_{j:} $ denotes the $j^{th}$ row. All $n_x^2$ blocks of $\Gamma_1$,$\Gamma_2$ and $\Gamma_3$  can be computed before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
 \begin{equation}
 \left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right]^{i,j}\boldsymbol\theta, 
 \end{equation}
