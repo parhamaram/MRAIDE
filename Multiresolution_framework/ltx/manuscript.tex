@@ -279,7 +279,7 @@ Each $1\times n_{\theta}$ block of the $n_x \times n_x$ block matrix $\mathbf U$
 \begin{align}
 \left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr
 \end{align}
-\mike{bold $r$s?}where $[.]_{j:} $ denotes the $j^{th}$ row. All $n_x^2$ blocks of $\boldsymbol\Gamma_1$,$\boldsymbol\Gamma_2$ and $\boldsymbol\Gamma_3$  can be computed before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
+where $[.]_{j:} $ denotes the $j^{th}$ row. All $n_x^2$ blocks of $\boldsymbol\Gamma_1$,$\boldsymbol\Gamma_2$ and $\boldsymbol\Gamma_3$  can be computed before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
 \begin{equation}
 \left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right]^{i,j}\boldsymbol\theta, 
 \end{equation}
@@ -310,7 +310,8 @@ The field reconstruction, at different levels of approximations, is shown in \fi
 \end{figure} 
 \begin{figure}[!h] 
 	\centering
-		\includegraphics[scale=1]{./Graph/KernelUnknownSupportWithVarsigma.pdf}
+% 		\includegraphics[scale=1]{./Graph/KernelUnknownSupportWithVarsigma.pdf}
+		\includegraphics[scale=1]{./Graph/test.pdf}
 		\caption{Connectivity kernel estimate. (a) The actual kernel is shown with the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std.). (b) Kernel scaling functions at $j=1$. (c) Kernel wavelet functions at $j=1$.}
 	\label{fig:KernelEstimate}
 \end{figure}
