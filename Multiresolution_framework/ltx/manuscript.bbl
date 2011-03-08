@@ -28,8 +28,7 @@ P.~Valdes, J.~Jimenez, J.~Riera, R.~Biscay, and T.~Ozaki, ``{Nonlinear EEG
 
 \bibitem{David2003}
 O.~David and K.~Friston, ``{A neural mass model for MEG/EEG: coupling and
-  neuronal dynamics},'' \emph{NeuroImage}, vol.~20, no.~3, pp. 1743--1755,
-  2003.
+  neuronal dynamics},'' \emph{NeuroImage}, vol.~20, no.~3, 2003.
 
 \bibitem{Galka2008}
 A.~Galka, T.~Ozaki, H.~Muhle, U.~Stephani, and M.~Siniatchkin, ``{A data-driven
@@ -62,8 +61,7 @@ B.~Murphy and K.~Miller, ``{Balanced amplification: a new mechanism of
 
 \bibitem{Chui1992}
 C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
-  principle,'' \emph{Trans. Amer. Math. Soc.}, vol. 330, no.~2, pp. 903--915,
-  1992.
+  principle,'' \emph{Trans. Amer. Math. Soc.}, vol. 330, no.~2, 1992.
 
 \bibitem{Goswami1999}
 J.~C. Goswami and A.~Chan, \emph{Fundamentals of Wavelets: Theory, Algorithms,
@@ -80,18 +78,13 @@ M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
   modeling using the integro-difference equation,'' \emph{IEEE Trans. Signal
   Process.}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
 
-\bibitem{Roweis1999}
-S.~Roweis and Z.~Ghahramani, ``{A unifying review of linear Gaussian models},''
-  \emph{Neural Comput.}, vol.~11, no.~2, pp. 305--345, 1999.
-
 \bibitem{Shumway2000}
 R.~Shumway and D.~Stoffer, \emph{Time Series Analysis and Its
   Applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Verlag, 2000.
 
 \bibitem{RAUCH1965}
 H.~E. Rauch, F.~Tung, and C.~T. Striebel, ``Maximum likelihood estimates of
-  linear dynamic systems,'' \emph{AIAA Journal}, vol.~3, no.~8, pp. 1445--1450,
-  1965.
+  linear dynamic systems,'' \emph{AIAA Journal}, vol.~3, no.~8, 1965.
 
 \bibitem{Gibsona2005}
 S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
@@ -117,10 +110,5 @@ C.~K. Wikle, ``A kernel-based spectral model for non-\text{G}aussian
 K.~Xu, W.~C. K, and F.~Neil, ``A kernel-based spatio-temporal dynamical model
   for nowcasting weather radar reflectivities,'' \emph{J. Am. Stat. Assoc.},
   vol. 100, no. 472, pp. 1133--1144, Dec. 2005.
-
-\bibitem{Fort2008}
-J.~Fort, J.~P{\'e}rez-Losada, J.~Su{\~n}ol, L.~Escoda, and J.~Massaneda,
-  ``{Integro-difference equations for interacting species and the Neolithic
-  transition},'' \emph{New J. Phys.}, vol.~10, p. 043045, 2008.
 
 \end{thebibliography}
