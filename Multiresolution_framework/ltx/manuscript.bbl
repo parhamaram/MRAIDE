@@ -55,10 +55,10 @@ D.~R. Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~B. Grayden, and
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
   fields},'' \emph{Biol. Cybern.}, vol.~27, no.~2, pp. 77--87, 1977.
 
-\bibitem{Rasmussen2005}
-C.~Rasmussen and C.~Williams, \emph{{Gaussian Processes for Machine Learning
-  (Adaptive Computation and Machine Learning)}}.\hskip 1em plus 0.5em minus
-  0.4em\relax The MIT Press, Cambridge MA, 2005.
+\bibitem{Murphy2009}
+B.~Murphy and K.~Miller, ``{Balanced amplification: a new mechanism of
+  selective amplification of neural activity patterns},'' \emph{Neuron},
+  vol.~61, no.~4, pp. 635--648, 2009.
 
 \bibitem{Chui1992}
 C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
