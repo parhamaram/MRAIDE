@@ -62,7 +62,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Multi-resolution \parham{spatio-temporal} Neural Field Estimation }
+\title{Multi-Resolution Spatio-Temporal Neural Field Estimation }
 
 
 \author{\parham{P. Aram}, \dean{D.R. Freestone~\IEEEmembership{Graduate Student Member,~IEEE}}, \mike{M. Dewar}, \ken{K.Scerri~\IEEEmembership{Member,~IEEE,}}, D.B. Grayden~\IEEEmembership{Member,~IEEE,} and V. Kadirkamanathan~\IEEEmembership{Member,~IEEE} % <-this % stops a space
@@ -112,7 +112,7 @@ to demonstrate the framework.
 % \end{IEEEkeywords}
 % \IEEEpeerreviewmaketitle
 \section{Introduction}
-\IEEEPARstart{T}{he} human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
+\IEEEPARstart{T}{he} human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
 
 Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. These models typically describe the macroscopic dynamics of the human brain, but are also descriptive of finer-scale neurodynamics. The ability to create patient-specific neural models will contribute to our knowledge base of diseases such as epilepsy and will enable the development of new treatment strategies. This is particularly relevant to the advent of new devices that use therapeutic electrical stimulation. Stimulation strategies for devices currently operate in an open loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists enormous potential to improve the performance of these devices using systems theory, which in turn requires a suitable dynamic model. Neural mass and neural field models are ideal candidates for estimation algorithms due to their strong links with physiology and their parsimony. It is expected that parameters of the neural fields models will be patient-specific and will, therefore, need to be inferred from data.
 
@@ -167,19 +167,27 @@ where the unknown parameter and state vectors, $\boldsymbol\theta \in \mathbb{R}
 The kernel and field approximation coefficient vectors, $\boldsymbol \alpha_{j_0}$ and $\mathbf{x}_{t,j_{0}}$, contain all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$, respectively. Similarly, the kernel and the field detail coefficient vectors, $\boldsymbol\beta_{j}$ and $\check{\mathbf{x}}_{t,j}$, contain all the coefficients $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$, respectively.
 
 The vectors of the kernel and the field scaling and wavelet functions, $\boldsymbol\lambda$ and $\boldsymbol\mu$, respectively, are defined by
-\begin{align}
-&\boldsymbol\lambda^\top(s)=[
-	\begin{array}{ccccc}
-		 \boldsymbol\phi_{j_0}^\top(s) & \boldsymbol\psi_{j_0}^\top(s) & \boldsymbol\psi_{j_0+1}^\top(s) & \cdots & \boldsymbol\psi_{j}^\top(s)
-		\end{array}
-		] \label{KernelBasisVector} \\
-&\boldsymbol\mu^\top (r)= [
-			\begin{array}{ccccc}
-				\boldsymbol\phi_{j_0}^\top(r) & \boldsymbol\psi_{j_0}^\top(r) & \boldsymbol\psi_{j_0+1}^\top(r) & \cdots & \boldsymbol\psi_{j}^\top(r) 
-			\end{array} 
-				],
-\label{FieldBasisVector}
-\end{align}
+\begin{equation}
+    \label{KernelBasisVector}
+    \boldsymbol\lambda^\top(s)=[
+    \boldsymbol\phi_{j_0}^\top(s) ~
+    \boldsymbol\psi_{j_0}^\top(s) ~ 
+    \boldsymbol\psi_{j_0+1}^\top(s) ~
+    \cdots ~
+    \boldsymbol\psi_{j}^\top(s)]
+\end{equation} 
+\begin{equation}
+    \label{FieldBasisVector}
+    \boldsymbol\mu^\top (r) = [
+    \boldsymbol\phi_{j_0}^\top(r) ~ 
+    \boldsymbol\psi_{j_0}^\top(r) ~ 
+    \boldsymbol\psi_{j_0+1}^\top(r) ~ 
+    \cdots ~ 
+    \boldsymbol\psi_{j}^\top(r)
+]   
+\end{equation}
+
+
 where $s=r-r'$. The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}). 
  
 To derive the state-space model, we first define the matrices 
@@ -321,7 +329,7 @@ In this paper, we have presented a novel model-based framework for estimating co
 The MRAIDE approach is not limited to neural fields; the framework can be applied to modeling other multi-resolution spatiotemporal dynamical systems such as weather systems, ecological systems, and others\cite{Wikle2002,Xu2005,Fort2008}. 
 % \ken{meteorology [76, 88, 94, 222, 232], epidemiology [123, 137, 218], physics [32, 85, 129, 231], environmental science [45, 87, 183, 204] and economics [31, 48, 165]. (This is copy and paste from my thesis ... parham I'll get you the references later)}. \parham{Mike,Ken: can add to this list?}\mike{While I love this kind of thing for a review, I'm not sure we have space for this kind of thing? Also it's not terribly specific. I think it's better to stick to how it has the potential to model brains in a manner that rocks, rather than loosely saying it could be applied to any spatiotemporal system, i.e. literally everything.}
 
-  \mike{The framework makes two key assumptions about the cortex: a linear activation function and stationary dynamics. Our main aim for this framework is to relax these assumptions using the multi-resolution decomposition. \dean{(our main aim wasn't really to relax the assumptions. if it was, we failed.)} While the decomposition itself holds, efficiently performing nonlinear smoothing in the much larger state space remains a challenge. Additional avenues for future work include extending the model to capture a second order synaptic response kernel, and time delays \parham{at lower spatial resolutions}.  The estimation techniques should also be extended to deal with spatial and temporal heterogeneity in the kernel. Finally, the majority of our current work involves applying this framework to collected data, primarily for the use of seizure detection and mitigation.}
+  \mike{The framework makes two key assumptions about the cortex: a linear activation function and stationary dynamics. Our main aim for this framework in the future is to relax these assumptions using the multi-resolution decomposition. While the decomposition itself holds, efficiently performing nonlinear smoothing in the much larger state space remains a challenge. Additional avenues for future work include extending the model to capture a second order synaptic response kernel, and time delays \parham{at lower spatial resolutions}.  The estimation techniques should also be extended to deal with spatial and temporal heterogeneity in the kernel. Finally, the majority of our current work involves applying this framework to collected data, primarily for the use of seizure detection and mitigation.}
 
  In order to apply the framework to real data some assumptions must be made, such as stationarity of the parameters over the estimation period. Perhaps the most critical assumption is that the model provides an apt description of the cortical dynamics. The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The key development in this paper is the multi-resolution decomposition forming the state-space model \parham{and its ability to approximate the neural field at required resolution.} \cut{The decomposition holds for more sophisticated nonlinear forms of the field equations, where the unscented RTS smoother should be used in the E-step of the estimation algorithm.}
 
