@@ -1,9 +1,9 @@
  % TO DELETE
 
 %    \documentclass[journal,a4paper]{IEEEtran}
-\documentclass[journal]{IEEEtran}
+ \documentclass[journal]{IEEEtran}
 
-%     \documentclass[10pt,twocolumn,twoside]{IEEEtran}
+%      \documentclass[10pt,twocolumn,twoside]{IEEEtran}
 %     \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
 %         \topmargin       -6.0mm
 %          \oddsidemargin      0mm
@@ -108,9 +108,19 @@ to demonstrate the framework.
 \end{abstract}
 % Note that keywords are not normally used for peerreview papers.
 % \begin{IEEEkeywords}
-% Neural field model, multiresolution approximation (MRA), Expectation Maximization (EM) algorithm, wavelets.
-% \end{IEEEkeywords}
-% \IEEEpeerreviewmaketitle
+%  Neural field model, multiresolution approximation (MRA), Expectation Maximization (EM) algorithm, wavelets.
+%  \end{IEEEkeywords}
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+\ifCLASSOPTIONpeerreview
+  \begin{center} \bfseries EDICS Category: SSP-IDEN \end{center}
+  \fi
+%
+%  For peerreview papers, this IEEEtran command inserts a page break and
+%creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
 \section{Introduction}
 \IEEEPARstart{T}{he} human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
 
