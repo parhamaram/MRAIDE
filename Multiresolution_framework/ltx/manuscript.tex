@@ -103,7 +103,7 @@ of Malta, Msida, MSD 2080, Malta.}}
 
 \begin{abstract}
 %\boldmath
-The Integro-difference equation (IDE) is an increasingly popular model of spatio-temporal processes. Here we develop a multi-resolution approximation (MRA) framework for the IDE neural field equations based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is performed using the Expectation Maximisation (EM) algorithm. A synthetic example is provied
+The Integro-difference equation (IDE) is an increasingly popular model of spatio-temporal processes. Here we develop a multi-resolution approximation (MRA) framework for the IDE neural field equations based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is performed using the Expectation Maximization (EM) algorithm. A synthetic example is provided
 to demonstrate the framework.
 \end{abstract}
 % Note that keywords are not normally used for peerreview papers.
@@ -116,7 +116,7 @@ to demonstrate the framework.
 
 Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. These models typically describe the macroscopic dynamics of the human brain, but are also descriptive of finer-scale neurodynamics. The ability to create patient-specific neural models will contribute to our knowledge base of diseases such as epilepsy and will enable the development of new treatment strategies. This is particularly relevant to the advent of new devices that use therapeutic electrical stimulation. Stimulation strategies for devices currently operate in an open loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists enormous potential to improve the performance of these devices using systems theory, which in turn requires a suitable dynamic model. Neural mass and neural field models are ideal candidates for estimation algorithms due to their strong links with physiology and their parsimony. It is expected that parameters of the neural fields models will be patient-specific and will, therefore, need to be inferred from data.
 
-The first work describing data-driven mesoscopic neural modeling used a neural mass model to fit EEG data~\cite{Valdes1999}. This approach was extended to coupled neural masses through a Bayesian estimation scheme dubbed Dynamic Causal Modeling (DCM)~\cite{David2003}. Following this work, data-driven modeling was extended to continuum field equations that explained the richer dynamics of spatiotemporal neural fields \cite{Galka2008,schiff2008kalman,Daunizeau2009}. Most recently, a framework was developed where a finite element model (FEM) of the neural field (via a global Galerkin projection) was formed, using a basis function decomposition, to transform the PDE neural field equations into a finite dimension system to facilitate efficient state and parameter estimation~\cite{Freestone2011}. The current paper is an extension to this recent study, where we derive a neural field state-space model that accounts for the multi-resolution architecture and spatial dynamics of the human cortex. In this way, a flexible framework is created, whereby both macroscopic and microscopic behaviour of the system can be represented simultaneously.
+The first work describing data-driven mesoscopic neural modeling used a neural mass model to fit EEG data~\cite{Valdes1999}. This approach was extended to coupled neural masses through a Bayesian estimation scheme dubbed Dynamic Causal Modeling (DCM)~\cite{David2003}. Following this work, data-driven modeling was extended to continuum field equations that explained the richer dynamics of spatiotemporal neural fields \cite{Galka2008,schiff2008kalman,Daunizeau2009}. Most recently, a framework was developed where a finite element model (FEM) of the neural field (via a global Galerkin projection) was formed, using a basis function decomposition, to transform the PDE neural field equations into a finite dimension system to facilitate efficient state and parameter estimation~\cite{Freestone2011}. The current paper is an extension to this recent study, where we derive a neural field state-space model that accounts for the multi-resolution architecture and spatial dynamics of the human cortex. In this way, a flexible framework is created, whereby both macroscopic and microscopic behavior of the system can be represented simultaneously.
 
 \section{IDE Neural Field Model}
 The stochastic IDE form of the Amari neural field  formulation~\cite{Amari1977} is given by (see~\cite{Freestone2011} for a full derivation)
@@ -129,7 +129,7 @@ The stochastic IDE form of the Amari neural field  formulation~\cite{Amari1977} 
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=1-T_s/\tau$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an i.i.d. disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$: a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$. \dean{A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function. }
+where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=1-T_s/\tau$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an i.i.d. disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$: a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$ \cite{Rasmussen2005}. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$. \dean{A linear form of the activation function was chosen to construct the estimator due to high computational demands when using a nonlinear (sigmoidal) activation function. }
 % \ken{Doing something just for computational efficiency only might be weak ... is there other work we can reference that makes the linearity assumption? ... or are there practical situations when this known to be a good approximations?} 
 The observation equation describing the electrophysiological recordings is given by
 \begin{equation}\label{eq:ObservationEquation}
@@ -190,7 +190,7 @@ To derive the state-space model, we first define the matrices
 	    \boldsymbol\mu^\top\left(r\right). 
 	\, dr'dr}
 \end{align}
-Substituting \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} in \eqref{eq:DiscreteTimeModel}, pre-multipling by $\boldsymbol\mu\left(\mathbf r\right)$, and integrating over the space gives
+Substituting \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} in \eqref{eq:DiscreteTimeModel}, pre-multiplying by $\boldsymbol\mu\left(\mathbf r\right)$, and integrating over the space gives
 \begin{align}\label{eq:DecomposedModel2} 
 	&\mathbf{\Lambda}_{x} \mathbf{x}_{t+1}= 
 	\xi\mathbf{\Lambda}_{x} \mathbf{x}_t +T_s \varsigma \mathbf{\Lambda}_{\theta}\mathbf{x}_t +\int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)dr.
@@ -305,13 +305,13 @@ The actual connectivity kernel and the decomposition is plotted in \figurename{\
 \begin{figure}[!h] 
 	\centering
 		\includegraphics[scale=1]{./Graph/fig1.pdf}
-		\caption{Actual (grey) and estimated (black) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, $RMSE = 1.93$. (b) $j=1$, $n_x=33$, $RMSE = 1.39$. (c) $j=2$, $n_x=65$, $RMSE = 0.90$. (d) $j=3$, $n_x=131$, $RMSE = 0.78$. (e) $j=4$, $n_x=263$, $RMSE=0.78$.}
+		\caption{Actual (gray) and estimated (black) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, $RMSE = 1.93$. (b) $j=1$, $n_x=33$, $RMSE = 1.39$. (c) $j=2$, $n_x=65$, $RMSE = 0.90$. (d) $j=3$, $n_x=131$, $RMSE = 0.78$. (e) $j=4$, $n_x=263$, $RMSE=0.78$.}
 	\label{fig:FieldEstimates}
 \end{figure} 
 \begin{figure}[!h] 
 	\centering
 		\includegraphics[scale=1]{./Graph/fig2.pdf}
-		\caption{Connectivity kernel estimate. (a) The actual kernel is shown with the black solid line. The mean kernel estimates over 200 realizations and \mike{confidence interval} are shown by the red line and red shaded region ($\pm2$ std.). (b)-(c) Kernel scaling and wavelets functions, respectively, at $j=1$.}
+		\caption{Connectivity kernel estimate. (a) The actual kernel is shown with the black solid line. The mean kernel estimates over 200 realizations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (b)-(c) Kernel scaling and wavelets functions, respectively, at $j=1$.}
 	\label{fig:KernelEstimate}
 \end{figure}
 % \caption{The actual connectivity kernel is shown with the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std.). The 7 weighted kernel basis functions are shown by the black dashed lines.}
