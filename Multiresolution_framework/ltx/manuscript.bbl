@@ -55,10 +55,10 @@ D.~R. Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~B. Grayden, and
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
   fields},'' \emph{Biol. Cybern.}, vol.~27, no.~2, pp. 77--87, 1977.
 
-\bibitem{Scerri2009}
-K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and model selection
-  for an \text{IDE}-based spatio-temporal model,'' \emph{IEEE Trans. Signal
-  Process.}, vol.~57, no.~2, pp. 482--492, Feb. 2009.
+\bibitem{Murphy2009}
+B.~Murphy and K.~Miller, ``{Balanced amplification: a new mechanism of
+  selective amplification of neural activity patterns},'' \emph{Neuron},
+  vol.~61, no.~4, pp. 635--648, 2009.
 
 \bibitem{Chui1992}
 C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
@@ -97,6 +97,11 @@ H.~E. Rauch, F.~Tung, and C.~T. Striebel, ``Maximum likelihood estimates of
 S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
   multivariable dynamic systems,'' \emph{Automatica}, vol.~41, no.~10, pp.
   1667--1682, Oct. 2005.
+
+\bibitem{Scerri2009}
+K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and model selection
+  for an \text{IDE}-based spatio-temporal model,'' \emph{IEEE Trans. Signal
+  Process.}, vol.~57, no.~2, pp. 482--492, Feb. 2009.
 
 \bibitem{Qubbaj2009}
 M.~Qubbaj and V.~Jirsa, ``{Neural field dynamics under variation of local and
