@@ -1,9 +1,9 @@
  % TO DELETE
 
 %    \documentclass[journal,a4paper]{IEEEtran}
-\documentclass[journal]{IEEEtran}
+ \documentclass[journal]{IEEEtran}
 
-%     \documentclass[10pt,twocolumn,twoside]{IEEEtran}
+%      \documentclass[10pt,twocolumn,twoside]{IEEEtran}
 %     \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
 %         \topmargin       -6.0mm
 %          \oddsidemargin      0mm
@@ -65,7 +65,7 @@
 \title{Multi-Resolution Spatiotemporal Neural Field Estimation }
 
 
-\author{\parham{P. Aram}, \dean{D.R. Freestone~\IEEEmembership{Graduate Student Member,~IEEE}}, \mike{M. Dewar}, \ken{K.Scerri~\IEEEmembership{Member,~IEEE,}}, D.B. Grayden~\IEEEmembership{Member,~IEEE,} and V. Kadirkamanathan~\IEEEmembership{Member,~IEEE} % <-this % stops a space
+\author{P. Aram, D.R. Freestone~\IEEEmembership{Graduate Student Member,~IEEE}, M. Dewar, K.Scerri~\IEEEmembership{Member,~IEEE}, D.B. Grayden~\IEEEmembership{Member,~IEEE,} and V. Kadirkamanathan~\IEEEmembership{Member,~IEEE} % <-this % stops a space
 \thanks{P. Aram* and V. Kadirkamanathan are with the Department of Automatic Control and Systems Engineering, University of Sheffield, Sheffield, S1 3JD, U.K. (e-mail:p.aram@sheffield.ac.uk; visakan@sheffield.ac.uk).}% <-this % stops a space
 \thanks{D.\ R.\ Freestone and D.\ B.\ Grayden are with the Department
 of Electrical and Electronic Engineering, The University of Melbourne, and The Bionic Ear Institute, VIC, Australia. The Bionic Ear Institute acknowledges the support it receives from the Victorian State Government through the Operational Infrastructure Support Program.}
@@ -108,9 +108,19 @@ to demonstrate the framework.
 \end{abstract}
 % Note that keywords are not normally used for peerreview papers.
 % \begin{IEEEkeywords}
-% Neural field model, multiresolution approximation (MRA), Expectation Maximization (EM) algorithm, wavelets.
-% \end{IEEEkeywords}
-% \IEEEpeerreviewmaketitle
+%  Neural field model, multiresolution approximation (MRA), Expectation Maximization (EM) algorithm, wavelets.
+%  \end{IEEEkeywords}
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+\ifCLASSOPTIONpeerreview
+  \begin{center} \bfseries EDICS Category: SSP-IDEN \end{center}
+  \fi
+%
+%  For peerreview papers, this IEEEtran command inserts a page break and
+%creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
 \section{Introduction}
 \IEEEPARstart{T}{he} human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
 
@@ -261,7 +271,7 @@ where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This h
 \end{align}
 where $q_n$ are the coefficients. By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta} can be computed analytically. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. In this paper, $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta}.
 \section{State and Parameter Estimation}
-The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Roweis1999,Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For the linear state-space model given by (\ref{eq:StateEquation}-\ref{eq:Observationmatrix}), the bound used is a quadratic of the form
+The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For the linear state-space model given by (\ref{eq:StateEquation}-\ref{eq:Observationmatrix}), the bound used is a quadratic of the form
 \begin{equation}\label{eq:Qfunction}
  \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
@@ -307,7 +317,7 @@ The spatial cutoff frequency of the observed field was used to specify the level
 
 The field reconstruction, at different levels of approximations, is shown in \figurename{\ref{fig:FieldEstimates}}. The figure confirms that $j=3$ is adequate to capture the dynamics of the underlying field, where the RMSE converges to a steady value of 0.78. Fig.~\ref{fig:FieldEstimates} confirms good state estimation performance, where the estimated field is in good accordance with the true field. 
 
-The actual connectivity kernel and the decomposition is plotted in \figurename{\ref{fig:KernelEstimate}}(a). No assumptions where made about the shape of the kernel. The reconstructed kernel is in good accordance with the actual kernel, where the actual kernel lies inside the confidence interval. \parham{Large standard deviation is due to the high number of parameters.} The small error in the estimate is attributed to the MRA of the system used to form the estimator. \figurename{\ref{fig:KernelEstimate}}(b) and (c) shows the kernel scaling and wavelet functions, respectively.
+The actual connectivity kernel and the decomposition is plotted in \figurename{\ref{fig:KernelEstimate}}(a). No assumptions where made about the shape of the kernel. The reconstructed kernel is in good accordance with the actual kernel, where the actual kernel lies inside the confidence interval. The large standard deviation is due to the high number of parameters need to be estimated. The small error in the estimate is attributed to the MRA of the system used to form the estimator. \figurename{\ref{fig:KernelEstimate}}(b) and (c) shows the kernel scaling and wavelet functions, respectively.
 \begin{figure}[!h] 
 	\centering
 		\includegraphics[scale=1]{./Graph/fig1.pdf}
@@ -324,12 +334,12 @@ The actual connectivity kernel and the decomposition is plotted in \figurename{\
 \section{Discussion}
 In this paper, we have presented a novel model-based framework for estimating cortical dynamics from electrophysiological measurements. The novel and key developments of the paper include the multi-resolution FEM representation of the neural field, and the estimator for an intracortical connectivity kernel with an arbitrary shape. This work is significant, as the ability to create patient specific neural field models has the potential to contribute to our understanding and improve treatment of diseases resulting from abnormal neurodynamics, such as epilepsy. Other groups have previously highlighted the importance of a multi-resolution approach in neural field modeling. For example, it is thought that the dynamics and connectivity structure differs at different spatial scales~\cite{Qubbaj2009}.
 
-The MRAIDE approach is not limited to neural fields; the framework can be applied to modeling other multi-resolution spatiotemporal dynamical systems such as weather systems, ecological systems, and others\cite{Wikle2002,Xu2005,Fort2008}. 
+The MRAIDE approach is not limited to neural fields; the framework can be applied to modeling other multi-resolution spatiotemporal dynamical systems such as weather systems, ecological systems, and others\cite{Wikle2002,Xu2005}. 
 % \ken{meteorology [76, 88, 94, 222, 232], epidemiology [123, 137, 218], physics [32, 85, 129, 231], environmental science [45, 87, 183, 204] and economics [31, 48, 165]. (This is copy and paste from my thesis ... parham I'll get you the references later)}. \parham{Mike,Ken: can add to this list?}\mike{While I love this kind of thing for a review, I'm not sure we have space for this kind of thing? Also it's not terribly specific. I think it's better to stick to how it has the potential to model brains in a manner that rocks, rather than loosely saying it could be applied to any spatiotemporal system, i.e. literally everything.}
 
   % \mike{The framework makes two key assumptions about the cortex: a linear activation function and stationary dynamics. Our main aim for this framework in the future is to relax these assumptions using the multi-resolution decomposition. While the decomposition itself holds, efficiently performing nonlinear smoothing in the much larger state space remains a challenge. Additional avenues for future work include extending the model to capture a second order synaptic response kernel, and time delays \parham{at lower spatial resolutions}.  The estimation techniques should also be extended to deal with spatial and temporal heterogeneity in the kernel. Finally, the majority of our current work involves applying this framework to collected data, primarily for the use of seizure detection and mitigation.}
 
-In order to apply the framework to real data some assumptions must be made, such as stationarity of the parameters over the estimation period. A critical assumption is that the model provides an apt description of the cortical dynamics. The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The key development in this paper is the multi-resolution decomposition forming the state-space model \cut{and its ability to approximate the neural field at required the level of accuracy.} While the decomposition holds for more sophisticated models, efficiently performing nonlinear smoothing in the much larger state-space remains a challenge. Additional avenues for future work include extending the model to capture a $2^{nd}$-order synaptic response kernel, and time delays according to spatial resolutions. The estimation techniques should also be extended to deal with spatiotemporal heterogeneity in the kernel. Finally, future work should be directed towards applying and validating the framework on real data.
+In order to apply the framework to real data some assumptions must be made, such as stationarity of the parameters over the estimation period. A critical assumption is that the model provides an apt description of the cortical dynamics. The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The key development in this paper is the multi-resolution decomposition forming the state-space model. While the decomposition holds for more sophisticated models, efficiently performing nonlinear smoothing in the much larger state-space remains a challenge. Additional avenues for future work include extending the model to capture a $2^{nd}$-order synaptic response kernel, and time delays according to spatial resolutions. The estimation techniques should also be extended to deal with spatiotemporal heterogeneity in the kernel. Finally, future work should be directed towards applying and validating the framework on real data.
 
 
 % \cut{Future work should be directed towards extending the framework to account for a second-order synaptic response kernel, heterogeneity in the connectivity and perhaps time delays at lower spatial resolutions. Most importantly, future work should be directed towards applying and validating the framework on real data.}
