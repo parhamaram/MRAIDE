@@ -65,6 +65,11 @@ B.~Murphy and K.~Miller, ``{Balanced amplification: a new mechanism of
   selective amplification of neural activity patterns},'' \emph{Neuron},
   vol.~61, no.~4, pp. 635--648, 2009.
 
+\bibitem{Mallat1989a}
+S.~G. Mallat, ``A theory for multiresolution signal decomposition: the wavelet
+  representation,'' \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, vol.~2,
+  no.~7, pp. 674--693, Jul. 1989.
+
 \bibitem{Chui1992}
 C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
   principle,'' \emph{Trans. Amer. Math. Soc.}, vol. 330, no.~2, pp. 903--915,
