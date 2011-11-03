@@ -321,41 +321,200 @@ The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also pro
  \end{figure}  
  In this paper, $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta}.
 \section{State and Parameter Estimation}
-The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For the linear state-space model given by (\ref{eq:StateEquation}-\ref{eq:Observationmatrix}), the bound used is a quadratic of the form
-\begin{equation}\label{eq:Qfunction}
- \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
-\end{equation}
-where $\beta$ is constant with respect to $\boldsymbol\theta$. Equation \eqref{eq:Qfunction} is maximum at $\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top)$, where
-% \begin{align}
-%  \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top),
-% \end{align}
-% where
-\begin{align}\label{eq:upsilon0}
- \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]^{j,i} \\ 
- \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i} \label{eq:upsilon1}\\
- \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_3]^{j,i},\label{eq:Upsilon}
-\end{align}
-where $[.]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix, and $ [.]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix, and where
-\begin{align}
- [\boldsymbol\Gamma_1]^{j,i} & =\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\label{eq:Gamma1} \\ 
- [\boldsymbol\Gamma_2]^{j,i} & =\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\label{eq:Gamma2} \\
-[\boldsymbol\Gamma_3]^{j,i}&=\sum_{k,m=1}^{n_x}[\mathbf{U}^{\top}]^{j,m}[ \boldsymbol\Lambda_{x}^{-1}\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{m,k}[\mathbf{U}]^{k,i}\label{eq:Gamma3}.
-\end{align}
-Each $1\times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is
-\begin{align}
-\left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr,
-\end{align}
-where $[.]_{j:} $ denotes the $j^{th}$ row. All $n_x^2$ blocks of $\boldsymbol\Gamma_1$,$\boldsymbol\Gamma_2$, and $\boldsymbol\Gamma_3$  can be computed before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
+The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. 
+For the linear state-space model given by (\ref{eq:StateEquation}--\ref{eq:MRA-Observationmatrix}), the joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ can be written as
+ \begin{equation}\label{eq:jointdistribution}
+  p(\mathbf X,\mathbf Y;\boldsymbol \Theta)=\prod_{t=0}^{T-1} p(\mathbf y_{t+1}|\mathbf x_{t+1})p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)p(\mathbf x_0).
+ \end{equation}
+ The $\mathcal Q$-function, or lower-bound on the likelihood, can be expressed in terms of the joint distribution components
+ \begin{align}
+  \mathcal Q(\boldsymbol \Theta,\boldsymbol\Theta')&=\mathbf E_{\boldsymbol \Theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \Theta)\right] \nonumber \\
+ &=\mathbf E_{\boldsymbol\Theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf y_{t+1}|\mathbf x_{t+1})+\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)
+ +\sum_{t=0}^{T-1}2\ln p(\mathbf x_0)\right],
+ \end{align}
+% where $ \mathbf E_{\boldsymbol \Theta'}\left[ .\right] $ denotes the expectation taken with respect to the distribution $p(\mathbf X | \mathbf Y;\boldsymbol \Theta') $ and $\boldsymbol \Theta'$ is the current parameter estimate maximising $p(\mathbf Y;\boldsymbol\theta)$. 
+It should be noted that neither $p(\mathbf y_{t+1}|\mathbf x_{t+1})$ nor $p(\mathbf x_0)$ are functions of the parameter set and therefore the $\mathcal Q$-function can be rewritten as
 \begin{equation}
-\left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right]^{i,j}\boldsymbol\theta. 
+\mathcal Q(\boldsymbol \Theta,\boldsymbol\Theta')=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)\right]+\mathrm{const.}
 \end{equation}
+where the constant term can be ignored as it is independent of the parameters. Under the condition that the state distribution is Gaussian --- ignoring the constant term, $1/(2\pi)^{\frac{n_x}{2}}$ --- the conditional distribution $p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\Theta)$ can be written as
+\begin{align}
+p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\Theta)= \mid\boldsymbol\Sigma_w\mid^{-\frac{1}{2}} \exp\left({-\frac{1}{2}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)^\top\boldsymbol\Sigma_w^{-1}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)}\right).
+\end{align}
+Twice the logarithm of the above distribution, once expanded, is given by
+\begin{align}\label{eq:Qfunction}
+2\ln p(\mathbf x_{t+1} , \mathbf y_{t+1};\boldsymbol\Theta)=&-\ln \mid \boldsymbol\Sigma_w\mid-\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_{t+1}+2\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf A( \boldsymbol\theta)\mathbf x_t\nonumber \\
+&-\mathbf x_t^\top\mathbf A^\top(\boldsymbol\theta)\boldsymbol\Sigma_w^{-1}\mathbf A(\boldsymbol\theta)\mathbf x_t.
+\end{align}
+Substituting $\mathbf A( \boldsymbol\theta)$ from \eqref{eq:A_theta} into \eqref{eq:Qfunction} gives
+\begin{align}
+2\ln p(\mathbf x_{t+1}, \mathbf y_{t+1};\boldsymbol\Theta)=&\beta+2 T_s\varsigma\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t \nonumber \\
+&-T_s^2\varsigma^2\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t-2\xi \varsigma T_s\mathbf x_t^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t\nonumber \\
+\end{align}
+where 
+\begin{equation}
+\beta=-\ln \mid \boldsymbol\Sigma_w\mid-\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_{t+1}+2\xi\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_t-\xi^2\mathbf x_t^\top\boldsymbol\Sigma_w^{-1}\mathbf x_t
+\end{equation}
+is constant with respect to parameter $\boldsymbol\theta$ and will disappear subject to differentiation with respect to $\boldsymbol\theta$. Taking the trace and rearranging, using the invariant cyclic permutations property of the trace, this distribution can be written as
+\begin{align}\label{eq:Qfunctionintrace}
+2\ln p(\mathbf x_{t+1}, \mathbf y_{t+1};\boldsymbol\Theta)&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
+&-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace\nonumber \\
+&-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace.
+\end{align}
+Rearranging and taking the expectation of the log-likelihood function over all time instants gives the required lower-bound which is to be maximised for the optimal parameter estimates. Therefore 
+\begin{align}\label{eq:MRA-QintermsofTraces}
+\mathcal Q(\boldsymbol \theta, \boldsymbol\theta')&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \boldsymbol\Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
+&-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace,
+\end{align}
+where
+\begin{align}
+\boldsymbol\Xi_0&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right] \label{eq:MRA-Xi0}\\
+\boldsymbol\Xi_1&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t}^\top\right] \label{eq:MRA-Xi1}.
+\end{align}
+The three traces that form \eqref{eq:MRA-QintermsofTraces} are dealt with in turn. To begin, the first trace is written in terms of element-wise summations
+\begin{align}\label{eq:MRA-trace1}
+\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i=1}^{n_x}\left[ \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right]_{ii} \nonumber \\
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}  \boldsymbol\Lambda_{\theta}\right]_{ji}\nonumber\\
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{jk} \left[ \boldsymbol\Lambda_{\theta}\right]_{ki},
+\end{align}
+where $[\cdot]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix. Each element of $\boldsymbol\Lambda_{\theta}$ can be calculated using
+\begin{equation}\label{eq:MRA-LambdaThetaElements}
+\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta,
+\end{equation}
+where $ [\cdot]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix, and where
+each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is 
+\begin{align}
+\left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{i:} dr,
+\end{align}
+where $[\cdot]_{i:} $ denotes the i-th row.  By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from \eqref{eq:MRA-LambdaThetaElements} the trace given in \eqref{eq:MRA-trace1} can be written as
+\begin{align}
+\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}\boldsymbol\theta \nonumber \\
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta
+\end{align}
+where
+\begin{align}
+\left[ \Gamma_1\right]^{j,i} =\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}.
+\end{align}
+The second trace of \eqref{eq:MRA-QintermsofTraces} is dealt with in a similar manner, giving
+\begin{align}
+\mathrm{tr} \left\lbrace \boldsymbol \Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=
+\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_1\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta.
+\end{align}
+Likewise, the third trace of \eqref{eq:MRA-QintermsofTraces} is broken down into element-wise summations
+\begin{align}
+\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j,k,m=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}[\boldsymbol\Lambda_{\theta}^{\top}]_{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\boldsymbol\Lambda_{\theta}]_{mi} \nonumber \\
+=&\boldsymbol\theta^\top\sum_{i,j=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}~\boldsymbol\theta \nonumber \\
+&=\boldsymbol\theta^\top\sum_{i,j=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}\left[ \Gamma_2\right] ^{j,i}\boldsymbol\theta,
+\end{align}
+where
+\begin{align}
+\left[ \Gamma_2\right] ^{j,i}=\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}.
+\end{align}
+Therefore the $\mathcal Q$-function can be rewritten as
+\begin{equation}\label{eq:MRA-QCompact}
+\mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
+\end{equation}
+where
+\begin{equation}\label{eq:epsilon0}
+\boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]_{j,i}
+\end{equation}
+and
+\begin{equation}\label{eq:epsilon1}
+\boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_1]^{j,i}
+\end{equation}
+\begin{equation}\label{eq:Epsilon}
+\boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}
+\end{equation}
+All $n_x^2$ blocks of $\boldsymbol\Gamma_1$ and $\boldsymbol\Gamma_2$  can be computed as a one-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the implementation in \cite{Dewar2009}. The complexity of each step of the algorithm is summarised in Table~\ref{table:MRA-ComputationalComplexity} where for ease of comparison the computational complexity of the method in \cite{Dewar2009} is also identified.
+\begin {table}
+\begin{center}
+\scalebox{1}{\begin{tabular}{lllc}
+\hline \hline
+Variable &Equation&Order&Order obtained from \cite{Dewar2009}\\ \hline\\
+$\Xi_0, \Xi_1$&\eqref{eq:MRA-Xi0}, \eqref{eq:MRA-Xi1}&$O(Tn_x^2)$& -\\
+$\boldsymbol\upsilon_0, \boldsymbol\upsilon_1$&\eqref{eq:epsilon0},\eqref{eq:epsilon1} &$O(n_x^2n_{\theta})$ &$O(n_x^2n_{\theta})+O(n_x^3)$ \\
+$\boldsymbol\Upsilon$&\eqref{eq:Epsilon}&$O(n_x^2n_{\theta}^2)$&$O(n_x^4n_{\theta}^2)$\\
+$\mathbf A(\boldsymbol\theta)$&\eqref{eq:A_theta}&$O(n_x^3)$&-\\
+$\boldsymbol\Lambda_{\theta}$&\eqref{eq:MRA-Lambdatheta}&$O(n_x^2n_{\theta})$&-\\
+$\hat{\boldsymbol\theta} $&\eqref{eq:MRA-thetahat}&$O(n_{\theta}^3)$&-\\
+\hline \hline
+\end{tabular}}
+ \caption {{\bf The Computational complexity of the estimation algorithm}. A comparison between the algorithm proposed herein and that of \cite{Dewar2009}.} 
+\label{table:MRA-ComputationalComplexity}
+\end{center}
+\end {table}
+
+By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
+\begin{align}\label{eq:MRA-QDerivative}
+\frac{\partial \mathcal Q}{\partial \boldsymbol\theta}&=2T_s\varsigma(\boldsymbol\nu_0-\boldsymbol\nu_1)^\top-T_s\varsigma(\boldsymbol\Upsilon^\top+\boldsymbol\Upsilon)\boldsymbol\theta \nonumber \\
+&=2T_s\varsigma(\boldsymbol\nu_0-\boldsymbol\nu_1)^\top-2T_s\varsigma\boldsymbol\Upsilon^\top\boldsymbol\theta.
+\end{align}
+Equating \eqref{eq:MRA-QDerivative} to $\mathbf 0$ yields
+\begin{align}\label{eq:MRA-thetahat}
+\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top.
+\end{align}
+The second derivative of the $\mathcal Q$-function is given by
+\begin{equation}
+\frac{\partial^2\mathcal Q}{\partial\boldsymbol\theta^2}=-2T_s\varsigma\boldsymbol\Upsilon.
+\end{equation}
+The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}$ matrix $\mathrm{vec}(\mathbf U)$ is of rank $n_{\theta}$ (\cite{Dewar2009}, Lemma 2), where $\mathrm{vec}(\cdot)$ denotes the vectorisation operator. Under this condition $\boldsymbol\Upsilon$ is  invertible and the second derivative is negative definite representing a maximum of the $\mathcal Q$-function. 
 
 The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the Rauch Tung Streibel smoother \cite{RAUCH1965} outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005},
 \begin{align}\label{eq:Xivariables}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
 \end{align}
-The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\theta,\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge.
+The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\theta,\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge. The RTS  algorithm is given in Algorithm~\ref{alg:MRA-RTS} for completeness. 
+\begin{algorithm}
+\caption{Summary of the Rauch-Tung-Striebel smoother}
+\label{alg:MRA-RTS}
+ % \begin{tabbing}
+ \begin{enumerate}
+ \item Forward initialisation: 
+ \begin{equation*}
+ \hat{\mathbf x}_0, \mathbf P_0
+ \end{equation*}
+ \item Forward iteration: for $t\in\left\lbrace 0,\cdots,T\right\rbrace $, calculate the predicted state and the predicted covariance matrix
+ \begin{align}
+ \hat{\mathbf x}_{t+1}^{f-}&=\mathbf A \hat{\mathbf x}_{t}^{f} \nonumber \\
+ \mathbf P_{t+1}^{f-}&=\mathbf A \mathbf P_{t}^{f}\mathbf A^{\top}+\boldsymbol\Sigma_e \nonumber 
+ \end{align}
+ \item Compute the filter gain, the filtered state and the filtered covariance matrix
+ \begin{align}
+ \mathcal K_{t+1}&=\mathbf P_{t +1}^{f-}\mathbf C ^\top(\mathbf C \mathbf P_{t +1}^{f-}\mathbf C ^\top+\boldsymbol \Sigma_{\varepsilon})^{-1} \nonumber\\
+\hat{\mathbf x}_{t+1}^{f}&=\hat{\mathbf x}_{t+1}^{f-}+\mathcal K_{t+1}(\mathbf y_{t+1}-\mathbf C\hat{\mathbf x}_{t +1}^{f-})\nonumber \\
+ \mathbf P_{t+1}^f&=(\mathbf I - \mathcal K_{t+1}\mathbf C)\mathbf P_{t +1}^{f-} \nonumber 
+ \end{align}
+ \item  Backward initialisation:
+ \begin{equation*}
+ \mathbf P_T^b= \mathbf P_T^f, \quad \hat{\mathbf x}^b_T= \hat{\mathbf x}^f_T
+ \end{equation*}
+ \item Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $ compute the smoother gain, the smoothed state and the smoothed covariance matrix
+ \begin{align}
+  \mathbf S_{t}&=\mathbf P_{t}^{f}\mathbf A^{\top}\left[ \mathbf P_{t +1}^{f-}\right]^{-1} \nonumber\\
+ \hat{\mathbf x}_t^b&=\hat{\mathbf x}_t^f+\mathbf S_t(\hat{\mathbf x}_{t+1}^{b}-\hat{\mathbf x}_{t+1}^{f-})\nonumber \\
+ \mathbf P_{t}^{b}&=\mathbf P_{t}^{f}+\mathbf S_t(\mathbf P_{t+1}^{b}-\mathbf P_{t+1}^{f-})\mathbf S_t^\top \nonumber
+ \end{align}
+ \item compute the smoothed cross covariance matrix\\
+ initialisation:
+ \begin{align}
+  \mathbf M_T=(\mathbf I-\mathcal K_T\mathbf C)\mathbf A\mathbf P_{T-1}^b \nonumber
+ \end{align}
+ Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $
+ \begin{align}
+ \mathbf M_t= \mathbf P_t^{f}\mathbf S_{t-1}^{\top}+\mathbf S_{t}(\mathbf M_{t+1}-\mathbf A\mathbf P_t^{f} )\mathbf S_{t-1}^{\top}\nonumber
+ \end{align}
+ \end{enumerate}
+ % \end{tabbing}
+ \end{algorithm}
+The stopping rule adopted herein is
+\begin{equation}
+ \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\epsilon,
+ \end{equation}
+ where $\epsilon$ is a threshold value and $\parallel \mathbf{A} \parallel_{F}^{(i)}$ and $ \parallel \mathbf{A} \parallel_{F}^{(i-1)}$ are the Frobenius norms  of the successive estimates of $\mathbf{A} $ matrices which is defined by
+ \begin{equation}
+  \parallel \mathbf{A} \parallel_{F}=\sqrt{\mathrm{tr} (\mathbf A^{\top}\mathbf A)}
+ \end{equation}
 %\cut{The second terms in  \eqref{eq:upsilon0}, \eqref{eq:upsilon1}, and \eqref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}.}
 
 \section{Results}
