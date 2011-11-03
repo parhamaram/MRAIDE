@@ -146,17 +146,16 @@ The stochastic IDE form of the Amari neural field  formulation~\cite{Amari1977} 
 \end{equation}
 where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=1-T_s/\tau$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977,Atay2005}. The term $e_t(\mathbf r)$ is a zero mean Gaussian disturbance, spatially coloured but temporally white, with covarianve function 
 \begin{equation}
-cov\left(e_{t}\left(\mathbf{r}\right),e_{t+t'}\left(\mathbf{r'}\right)\right)=\eta(\mathbf{r}-\mathbf{r'})\delta(t-t')
-\label{eq:FieldCovariance}
+cov\left(e_{t}\left(\mathbf{r}\right),e_{t+t'}\left(\mathbf{r'}\right)\right)=\eta(\mathbf{r}-\mathbf{r'})\delta(t-t'),
+\label{eq:FieldDisturbance}
 \end{equation}
 where $\delta(\cdot)$ is the Dirac-delta function. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$ \cite{VanRotterdam1982,Murphy2009}.
-%  due to high computational demands when using a nonlinear (sigmoidal) activation function. }
-% \ken{Doing something just for computational efficiency only might be weak ... is there other work we can reference that makes the linearity assumption? ... or are there practical situations when this known to be a good approximations?} 
+
 The observation equation describing the electrophysiological recordings is given by
 \begin{equation}\label{eq:ObservationEquation}
 	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
 \end{equation}
-where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I$, where $\mathbf I$ denotes the identity matrix. 
+where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. 
 \section{MRA of the IDE in State-Space}
 The multi-resolution approximation \cite{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(.)$, and the connectivity kernel, $w(.)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(r)$ and a mother wavelet $\psi(r)$. Considering a one-dimensional field, the connectivity kernel is decomposed as,
 \begin{equation}
@@ -168,7 +167,7 @@ where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j
  v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l}\phi_{j_{0},l}\left(r\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{j,l}\left(r\right),
 \label{eq:FieldExpansion}
 \end{equation}
-where $x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion and constitute the state vector at time $t$. %\dean{Need to define these guys as the states here!}
+where $x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion and constitute the state vector at time $t$. 
 
 Equations \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite series expansions and must be truncated at some level $j$. The field and the connectivity kernel are approximated by
 \begin{align}
@@ -189,12 +188,12 @@ The kernel and field approximation coefficient vectors, $\boldsymbol \alpha_{j_0
 The vectors of the kernel and the field scaling and wavelet functions, $\boldsymbol\lambda$ and $\boldsymbol\mu$, respectively, are defined by
 \begin{align}
     \label{KernelBasisVector}
-    \boldsymbol\lambda^\top(s)=&\left[
-    \boldsymbol\phi_{j_0}^\top(s) ~
-    \boldsymbol\psi_{j_0}^\top(s) ~ 
-    \boldsymbol\psi_{j_0+1}^\top(s) ~
+    \boldsymbol\lambda^\top(r-r')=&\left[
+    \boldsymbol\phi_{j_0}^\top(r-r') ~
+    \boldsymbol\psi_{j_0}^\top(r-r') ~ 
+    \boldsymbol\psi_{j_0+1}^\top(r-r') ~
     \cdots ~
-    \boldsymbol\psi_{j}^\top(s)\right] \\
+    \boldsymbol\psi_{j}^\top(r-r')\right] \\
     \label{FieldBasisVector}
     \boldsymbol\mu^\top (r) =& \left[
     \boldsymbol\phi_{j_0}^\top(r) ~ 
@@ -206,7 +205,7 @@ The vectors of the kernel and the field scaling and wavelet functions, $\boldsym
 \end{align}
 
 
-where $s=r-r'$. The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}). 
+The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}). 
  
 To derive the state-space model, we first define the matrices 
 \begin{align}\label{eq:Lambdax}
@@ -227,7 +226,7 @@ Cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ gives the state transition equa
 \label{eq:A_theta}
  \mathbf A(\boldsymbol \theta) &= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I,
 \end{align}
-where $\mathbf I$ is the identity matrix. The disturbance becomes 
+The disturbance becomes 
 \begin{equation}\label{eq:Disturbance}
 \mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(r\right)e_t\left(r\right)dr,
 \end{equation}
@@ -245,12 +244,12 @@ where each element of the observation matrix is given by
 	\mathbf{C}_{ij} \triangleq \int_{\Omega}m(r_i - r')\boldsymbol{\mu}_j(r') \, d\mathbf{r}'.
 \end{equation}
 
-The MRAIDE can be implemented using various scaling and wavelet functions. B-spline functions were chosen due to their compact support and the ability to analytically define the convolution and inner product to form $\boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$. To show how $\boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$ are formed, the $m^{th}$ order cardinal B-spline scaling function is defined by the recurrence relation \cite{Chui1992} 
+The MRAIDE can be implemented using various scaling and wavelet functions. B-spline functions were chosen due to their compact support and the ability to analytically define the convolution and inner product to form $\boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$. To show how $\boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$ are formed, the $m$-th  order cardinal B-spline  function is defined by the recurrence relation \cite{Chui1992} 
 \begin{equation}
 N_{m}\left(r\right) = \left(N_{m-1}\ast N_{1}\right)\left(r\right) = \int_0^{1} N_{m-1}\left( r-r'\right)dr',
 \label{SplineConvolutionIntegral}
 \end{equation}
-where $m>1$, $\ast$ denotes convolution, and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$.
+where $m>1$, $\ast$ denotes convolution, and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$, i.e.
 \begin{equation}
 N_{1}\left(r\right)=
 \begin{cases}
@@ -258,6 +257,21 @@ N_{1}\left(r\right)=
 0 & \mathrm{elsewhere}.
 \end{cases}
 \end{equation}
+then a B-spline of any order, $N_m(r)$, can be computed using the recursive expression defined by \cite{DeBoor2001}
+\begin{equation}\label{eq:MRA-DoBoorFormula}
+ N_{m}\left(r\right)=\frac{r}{m-1}N_{m-1}\left(r\right)+\frac{m-r}{m-1}N_{m-1}\left(r-1\right) \quad m>1.
+ \end{equation}
+The most commonly used form of splines is the Cubic spline $\left(m=4\right)$, comprising of third order polynomials added together at the joining points, with an explicit expression given by
+\begin{align}
+N_{4}\left(r\right)=
+\begin{cases}
+r^3 & \text{if $ 0\le r\le1$}, \\
+4-12r+12r^2-3r^3 & \text{if $1\le r\le2$}, \\
+-44+60r-24r^2+3r^3 & \text{if $2\le r\le3$}, \\
+64-48r+12r^2-r^3 & \text{if $3\le r\le4$}, \\
+0 & \mathrm{elsewhere}.
+\end{cases}
+\end{align}
 Equation \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself since
 \begin{equation}
  N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right).
@@ -276,7 +290,7 @@ A direct consequence of \eqref{eq:BsplineConvolution} is the inner product betwe
 \end{align}
 where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This holds as the support of $N_m\left(r\right)$ is $\left[ 0,m\right]$ and  is symmetric with respect to $r=\frac{m}{2}$. 
 
-The $m^{th}$-order B-spline scaling and wavelet functions are respectively defined as \cite{Chui1992}
+The $m$-th order B-spline scaling and wavelet functions are respectively defined as \cite{Chui1992}
 \begin{align}
  N_{m}\left(r\right)&=\sum_{n=0}^{m} \left[\mathbf p\right]_n N_{m}\left(2r-n\right) \label{eq:MRA-TwoScalepair1} \\
   \varphi_{m}\left(r\right) &= \sum_{n=0}^{3m-2} \frac{\left(-1\right)^n}{2^{m-1}} \left[\mathbf q\right]_n N_{m}\left(2r-n\right)\label{eq:MRA-TwoScalepair2},
@@ -286,7 +300,7 @@ The $m^{th}$-order B-spline scaling and wavelet functions are respectively defin
 \left[\mathbf p\right]_n&=2^{-m+1} \binom{m}{n} \quad \text{ $0\le n\le m$} \label{eq:MRA-TwoScalepair1coefs}\\
 \left[\mathbf q\right]_n&= \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$}\label{eq:MRA-TwoScalepair2coefs}.
  \end{align}
-By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta} can be computed analytically. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. This can be done by using \eqref{eq:MRA-TwoScalepair1} recursively, giving
+By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta} can be computed analytically. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. This can be done for scaling functions by using \eqref{eq:MRA-TwoScalepair1} recursively, giving
 \begin{align}\label{eq:MRA-ConvertingFormulaForscalingFunctions}
  &N_m(r)=\nonumber \\
 &\sum_{n_1,n_2, \dots n_j=0}^{m}\left[\mathbf p\right]_{n_1} \left[\mathbf p\right]_{n_2}\dots \left[\mathbf p\right]_{n_j}N_m(2^jr-k_{n_1,n_2, \dots, n_j}),
@@ -295,7 +309,16 @@ where
 \begin{align}
  k_{n_1,n_2, \dots, n_j}=2^{j-1}n_1+2^{j-2}n_2+ \dots +2^{0}n_j.
 \end{align}
-The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see Appendix ...).
+The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see Appendix ...). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using \eqref{eq:MRA-TwoScalepair2}. An example of such an expansion is given in Figure~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
+
+
+\begin{figure}[!h] 
+ 	\centering
+ 		\includegraphics[scale=1]{./Graph/ScaleDecomposition.pdf}\\
+ 		\includegraphics[scale=1]{./Graph/WaveletDecomposition.pdf}
+ 		\caption{{\bf The scaling and the wavelet function decomposition}. The scaling and the wavelet functions (blue) at $j=0$ are respectively obtained using 625 and 1250 scaling functions (black) at $j=4$.}
+ 	\label{fig:MRA-BasisDecomposition}
+ \end{figure}  
  In this paper, $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta}.
 \section{State and Parameter Estimation}
 The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For the linear state-space model given by (\ref{eq:StateEquation}-\ref{eq:Observationmatrix}), the bound used is a quadratic of the form
