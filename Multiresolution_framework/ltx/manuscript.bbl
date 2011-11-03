@@ -55,6 +55,11 @@ D.~R. Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~B. Grayden, and
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
   fields},'' \emph{Biol. Cybern.}, vol.~27, no.~2, pp. 77--87, 1977.
 
+\bibitem{Atay2005}
+F.~Atay and A.~Hutt, ``Stability and bifurcations in neural fields with finite
+  propagation speed and general connectivity,'' \emph{SIAM Journal on Applied
+  Mathematics}, vol.~65, no.~2, pp. 644--666, 2005.
+
 \bibitem{VanRotterdam1982}
 A.~Van~Rotterdam, F.~Lopes~da Silva, J.~Van~den Ende, M.~Viergever, and
   A.~Hermans, ``{A model of the spatial-temporal characteristics of the alpha
