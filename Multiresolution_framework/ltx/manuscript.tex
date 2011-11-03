@@ -511,9 +511,9 @@ The stopping rule adopted herein is
 \begin{equation}
  \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\epsilon,
  \end{equation}
- where $\epsilon$ is a threshold value and $\parallel \mathbf{A} \parallel_{F}^{(i)}$ and $ \parallel \mathbf{A} \parallel_{F}^{(i-1)}$ are the Frobenius norms  of the successive estimates of $\mathbf{A} $ matrices which is defined by
+ where $\epsilon$ is a threshold value and $\parallel \mathbf{A} \parallel_{F}^{(i)}$ and $ \parallel \mathbf{A} \parallel_{F}^{(i-1)}$ are the Frobenius norms  of the successive estimates of $\mathbf{A} $ matrices which is defined by \cite{Meyer2000}
  \begin{equation}
-  \parallel \mathbf{A} \parallel_{F}=\sqrt{\mathrm{tr} (\mathbf A^{\top}\mathbf A)}
+  \parallel \mathbf{A} \parallel_{F}=\sqrt{\sum_{i,j=1}^{n_x}\mid a_{i,j} \mid^2}=\sqrt{\mathrm{tr} (\mathbf A^{\top}\mathbf A)}
  \end{equation}
 %\cut{The second terms in  \eqref{eq:upsilon0}, \eqref{eq:upsilon1}, and \eqref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}.}
 

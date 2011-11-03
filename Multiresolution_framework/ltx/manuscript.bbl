@@ -113,6 +113,11 @@ S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
   multivariable dynamic systems,'' \emph{Automatica}, vol.~41, no.~10, pp.
   1667--1682, Oct. 2005.
 
+\bibitem{Meyer2000}
+C.~Meyer, \emph{Matrix analysis and applied linear algebra: solutions
+  manual}.\hskip 1em plus 0.5em minus 0.4em\relax Society for Industrial and
+  Applied Mathematics, 2000, vol.~2.
+
 \bibitem{Scerri2009}
 K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and model selection
   for an \text{IDE}-based spatio-temporal model,'' \emph{IEEE Trans. Signal
