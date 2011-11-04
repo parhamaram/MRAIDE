@@ -55,15 +55,34 @@ D.~R. Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~B. Grayden, and
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
   fields},'' \emph{Biol. Cybern.}, vol.~27, no.~2, pp. 77--87, 1977.
 
+\bibitem{Atay2005}
+F.~Atay and A.~Hutt, ``Stability and bifurcations in neural fields with finite
+  propagation speed and general connectivity,'' \emph{SIAM Journal on Applied
+  Mathematics}, vol.~65, no.~2, pp. 644--666, 2005.
+
+\bibitem{VanRotterdam1982}
+A.~Van~Rotterdam, F.~Lopes~da Silva, J.~Van~den Ende, M.~Viergever, and
+  A.~Hermans, ``{A model of the spatial-temporal characteristics of the alpha
+  rhythm},'' \emph{Bull. Math. Biol.}, vol.~44, no.~2, pp. 283--305, 1982.
+
 \bibitem{Murphy2009}
 B.~Murphy and K.~Miller, ``{Balanced amplification: a new mechanism of
   selective amplification of neural activity patterns},'' \emph{Neuron},
   vol.~61, no.~4, pp. 635--648, 2009.
 
+\bibitem{Mallat1989a}
+S.~G. Mallat, ``A theory for multiresolution signal decomposition: the wavelet
+  representation,'' \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, vol.~2,
+  no.~7, pp. 674--693, Jul. 1989.
+
 \bibitem{Chui1992}
 C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
   principle,'' \emph{Trans. Amer. Math. Soc.}, vol. 330, no.~2, pp. 903--915,
   1992.
+
+\bibitem{DeBoor2001}
+C.~De~Boor, \emph{A Practical Guide to Splines}.\hskip 1em plus 0.5em minus
+  0.4em\relax Springer Verlag, 2001.
 
 \bibitem{Goswami1999}
 J.~C. Goswami and A.~Chan, \emph{Fundamentals of Wavelets: Theory, Algorithms,
@@ -94,6 +113,11 @@ S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
   multivariable dynamic systems,'' \emph{Automatica}, vol.~41, no.~10, pp.
   1667--1682, Oct. 2005.
 
+\bibitem{Meyer2000}
+C.~Meyer, \emph{Matrix analysis and applied linear algebra: solutions
+  manual}.\hskip 1em plus 0.5em minus 0.4em\relax Society for Industrial and
+  Applied Mathematics, 2000, vol.~2.
+
 \bibitem{Scerri2009}
 K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and model selection
   for an \text{IDE}-based spatio-temporal model,'' \emph{IEEE Trans. Signal
@@ -106,8 +130,8 @@ M.~Qubbaj and V.~Jirsa, ``{Neural field dynamics under variation of local and
 
 \bibitem{Breakspear2005}
 M.~Breakspear and C.~Stam, ``{Dynamics of a neural system with a multiscale
-  architecture},'' \emph{Philosophical Transactions of the Royal Society B:
-  Biological Sciences}, vol. 360, no. 1457, p. 1051, 2005.
+  architecture},'' \emph{Philos. Trans. R. Soc. B-Biol. Sci.}, vol. 360, no.
+  1457, p. 1051, 2005.
 
 \bibitem{Wikle2002}
 C.~K. Wikle, ``A kernel-based spectral model for non-\text{G}aussian

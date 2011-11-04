@@ -1,10 +1,10 @@
  % TO DELETE
 
 %    \documentclass[journal,a4paper]{IEEEtran}
- \documentclass[journal]{IEEEtran}
+%  \documentclass[journal]{IEEEtran}
 
 %      \documentclass[10pt,twocolumn,twoside]{IEEEtran}
-%     \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
+     \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
 %         \topmargin       -6.0mm
 %          \oddsidemargin      0mm
 %          \evensidemargin     0mm
@@ -55,6 +55,11 @@
 \usepackage{stfloats}
 \usepackage{float}
 \floatstyle{ruled}
+%This bit is how to use hyperlink without stupid coloured rectangles around it
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=black,filecolor=black,urlcolor=black,citecolor=black}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \newfloat{algorithm}{htbp}{loa}%[chapter]
 \floatname{algorithm}{Algorithm}
 
@@ -62,7 +67,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Multi-Resolution Neural Field Estimation }
+\title{Spatiotemporal Multi-Resolution Approximation of the Amari Type Neural Field Model}
 
 
 \author{P. Aram, D.R. Freestone~\IEEEmembership{Graduate Student Member,~IEEE}, M. Dewar, K.Scerri~\IEEEmembership{Member,~IEEE}, D.B. Grayden~\IEEEmembership{Member,~IEEE,} and V. Kadirkamanathan~\IEEEmembership{Member,~IEEE} % <-this % stops a space
@@ -103,12 +108,12 @@ of Malta, Msida, MSD, Malta. (e-mail:kenneth.scerri@um.edu.mt).}}
 
 \begin{abstract}
 %\boldmath
-We develop a multi-resolution approximation (MRA) framework for the IDE neural field equations based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is performed using the Expectation Maximization (EM) algorithm. A synthetic example is provided
+We develop a multi-resolution approximation (MRA) framework for the integro-difference equation (IDE) neural field model based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is performed using the Expectation Maximization (EM) algorithm. A synthetic example is provided
 to demonstrate the framework.
 \end{abstract}
 % Note that keywords are not normally used for peerreview papers.
  \begin{IEEEkeywords}
-  Neural field model, multiresolution approximation (MRA), Expectation Maximization (EM) algorithm, wavelets.
+  Neural field model, multi-resolution approximation (MRA), Expectation Maximization (EM) algorithm, wavelets.
   \end{IEEEkeywords}
 % For peer review papers, you can put extra information on the cover
 % page as needed:
@@ -139,16 +144,20 @@ The stochastic IDE form of the Amari neural field  formulation~\cite{Amari1977} 
 	\, d\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=1-T_s/\tau$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977}. The term $e_t(\mathbf r)$ is an i.i.d. disturbance such that $e_t(\mathbf{s})\sim\mathcal{GP}(\mathbf 0,\eta(\mathbf{r}-\mathbf{r'}))$: a zero mean spatial Gaussian process with covariance function $\eta(\mathbf{r}-\mathbf{r'})$. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$ \cite{Murphy2009}.
-%  due to high computational demands when using a nonlinear (sigmoidal) activation function. }
-% \ken{Doing something just for computational efficiency only might be weak ... is there other work we can reference that makes the linearity assumption? ... or are there practical situations when this known to be a good approximations?} 
+where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Synaptic dynamics are included through the parameter $\xi=1-T_s/\tau$, where $\tau$ is the synaptic time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977,Atay2005}. The term $e_t(\mathbf r)$ is a zero mean Gaussian disturbance, spatially coloured but temporally white, with covarianve function 
+\begin{equation}
+cov\left(e_{t}\left(\mathbf{r}\right),e_{t+t'}\left(\mathbf{r'}\right)\right)=\eta(\mathbf{r}-\mathbf{r'})\delta(t-t'),
+\label{eq:FieldDisturbance}
+\end{equation}
+where $\delta(\cdot)$ is the Dirac-delta function. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$ \cite{VanRotterdam1982,Murphy2009}.
+
 The observation equation describing the electrophysiological recordings is given by
 \begin{equation}\label{eq:ObservationEquation}
 	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
 \end{equation}
-where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process. % $\mathbf{y}_{t} = [y_t(\mathbf{r}_1) y_t(\mathbf{r}_2) \cdots y_t(\mathbf{r}_{n_y})]^\top$, compiled at $n_{y}$ spatial locations at time $t$ via the observation kernel , is corrupted by The superscript $\top$ denotes the transpose operator.
+where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. 
 \section{MRA of the IDE in State-Space}
-The multi-resolution approximation of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(.)$, and the connectivity kernel, $w(.)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(r)$ and a mother wavelet $\psi(r)$. Considering a one-dimensional field, the connectivity kernel is decomposed as,
+The multi-resolution approximation \cite{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(.)$, and the connectivity kernel, $w(.)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(r)$ and a mother wavelet $\psi(r)$. Considering a one-dimensional field, the connectivity kernel is decomposed as,
 \begin{equation}
  w\left(r-r'\right)=\sum_{l \in \mathbb{Z}}\alpha_{j_0,l}\phi_{j_0,l}\left(r-r'\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{j,l}\left(r-r'\right), 
 \label{eq:KernelExpansion}
@@ -158,7 +167,7 @@ where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j
  v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l}\phi_{j_{0},l}\left(r\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{j,l}\left(r\right),
 \label{eq:FieldExpansion}
 \end{equation}
-where $x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion and constitute the state vector at time $t$. %\dean{Need to define these guys as the states here!}
+where $x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion and constitute the state vector at time $t$. 
 
 Equations \eqref{eq:KernelExpansion} and \eqref{eq:FieldExpansion} are infinite series expansions and must be truncated at some level $j$. The field and the connectivity kernel are approximated by
 \begin{align}
@@ -179,12 +188,12 @@ The kernel and field approximation coefficient vectors, $\boldsymbol \alpha_{j_0
 The vectors of the kernel and the field scaling and wavelet functions, $\boldsymbol\lambda$ and $\boldsymbol\mu$, respectively, are defined by
 \begin{align}
     \label{KernelBasisVector}
-    \boldsymbol\lambda^\top(s)=&\left[
-    \boldsymbol\phi_{j_0}^\top(s) ~
-    \boldsymbol\psi_{j_0}^\top(s) ~ 
-    \boldsymbol\psi_{j_0+1}^\top(s) ~
+    \boldsymbol\lambda^\top(r-r')=&\left[
+    \boldsymbol\phi_{j_0}^\top(r-r') ~
+    \boldsymbol\psi_{j_0}^\top(r-r') ~ 
+    \boldsymbol\psi_{j_0+1}^\top(r-r') ~
     \cdots ~
-    \boldsymbol\psi_{j}^\top(s)\right] \\
+    \boldsymbol\psi_{j}^\top(r-r')\right] \\
     \label{FieldBasisVector}
     \boldsymbol\mu^\top (r) =& \left[
     \boldsymbol\phi_{j_0}^\top(r) ~ 
@@ -196,7 +205,7 @@ The vectors of the kernel and the field scaling and wavelet functions, $\boldsym
 \end{align}
 
 
-where $s=r-r'$. The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}). 
+The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}). 
  
 To derive the state-space model, we first define the matrices 
 \begin{align}\label{eq:Lambdax}
@@ -206,7 +215,7 @@ To derive the state-space model, we first define the matrices
 	   \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
 	    \boldsymbol\mu^\top\left(r\right)\ dr'dr.}
 \end{align}
-Substituting \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} in \eqref{eq:DiscreteTimeModel}, pre-multiplying by $\boldsymbol\mu\left(\mathbf r\right)$, and integrating over the space gives
+Substituting \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} in \eqref{eq:DiscreteTimeModel}, pre-multiplying by $\boldsymbol\mu\left(r\right)$, and integrating over the space gives
 \begin{align}\label{eq:DecomposedModel2} 
 	&\mathbf{\Lambda}_{x} \mathbf{x}_{t+1}= 
 	\xi\mathbf{\Lambda}_{x} \mathbf{x}_t +T_s \varsigma \mathbf{\Lambda}_{\theta}\mathbf{x}_t +\int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)dr.
@@ -217,7 +226,7 @@ Cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ gives the state transition equa
 \label{eq:A_theta}
  \mathbf A(\boldsymbol \theta) &= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I,
 \end{align}
-where $\mathbf I$ is the identity matrix. The disturbance becomes 
+The disturbance becomes 
 \begin{equation}\label{eq:Disturbance}
 \mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(r\right)e_t\left(r\right)dr,
 \end{equation}
@@ -235,19 +244,34 @@ where each element of the observation matrix is given by
 	\mathbf{C}_{ij} \triangleq \int_{\Omega}m(r_i - r')\boldsymbol{\mu}_j(r') \, d\mathbf{r}'.
 \end{equation}
 
-The MRAIDE can be implemented using various scaling and wavelet functions. B-spline functions were chosen due to their compact support and the ability to analytically define the convolution and inner product to form $\boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$. To show how $\boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$ are formed, the $m^{th}$ order cardinal B-spline scaling function is defined by the recurrence relation \cite{Chui1992} 
+The MRAIDE can be implemented using various scaling and wavelet functions. B-spline functions were chosen due to their compact support and the ability to analytically define the convolution and inner product to form $\boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$. To show how $\boldsymbol\Lambda_x$ and $\boldsymbol \Lambda_{\theta}$ are formed, the $m$-th  order cardinal B-spline  function is defined by the recurrence relation \cite{Chui1992} 
 \begin{equation}
 N_{m}\left(r\right) = \left(N_{m-1}\ast N_{1}\right)\left(r\right) = \int_0^{1} N_{m-1}\left( r-r'\right)dr',
 \label{SplineConvolutionIntegral}
 \end{equation}
-where $m>1$, $\ast$ denotes convolution, and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$.
-% \begin{equation}
-% N_{1}\left(r\right)=
-% \begin{cases}
-% 1 & \text{if $ 0\le r<1$}, \\
-% 0 & \mathrm{elsewhere}.
-% \end{cases}
-% \end{equation}
+where $m>1$, $\ast$ denotes convolution, and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$, i.e.
+\begin{equation}
+N_{1}\left(r\right)=
+\begin{cases}
+1 & \text{if $ 0\le r<1$}, \\
+0 & \mathrm{elsewhere}.
+\end{cases}
+\end{equation}
+then a B-spline of any order, $N_m(r)$, can be computed using the recursive expression defined by \cite{DeBoor2001}
+\begin{equation}\label{eq:MRA-DoBoorFormula}
+ N_{m}\left(r\right)=\frac{r}{m-1}N_{m-1}\left(r\right)+\frac{m-r}{m-1}N_{m-1}\left(r-1\right) \quad m>1.
+ \end{equation}
+The most commonly used form of splines is the Cubic spline $\left(m=4\right)$, comprising of third order polynomials added together at the joining points, with an explicit expression given by
+\begin{align}
+N_{4}\left(r\right)=
+\begin{cases}
+r^3 & \text{if $ 0\le r\le1$}, \\
+4-12r+12r^2-3r^3 & \text{if $1\le r\le2$}, \\
+-44+60r-24r^2+3r^3 & \text{if $2\le r\le3$}, \\
+64-48r+12r^2-r^3 & \text{if $3\le r\le4$}, \\
+0 & \mathrm{elsewhere}.
+\end{cases}
+\end{align}
 Equation \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself since
 \begin{equation}
  N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right).
@@ -264,48 +288,233 @@ A direct consequence of \eqref{eq:BsplineConvolution} is the inner product betwe
 =&N_{m+m'}\left(m'+l_{2}-l_{1}\right),
 \label{eq:BsplineInnerProduct}
 \end{align}
-where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This holds as the support of $N_m\left(r\right)$ is $\left[ 0,m\right]$ and  is symmetric with respect to $r=\frac{m}{2}$. The $m^{th}$-order B-spline wavelet is defined as \cite{Chui1992}
+where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This holds as the support of $N_m\left(r\right)$ is $\left[ 0,m\right]$ and  is symmetric with respect to $r=\frac{m}{2}$. 
+
+The $m$-th order B-spline scaling and wavelet functions are respectively defined as \cite{Chui1992}
 \begin{align}
- \varphi & _{m}\left(r\right) = \sum_{n=0}^{3m-2} \frac{\left(-1\right)^n}{2^{m-1}}  q_n N_{m}\left(2r-n\right) \\
- q & _n = \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$},
+ N_{m}\left(r\right)&=\sum_{n=0}^{m} \left[\mathbf p\right]_n N_{m}\left(2r-n\right) \label{eq:MRA-TwoScalepair1} \\
+  \varphi_{m}\left(r\right) &= \sum_{n=0}^{3m-2} \frac{\left(-1\right)^n}{2^{m-1}} \left[\mathbf q\right]_n N_{m}\left(2r-n\right)\label{eq:MRA-TwoScalepair2},
+ \end{align}
+ where $\left[\cdot\right]_n$ denotes the $n$-th element of the vector coefficients, and
+ \begin{align}
+\left[\mathbf p\right]_n&=2^{-m+1} \binom{m}{n} \quad \text{ $0\le n\le m$} \label{eq:MRA-TwoScalepair1coefs}\\
+\left[\mathbf q\right]_n&= \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$}\label{eq:MRA-TwoScalepair2coefs}.
+ \end{align}
+By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta} can be computed analytically. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. This can be done for scaling functions by using \eqref{eq:MRA-TwoScalepair1} recursively, giving
+\begin{align}\label{eq:MRA-ConvertingFormulaForscalingFunctions}
+ &N_m(r)=\nonumber \\
+&\sum_{n_1,n_2, \dots n_j=0}^{m}\left[\mathbf p\right]_{n_1} \left[\mathbf p\right]_{n_2}\dots \left[\mathbf p\right]_{n_j}N_m(2^jr-k_{n_1,n_2, \dots, n_j}),
 \end{align}
-where $q_n$ are the coefficients. By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta} can be computed analytically. In order to calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. In this paper, $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta}.
+where 
+\begin{align}
+ k_{n_1,n_2, \dots, n_j}=2^{j-1}n_1+2^{j-2}n_2+ \dots +2^{0}n_j.
+\end{align}
+The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see Appendix ...). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using \eqref{eq:MRA-TwoScalepair2}. An example of such an expansion is given in Figure~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
+
+
+\begin{figure}[!h] 
+ 	\centering
+ 		\includegraphics[scale=1]{./Graph/ScaleDecomposition.pdf}\\
+ 		\includegraphics[scale=1]{./Graph/WaveletDecomposition.pdf}
+ 		\caption{{\bf The scaling and the wavelet function decomposition}. The scaling and the wavelet functions (blue) at $j=0$ are respectively obtained using 625 and 1250 scaling functions (black) at $j=4$.}
+ 	\label{fig:MRA-BasisDecomposition}
+ \end{figure}  
+ In this paper, $4^{th}$ order cardinal B-spline scaling and wavelet functions are used. Therefore, the $8^{th}$ and $12^{th}$ order B-spline values at integer points are required (see \cite{Goswami1999}) to compute the integrals in \eqref{eq:Lambdax} and \eqref{eq:Lambdatheta}.
 \section{State and Parameter Estimation}
-The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For the linear state-space model given by (\ref{eq:StateEquation}-\ref{eq:Observationmatrix}), the bound used is a quadratic of the form
-\begin{equation}\label{eq:Qfunction}
- \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
-\end{equation}
-where $\beta$ is constant with respect to $\boldsymbol\theta$. Equation \eqref{eq:Qfunction} is maximum at $\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top)$, where
-% \begin{align}
-%  \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0^\top-\boldsymbol\upsilon_1^\top),
-% \end{align}
-% where
-\begin{align}\label{eq:upsilon0}
- \boldsymbol\upsilon_0 & =\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]^{j,i} \\ 
- \boldsymbol\upsilon_1 & =\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i} \label{eq:upsilon1}\\
- \boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_3]^{j,i},\label{eq:Upsilon}
-\end{align}
-where $[.]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix, and $ [.]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix, and where
-\begin{align}
- [\boldsymbol\Gamma_1]^{j,i} & =\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\label{eq:Gamma1} \\ 
- [\boldsymbol\Gamma_2]^{j,i} & =\sum_{k=1}^{n_x}[\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{j,k}[\mathbf U]^{k,i}\label{eq:Gamma2} \\
-[\boldsymbol\Gamma_3]^{j,i}&=\sum_{k,m=1}^{n_x}[\mathbf{U}^{\top}]^{j,m}[ \boldsymbol\Lambda_{x}^{-1}\boldsymbol\Sigma_{w}^{-1}\boldsymbol\Lambda_{x}^{-1}]_{m,k}[\mathbf{U}]^{k,i}\label{eq:Gamma3}.
-\end{align}
-Each $1\times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is
-\begin{align}
-\left[ \mathbf U\right] ^{i,j}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_i \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{j:} dr,
-\end{align}
-where $[.]_{j:} $ denotes the $j^{th}$ row. All $n_x^2$ blocks of $\boldsymbol\Gamma_1$,$\boldsymbol\Gamma_2$, and $\boldsymbol\Gamma_3$  can be computed before the commencement of the EM iterations. Note that to separate $\boldsymbol\theta$ from $\boldsymbol\Lambda_{\theta}$ in forming the $\mathcal{Q}$-function we used the relation
+The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. 
+For the linear state-space model given by (\ref{eq:StateEquation}--\ref{eq:Observationmatrix}), the joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ can be written as
+ \begin{equation}\label{eq:jointdistribution}
+  p(\mathbf X,\mathbf Y;\boldsymbol \Theta)=\prod_{t=0}^{T-1} p(\mathbf y_{t+1}|\mathbf x_{t+1})p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)p(\mathbf x_0).
+ \end{equation}
+ The $\mathcal Q$-function, or lower-bound on the likelihood, can be expressed in terms of the joint distribution components
+ \begin{align}
+  \mathcal Q(\boldsymbol \Theta,\boldsymbol\Theta')&=\mathbf E_{\boldsymbol \Theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \Theta)\right] \nonumber \\
+ &=\mathbf E_{\boldsymbol\Theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf y_{t+1}|\mathbf x_{t+1})+\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)
+ +\sum_{t=0}^{T-1}2\ln p(\mathbf x_0)\right],
+ \end{align}
+% where $ \mathbf E_{\boldsymbol \Theta'}\left[ .\right] $ denotes the expectation taken with respect to the distribution $p(\mathbf X | \mathbf Y;\boldsymbol \Theta') $ and $\boldsymbol \Theta'$ is the current parameter estimate maximising $p(\mathbf Y;\boldsymbol\theta)$. 
+It should be noted that neither $p(\mathbf y_{t+1}|\mathbf x_{t+1})$ nor $p(\mathbf x_0)$ are functions of the parameter set and therefore the $\mathcal Q$-function can be rewritten as
 \begin{equation}
-\left[ \boldsymbol\Lambda_{\theta}\right] _{i,j} =\left[ \mathbf U\right]^{i,j}\boldsymbol\theta. 
+\mathcal Q(\boldsymbol \Theta,\boldsymbol\Theta')=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)\right]+\mathrm{const.}
 \end{equation}
+where the constant term can be ignored as it is independent of the parameters. Under the condition that the state distribution is Gaussian --- ignoring the constant term, $1/(2\pi)^{\frac{n_x}{2}}$ --- the conditional distribution $p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\Theta)$ can be written as
+\begin{align}
+p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\Theta)= \mid\boldsymbol\Sigma_w\mid^{-\frac{1}{2}} \exp\left({-\frac{1}{2}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)^\top\boldsymbol\Sigma_w^{-1}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)}\right).
+\end{align}
+Twice the logarithm of the above distribution, once expanded, is given by
+\begin{align}\label{eq:Qfunction}
+2\ln p(\mathbf x_{t+1} , \mathbf y_{t+1};\boldsymbol\Theta)=&-\ln \mid \boldsymbol\Sigma_w\mid-\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_{t+1}+2\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf A( \boldsymbol\theta)\mathbf x_t\nonumber \\
+&-\mathbf x_t^\top\mathbf A^\top(\boldsymbol\theta)\boldsymbol\Sigma_w^{-1}\mathbf A(\boldsymbol\theta)\mathbf x_t.
+\end{align}
+Substituting $\mathbf A( \boldsymbol\theta)$ from \eqref{eq:A_theta} into \eqref{eq:Qfunction} gives
+\begin{align}
+2\ln p(\mathbf x_{t+1}, \mathbf y_{t+1};\boldsymbol\Theta)=&\beta+2 T_s\varsigma\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t \nonumber \\
+&-T_s^2\varsigma^2\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t-2\xi \varsigma T_s\mathbf x_t^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t,\nonumber \\
+\end{align}
+where 
+\begin{equation}
+\beta=-\ln \mid \boldsymbol\Sigma_w\mid-\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_{t+1}+2\xi\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_t-\xi^2\mathbf x_t^\top\boldsymbol\Sigma_w^{-1}\mathbf x_t,
+\end{equation}
+is constant with respect to parameter $\boldsymbol\theta$ and will disappear subject to differentiation with respect to $\boldsymbol\theta$. Taking the trace and rearranging, using the invariant cyclic permutations property of the trace, this distribution can be written as
+\begin{align}\label{eq:Qfunctionintrace}
+2\ln p(\mathbf x_{t+1}, \mathbf y_{t+1};\boldsymbol\Theta)&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
+&-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace\nonumber \\
+&-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace.
+\end{align}
+Rearranging and taking the expectation of the log-likelihood function over all time instants gives the required lower-bound which is to be maximised for the optimal parameter estimates. Therefore 
+\begin{align}\label{eq:MRA-QintermsofTraces}
+\mathcal Q(\boldsymbol \theta, \boldsymbol\theta')&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \boldsymbol\Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
+&-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace,
+\end{align}
+where
+\begin{align}
+\boldsymbol\Xi_0&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right] \label{eq:MRA-Xi0}\\
+\boldsymbol\Xi_1&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t}^\top\right] \label{eq:MRA-Xi1}.
+\end{align}
+Note that the expectation distributes over the trace sum. The three traces that form \eqref{eq:MRA-QintermsofTraces} are dealt with in turn. To begin, the first trace is written in terms of element-wise summations
+\begin{align}\label{eq:MRA-trace1}
+\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i=1}^{n_x}\left[ \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right]_{ii} \nonumber \\
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}  \boldsymbol\Lambda_{\theta}\right]_{ji}\nonumber\\
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{jk} \left[ \boldsymbol\Lambda_{\theta}\right]_{ki},
+\end{align}
+where $[\cdot]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix. Each element of $\boldsymbol\Lambda_{\theta}$ can be calculated using
+\begin{equation}\label{eq:MRA-LambdaThetaElements}
+\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta,
+\end{equation}
+where $ [\cdot]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix, and where
+each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is 
+\begin{align}
+\left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{i:} dr,
+\end{align}
+where $[\cdot]_{i:} $ denotes the i-th row.  By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from \eqref{eq:MRA-LambdaThetaElements} the trace given in \eqref{eq:MRA-trace1} can be written as
+\begin{align}
+\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}\boldsymbol\theta \nonumber \\
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta
+\end{align}
+where
+\begin{align}
+\left[ \Gamma_1\right]^{j,i} =\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}.
+\end{align}
+The second trace of \eqref{eq:MRA-QintermsofTraces} is dealt with in a similar manner, giving
+\begin{align}
+\mathrm{tr} \left\lbrace \boldsymbol \Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=
+\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_1\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta.
+\end{align}
+Likewise, the third trace of \eqref{eq:MRA-QintermsofTraces} is broken down into element-wise summations
+\begin{align}
+\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j,k,m=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}[\boldsymbol\Lambda_{\theta}^{\top}]_{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\boldsymbol\Lambda_{\theta}]_{mi} \nonumber \\
+=&\boldsymbol\theta^\top\sum_{i,j=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}~\boldsymbol\theta \nonumber \\
+&=\boldsymbol\theta^\top\sum_{i,j=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}\left[ \Gamma_2\right] ^{j,i}\boldsymbol\theta,
+\end{align}
+where
+\begin{align}
+\left[ \Gamma_2\right] ^{j,i}=\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}.
+\end{align}
+Therefore the $\mathcal Q$-function can be rewritten as
+\begin{equation}\label{eq:MRA-QCompact}
+\mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
+\end{equation}
+where
+\begin{equation}\label{eq:epsilon0}
+\boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]_{j,i}
+\end{equation}
+and
+\begin{equation}\label{eq:epsilon1}
+\boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_1]^{j,i}
+\end{equation}
+\begin{equation}\label{eq:Epsilon}
+\boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}
+\end{equation}
+All $n_x^2$ blocks of $\boldsymbol\Gamma_1$ and $\boldsymbol\Gamma_2$  can be computed as a one-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the implementation in \cite{Dewar2009}. The complexity of each step of the algorithm is summarised in Table~\ref{table:MRA-ComputationalComplexity} where for ease of comparison the computational complexity of the method in \cite{Dewar2009} is also identified.
+\begin {table}
+\begin{center}
+\scalebox{1}{\begin{tabular}{lllc}
+\hline \hline
+Variable &Equation&Order&Order obtained from \cite{Dewar2009}\\ \hline\\
+$\Xi_0, \Xi_1$&\eqref{eq:MRA-Xi0}, \eqref{eq:MRA-Xi1}&$O(Tn_x^2)$& -\\
+$\boldsymbol\upsilon_0, \boldsymbol\upsilon_1$&\eqref{eq:epsilon0},\eqref{eq:epsilon1} &$O(n_x^2n_{\theta})$ &$O(n_x^2n_{\theta})+O(n_x^3)$ \\
+$\boldsymbol\Upsilon$&\eqref{eq:Epsilon}&$O(n_x^2n_{\theta}^2)$&$O(n_x^4n_{\theta}^2)$\\
+$\mathbf A(\boldsymbol\theta)$&\eqref{eq:A_theta}&$O(n_x^3)$&-\\
+$\boldsymbol\Lambda_{\theta}$&\eqref{eq:Lambdatheta}&$O(n_x^2n_{\theta})$&-\\
+$\hat{\boldsymbol\theta} $&\eqref{eq:MRA-thetahat}&$O(n_{\theta}^3)$&-\\
+\hline \hline
+\end{tabular}}
+ \caption {{\bf The Computational complexity of the estimation algorithm}. A comparison between the algorithm proposed herein and that of \cite{Dewar2009}.} 
+\label{table:MRA-ComputationalComplexity}
+\end{center}
+\end {table}
+
+By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
+\begin{align}\label{eq:MRA-QDerivative}
+\frac{\partial \mathcal Q}{\partial \boldsymbol\theta}&=2T_s\varsigma(\boldsymbol\nu_0-\boldsymbol\nu_1)^\top-T_s\varsigma(\boldsymbol\Upsilon^\top+\boldsymbol\Upsilon)\boldsymbol\theta \nonumber \\
+&=2T_s\varsigma(\boldsymbol\nu_0-\boldsymbol\nu_1)^\top-2T_s\varsigma\boldsymbol\Upsilon^\top\boldsymbol\theta.
+\end{align}
+Equating \eqref{eq:MRA-QDerivative} to $\mathbf 0$ yields
+\begin{align}\label{eq:MRA-thetahat}
+\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top.
+\end{align}
+The second derivative of the $\mathcal Q$-function is given by
+\begin{equation}
+\frac{\partial^2\mathcal Q}{\partial\boldsymbol\theta^2}=-2T_s\varsigma\boldsymbol\Upsilon.
+\end{equation}
+The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}$ matrix $\mathrm{vec}(\mathbf U)$ is of rank $n_{\theta}$ (\cite{Dewar2009}, Lemma 2), where $\mathrm{vec}(\cdot)$ denotes the vectorisation operator. Under this condition $\boldsymbol\Upsilon$ is  invertible and the second derivative is negative definite representing a maximum of the $\mathcal Q$-function. 
 
 The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the Rauch Tung Streibel smoother \cite{RAUCH1965} outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t-1},\mathbf{x}_{t})$ \cite{Gibsona2005},
 \begin{align}\label{eq:Xivariables}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
 \end{align}
-The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\theta,\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge.
+The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\theta,\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge. The RTS  algorithm is given in Algorithm~\ref{alg:MRA-RTS} for completeness. 
+\begin{algorithm}
+\caption{Summary of the Rauch-Tung-Striebel smoother}
+\label{alg:MRA-RTS}
+ % \begin{tabbing}
+ \begin{enumerate}
+ \item Forward initialisation: 
+ \begin{equation*}
+ \hat{\mathbf x}_0, \mathbf P_0
+ \end{equation*}
+ \item Forward iteration: for $t\in\left\lbrace 0,\cdots,T\right\rbrace $, calculate the predicted state and the predicted covariance matrix
+ \begin{align}
+ \hat{\mathbf x}_{t+1}^{f-}&=\mathbf A \hat{\mathbf x}_{t}^{f} \nonumber \\
+ \mathbf P_{t+1}^{f-}&=\mathbf A \mathbf P_{t}^{f}\mathbf A^{\top}+\boldsymbol\Sigma_e \nonumber 
+ \end{align}
+ \item Compute the filter gain, the filtered state and the filtered covariance matrix
+ \begin{align}
+ \mathcal K_{t+1}&=\mathbf P_{t +1}^{f-}\mathbf C ^\top(\mathbf C \mathbf P_{t +1}^{f-}\mathbf C ^\top+\boldsymbol \Sigma_{\varepsilon})^{-1} \nonumber\\
+\hat{\mathbf x}_{t+1}^{f}&=\hat{\mathbf x}_{t+1}^{f-}+\mathcal K_{t+1}(\mathbf y_{t+1}-\mathbf C\hat{\mathbf x}_{t +1}^{f-})\nonumber \\
+ \mathbf P_{t+1}^f&=(\mathbf I - \mathcal K_{t+1}\mathbf C)\mathbf P_{t +1}^{f-} \nonumber 
+ \end{align}
+ \item  Backward initialisation:
+ \begin{equation*}
+ \mathbf P_T^b= \mathbf P_T^f, \quad \hat{\mathbf x}^b_T= \hat{\mathbf x}^f_T
+ \end{equation*}
+ \item Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $ compute the smoother gain, the smoothed state and the smoothed covariance matrix
+ \begin{align}
+  \mathbf S_{t}&=\mathbf P_{t}^{f}\mathbf A^{\top}\left[ \mathbf P_{t +1}^{f-}\right]^{-1} \nonumber\\
+ \hat{\mathbf x}_t^b&=\hat{\mathbf x}_t^f+\mathbf S_t(\hat{\mathbf x}_{t+1}^{b}-\hat{\mathbf x}_{t+1}^{f-})\nonumber \\
+ \mathbf P_{t}^{b}&=\mathbf P_{t}^{f}+\mathbf S_t(\mathbf P_{t+1}^{b}-\mathbf P_{t+1}^{f-})\mathbf S_t^\top \nonumber
+ \end{align}
+ \item compute the smoothed cross covariance matrix\\
+ initialisation:
+ \begin{align}
+  \mathbf M_T=(\mathbf I-\mathcal K_T\mathbf C)\mathbf A\mathbf P_{T-1}^b \nonumber
+ \end{align}
+ Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $
+ \begin{align}
+ \mathbf M_t= \mathbf P_t^{f}\mathbf S_{t-1}^{\top}+\mathbf S_{t}(\mathbf M_{t+1}-\mathbf A\mathbf P_t^{f} )\mathbf S_{t-1}^{\top}\nonumber
+ \end{align}
+ \end{enumerate}
+ % \end{tabbing}
+ \end{algorithm}
+The stopping rule adopted herein is
+\begin{equation}
+ \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\epsilon,
+ \end{equation}
+ where $\epsilon$ is a threshold value and $\parallel \mathbf{A} \parallel_{F}^{(i)}$ and $ \parallel \mathbf{A} \parallel_{F}^{(i-1)}$ are the Frobenius norms  of the successive estimates of $\mathbf{A} $ matrices which is defined by \cite{Meyer2000}
+ \begin{equation}
+  \parallel \mathbf{A} \parallel_{F}=\sqrt{\sum_{i,j=1}^{n_x}\mid a_{i,j} \mid^2}=\sqrt{\mathrm{tr} (\mathbf A^{\top}\mathbf A)}
+ \end{equation}
 %\cut{The second terms in  \eqref{eq:upsilon0}, \eqref{eq:upsilon1}, and \eqref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}.}
 
 \section{Results}
@@ -327,7 +536,7 @@ The actual connectivity kernel and the decomposition is plotted in \figurename{\
 \begin{figure}[!h] 
 	\centering
 		\includegraphics[scale=1]{./Graph/fig2.pdf}
-		\caption{\parham{Connectivity kernel estimate. (a) The actual kernel and its components are shown by solid and dashed black lines, respectively. The mean kernel estimates over 200 realizations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (b)-(c) Kernel scaling and wavelets functions, respectively, at $j=1$ used in estimation algorithm.}}
+		\caption{Connectivity kernel estimate. (a) The actual kernel and its components are shown by solid and dashed black lines, respectively. The mean kernel estimates over 200 realizations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (b)-(c) Kernel scaling and wavelets functions, respectively, at $j=1$ used in estimation algorithm.}
 	\label{fig:KernelEstimate}
 \end{figure}
 % \caption{The actual connectivity kernel is shown with the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std.). The 7 weighted kernel basis functions are shown by the black dashed lines.}
@@ -341,8 +550,23 @@ The MRAIDE approach is not limited to neural fields; the framework can be applie
 
 % In order to apply the framework to real data some assumptions must be made. A critical assumption is that the model provides an apt description of the cortical dynamics. 
 The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The key development is the multi-resolution decomposition forming the state-space model. While the decomposition holds for more sophisticated models, efficiently performing nonlinear smoothing in the large state-space remains a challenge. Additional avenues for future work include extending the model to capture a $2^{nd}$-order synaptic response kernel, and time delays according to spatial resolutions. The estimation techniques should also be extended to deal with spatiotemporal heterogeneity in the kernel. Finally, future work should be directed towards applying and validating the framework on real data.
-
-
+\appendix
+For $n_1$ in equation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} we have
+\begin{align}
+ N_{m}\left(r\right)&=\sum_{n_1=0}^{m} \left[\mathbf p\right]_{n_1} N_{m}\left(2r-n_1\right) \label{eq:App-TwoScalepair1},
+  \end{align}
+which clearly holds (see \eqref{eq:MRA-TwoScalepair1}). Now assuming \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} for $n_{j-1}$ we have
+\begin{align}\label{eq:MRA-ConvertingFormulaForscalingFunctions}
+ &N_m(r)=\nonumber \\
+&\sum_{n_1,n_2, \dots n_{j-1}=0}^{m}\left[\mathbf p\right]_{n_1} \left[\mathbf p\right]_{n_2}\dots \left[\mathbf p\right]_{n_{j-1}}N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}}),
+\end{align}
+$N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of $N_m(2^{j}r)$ as
+\begin{align}\label{eq:AppendixNj-1intermsofNj}
+ &N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})=\nonumber \\
+&\sum_{n_j=0}^m \left[\mathbf p\right]_{n_j}N_m(2^jr-2\times k_{n_1,n_2, \dots, n_{j-1}}-n_j)\nonumber \\
+&=\sum_{n_j=0}^m \left[\mathbf p\right]_{n_j}N_m(2^jr- k_{n_1,n_2, \dots, n_{j}})
+\end{align}
+Substituting \eqref{eq:AppendixNj-1intermsofNj} in to \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} completes the proof.
 % \cut{Future work should be directed towards extending the framework to account for a second-order synaptic response kernel, heterogeneity in the connectivity and perhaps time delays at lower spatial resolutions. Most importantly, future work should be directed towards applying and validating the framework on real data.}
 
 % use section* for acknowledgement
