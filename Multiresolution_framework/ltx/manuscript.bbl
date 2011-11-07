@@ -23,8 +23,8 @@
 
 \bibitem{Valdes1999}
 P.~Valdes, J.~Jimenez, J.~Riera, R.~Biscay, and T.~Ozaki, ``{Nonlinear EEG
-  analysis based on a neural mass model},'' \emph{Biol. Cybern.}, vol.~81,
-  no.~5, pp. 415--424, 1999.
+  analysis based on a neural mass model},'' \emph{Biological Cybernetics},
+  vol.~81, no.~5, pp. 415--424, 1999.
 
 \bibitem{David2003}
 O.~David and K.~Friston, ``{A neural mass model for MEG/EEG: coupling and
@@ -34,12 +34,13 @@ O.~David and K.~Friston, ``{A neural mass model for MEG/EEG: coupling and
 \bibitem{Galka2008}
 A.~Galka, T.~Ozaki, H.~Muhle, U.~Stephani, and M.~Siniatchkin, ``{A data-driven
   model of the generation of human EEG based on a spatially distributed
-  stochastic wave equation},'' \emph{Cogn. Neurodynamics}, vol.~2, no.~2, pp.
-  101--113, 2008.
+  stochastic wave equation},'' \emph{Cognitive Neurodynamics}, vol.~2, no.~2,
+  pp. 101--113, 2008.
 
 \bibitem{schiff2008kalman}
 S.~Schiff and T.~Sauer, ``{Kalman filter control of a model of spatiotemporal
-  cortical dynamics},'' \emph{J. Neural Eng.}, vol.~5, pp. 1--8, 2008.
+  cortical dynamics},'' \emph{Journal of Neural Engineering}, vol.~5, pp. 1--8,
+  2008.
 
 \bibitem{Daunizeau2009}
 J.~Daunizeau, S.~Kiebel, and K.~Friston, ``{Dynamic causal modelling of
@@ -47,13 +48,13 @@ J.~Daunizeau, S.~Kiebel, and K.~Friston, ``{Dynamic causal modelling of
   pp. 590--601, 2009.
 
 \bibitem{Freestone2011}
-D.~R. Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~B. Grayden, and
-  V.~Kadirkamanathan, ``{A data-driven framework for neural field modeling},''
-  \emph{NeuroImage}, 2011.
+D.~Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~Grayden, and V.~Kadirkamanathan,
+  ``{A data-driven framework for neural field modeling},'' \emph{NeuroImage},
+  vol.~56, no.~3, pp. 1043--1058, June 2011.
 
 \bibitem{Amari1977}
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
-  fields},'' \emph{Biol. Cybern.}, vol.~27, no.~2, pp. 77--87, 1977.
+  fields},'' \emph{Biological Cybernetics}, vol.~27, no.~2, pp. 77--87, 1977.
 
 \bibitem{Atay2005}
 F.~Atay and A.~Hutt, ``Stability and bifurcations in neural fields with finite
@@ -63,7 +64,8 @@ F.~Atay and A.~Hutt, ``Stability and bifurcations in neural fields with finite
 \bibitem{VanRotterdam1982}
 A.~Van~Rotterdam, F.~Lopes~da Silva, J.~Van~den Ende, M.~Viergever, and
   A.~Hermans, ``{A model of the spatial-temporal characteristics of the alpha
-  rhythm},'' \emph{Bull. Math. Biol.}, vol.~44, no.~2, pp. 283--305, 1982.
+  rhythm},'' \emph{Bulletin of Mathematical Biology}, vol.~44, no.~2, pp.
+  283--305, 1982.
 
 \bibitem{Murphy2009}
 B.~Murphy and K.~Miller, ``{Balanced amplification: a new mechanism of
@@ -72,32 +74,52 @@ B.~Murphy and K.~Miller, ``{Balanced amplification: a new mechanism of
 
 \bibitem{Mallat1989a}
 S.~G. Mallat, ``A theory for multiresolution signal decomposition: the wavelet
-  representation,'' \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, vol.~2,
-  no.~7, pp. 674--693, Jul. 1989.
-
-\bibitem{Chui1992}
-C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
-  principle,'' \emph{Trans. Amer. Math. Soc.}, vol. 330, no.~2, pp. 903--915,
-  1992.
-
-\bibitem{DeBoor2001}
-C.~De~Boor, \emph{A Practical Guide to Splines}.\hskip 1em plus 0.5em minus
-  0.4em\relax Springer Verlag, 2001.
+  representation,'' \emph{Pattern Analysis and Machine Intelligence, IEEE
+  Transactions on}, vol.~2, no.~7, pp. 674--693, Jul. 1989.
 
 \bibitem{Goswami1999}
 J.~C. Goswami and A.~Chan, \emph{Fundamentals of Wavelets: Theory, Algorithms,
   and Applications}.\hskip 1em plus 0.5em minus 0.4em\relax New York: Wiley,
   1999.
 
+\bibitem{Chui1992b}
+C.~Chui and J.~Wang, ``A general framework of compactly supported splines and
+  wavelets*1,'' \emph{Journal of Approximation Theory}, vol.~71, no.~3, pp.
+  263--304, 1992.
+
+\bibitem{Chui1992}
+C.~K. Chui and J.~Wang, ``On compactly supported spline wavelets and a duality
+  principle,'' \emph{American Mathematical Society}, vol. 330, no.~2, pp.
+  903--915, 1992.
+
+\bibitem{Unser1993}
+M.~Unser, A.~Aldroubi, and M.~Eden, ``A family of polynomial spline wavelet
+  transforms,'' \emph{Signal Processing}, vol.~30, no.~2, pp. 141--162, Jan.
+  1993.
+
+\bibitem{Unser1992}
+------, ``On the asymptotic convergence of \text{B}-spline wavelets to
+  \text{G}abor functions,'' \emph{Information Theory, IEEE Transactions on},
+  vol.~38, no.~2, pp. 864--872, 1992.
+
+\bibitem{Unser1999}
+M.~Unser, ``Splines: a perfect fit for signal and image processing,''
+  \emph{Signal Processing Magazine, IEEE}, vol.~16, no.~6, pp. 22--38, 1999.
+
+\bibitem{DeBoor2001}
+C.~De~Boor, \emph{A Practical Guide to Splines}.\hskip 1em plus 0.5em minus
+  0.4em\relax Springer Verlag, 2001.
+
 \bibitem{Dempster1977}
 A.~P. Dempster, N.~M. Laird, and D.~B. Rubin, ``Maximum likelihood from
-  incomplete data via the {EM} algorithm,'' \emph{J, Roy. Statist., Ser. B},
-  vol.~39, no.~1, pp. 1--38, 1977.
+  incomplete data via the {EM} algorithm,'' \emph{Journal of the Royal
+  Statistical Society. Series B (Methodological)}, vol.~39, no.~1, pp. 1--38,
+  1977.
 
 \bibitem{Dewar2009}
 M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
-  modeling using the integro-difference equation,'' \emph{IEEE Trans. Signal
-  Process.}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
+  modeling using the integro-difference equation,'' \emph{Signal Processing,
+  IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
 
 \bibitem{Shumway2000}
 R.~Shumway and D.~Stoffer, \emph{Time Series Analysis and Its
@@ -118,10 +140,19 @@ C.~Meyer, \emph{Matrix analysis and applied linear algebra: solutions
   manual}.\hskip 1em plus 0.5em minus 0.4em\relax Society for Industrial and
   Applied Mathematics, 2000, vol.~2.
 
+\bibitem{Stephan2008}
+K.~Stephan, L.~Kasper, L.~Harrison, J.~Daunizeau, H.~den Ouden, M.~Breakspear,
+  and K.~Friston, ``{Nonlinear dynamic causal models for fMRI},''
+  \emph{NeuroImage}, vol.~42, no.~2, pp. 649--662, 2008.
+
+\bibitem{Wendling2005}
+F.~Wendling, ``Neurocomputational models in the study of epileptic phenomena.''
+  \emph{Journal of Clinical Neurophysiology}, vol.~22, no.~5, p. 285, 2005.
+
 \bibitem{Scerri2009}
 K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and model selection
-  for an \text{IDE}-based spatio-temporal model,'' \emph{IEEE Trans. Signal
-  Process.}, vol.~57, no.~2, pp. 482--492, Feb. 2009.
+  for an \text{IDE}-based spatio-temporal model,'' \emph{Signal Processing,
+  IEEE Transactions on}, vol.~57, no.~2, pp. 482--492, Feb. 2009.
 
 \bibitem{Qubbaj2009}
 M.~Qubbaj and V.~Jirsa, ``{Neural field dynamics under variation of local and
@@ -130,17 +161,51 @@ M.~Qubbaj and V.~Jirsa, ``{Neural field dynamics under variation of local and
 
 \bibitem{Breakspear2005}
 M.~Breakspear and C.~Stam, ``{Dynamics of a neural system with a multiscale
-  architecture},'' \emph{Philos. Trans. R. Soc. B-Biol. Sci.}, vol. 360, no.
-  1457, p. 1051, 2005.
+  architecture},'' \emph{Philosophical Transactions of the Royal Society B:
+  Biological Sciences}, vol. 360, no. 1457, p. 1051, 2005.
+
+\bibitem{Meng1993}
+X.~Meng and D.~Rubin, ``Maximum likelihood estimation via the ecm algorithm: A
+  general framework,'' \emph{Biometrika}, vol.~80, no.~2, pp. 267--278, 1993.
+
+\bibitem{Meng1994}
+X.~Meng, ``On the rate of convergence of the ecm algorithm,'' \emph{The Annals
+  of Statistics}, pp. 326--339, 1994.
+
+\bibitem{Fessler1994}
+J.~Fessler and A.~Hero, ``Space-alternating generalized
+  expectation-maximization algorithm,'' \emph{Signal Processing, IEEE
+  Transactions on}, vol.~42, no.~10, pp. 2664--2677, 1994.
+
+\bibitem{Evensen2003}
+G.~Evensen, ``The ensemble kalman filter: theoretical formulation and practical
+  implementation,'' \emph{Ocean Dynamics}, vol.~53, pp. 343--367, 2003.
+
+\bibitem{Evensen2009a}
+------, ``The ensemble kalman filter for combined state and parameter
+  estimation,'' \emph{IEEE Control Systems Magazine}, pp. 83--104, 2009.
+
+\bibitem{Evensen2009}
+------, \emph{Data assimilation: The ensemble Kalman filter}.\hskip 1em plus
+  0.5em minus 0.4em\relax Springer Verlag, 2009.
+
+\bibitem{McLachlan1997}
+G.~McLachlan and T.~Krishnan, \emph{{The EM algorithm and extensions}},
+  2nd~ed.\hskip 1em plus 0.5em minus 0.4em\relax Wiley New York, 1997, vol.
+  274.
 
 \bibitem{Wikle2002}
 C.~K. Wikle, ``A kernel-based spectral model for non-\text{G}aussian
-  spatio-temporal processes,'' \emph{Statist. Model.}, vol.~2, pp. 299--314,
-  2004.
+  spatio-temporal processes,'' \emph{Statistical Modelling}, vol.~2, pp.
+  299--314, 2004.
 
 \bibitem{Xu2005}
 K.~Xu, C.~Wikle, and N.~Fox, ``{A kernel-based spatio-temporal dynamical model
-  for nowcasting weather radar reflectivities},'' \emph{J. Am. Stat. Assoc.},
-  vol. 100, no. 472, pp. 1133--1144, 2005.
+  for nowcasting weather radar reflectivities},'' \emph{Journal of the American
+  Statistical Association}, vol. 100, no. 472, pp. 1133--1144, 2005.
+
+\bibitem{Meyer1992}
+Y.~Meyer, \emph{Wavelets and Operators}.\hskip 1em plus 0.5em minus 0.4em\relax
+  New York: Cambridge University Press, 1992.
 
 \end{thebibliography}
