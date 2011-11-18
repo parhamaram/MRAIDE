@@ -397,7 +397,7 @@ The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also pro
  \label{table:MRA-BsplineatIntegerPoints}
  \end{center}
  \end {table} 
-\section{State and Parameter Estimation}
+\section{State and Parameter Estimation (test)}
 The state-space representation of the MRAIDE allows the use of the well known Expectation Maximization (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. 
 For the linear state-space model given by (\ref{eq:StateEquation}--\ref{eq:Observationmatrix}), the joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ can be written as
  \begin{equation}\label{eq:jointdistribution}
