@@ -265,9 +265,9 @@ where each element of the observation matrix is given by
 B-spline functions are one of the most basic elements for wavelet construction, these functions are composed of  piecewise polynomials combined smoothly at some breaking points (knots) which are equally spaced in the case of cardinal B-splines. The degree of smoothness is determined by the order of splines \cite{Goswami1999} where the higher the order, the smoother the resulting B-spline becomes (see Figure~\ref{fig:Figure0}).
 \begin{figure}[!ht]
 \centering
-\includegraphics{./Graph/Figure0a.pdf}
-\includegraphics{./Graph/Figure0b.pdf}
-\caption{{\bf Examples of cardinal B-spline functions}. Piecewise polynomial functions (coloured lines) are joined at the break points (black dots). (\textbf{a}) B-spline function of order 2 (linear B-spline). (\textbf{b}) B-spline function of order 8.}
+\includegraphics{./Graph/Figure0.pdf}
+% \includegraphics{./Graph/Figure0b.pdf}
+\caption{{\bf Examples of cardinal B-spline functions}. Piecewise polynomial functions (coloured lines) are joined at the break points (black dots). (\textbf{A}) B-spline function of order 2 (linear B-spline). (\textbf{B}) B-spline function of order 8.}
 \label{fig:Figure0}
 \end{figure}
  
@@ -349,9 +349,9 @@ The multi-resolution approximation using B-spline functions is completed by defi
  Figure~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its associated wavelet function with dilation and translation parameters set to zero. 
 \begin{figure}[!ht]
 \centering
-\includegraphics{./Graph/Figure1a.pdf}
-\includegraphics{./Graph/Figure1b.pdf}
-\caption{{\bf Examples of B-spline  scaling and wavelet functions}. (\textbf{a}) The cubic B-spline scaling function. (\textbf{b}) The corresponding wavelet function.}
+\includegraphics{./Graph/Figure1.pdf}
+% \includegraphics{./Graph/Figure1b.pdf}
+\caption{{\bf Examples of B-spline scaling and wavelet functions}. (\textbf{A}) The cubic B-spline scaling function. (\textbf{B}) The corresponding wavelet function.}
 \label{fig:MRA-Figure1}
 \end{figure}
 
@@ -377,12 +377,11 @@ where
 The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see Appendix ...). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using \eqref{eq:MRA-TwoScalepair2}. Examples of such expansions are given in Figure~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
 \begin{figure}[!h] 
  	\centering
- 		\includegraphics[scale=1]{./Graph/ScaleDecomposition.pdf}\\
- 		\includegraphics[scale=1]{./Graph/WaveletDecomposition.pdf}
- 		\caption{{\bf The scaling and the wavelet function decomposition}. The scaling and the wavelet functions (blue) at $j=0$ are respectively obtained using 625 and 1250 scaling functions (black) at $j=4$.}
+ 		\includegraphics[scale=1]{./Graph/Decomposition.pdf}
+ 		\caption{{\bf The scaling and the wavelet function decomposition}. (\textbf{A}) The scaling function (blue) at $j=0$ is obtained using 625 scaling functions (black) at $j=4$. (\textbf{B}) The wavelet function (blue) at $j=0$ is obtained using 1250 scaling functions (black) at $j=4$.}
  	\label{fig:MRA-BasisDecomposition}
  \end{figure}  
- In this paper, 4th order cardinal B-spline scaling and wavelet functions are used, resulting in  8th and 12th order B-spline functions when calculating \eqref{eq:Lambdax}, \eqref{eq:Lambdatheta} and \eqref{eq:CovMatrix} whose values at integer points are given in Table~\ref{table:MRA-BsplineatIntegerPoints}.
+ In this paper, 4th -- order cardinal B-spline scaling and wavelet functions are used, resulting in  8th and 12th order B-spline functions when calculating \eqref{eq:Lambdax}, \eqref{eq:Lambdatheta} and \eqref{eq:CovMatrix} whose values at integer points are given in Table~\ref{table:MRA-BsplineatIntegerPoints}.
 \begin {table}[h]
 \begin{center}
 \begin{tabular}{lcccc}
