@@ -52,6 +52,11 @@ D.~Freestone, P.~Aram, M.~Dewar, K.~Scerri, D.~Grayden, and V.~Kadirkamanathan,
   ``{A data-driven framework for neural field modeling},'' \emph{NeuroImage},
   vol.~56, no.~3, pp. 1043--1058, June 2011.
 
+\bibitem{Breakspear2005}
+M.~Breakspear and C.~Stam, ``{Dynamics of a neural system with a multiscale
+  architecture},'' \emph{Philosophical Transactions of the Royal Society B:
+  Biological Sciences}, vol. 360, no. 1457, p. 1051, 2005.
+
 \bibitem{Amari1977}
 S.~Amari, ``{Dynamics of pattern formation in lateral-inhibition type neural
   fields},'' \emph{Biological Cybernetics}, vol.~27, no.~2, pp. 77--87, 1977.
@@ -158,11 +163,6 @@ K.~Scerri, M.~Dewar, and V.~Kadirkamanathan, ``Estimation and model selection
 M.~Qubbaj and V.~Jirsa, ``{Neural field dynamics under variation of local and
   global connectivity and finite transmission speed},'' \emph{Physica D:
   Nonlinear Phenomena}, vol. 238, no. 23-24, pp. 2331--2346, 2009.
-
-\bibitem{Breakspear2005}
-M.~Breakspear and C.~Stam, ``{Dynamics of a neural system with a multiscale
-  architecture},'' \emph{Philosophical Transactions of the Royal Society B:
-  Biological Sciences}, vol. 360, no. 1457, p. 1051, 2005.
 
 \bibitem{Meng1993}
 X.~Meng and D.~Rubin, ``Maximum likelihood estimation via the ecm algorithm: A
