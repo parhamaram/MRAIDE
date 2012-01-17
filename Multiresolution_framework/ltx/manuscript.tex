@@ -140,7 +140,7 @@ The human neocortex has an inherent multi-resolution architecture. On finer scal
 \begin{equation}
 	v\left(\mathbf{r},t\right) = \sum_{j} v_j\left(\mathbf{r},t\right),
 \end{equation}
-where $v$ is a voltage field that may be measured with a multi-electrode array or voltage sensitive dye for example, $\mathbf{r}\in \mathbb{R}^n$ (where $n\le3$) describes the spatial location with the field, $t$ denotes time, and $j$ indexes the different levels of resolution in the field.
+where $v\left(\mathbf{r},t\right)$ is a voltage field that may be measured with a multi-electrode array or voltage sensitive dye, $\mathbf{r}\in \mathbb{R}^n$ (where $n\le3$) describes the spatial location with the field, $t$ denotes time, and $j$ indexes the different levels of resolution in the field. 
 
 This multi-resolution structure has been described by numerous methods \cite{Wilson1973}. This idea of multi-resolution can be thought of a generalisation of modelling the layers of the cortex separately, where the connectivity kernel, or neural foot-print, has varying widths.
 
@@ -178,51 +178,67 @@ The observation equation describing the intracranial electrophysiological record
 where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. 
 
 \section{MRA of the IDE in State-Space}
-The multi-resolution approximation \cite{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(r)$ and a mother wavelet $\psi(r)$. Considering a one-dimensional field, the connectivity kernel is decomposed as,
+\dean{The purpose of forming the multi-resolution approximation (MRA) of the integro-differential equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.}
+
+The multi-resolution approximation \cite{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering an $n$-dimensional field, the static connectivity kernel is decomposed as,
 \begin{equation}
- w\left(r-r'\right)=\sum_{l \in \mathbb{Z}}\alpha_{j_0,l}\phi_{j_0,l}\left(r-r'\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l}\psi_{j,l}\left(r-r'\right), 
+ w\left(\mathbf{r}\right)=\sum_{\mathbf{l} \in \mathbb{Z}^n}\alpha_{j_0,\mathbf{l}} \underbrace{\phi_{j_0,\mathbf{l}}\left(\mathbf{r}\right)}_{\text{scaling}} + \sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l} \in \mathbb{Z}^n}\beta_{j,\mathbf{l}} \underbrace{\psi_{j,\mathbf{l}}\left(\mathbf{r}\right)}_{\text{wavelet}}, 
 \label{eq:KernelExpansion}
 \end{equation}
-where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$, and $\beta_{j,l}$ are the detail coefficients at different scales $j$, with $\phi_{j,l}\left(r\right)=2^{\frac{j}{2}}\phi\left(2^jr-l\right) $ and $\psi_{j,l}\left(r\right)=2^{\frac{j}{2}}\psi\left(2^jr-l\right)$. Integers $j$ and $l$ are the scale and translation parameters, respectively. Scaling functions retain the lowest frequency components, while the wavelet functions extract successively higher frequency components due to their low-pass and band-pass properties, respectively. The field is decomposed using
+where $\alpha_{j_0,\mathbf{l}}$ are the approximation coefficients at the lowest scale $j_0$, and $\beta_{j,\mathbf{l}}$ are the detail coefficients at different scales $j$, with
+\begin{align}
+\phi_{j,\mathbf{l}}\left(\mathbf{r}\right) =& 2^{\frac{j}{2}}\phi\left(2^j\mathbf{r}-\mathbf{l}\right) \\	
+\psi_{j,\mathbf{l}}\left(\mathbf{r}\right) =& 2^{\frac{j}{2}}\psi\left(2^j\mathbf{r}-\mathbf{l}\right).
+\end{align}
+The parameters $j$ and $\mathbf{l}$ control the scale (dilation) and translation (spatial shift), respectively. \dean{NEED SOMETHING ABOUT HOW j AND l ARE SET HERE - AS IN THAT THEY ARE KNOWN - AND THEAT WE ONLY NEED TO ESTIMATE THE COEFFICIENTS.} Scaling functions retain the lowest frequency components, due to their low-pass properties, while the wavelet functions extract successively higher frequency components due to their band-pass characteristics. 
+
+% At each spatial scale indexed by $j$ (level of decomposition), the neural field can be written as
+% \begin{equation}
+% 	v_{j,t}\left(\mathbf{r}\right) = \begin{cases}
+% 	\sum_{l \in \mathbb{Z}}x_{j,l}(t) \underbrace{\phi_{j,l}\left(\mathbf{r}\right)}_{\text{scaling function}} + \check{x}_{t,j,l}\underbrace{\psi_{j,l}\left(\mathbf{r}\right)}_{\text{mother wavelet}} & \text{if $j=0$},\\
+% 	\sum_{l \in \mathbb{Z}}\check{x}_{t,j,l}\psi_{j,l}\left(\mathbf{r}\right) & \text{otherwise}
+% \end{cases}
+% \end{equation}
+
+The dynamic neural field is decomposed using
 \begin{equation}
- v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l}\phi_{j_{0},l}\left(r\right)+\sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}} \check{x}_{t,j,l}\psi_{j,l}\left(r\right),
+ v_t\left(\mathbf{r}\right)=\sum_{\mathbf{l} \in \mathbb{Z}^n}x_{t,j_{0},\mathbf{l}} \underbrace{\phi_{j_0,\mathbf{l}}\left(\mathbf{r}\right)}_{\text{scaling}} + \sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l} \in \mathbb{Z}^n} \check{x}_{t,j,\mathbf{l}} \underbrace{\psi_{j,\mathbf{l}}\left(\mathbf{r}\right)}_{\text{wavelet}},
 \label{eq:FieldExpansion}
 \end{equation}
-where $x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the coefficients of the expansion and constitute the state vector at time $t$. \dean{The decomposition enables a separation of the spatial characteristics, which are considered static functions, that are weighted by dynamic coefficients.  }
+where $x_{t,j_{0},\mathbf{l}}$ and $\check{x}_{t,j,\mathbf{l}} $ are the dynamic coefficients of the expansion, constituting the state vector at time $t$. \dean{The decomposition enables a separation of the static spatial characteristics, which are considered static functions, that are weighted by dynamic coefficients.  }
 
-Equations \ref{eq:KernelExpansion} and \ref{eq:FieldExpansion} are infinite series expansions and must be truncated at some level $j$. The field and the connectivity kernel are approximated by
+Equations \ref{eq:KernelExpansion} and \ref{eq:FieldExpansion} are infinite series expansions and must be truncated to some level \dean{$J$} in order to solve the estimation problem. In other words, the neural field must be band-limited up to a given spatial frequency. Assuming the field and connectivity kernel are spatially band-limited they can be accurately approximated by
 \begin{align}
-	w\left(r-r'\right) &\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right) 
+	w\left(\mathbf{r}\right) &\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}\right) 
 	\label{eq:KernelFiniteExpansion} \\
-	v_t\left(r\right) &\approx \boldsymbol\mu^\top\left(r\right)\mathbf{x}_t,
+	v_t\left(\mathbf{r}\right) &\approx \boldsymbol\mu^\top\left(\mathbf{r}\right)\mathbf{x}_t,
 	\label{eq:FieldFiniteExpansion}
 \end{align}
 where the unknown parameter and state vectors, $\boldsymbol\theta \in \mathbb{R}^{n_{\theta}}$ and $\mathbf{x}_t \in \mathbb{R}^{n_x}$, are defined as 
 \begin{align}
-\boldsymbol\theta^\top &=[\begin{array}{ccccc} \boldsymbol\alpha_{j_0}^\top & \boldsymbol\beta_{j_0}^\top & \boldsymbol\beta_{j_0+1}^\top & \cdots & \boldsymbol\beta_{j}^\top \end{array}] 
+\boldsymbol\theta^\top &=[\begin{array}{ccccc} \boldsymbol\alpha_{j_0}^\top & \boldsymbol\beta_{j_0}^\top & \boldsymbol\beta_{j_0+1}^\top & \cdots & \boldsymbol\beta_{J}^\top \end{array}] 
 \label{KernelWeights} \\
-\mathbf{x}_{t}^\top &=[\begin{array}{ccccc}\mathbf{x}_{t,j_{0}}^\top &  \check{\mathbf{x}}_{t,j_{0}}^\top & \check{\mathbf{x}}_{t,j_{0}+1}^\top & \cdots & \check{\mathbf{x}}_{t,j}^\top\end{array}].
+\mathbf{x}_{t}^\top &=[\begin{array}{ccccc}\mathbf{x}_{t,j_{0}}^\top &  \check{\mathbf{x}}_{t,j_{0}}^\top & \check{\mathbf{x}}_{t,j_{0}+1}^\top & \cdots & \check{\mathbf{x}}_{t,J}^\top\end{array}].
 \label{FieldWeights}
 \end{align}
-The kernel and field approximation coefficient vectors, $\boldsymbol \alpha_{j_0}$ and $\mathbf{x}_{t,j_{0}}$, contain all the coefficients $\left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace $ and $\left\lbrace x_{t,j_0, l}: l \in \mathbb{Z}\right\rbrace$, respectively. Similarly, the kernel and the field detail coefficient vectors, $\boldsymbol\beta_{j}$ and $\check{\mathbf{x}}_{t,j}$, contain all the coefficients $\left\lbrace \beta_{j,l} :l \in \mathbb{Z}\right\rbrace$ and $\left\lbrace  \check x_{t,j, l}:l \in \mathbb{Z}\right\rbrace$, respectively.
+The kernel and field approximation coefficient vectors, $\boldsymbol \alpha_{j_0}$ and $\mathbf{x}_{t,j_{0}}$, contain all the coefficients $\left\lbrace\alpha_{j_0, \mathbf{l}}:\mathbf{l} \in \mathbb{Z}^n \right\rbrace $ and $\left\lbrace x_{t,j_0, \mathbf{l}}: \mathbf{l} \in \mathbb{Z}^n\right\rbrace$, respectively. Similarly, the kernel and the field detail coefficient vectors, $\boldsymbol\beta_{j}$ and $\check{\mathbf{x}}_{t,j}$, contain all the coefficients $\left\lbrace \beta_{j,\mathbf{l}} :\mathbf{l} \in \mathbb{Z}^n\right\rbrace$ and $\left\lbrace  \check x_{t,j,\mathbf{l}}:\mathbf{l} \in \mathbb{Z}^n\right\rbrace$, respectively.
 
 The vectors of the kernel and the field scaling and wavelet functions, $\boldsymbol\lambda$ and $\boldsymbol\mu$, respectively, are defined by
 \begin{align}
     \label{KernelBasisVector}
-    \boldsymbol\lambda^\top(r-r')=&\left[
-    \boldsymbol\phi_{j_0}^\top(r-r') ~
-    \boldsymbol\psi_{j_0}^\top(r-r') ~ 
-    \boldsymbol\psi_{j_0+1}^\top(r-r') ~
-    \cdots ~
-    \boldsymbol\psi_{j}^\top(r-r')\right] \\
+    \boldsymbol\lambda^\top(\mathbf{r})=&\left[
+    \begin{array}{ccccc}\boldsymbol\phi_{j_0}^\top(\mathbf{r}) &
+    \boldsymbol\psi_{j_0}^\top(\mathbf{r}) & 
+    \boldsymbol\psi_{j_0+1}^\top(\mathbf{r}) &
+    \cdots &
+    \boldsymbol\psi_{J}^\top(\mathbf{r})\end{array}\right] \\
     \label{FieldBasisVector}
-    \boldsymbol\mu^\top (r) =& \left[
-    \boldsymbol\phi_{j_0}^\top(r) ~ 
-    \boldsymbol\psi_{j_0}^\top(r) ~ 
-    \boldsymbol\psi_{j_0+1}^\top(r) ~ 
-    \cdots ~ 
-    \boldsymbol\psi_{j}^\top(r)
-\right]   
+    \boldsymbol\mu^\top (\mathbf{r}) =&\left[
+    \begin{array}{ccccc}\boldsymbol\phi_{j_0}^\top(\mathbf{r}) &
+    \boldsymbol\psi_{j_0}^\top(\mathbf{r}) & 
+    \boldsymbol\psi_{j_0+1}^\top(\mathbf{r}) &
+    \cdots &
+    \boldsymbol\psi_{J}^\top(\mathbf{r})\end{array}\right]
 \end{align}
 
 The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}). 
