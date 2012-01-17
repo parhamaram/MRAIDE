@@ -21,6 +21,11 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{Jirsa1997}
+V.~Jirsa and H.~Haken, ``A derivation of a macroscopic field theory of the
+  brain from the quasi-microscopic neural dynamics,'' \emph{Physica D:
+  Nonlinear Phenomena}, vol.~99, no.~4, pp. 503--526, 1997.
+
 \bibitem{Valdes1999}
 P.~Valdes, J.~Jimenez, J.~Riera, R.~Biscay, and T.~Ozaki, ``{Nonlinear EEG
   analysis based on a neural mass model},'' \emph{Biological Cybernetics},
