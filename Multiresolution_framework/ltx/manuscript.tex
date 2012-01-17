@@ -192,7 +192,7 @@ where $\alpha_{j_0,\mathbf{l}}$ are the approximation coefficients at the lowest
 \phi_{j,\mathbf{l}}\left(\mathbf{r}\right) =& 2^{\frac{j}{2}}\phi\left(2^j\mathbf{r}-\mathbf{l}\right) \\	
 \psi_{j,\mathbf{l}}\left(\mathbf{r}\right) =& 2^{\frac{j}{2}}\psi\left(2^j\mathbf{r}-\mathbf{l}\right).
 \end{align}
-The parameters $j$ and $\mathbf{l}$ control the scale (dilation) and translation (spatial shift), respectively. \dean{NEED SOMETHING ABOUT HOW j AND l ARE SET HERE - AS IN THAT THEY ARE KNOWN - AND THEAT WE ONLY NEED TO ESTIMATE THE COEFFICIENTS.} Scaling functions retain the lowest frequency components, due to their low-pass properties, while the wavelet functions extract successively higher frequency components due to their band-pass characteristics. 
+The parameters $j$ and $\mathbf{l}$ control the scale (dilation) and translation (spatial shift), respectively. \dean{NEED SOMETHING ABOUT HOW j AND l ARE SET HERE - AS IN THAT THEY ARE KNOWN - AND THAT WE ONLY NEED TO ESTIMATE THE COEFFICIENTS.} Scaling functions retain the lowest frequency components, due to their low-pass properties, while the wavelet functions extract successively higher frequency components due to their band-pass characteristics. 
 
 % At each spatial scale indexed by $j$ (level of decomposition), the neural field can be written as
 % \begin{equation}
@@ -278,19 +278,29 @@ which allow us to write the neural field and connectivity kernel decomposition i
 % 
 % The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}).  
 Now we have the compact for of the decomposition we can substitute this into the neural field equation \eqref{eq:DiscreteTimeModel} giving
-\begin{equation}\label{eq:DiscreteTimeModel}
+\begin{equation}\label{eq:ApproxDiscreteTimeModel}
 	\boldsymbol\mu^\top\left(\mathbf{r}\right)\mathbf{x}_t = 
 	\xi \boldsymbol\mu^\top\left(\mathbf{r}\right)\mathbf{x}_t + 
 	T_s \int_\Omega { 
 	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
 	    f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right)\mathbf{x}_t\right) 
 	\, \mathrm{d}\mathbf{r}'}  
-	+ e_t\left(\mathbf{r}\right), 
+	+ e_t\left(\mathbf{r}\right).
+\end{equation}
+The aim of the next part of the derivation is to isolate the state vector on the left hand side of the equation. To do this we first multiply both sides of equation~\eqref{eq:ApproxDiscreteTimeModel} by $\boldsymbol\mu\left(r\right)$ and integrate over space giving (\dean{UP TO HERE})
+\begin{equation}\label{eq:ApproxDiscreteTimeModel2}
+	\int_{\Omega} \boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r} \mathbf{x}_t = 
+	\xi \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) \mathrm{d}\mathbf{r} \mathbf{x}_t + 
+	T_s \int_{\Omega}\boldsymbol\mu\left(r\right)\int_\Omega { 
+	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
+	    f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right)\mathbf{x}_t\right) 
+	\, \mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}}  
+	+ \int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(\mathbf{r}\right)\mathrm{d}\mathbf{r}.
 \end{equation}
 
 To derive the state-space model, we first define the matrices 
 \begin{align}\label{eq:Lambdax}
- \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) dr \\
+ \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) \mathrm{d}\mathbf{r} \\
 \label{eq:Lambdatheta}
  \mathbf{\Lambda}_{\theta} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right) \int_\Omega { 
 	   \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
