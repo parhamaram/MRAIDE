@@ -161,7 +161,7 @@ The stochastic IDE form of the Amari neural field  formulation~\cite{Amari1977} 
 	T_s \int_\Omega { 
 	    w\left(\mathbf{r},\mathbf{r'}\right)
 	    f\left(v_t\left(\mathbf{r}'\right)\right) 
-	\, d\mathbf{r}'} 
+	\, \mathrm{d}\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
 where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Membrane dynamics are included through the parameter $\xi=1-T_s/\tau$, where $\tau$ is the membrane time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977,Atay2005}. The term $e_t(\mathbf r)$ is a zero mean Gaussian disturbance, spatially coloured but temporally white, with covariance function 
@@ -173,7 +173,7 @@ where $\delta(\cdot)$ is the Dirac-delta function. The firing rate of the presyn
 
 The observation equation describing the intracranial electrophysiological recordings is given by
 \begin{equation}\label{eq:ObservationEquation}
-	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, d\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
+	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, \mathrm{d}\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
 \end{equation}
 where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. 
 
@@ -279,7 +279,7 @@ which allow us to write the neural field and connectivity kernel decomposition i
 % The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}).  
 Now we have the compact for of the decomposition we can substitute this into the neural field equation \eqref{eq:DiscreteTimeModel} giving
 \begin{equation}\label{eq:ApproxDiscreteTimeModel}
-	\boldsymbol\mu^\top\left(\mathbf{r}\right)\mathbf{x}_t = 
+	\boldsymbol\mu^\top\left(\mathbf{r}\right)\mathbf{x}_{t+1} = 
 	\xi \boldsymbol\mu^\top\left(\mathbf{r}\right)\mathbf{x}_t + 
 	T_s \int_\Omega { 
 	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
@@ -287,55 +287,88 @@ Now we have the compact for of the decomposition we can substitute this into the
 	\, \mathrm{d}\mathbf{r}'}  
 	+ e_t\left(\mathbf{r}\right).
 \end{equation}
-The aim of the next part of the derivation is to isolate the state vector on the left hand side of the equation. To do this we first multiply both sides of equation~\eqref{eq:ApproxDiscreteTimeModel} by $\boldsymbol\mu\left(r\right)$ and integrate over space giving (\dean{UP TO HERE})
+The aim of the next part of the derivation is to isolate the state vector on the left hand side of the equation. To do this we first multiply both sides of equation~\eqref{eq:ApproxDiscreteTimeModel} by $\boldsymbol\mu\left(r\right)$ and integrate over space giving 
 \begin{equation}\label{eq:ApproxDiscreteTimeModel2}
-	\int_{\Omega} \boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r} \mathbf{x}_t = 
-	\xi \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) \mathrm{d}\mathbf{r} \mathbf{x}_t + 
-	T_s \int_{\Omega}\boldsymbol\mu\left(r\right)\int_\Omega { 
+	\int_{\Omega} \boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\mu^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r} \mathbf{x}_{t+1} = 
+	\xi \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\mu^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r} \mathbf{x}_t + 
+	T_s \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\int_\Omega { 
 	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
 	    f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right)\mathbf{x}_t\right) 
 	\, \mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}}  
-	+ \int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(\mathbf{r}\right)\mathrm{d}\mathbf{r}.
+	+ \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)\mathrm{d}\mathbf{r}.
 \end{equation}
-
-To derive the state-space model, we first define the matrices 
-\begin{align}\label{eq:Lambdax}
- \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) \mathrm{d}\mathbf{r} \\
-\label{eq:Lambdatheta}
- \mathbf{\Lambda}_{\theta} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right) \int_\Omega { 
-	   \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
-	    \boldsymbol\mu^\top\left(r\right)\ dr'dr.}
-\end{align}
-Substituting \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} in \eqref{eq:DiscreteTimeModel}, pre-multiplying by $\boldsymbol\mu\left(r\right)$, and integrating over the space gives
-\begin{align}\label{eq:DecomposedModel2} 
-	&\mathbf{\Lambda}_{x} \mathbf{x}_{t+1} = 
-	\xi\mathbf{\Lambda}_{x} \mathbf{x}_t +T_s \varsigma \mathbf{\Lambda}_{\theta}\mathbf{x}_t +\int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)dr.
-\end{align}
+To isolate the state vector, we now define the matrix 
+\begin{equation}
+	\label{eq:Lambdax}
+	 \mathbf{\Lambda}_{x} \triangleq \int_{\Omega}\boldsymbol{\mu}\left(\mathbf{r}\right)\boldsymbol{\mu}^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r}
+\end{equation}
+and substitute into equation~\eqref{eq:ApproxDiscreteTimeModel2} giving
+\begin{equation}\label{eq:ApproxDiscreteTimeModel3}
+	\mathbf{\Lambda}_{x} \mathbf{x}_{t+1} = 
+	\xi \mathbf{\Lambda}_{x} \mathbf{x}_t + 
+	T_s \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\int_\Omega { 
+	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
+	    f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right)\mathbf{x}_t\right) 
+	\, \mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}}  
+	+ \int_{\Omega}\boldsymbol{\mu}\left(\mathbf{r}\right) e_t\left(\mathbf{r}\right) \mathrm{d}\mathbf{r}.
+\end{equation}
 Cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ gives the state transition equation
-\begin{align}\label{eq:StateEquation}
- \mathbf x_{t+1} &=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t\\
-\label{eq:A_theta}
- \mathbf A(\boldsymbol \theta) &= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I.
-\end{align}
-The disturbance becomes 
+\begin{equation}\label{eq:ApproxDiscreteTimeModel4}
+	\mathbf{x}_{t+1} = 
+	\xi \mathbf{x}_t + 
+	T_s \mathbf{\Lambda}_{x}^{-1} \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\int_\Omega { 
+	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
+	    f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right)\mathbf{x}_t\right) 
+	\, \mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}}  
+	+ \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol{\mu}\left(\mathbf{r}\right) e_t\left(\mathbf{r}\right) \mathrm{d}\mathbf{r}.
+\end{equation}
+A very nice property of the MRAIDE framework is the the disturbance term becomes a vector valued, zero-mean normally distributed, white noise process 
 \begin{equation}\label{eq:Disturbance}
-\mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(r\right)e_t\left(r\right)dr,
+\mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)\,\mathrm{d}\mathbf{r},
 \end{equation}
-which is a vector valued, zero-mean normally distributed, white noise process with covariance (see \cite{Freestone2011} for proof)
+with covariance (see \cite{Freestone2011} for proof)
 \begin{equation}\label{eq:CovMatrix}
-\boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(r\right) \eta\left(r-r'\right)\boldsymbol\mu^{\top}\left(r'\right)dr'dr\mathbf{\Lambda}_{x}^{-\top}.
-\end{equation}
+\boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(\mathbf{r}\right) \eta\left(\mathbf{r}-\mathbf{r}'\right)\boldsymbol\mu^{\top}\left(\mathbf{r}'\right)\,\mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}\mathbf{\Lambda}_{x}^{-\top}.
+\end{equation} 
+% \begin{align}\label{eq:Lambdax}
+%  \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\mu^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r} \\
+% \label{eq:Lambdatheta}
+%  \mathbf{\Lambda}_{\theta} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right) \int_\Omega { 
+% 	   \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
+% 	    \boldsymbol\mu^\top\left(r\right)\ dr'dr.}
+% \end{align}
+% Substituting \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} in \eqref{eq:DiscreteTimeModel}, pre-multiplying by $\boldsymbol\mu\left(r\right)$, and integrating over the space gives
+% \begin{align}\label{eq:DecomposedModel2} 
+% 	&\mathbf{\Lambda}_{x} \mathbf{x}_{t+1} = 
+% 	\xi\mathbf{\Lambda}_{x} \mathbf{x}_t +T_s \varsigma \mathbf{\Lambda}_{\theta}\mathbf{x}_t +\int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)dr.
+% \end{align}
+% Cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ gives the state transition equation
+% \begin{align}\label{eq:StateEquation}
+%  \mathbf x_{t+1} &=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t\\
+% \label{eq:A_theta}
+%  \mathbf A(\boldsymbol \theta) &= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I.
+% \end{align}
+% The disturbance becomes 
+% \begin{equation}\label{eq:Disturbance}
+% \mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(r\right)e_t\left(r\right)dr,
+% \end{equation}
+% which is a vector valued, zero-mean normally distributed, white noise process with covariance (see \cite{Freestone2011} for proof)
+% \begin{equation}\label{eq:CovMatrix}
+% \boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(r\right) \eta\left(r-r'\right)\boldsymbol\mu^{\top}\left(r'\right)dr'dr\mathbf{\Lambda}_{x}^{-\top}.
+% \end{equation}
+
 The observation equation of the state-space model is found by substituting decomposition \eqref{eq:FieldFiniteExpansion}
  into \eqref{eq:ObservationEquation} giving
 \begin{equation}\label{eq:ReducedObservationEquation} 
 	\mathbf{y}_t = \mathbf{C}\mathbf{x}_t + \boldsymbol{\varepsilon}_t,
 \end{equation}
-where each element of the observation matrix is given by
+where each element of the observation matrix, $\mathbf{C}$, is given by
 \begin{equation}\label{eq:Observationmatrix}
-	\mathbf{C}_{ij} \triangleq \int_{\Omega}m(r_i - r')\boldsymbol{\mu}_j(r') \, d\mathbf{r}'.
+	\mathbf{C}_{ik} \triangleq \int_{\Omega}m(\mathbf{r}_i - \mathbf{r}')\boldsymbol{\mu}_k(\mathbf{r}') \, \mathrm{d}\mathbf{r}'.
 \end{equation}
+
 \section{B-spline MRAIDE in State-Space }
-B-spline functions are one of the most basic elements for wavelet construction, these functions are composed of  piecewise polynomials combined smoothly at some breaking points (knots) which are equally spaced in the case of cardinal B-splines. The degree of smoothness is determined by the order of splines \cite{Goswami1999} where the higher the order, the smoother the resulting B-spline becomes (see Figure~\ref{fig:Figure0}).
+B-spline functions are one of the most basic elements for wavelet construction. These functions are composed of  piecewise polynomials combined smoothly at some breaking points (knots) which are equally spaced in the case of cardinal B-splines. The degree of smoothness is determined by the order of splines \cite{Goswami1999} where the higher the order, the smoother the resulting B-spline becomes (see Figure~\ref{fig:Figure0}).
 \begin{figure}[!ht]
 \centering
 \includegraphics{./Graph/Figure0.pdf}
