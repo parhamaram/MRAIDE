@@ -330,6 +330,18 @@ with covariance (see \cite{Freestone2011} for proof)
 \begin{equation}\label{eq:CovMatrix}
 \boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(\mathbf{r}\right) \eta\left(\mathbf{r}-\mathbf{r}'\right)\boldsymbol\mu^{\top}\left(\mathbf{r}'\right)\,\mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}\mathbf{\Lambda}_{x}^{-\top}.
 \end{equation} 
+\dean{Can we define something like the other paper like
+\begin{equation}
+	\left[\Gamma(\mathbf{r}')\right]_{:i} = T_s \mathbf{\Lambda}_{x}^{-1}\int_{\Omega} \boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right) \,\mathrm{d}\mathbf{r}
+\end{equation}
+giving
+\begin{equation}
+	\mathbf{x}_{t+1} = 
+	\xi \mathbf{x}_t + 
+	\int_{\Omega} \Gamma\left(\mathbf{r}'\right)f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right) \mathbf{x}_t\right) 
+	\, \mathrm{d}\mathbf{r}' \boldsymbol\theta
+	+ \mathbf w_t???
+\end{equation}}
 % \begin{align}\label{eq:Lambdax}
 %  \mathbf{\Lambda}_{x} &\triangleq \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\mu^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r} \\
 % \label{eq:Lambdatheta}
@@ -367,9 +379,10 @@ where each element of the observation matrix, $\mathbf{C}$, is given by
 	\mathbf{C}_{ik} \triangleq \int_{\Omega}m(\mathbf{r}_i - \mathbf{r}')\boldsymbol{\mu}_k(\mathbf{r}') \, \mathrm{d}\mathbf{r}'.
 \end{equation}
 
-\section{B-spline MRAIDE in State-Space }
-B-spline functions are one of the most basic elements for wavelet construction. These functions are composed of  piecewise polynomials combined smoothly at some breaking points (knots) which are equally spaced in the case of cardinal B-splines. The degree of smoothness is determined by the order of splines \cite{Goswami1999} where the higher the order, the smoother the resulting B-spline becomes (see Figure~\ref{fig:Figure0}).
-\begin{figure}[!ht]
+\section{B-Spline MRAIDE in State-Space }
+\subsection{A Brief Introduction to B-Spline Wavelets}
+B-spline functions are one of the most basic elements for wavelet construction. These functions are composed of piecewise polynomials combined smoothly at some breaking points (knots), which are equally spaced in the case of cardinal B-splines. The degree of smoothness is determined by the order of splines \cite{Goswami1999}, where the higher the order the smoother the resulting B-spline becomes (see Figure~\ref{fig:Figure0}).
+\begin{figure}[!t]
 \centering
 \includegraphics{./Graph/Figure0.pdf}
 % \includegraphics{./Graph/Figure0b.pdf}
@@ -377,11 +390,13 @@ B-spline functions are one of the most basic elements for wavelet construction. 
 \label{fig:Figure0}
 \end{figure}
  
-B-spline wavelet and scaling functions are formulated independently by Chui and Wang, and Unser et al \cite{Chui1992b,Chui1992,Unser1993}.  The scaling functions are $m$-th order B-splines and the compact support wavelet functions are a linear combination of scaling functions. B-spline wavelet and scaling functions approach optimal time/frequency localisation as the order of the spline increases. In fact for the cubic B-spline scaling and wavelet functions it is already close to the optimal limit for Gaussian functions \cite{Unser1992}. B-spline wavelets have a better approximation rate as other wavelets with the same number of vanishing moments \cite{Unser1999}. B-spline wavelet and scaling functions are particularly suitable in this work due to their ability to analytically define the convolution and inner product to form  MRAIDE components. The following summarises some important characteristics of B-splines relevant to the proposed modelling framework. 
+B-spline wavelet and scaling functions were formulated independently by Chui and Wang, and Unser et al \cite{Chui1992b,Chui1992,Unser1993}.  The scaling functions are $m$-th order B-splines and the compact support wavelet functions are a linear combination of scaling functions. B-spline wavelet and scaling functions approach optimal time/frequency localisation as the order of the spline increases. In fact, for the cubic B-spline scaling and wavelet functions it is already close to the optimal limit for Gaussian functions and they have a better approximation rate then other wavelets with the same number of vanishing moments \cite{Unser1999}. 
+
+B-spline wavelet and scaling functions are particularly suited in this framework due to the property of being able to analytically define the convolution and inner product to form MRAIDE components. The following summarises some important characteristics of B-splines relevant to the proposed modelling framework. 
 
 The $m$-th  order cardinal B-spline function is defined by the recurrence relation \cite{Chui1992} 
 \begin{equation}
-N_{m}\left(r\right) = \left(N_{m-1}\ast N_{1}\right)\left(r\right) = \int_0^{1} N_{m-1}\left( r-r'\right)dr',
+N_{m}\left(r\right) = \left(N_{m-1}\ast N_{1}\right)\left(r\right) = \int_0^{1} N_{m-1}\left( r-r'\right)\,\mathrm{d}r',
 \label{SplineConvolutionIntegral}
 \end{equation}
 where $m>1$, $\ast$ denotes convolution, and $N_1\left(r\right)$ is the characteristic function of the unit interval $\left[ 0,1\right)$, also known as indicator function, i.e.
@@ -392,11 +407,11 @@ N_{1}\left(r\right)=
 0 & \mathrm{elsewhere}.
 \end{cases}
 \end{equation}
-then a B-spline of any order, $N_m(r)$, can be computed using the recursive expression defined by \cite{DeBoor2001}
+Following this, a B-spline of any order, $N_m(r)$, can be computed using the recursive expression defined by \cite{DeBoor2001}
 \begin{equation}\label{eq:MRA-DoBoorFormula}
  N_{m}\left(r\right)=\frac{r}{m-1}N_{m-1}\left(r\right)+\frac{m-r}{m-1}N_{m-1}\left(r-1\right) \quad m>1.
  \end{equation}
-The most commonly used form of splines is the Cubic spline $\left(m=4\right)$, comprising of third order polynomials added together at the joining points, with an explicit expression given by
+The most commonly used form of splines is the cubic spline $\left(m=4\right)$, comprised of third order polynomials added together at the joining points, with an explicit expression given by
 \begin{align}
 N_{4}\left(r\right)=
 \begin{cases}
@@ -432,6 +447,7 @@ where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This h
  \end{equation}
 Note $N_{m}\left(k\right)=0$ for $k\le0$ or $k\ge m$. 
 
+\subsection{Frequency Analysis}
 To determine the level of approximation in the model, detailed in the previous section, that is the number of basis functions required to reconstruct the field, $v_t(r)$, the frequency response of the B-spline function needs to be computed by applying the Fourier transform to \eqref{eq:N1convolutions}. To proceed the Fourier transform of $N_1(r)$ is first calculated, 
 \begin{align}\label{eq:MRA-N1Fouriertransform}
 \mathcal F(N_1(r))&=\int_{-\infty}^{+\infty}N_1(r)\mathrm{exp}(-2\pi i \nu r)dr \nonumber \\
@@ -442,17 +458,21 @@ The convolution theorem states that the Fourier transform of the convolution of 
 \begin{align}\label{eq:MRA-NmFouriertransform}
 \mathcal F(N_m(r))=\left(\frac{1-\mathrm{exp}(-2\pi i \nu)}{2\pi i\nu}\right)^m.
 \end{align}
-The multi-resolution approximation using B-spline functions is completed by defining a two-scale relation pair which for cardinal B-spline scaling and wavelet functions of order $m$, takes the form of \cite{Chui1992}
+\dean{Need to say how the FT is used somewhere here before proceeding.}
+
+The multi-resolution approximation using B-spline functions is completed by defining a two-scale relation pair, which for cardinal B-spline scaling and wavelet functions of order $m$ takes the form of
 \begin{align}
  N_{m}\left(r\right)&=\sum_{n=0}^{m} \left[\mathbf p\right]_n N_{m}\left(2r-n\right) \label{eq:MRA-TwoScalepair1} \\
   \varphi_{m}\left(r\right) &= \sum_{n=0}^{3m-2} \frac{\left(-1\right)^n}{2^{m-1}} \left[\mathbf q\right]_n N_{m}\left(2r-n\right)\label{eq:MRA-TwoScalepair2},
  \end{align}
- where $\left[\cdot\right]_n$ denotes the $n$-th element of the vector coefficients, and
+where 
  \begin{align}
 \left[\mathbf p\right]_n&=2^{-m+1} \binom{m}{n} \quad \text{ $0\le n\le m$} \label{eq:MRA-TwoScalepair1coefs}\\
-\left[\mathbf q\right]_n&= \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$}\label{eq:MRA-TwoScalepair2coefs}.
+\left[\mathbf q\right]_n&= \sum_{l=0}^{m} \binom{m}{l} N_{2m}\left(n-l+1\right), \,  \text{ $0\le n\le 3m-2$}\label{eq:MRA-TwoScalepair2coefs}
  \end{align}
- Figure~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its associated wavelet function with dilation and translation parameters set to zero. 
+and $\left[\cdot\right]_n$ denotes the $n$-th element of the vector coefficients \cite{Chui1992}. \dean{Need to explicitly say why this is important and what this gives us here.}
+
+Figure~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its associated wavelet function with dilation and translation parameters set to zero. 
 \begin{figure}[!ht]
 \centering
 \includegraphics{./Graph/Figure1.pdf}
