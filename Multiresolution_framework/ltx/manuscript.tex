@@ -131,7 +131,7 @@ to demonstrate the framework.
 
 Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. The key components of these models typically describe the macroscopic dynamics of the human brain, but can also descriptive of finer-scale neurodynamics. \parham{Examples are, the post-synaptic response kernels (the pulse to wave function) and the activation function (wave to pulse function) \cite{Jirsa1997}. The former can be descriptive of inhibitory and excitatory post-synaptic potentials in microscopic single neural models, such as integrate and fire, or an ensemble response to stimulation in macroscopic neural mass models. The latter,  can be used to model spiking statistics across spatial scales from single neurons (where is can be considered a CDF of the probability of firing) to mean firing rates of neural masses.} The key factor linking the key functions of the model to particular spatial scales is geometry of the connectivity, hence the ability to infer a multi-resolution connectivity kernel will enable to the formulation of a multi-resolution neural field model. 
 
-The utility of these models for answering questions in clinical neuroscience and neurology lies in the ability the infer parameters from electrophysiological data. The ability to create patient-specific neural models will contribute to our knowledge base of diseases such as epilepsy and will enable the development of new treatment strategies. This is particularly relevant to the advent of new devices that use therapeutic electrical stimulation. Stimulation strategies for devices currently operate in an open loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists enormous potential to improve the performance of these devices using systems theory, which in turn requires a suitable dynamic model. Neural mass and neural field models are ideal candidates for estimation algorithms due to their strong links with physiology and their parsimony. It is expected that parameters of the neural fields models will be patient-specific and will, therefore, need to be inferred from data.
+The utility of these models for answering questions in clinical neuroscience and neurology lies in the ability to infer parameters from electrophysiological data. The ability to create patient-specific neural models will contribute to our knowledge base of diseases such as epilepsy and will enable the development of new treatment strategies. This is particularly relevant to the advent of new devices that use therapeutic electrical stimulation. Stimulation strategies for devices currently operate in an open loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists enormous potential to improve the performance of these devices using systems theory, which in turn requires a suitable dynamic model. Neural mass and neural field models are ideal candidates for estimation algorithms due to their strong links with physiology and their parsimony. It is expected that parameters of the neural fields models will be patient-specific and will, therefore, need to be inferred from data.
 
 The first work describing data-driven mesoscopic neural modelling used a neural mass model to fit EEG data~\cite{Valdes1999}. This approach was extended to coupled neural masses through a Bayesian estimation scheme dubbed Dynamic Causal Modelling (DCM)~\cite{David2003}. Following this work, data-driven modelling was extended to continuum field equations that explained the richer dynamics of spatiotemporal neural fields \cite{Galka2008,schiff2008kalman,Daunizeau2009}. Most recently, a framework was developed where a finite element model (FEM) of the neural field (via a global Galerkin projection) was formed, using a basis function decomposition, to transform the PDE neural field equations into a finite dimension system to facilitate efficient state and parameter estimation~\cite{Freestone2011}. This paper is an extension to the aforementioned study, where we derive a neural field state-space model that accounts for the multi-resolution architecture and spatial dynamics of the human cortex. In this way, a flexible framework is created, whereby both macroscopic and microscopic behaviour of the system can be represented simultaneously and completely.
 
@@ -460,7 +460,7 @@ Following this, a B-spline of any order, $N_m(r)$, can be computed using the rec
 \begin{equation}\label{eq:MRA-DoBoorFormula}
  N_{m}\left(r\right)=\frac{r}{m-1}N_{m-1}\left(r\right)+\frac{m-r}{m-1}N_{m-1}\left(r-1\right) \quad m>1.
  \end{equation}
-The most commonly used form of splines is the cubic spline $\left(m=4\right)$, comprised of third order polynomials added together at the joining points, with an explicit expression given by
+The most commonly used form of splines is the cubic spline $\left(m=4\right)$, comprised of third degree polynomials added together at the joining points, with an explicit expression given by
 \begin{align}
 N_{4}\left(r\right)=
 \begin{cases}
@@ -496,7 +496,7 @@ where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This h
  \end{equation}
 Note $N_{m}\left(k\right)=0$ for $k\le0$ or $k\ge m$. 
 
-The multi-resolution approximation using B-spline functions is completed by defining a two-scale relation pair, which for cardinal B-spline scaling and wavelet functions of order $m$ takes the form of
+The multi-resolution approximation using B-spline functions is completed by defining a two-scale relation pair, which relates the scaling functions and the wavelets at a given scale with the scaling function at the next higher scale. For cardinal B-spline scaling and wavelet functions of order $m$ the two-scale relation pair takes the form of
 \begin{align}
  N_{m}\left(r\right)&=\sum_{n=0}^{m} \left[\mathbf p\right]_n N_{m}\left(2r-n\right) \label{eq:MRA-TwoScalepair1} \\
   \varphi_{m}\left(r\right) &= \sum_{n=0}^{3m-2} \frac{\left(-1\right)^n}{2^{m-1}} \left[\mathbf q\right]_n N_{m}\left(2r-n\right)\label{eq:MRA-TwoScalepair2},
@@ -527,7 +527,7 @@ By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, 
  \label{eq:MRA-PhiPsiOrthogonality}
  \end{equation}
 
-In order to analytically calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale. For scaling functions this can be done  by using \eqref{eq:MRA-TwoScalepair1} recursively, giving
+In order to analytically calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale using the two-scale relation pair defined in equations (\ref{eq:MRA-TwoScalepair1}-\ref{eq:MRA-TwoScalepair2coefs}). For scaling functions this can be done  by using \eqref{eq:MRA-TwoScalepair1} recursively, giving
 \begin{align}\label{eq:MRA-ConvertingFormulaForscalingFunctions}
  &N_m(r)=\nonumber \\
 &\sum_{n_1,n_2, \dots n_j=0}^{m}\left[\mathbf p\right]_{n_1} \left[\mathbf p\right]_{n_2}\dots \left[\mathbf p\right]_{n_j}N_m(2^jr-l_{n_1,n_2, \dots, n_j}),
@@ -570,7 +570,7 @@ The convolution theorem states that the Fourier transform of the convolution of 
 \begin{align}\label{eq:MRA-NmFouriertransform}
 \mathcal F(N_m(r))=\left(\frac{1-\mathrm{exp}(-2\pi i \nu)}{2\pi i\nu}\right)^m.
 \end{align}
-\dean{Need to say how the FT is used somewhere here before proceeding.}
+\dean{Need to say how the FT is used somewhere here before proceeding.} \parham{The Fourier transform of the $m$-th order Bspline allows the calculation of the spatial frequency response of the wavelets using \eqref{eq:MRA-TwoScalepair2} from which the level of approximation, $j$, can be determined. This way we choose wavelets upto level $j$ which fully describe the spatial frequency contents of the underlying neural field estimated from observations.}
 
 
 \section{State and Parameter Estimation}
@@ -794,7 +794,7 @@ The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $
  \end{enumerate}
  % \end{tabbing}
  \end{algorithm}
-The stopping rule adopted herein is
+The stopping criterion is usually associated with either the change in the parameter estimates or the log-likelihood variation \cite{McLachlan1997}. The stopping rule adopted herein is
 \begin{equation}
  \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\epsilon,
  \end{equation}
