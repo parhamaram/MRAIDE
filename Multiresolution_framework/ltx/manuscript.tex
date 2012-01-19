@@ -232,7 +232,7 @@ where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at 
 
 The goal of this section is to demonstrate how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure. Therefore, the goal is to form a parameterised equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
 
-The multi-resolution approximation \cite{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering an $n$-dimensional field, the static connectivity kernel is decomposed as,
+The multi-resolution approximation \cite{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering a  one-dimensional field, the static connectivity kernel is decomposed as,
 \begin{equation}
  w\left(r\right)=\sum_{l\in \mathbb{Z}}\alpha_{j_0,l} \underbrace{\phi_{j_0,l}\left(r\right)}_{\text{scaling}} + \sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l} \underbrace{\psi_{j,l}\left(r\right)}_{\text{wavelet}}, 
 \label{eq:KernelExpansion}
