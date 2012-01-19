@@ -607,7 +607,13 @@ to give the state transition equation
 \label{eq:A_theta}
  \mathbf A(\boldsymbol \theta) &= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I.
 \end{align}
-
+\parham{
+ \begin{itemize}
+	\item when likelihood is difficult to maximise directly (when we have hidden variable) so we maximise the joint likelihood function 
+	\item EM maximises the lower bound and show what exactly this lower bound is (shown in Appendix).
+	\item E-step for state-space model is the smoothing problem
+	\item so when we have joint state parameter estimation for stae-space models  we only need to do two things: 1- use smoother for the E-step 2- construct the lower bound which might not be straightforward even in linear case
+\end{itemize}}
 The linear state-space representation of the MRAIDE allows the use of the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
 \begin{equation}
 	\boldsymbol\theta_{\text{ML}}=\arg\max_{\boldsymbol\theta}~p(\mathbf Y;\boldsymbol\theta),
@@ -952,7 +958,7 @@ $N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of $N_m(2^{j
 \end{align}
 Substituting \eqref{eq:AppendixNj-1intermsofNj} in to \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} completes the proof. 
 \subsection{Lower bound on likelihood function}
-A derivation of the lower bound that is based on \cite{Bishop2006} is provided in this Appendix. Let the entire sequence of observations is denoted by $\mathbf Y$, and the sequence of hidden variables by $\mathbf X$ and the parameter set by $\boldsymbol\Theta$. We want to maximise the likelihood function which is difficult to maximise directly
+A derivation of the lower bound on the likelihood function that is based on \cite{Bishop2006} is provided in this Appendix. Let the entire sequence of observations is denoted by $\mathbf Y$, and the sequence of hidden variables by $\mathbf X$ and the parameter set by $\boldsymbol\Theta$. We want to maximise the likelihood function which is difficult to maximise directly
 \begin{equation}
  p(\mathbf Y;\boldsymbol\Theta)=\int_{\mathbf X}p(\mathbf X,\mathbf Y;\boldsymbol\Theta)d\mathbf X.
 \end{equation}   
@@ -980,7 +986,7 @@ The equality holds if and only if $q(\mathbf X)=p(\mathbf X \mid \mathbf Y;\bold
  \mathcal{L}(q,\boldsymbol\Theta)\le \ln~p(\mathbf Y\mid\boldsymbol\Theta)
 	\end{equation} 
 
-The EM algorithm alternates between maximising the lower bound with respect to the distribution $q(\mathbf X)$ and the parameter set $\boldsymbol\Theta$, respectively, while holding the other fixed. Suppose that the current estimate of the parameter set is $\boldsymbol\Theta'$, in the E-step the lower bound is maximised with respect to the distribution $q(\mathbf X)$ while $\boldsymbol\Theta'$ is fixed. Since the value of $p(\mathbf Y;\boldsymbol\Theta')$ is independent of $q(\mathbf X)$ the maximum of the lower bound occurs when the Kullback-Liebler distance disappears or in other words when $q(\mathbf X)$ is exactly the conditional distribution $p(\mathbf X \mid \mathbf Y;\boldsymbol\Theta)$. At this point, the lower bound becomes equal to the log-likelihood function. The maximum in the M-step is obtained by maximising the lower bound with respect to the parameter set while the distribution $q(\mathbf X)$ is held fixed. Since the distribution $q(\mathbf X)$ is computed using the old parameter estimates and kept fixed during the M-step, it is not equal to $p(\mathbf X \mid \mathbf Y;\boldsymbol\Theta)$, resulting in a non-zero KL distance. Therefore, the growth of the log-likelihood function is greater than the growth of the lower bound. Substituting $p(\mathbf X \mid \mathbf Y;\boldsymbol\Theta')$ for $q(\mathbf X)$ in \eqref{eq:EM-decomposition1} gives
+The EM algorithm alternates between maximising the lower bound with respect to the distribution $q(\mathbf X)$ and the parameter set $\boldsymbol\Theta$, respectively, while holding the other fixed. Suppose that the current estimate of the parameter set is $\boldsymbol\Theta'$, in the E-step the lower bound is maximised with respect to the distribution $q(\mathbf X)$ while $\boldsymbol\Theta'$ is fixed. Since the value of $p(\mathbf Y;\boldsymbol\Theta')$ is independent of $q(\mathbf X)$ the maximum of the lower bound occurs when the KL distance disappears or in other words when $q(\mathbf X)$ is exactly the conditional distribution $p(\mathbf X \mid \mathbf Y;\boldsymbol\Theta)$. At this point, the lower bound becomes equal to the log-likelihood function. Note in statespace model the E-step is equiavalent to the smoothing problem. The maximum in the M-step is obtained by maximising the lower bound with respect to the parameter set while the distribution $q(\mathbf X)$ is held fixed. Since the distribution $q(\mathbf X)$ is computed using the old parameter estimates and kept fixed during the M-step, it is not equal to $p(\mathbf X \mid \mathbf Y;\boldsymbol\Theta)$, resulting in a non-zero KL distance. Therefore, the growth of the log-likelihood function is greater than the growth of the lower bound. Substituting $p(\mathbf X \mid \mathbf Y;\boldsymbol\Theta')$ for $q(\mathbf X)$ in \eqref{eq:EM-decomposition1} gives
 \begin{align}
  \mathcal{L}(q,\boldsymbol\Theta)&=\int_{\mathbf X} p(\mathbf X\mid\mathbf Y;\boldsymbol\Theta')\ln p(\mathbf X,\mathbf Y;\boldsymbol\Theta)~d\mathbf X-\int_{\mathbf X} p(\mathbf X\mid\mathbf Y;\boldsymbol\Theta')\ln p(\mathbf X\mid\mathbf Y;\boldsymbol\Theta')~d\mathbf X \nonumber \\
 &= \mathbf E_{\boldsymbol\Theta'}\left[ \ln p(\mathbf X,\mathbf Y;\boldsymbol\Theta)\right] +\mathrm{const.}\nonumber\\
