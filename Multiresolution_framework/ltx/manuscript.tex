@@ -234,15 +234,15 @@ The goal of this section is to demonstrate how to formulate a state-space model 
 
 The multi-resolution approximation \cite{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering an $n$-dimensional field, the static connectivity kernel is decomposed as,
 \begin{equation}
- w\left(\mathbf{r}\right)=\sum_{\mathbf{l} \in \mathbb{Z}^n}\alpha_{j_0,\mathbf{l}} \underbrace{\phi_{j_0,\mathbf{l}}\left(\mathbf{r}\right)}_{\text{scaling}} + \sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l} \in \mathbb{Z}^n}\beta_{j,\mathbf{l}} \underbrace{\psi_{j,\mathbf{l}}\left(\mathbf{r}\right)}_{\text{wavelet}}, 
+ w\left(r\right)=\sum_{l\in \mathbb{Z}}\alpha_{j_0,l} \underbrace{\phi_{j_0,l}\left(r\right)}_{\text{scaling}} + \sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l} \underbrace{\psi_{j,l}\left(r\right)}_{\text{wavelet}}, 
 \label{eq:KernelExpansion}
 \end{equation}
-where $\alpha_{j_0,\mathbf{l}}$ are the approximation coefficients at the lowest scale $j_0$, and $\beta_{j,\mathbf{l}}$ are the detail coefficients at different scales $j$, with
+where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$, and $\beta_{j,l}$ are the detail coefficients at different scales $j$, with
 \begin{align}
-\phi_{j,\mathbf{l}}\left(\mathbf{r}\right) =& 2^{\frac{j}{2}}\phi\left(2^j\mathbf{r}-\mathbf{l}\right) \\	
-\psi_{j,\mathbf{l}}\left(\mathbf{r}\right) =& 2^{\frac{j}{2}}\psi\left(2^j\mathbf{r}-\mathbf{l}\right).
+\phi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\phi\left(2^j r-l\right) \\	
+\psi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\psi\left(2^j r-l\right).
 \end{align}
-The parameters $j$ and $\mathbf{l}$ control the scale (dilation) and translation (spatial shift), respectively. \dean{NEED SOMETHING ABOUT HOW j AND l ARE SET HERE - AS IN THAT THEY ARE KNOWN - AND THAT WE ONLY NEED TO ESTIMATE THE COEFFICIENTS.} Scaling functions retain the lowest frequency components, due to their low-pass properties, while the wavelet functions extract successively higher frequency components due to their band-pass characteristics. 
+The parameters $j$ and $l$ control the scale (dilation) and translation (spatial shift), respectively. \dean{NEED SOMETHING ABOUT HOW j AND l ARE SET HERE - AS IN THAT THEY ARE KNOWN - AND THAT WE ONLY NEED TO ESTIMATE THE COEFFICIENTS.} Scaling functions retain the lowest frequency components, due to their low-pass properties, while the wavelet functions extract successively higher frequency components due to their band-pass characteristics. 
 
 % At each spatial scale indexed by $j$ (level of decomposition), the neural field can be written as
 % \begin{equation}
@@ -254,21 +254,21 @@ The parameters $j$ and $\mathbf{l}$ control the scale (dilation) and translation
 
 The dynamic neural field is decomposed using
 \begin{equation}
- v_t\left(\mathbf{r}\right)=\sum_{\mathbf{l} \in \mathbb{Z}^n}x_{t,j_{0},\mathbf{l}} \underbrace{\phi_{j_0,\mathbf{l}}\left(\mathbf{r}\right)}_{\text{scaling}} + \sum_{j\geq j_0}^{\infty} \sum_{\mathbf{l} \in \mathbb{Z}^n} \check{x}_{t,j,\mathbf{l}} \underbrace{\psi_{j,\mathbf{l}}\left(\mathbf{r}\right)}_{\text{wavelet}},
+ v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l} \underbrace{\phi_{j_0,l}\left(r\right)}_{\text{scaling}} + \sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}^n} \check{x}_{t,j,l} \underbrace{\psi_{j,l}\left(r\right)}_{\text{wavelet}},
 \label{eq:FieldExpansion}
 \end{equation}
-where $x_{t,j_{0},\mathbf{l}}$ and $\check{x}_{t,j,\mathbf{l}} $ are the dynamic coefficients of the expansion, constituting the state vector at time $t$. \dean{The decomposition enables a separation of the static spatial characteristics, which are considered static functions, that are weighted by dynamic coefficients.  }
+where $x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the dynamic coefficients of the expansion, constituting the state vector at time $t$. \dean{The decomposition enables a separation of the static spatial characteristics, which are considered static functions, that are weighted by dynamic coefficients.  }
 
 Equations \ref{eq:KernelExpansion} and \ref{eq:FieldExpansion} are infinite series expansions and must be truncated to some level \dean{$j=J$} in order to solve the estimation problem. In other words, the neural field must be band-limited up to a given spatial frequency. 
 
 Now we will simplify the notation by defining vectors that contain all the translations of the wavelets and scaling functions such that
 \begin{align}
-	\boldsymbol\alpha_{k} \triangleq& \left\lbrace\alpha_{k, \mathbf{l}}:\mathbf{l} \in \mathbb{Z}^n \right\rbrace \\
+	\boldsymbol\alpha_{k} \triangleq& \left\lbrace\alpha_{k, l}:l \in \mathbb{Z} \right\rbrace \\
 	\boldsymbol\beta_{k} \triangleq& \\
 	\mathbf{x}_{t,k} \triangleq& \\
 	\check{\mathbf{x}}_{t,k} \triangleq& \\
-	\boldsymbol\phi_{j_0}^\top(\mathbf{r}) \triangleq& \\
-	\boldsymbol\psi_{k}^\top(\mathbf{r}) \triangleq& ,
+	\boldsymbol\phi_{j_0}^\top(r) \triangleq& \\
+	\boldsymbol\psi_{k}^\top(r) \triangleq& ,
 \end{align}
 where $k = j_0,j$.\dean{ARE THESE EACH $n_{\theta}$ or $n_x$ DIMENSIONAL VECTORS?} Following this we can define the \dean{vectors or matrices} 
 \begin{align}
@@ -277,25 +277,25 @@ where $k = j_0,j$.\dean{ARE THESE EACH $n_{\theta}$ or $n_x$ DIMENSIONAL VECTORS
 \mathbf{x}_{t}^\top \triangleq& [\begin{array}{ccccc}\mathbf{x}_{t,j_{0}}^\top &  \check{\mathbf{x}}_{t,j_{0}}^\top & \check{\mathbf{x}}_{t,j_{0}+1}^\top & \cdots & \check{\mathbf{x}}_{t,J}^\top\end{array}]
 \label{FieldWeights} \\
 \label{KernelBasisVector}
-\boldsymbol\lambda^\top(\mathbf{r}) \triangleq& \left[
-\begin{array}{ccccc} \boldsymbol\phi_{j_0}^\top(\mathbf{r}) &
-\boldsymbol\psi_{j_0}^\top(\mathbf{r}) & 
-\boldsymbol\psi_{j_0+1}^\top(\mathbf{r}) &
+\boldsymbol\lambda^\top(r) \triangleq& \left[
+\begin{array}{ccccc} \boldsymbol\phi_{j_0}^\top(r) &
+\boldsymbol\psi_{j_0}^\top(r) & 
+\boldsymbol\psi_{j_0+1}^\top(r) &
 \cdots &
-\boldsymbol\psi_{J}^\top(\mathbf{r})\end{array}\right] \\
+\boldsymbol\psi_{J}^\top(r)\end{array}\right] \\
 \label{FieldBasisVector}
-\boldsymbol\mu^\top (\mathbf{r}) \triangleq& \left[
-\begin{array}{ccccc}\boldsymbol\phi_{j_0}^\top(\mathbf{r}) &
-\boldsymbol\psi_{j_0}^\top(\mathbf{r}) & 
-\boldsymbol\psi_{j_0+1}^\top(\mathbf{r}) &
+\boldsymbol\mu^\top (r) \triangleq& \left[
+\begin{array}{ccccc}\boldsymbol\phi_{j_0}^\top(r) &
+\boldsymbol\psi_{j_0}^\top(r) & 
+\boldsymbol\psi_{j_0+1}^\top(r) &
 \cdots &
-\boldsymbol\psi_{J}^\top(\mathbf{r})\end{array}\right],
+\boldsymbol\psi_{J}^\top(r)\end{array}\right],
 \end{align}
 which allow us to write the neural field and connectivity kernel decomposition in the compact form of
 \begin{align}
-	w\left(\mathbf{r}\right) &\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}\right) 
+	w\left(r\right) &\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(r\right) 
 	\label{eq:KernelFiniteExpansion} \\
-	v_t\left(\mathbf{r}\right) &\approx \boldsymbol\mu^\top\left(\mathbf{r}\right)\mathbf{x}_t.
+	v_t\left(r\right) &\approx \boldsymbol\mu^\top\left(r\right)\mathbf{x}_t.
 	\label{eq:FieldFiniteExpansion}
 \end{align}
 
@@ -329,72 +329,72 @@ which allow us to write the neural field and connectivity kernel decomposition i
 % The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}).  
 Now we have the compact for of the decomposition we can substitute this into the neural field equation \eqref{eq:DiscreteTimeModel} giving
 \begin{equation}\label{eq:ApproxDiscreteTimeModel}
-	\boldsymbol\mu^\top\left(\mathbf{r}\right)\mathbf{x}_{t+1} = 
-	\xi \boldsymbol\mu^\top\left(\mathbf{r}\right)\mathbf{x}_t + 
+	\boldsymbol\mu^\top\left(r\right)\mathbf{x}_{t+1} = 
+	\xi \boldsymbol\mu^\top\left(r\right)\mathbf{x}_t + 
 	T_s \int_\Omega { 
-	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
-	    f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right)\mathbf{x}_t\right) 
-	\, \mathrm{d}\mathbf{r}'}  
-	+ e_t\left(\mathbf{r}\right).
+	    \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
+	    f\left(\boldsymbol\mu^\top\left(r'\right)\mathbf{x}_t\right) 
+	\, \mathrm{d}r'}  
+	+ e_t\left(r\right).
 \end{equation}
 The aim of the next part of the derivation is to isolate the state vector on the left hand side of the equation. To do this we first multiply both sides of equation~\eqref{eq:ApproxDiscreteTimeModel} by $\boldsymbol\mu\left(r\right)$ and integrate over space giving 
 \begin{equation}\label{eq:ApproxDiscreteTimeModel2}
-	\int_{\Omega} \boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\mu^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r} \mathbf{x}_{t+1} = 
-	\xi \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\mu^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r} \mathbf{x}_t + 
-	T_s \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\int_\Omega { 
-	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
-	    f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right)\mathbf{x}_t\right) 
-	\, \mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}}  
-	+ \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)\mathrm{d}\mathbf{r}.
+	\int_{\Omega} \boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) \mathrm{d}r \mathbf{x}_{t+1} = 
+	\xi \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) \mathrm{d}r \mathbf{x}_t + 
+	T_s \int_{\Omega}\boldsymbol\mu\left(r\right)\int_\Omega { 
+	    \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
+	    f\left(\boldsymbol\mu^\top\left(r'\right)\mathbf{x}_t\right) 
+	\, \mathrm{d}r'\mathrm{d}r}  
+	+ \int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)\mathrm{d}r.
 \end{equation}
 To isolate the state vector, we now define the matrix 
 \begin{equation}
 	\label{eq:Lambdax}
-	 \mathbf{\Lambda}_{x} \triangleq \int_{\Omega}\boldsymbol{\mu}\left(\mathbf{r}\right)\boldsymbol{\mu}^\top\left(\mathbf{r}\right) \mathrm{d}\mathbf{r}
+	 \mathbf{\Lambda}_{x} \triangleq \int_{\Omega}\boldsymbol{\mu}\left(r\right)\boldsymbol{\mu}^\top\left(r\right) \mathrm{d}r
 \end{equation}
 and substitute into equation~\eqref{eq:ApproxDiscreteTimeModel2} giving
 \begin{equation}\label{eq:ApproxDiscreteTimeModel3}
 	\mathbf{\Lambda}_{x} \mathbf{x}_{t+1} = 
 	\xi \mathbf{\Lambda}_{x} \mathbf{x}_t + 
-	T_s \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\int_\Omega { 
-	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
-	    f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right)\mathbf{x}_t\right) 
-	\, \mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}}  
-	+ \int_{\Omega}\boldsymbol{\mu}\left(\mathbf{r}\right) e_t\left(\mathbf{r}\right) \mathrm{d}\mathbf{r}.
+	T_s \int_{\Omega}\boldsymbol\mu\left(r\right)\int_\Omega { 
+	    \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
+	    f\left(\boldsymbol\mu^\top\left(r'\right)\mathbf{x}_t\right) 
+	\, \mathrm{d}r'\mathrm{d}r}  
+	+ \int_{\Omega}\boldsymbol{\mu}\left(r\right) e_t\left(r\right) \mathrm{d}r.
 \end{equation}
 Cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ gives the state transition equation
 \begin{equation}\label{eq:ApproxDiscreteTimeModel4}
 	\mathbf{x}_{t+1} = 
 	\xi \mathbf{x}_t + 
-	T_s \mathbf{\Lambda}_{x}^{-1} \int_{\Omega}\boldsymbol\mu\left(\mathbf{r}\right)\int_\Omega { 
-	    \boldsymbol\theta^\top\boldsymbol\lambda\left(\mathbf{r}-\mathbf{r}'\right)
-	    f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right)\mathbf{x}_t\right) 
-	\, \mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}}  
-	+ \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol{\mu}\left(\mathbf{r}\right) e_t\left(\mathbf{r}\right) \mathrm{d}\mathbf{r}.
+	T_s \mathbf{\Lambda}_{x}^{-1} \int_{\Omega}\boldsymbol\mu\left(r\right)\int_\Omega { 
+	    \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
+	    f\left(\boldsymbol\mu^\top\left(r'\right)\mathbf{x}_t\right) 
+	\, \mathrm{d}r'\mathrm{d}r}  
+	+ \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol{\mu}\left(r\right) e_t\left(r\right) \mathrm{d}r.
 \end{equation}
 A very nice property of the MRAIDE framework is the the disturbance term becomes a vector valued, zero-mean normally distributed, white noise process 
 \begin{equation}\label{eq:Disturbance}
-\mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(\mathbf{r}\right)e_t\left(\mathbf{r}\right)\,\mathrm{d}\mathbf{r},
+\mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(r\right)e_t\left(r\right)\,\mathrm{d}r,
 \end{equation}
 with covariance (see \cite{Freestone2011} for proof)
 \begin{equation}\label{eq:CovMatrix}
-\boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(\mathbf{r}\right) \eta\left(\mathbf{r}-\mathbf{r}'\right)\boldsymbol\mu^{\top}\left(\mathbf{r}'\right)\,\mathrm{d}\mathbf{r}'\mathrm{d}\mathbf{r}\mathbf{\Lambda}_{x}^{-\top}.
+\boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(r\right) \eta\left(r-r'\right)\boldsymbol\mu^{\top}\left(r'\right)\,\mathrm{d}r'\mathrm{d}r\mathbf{\Lambda}_{x}^{-\top}.
 \end{equation} 
 
 The state-transition equation can be simplified by exploiting the isotropy of the scaling functions and the wavelets where
 \begin{equation}
-	\boldsymbol{\lambda}_{j,l}(\mathbf{r}-\mathbf{r}') = \boldsymbol{\lambda}(2\mathbf{c}_{j,l}+\mathbf{r}'-\mathbf{r}). 
+	\boldsymbol{\lambda}_{j,l}(r-r') = \boldsymbol{\lambda}(2\mathbf{c}_{j,l}+r'-r). 
 \end{equation}
 Following this, we can switch the order of operations with the inner product and convolution in equation~\eqref{eq:ApproxDiscreteTimeModel4}. With this switch the convolution is now between the scaling functions and wavelets for the field and the scaling functions and wavelets for the connectivity kernel. This convolution can be calculated analytically when using B-spline wavelets and can be predefined once, since these are static functions. This has major computation advantages when solving the estimation problem. The predefined convolution can be written as
 \begin{equation}
-	\left[\Gamma(\mathbf{r}')\right]_{:j,l} = T_s \mathbf{\Lambda}_{x}^{-1}\int_{\Omega} \boldsymbol\mu\left(\mathbf{r}\right)\boldsymbol\lambda\left(2\mathbf{c}_{j,l} + \mathbf{r}'-\mathbf{r}\right) \,\mathrm{d}\mathbf{r}
+	\left[\Gamma(r')\right]_{:j,l} = T_s \mathbf{\Lambda}_{x}^{-1}\int_{\Omega} \boldsymbol\mu\left(r\right)\boldsymbol\lambda\left(2c_{j,l} + r'-r\right) \,\mathrm{d}r
 \end{equation}
 giving
 \begin{equation}
 	\mathbf{x}_{t+1} = 
 	\xi \mathbf{x}_t + 
-	\int_{\Omega} \Gamma\left(\mathbf{r}'\right)f\left(\boldsymbol\mu^\top\left(\mathbf{r}'\right) \mathbf{x}_t\right) 
-	\, \mathrm{d}\mathbf{r}' \boldsymbol\theta
+	\int_{\Omega} \Gamma\left(r'\right)f\left(\boldsymbol\mu^\top\left(r'\right) \mathbf{x}_t\right) 
+	\, \mathrm{d}r' \boldsymbol\theta
 	+ \mathbf w_t
 \end{equation}
 
@@ -425,7 +425,7 @@ The observation equation of the state-space model is found by substituting decom
 \end{equation}
 where each element of the observation matrix, $\mathbf{C}$, is given by
 \begin{equation}\label{eq:Observationmatrix}
-	\mathbf{C}_{ik} \triangleq \int_{\Omega}m(\mathbf{r}_i - \mathbf{r}')\boldsymbol{\mu}_k(\mathbf{r}') \, \mathrm{d}\mathbf{r}'.
+	\mathbf{C}_{ik} \triangleq \int_{\Omega}m(r_i -r')\boldsymbol{\mu}_k(r') \, \mathrm{d}r'.
 \end{equation}
 
 \section{B-Spline MRAIDE in State-Space }
