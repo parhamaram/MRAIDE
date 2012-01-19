@@ -76,17 +76,6 @@ F.~Atay and A.~Hutt, ``Stability and bifurcations in neural fields with finite
   propagation speed and general connectivity,'' \emph{SIAM Journal on Applied
   Mathematics}, vol.~65, no.~2, pp. 644--666, 2005.
 
-\bibitem{VanRotterdam1982}
-A.~Van~Rotterdam, F.~Lopes~da Silva, J.~Van~den Ende, M.~Viergever, and
-  A.~Hermans, ``{A model of the spatial-temporal characteristics of the alpha
-  rhythm},'' \emph{Bulletin of Mathematical Biology}, vol.~44, no.~2, pp.
-  283--305, 1982.
-
-\bibitem{Murphy2009}
-B.~Murphy and K.~Miller, ``{Balanced amplification: a new mechanism of
-  selective amplification of neural activity patterns},'' \emph{Neuron},
-  vol.~61, no.~4, pp. 635--648, 2009.
-
 \bibitem{Mallat1989a}
 S.~G. Mallat, ``A theory for multiresolution signal decomposition: the wavelet
   representation,'' \emph{Pattern Analysis and Machine Intelligence, IEEE
@@ -112,11 +101,6 @@ M.~Unser, A.~Aldroubi, and M.~Eden, ``A family of polynomial spline wavelet
   transforms,'' \emph{Signal Processing}, vol.~30, no.~2, pp. 141--162, Jan.
   1993.
 
-\bibitem{Unser1992}
-------, ``On the asymptotic convergence of \text{B}-spline wavelets to
-  \text{G}abor functions,'' \emph{Information Theory, IEEE Transactions on},
-  vol.~38, no.~2, pp. 864--872, 1992.
-
 \bibitem{Unser1999}
 M.~Unser, ``Splines: a perfect fit for signal and image processing,''
   \emph{Signal Processing Magazine, IEEE}, vol.~16, no.~6, pp. 22--38, 1999.
@@ -131,14 +115,18 @@ A.~P. Dempster, N.~M. Laird, and D.~B. Rubin, ``Maximum likelihood from
   Statistical Society. Series B (Methodological)}, vol.~39, no.~1, pp. 1--38,
   1977.
 
+\bibitem{Shumway2000}
+R.~Shumway and D.~Stoffer, \emph{Time Series Analysis and Its
+  Applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Verlag, 2000.
+
 \bibitem{Dewar2009}
 M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
   modeling using the integro-difference equation,'' \emph{Signal Processing,
   IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
 
-\bibitem{Shumway2000}
-R.~Shumway and D.~Stoffer, \emph{Time Series Analysis and Its
-  Applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Verlag, 2000.
+\bibitem{Bishop2006}
+C.~Bishop, \emph{Pattern Recognition and Machine Learning}.\hskip 1em plus
+  0.5em minus 0.4em\relax Springer New York, 2006, vol.~4.
 
 \bibitem{RAUCH1965}
 H.~E. Rauch, F.~Tung, and C.~T. Striebel, ``Maximum likelihood estimates of
@@ -149,6 +137,11 @@ H.~E. Rauch, F.~Tung, and C.~T. Striebel, ``Maximum likelihood estimates of
 S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
   multivariable dynamic systems,'' \emph{Automatica}, vol.~41, no.~10, pp.
   1667--1682, Oct. 2005.
+
+\bibitem{McLachlan1997}
+G.~McLachlan and T.~Krishnan, \emph{{The EM algorithm and extensions}},
+  2nd~ed.\hskip 1em plus 0.5em minus 0.4em\relax Wiley New York, 1997, vol.
+  274.
 
 \bibitem{Meyer2000}
 C.~Meyer, \emph{Matrix analysis and applied linear algebra: solutions
@@ -198,11 +191,6 @@ G.~Evensen, ``The ensemble kalman filter: theoretical formulation and practical
 \bibitem{Evensen2009}
 ------, \emph{Data assimilation: The ensemble Kalman filter}.\hskip 1em plus
   0.5em minus 0.4em\relax Springer Verlag, 2009.
-
-\bibitem{McLachlan1997}
-G.~McLachlan and T.~Krishnan, \emph{{The EM algorithm and extensions}},
-  2nd~ed.\hskip 1em plus 0.5em minus 0.4em\relax Wiley New York, 1997, vol.
-  274.
 
 \bibitem{Wikle2002}
 C.~K. Wikle, ``A kernel-based spectral model for non-\text{G}aussian

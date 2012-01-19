@@ -608,8 +608,16 @@ to give the state transition equation
  \mathbf A(\boldsymbol \theta) &= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I.
 \end{align}
 
-The linear state-space representation of the MRAIDE allows the use of the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate and the posterior distribution of the field over time. We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations. EM essentially finds increasingly tighter lower bounds on the likelihood of the kernel $p(\mathbf{y}_1 \ldots \mathbf{y}_T|w)$ so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. 
-For the linear state-space model given by (\ref{eq:StateEquation}--\ref{eq:Observationmatrix}), the joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ can be written as
+The linear state-space representation of the MRAIDE allows the use of the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
+\begin{equation}
+	\boldsymbol\theta_{\text{ML}}=\arg\max_{\boldsymbol\theta}~p(\mathbf Y;\boldsymbol\theta),
+ \end{equation}
+ %We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations.
+ and the posterior distribution of the field over time. Here $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of the entire sequence of observations $\mathbf Y$ parameterised  by $\boldsymbol\theta$ known as the likelihood function. When maximisation of the likelihood function is difficult to achieve directly the EM algorithm can be used to find increasingly tighter lower bounds on the likelihood of the parameters so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. By exploiting the total probability rule it is rather straightforward to show that 
+\begin{equation}
+	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \Theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \Theta)\right], 
+\end{equation}
+is a lower bound on the log-likelihood function \cite{Bishop2006} where $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ is the joint probabilty distribution of the states and the observations. Maximising the likelihood in terms of the parameter set is equivalent to the log-likelihood maximisation, as both the likelihood and log-likelihood functions share the same maximiser due to the monotonicity of the logarithm function.... The rest of this section is to construct the lower bound $\mathcal Q$ for the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ can be written as
  \begin{equation}\label{eq:jointdistribution}
   p(\mathbf X,\mathbf Y;\boldsymbol \Theta)=\prod_{t=0}^{T-1} p(\mathbf y_{t+1}|\mathbf x_{t+1})p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)p(\mathbf x_0).
  \end{equation}
