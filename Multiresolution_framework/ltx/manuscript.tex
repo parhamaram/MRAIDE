@@ -219,16 +219,16 @@ where the post-synaptic membrane voltage at time $t$ of a population of neurons 
 cov\left(e_{t}\left(\mathbf{r}\right),e_{t+t'}\left(\mathbf{r'}\right)\right)=\eta(\mathbf{r}-\mathbf{r'})\delta(t-t'),
 \label{eq:FieldDisturbance}
 \end{equation}
-where $\delta(\cdot)$ is the Dirac-delta function. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})$ \cite{VanRotterdam1982,Murphy2009}.
+where $\delta(\cdot)$ is the Dirac-delta function. The firing rate of the presynaptic neurons is related to the post-synaptic membrane potential by the activation function $f(v_t(\mathbf{r}))$ \parham{Dean: can you add the bit about different type of activatin functions here}.%$ = \varsigma v_t(\mathbf{r})$ \cite{VanRotterdam1982,Murphy2009}.
 
 The observation equation describing the intracranial electrophysiological recordings is given by
 \begin{equation}\label{eq:ObservationEquation}
 	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, \mathrm{d}\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
 \end{equation}
-where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. 
+where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. \parham{the lead field thingy} 
 
 \section{MRA of the IDE in State-Space}
-\dean{The purpose of forming the multi-resolution approximation (MRA) of the integro-differential equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.}
+\dean{The purpose of forming the multi-resolution approximation (MRA) of the integro-difference equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.}
 
 The goal of this section is to demonstrate how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure. Therefore, the goal is to form a parameterised equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
 
@@ -261,14 +261,14 @@ where $x_{t,j_{0},l}$ and $\check{x}_{t,j,l} $ are the dynamic coefficients of t
 
 Equations \ref{eq:KernelExpansion} and \ref{eq:FieldExpansion} are infinite series expansions and must be truncated to some level \dean{$j=J$} in order to solve the estimation problem. In other words, the neural field must be band-limited up to a given spatial frequency. 
 
-Now we will simplify the notation by defining vectors that contain all the translations of the wavelets and scaling functions such that
-\begin{align}
-	\boldsymbol\alpha_{k} \triangleq& \left\lbrace\alpha_{k, l}:l \in \mathbb{Z} \right\rbrace \\
-	\boldsymbol\beta_{k} \triangleq& \\
-	\mathbf{x}_{t,k} \triangleq& \\
-	\check{\mathbf{x}}_{t,k} \triangleq& \\
-	\boldsymbol\phi_{j_0}^\top(r) \triangleq& \\
-	\boldsymbol\psi_{k}^\top(r) \triangleq& ,
+Now we will simplify the notation by defining vectors that contain all the translations of the wavelets and scaling functions \parham{and their corresponding coefficients such that}
+\begin{align}      
+	\boldsymbol\phi_{j_0}(r) \triangleq&\left\lbrace{\phi_{j_0,l}(r)}:l \in \mathbb{Z} \right\rbrace \\
+	\boldsymbol\psi_{j}(r) \triangleq& \left\lbrace{\psi_{j,l}(r)}:l \in \mathbb{Z} \right\rbrace\\
+	\boldsymbol\alpha_{j_0} \triangleq& \left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace \\
+	\boldsymbol\beta_{j} \triangleq& \left\lbrace\beta_{j, l}:l \in \mathbb{Z} \right\rbrace \\
+	\mathbf{x}_{t,j_0} \triangleq& \left\lbrace{x}_{t,j_{0},l}:l \in \mathbb{Z} \right\rbrace \\
+	\check{\mathbf{x}}_{t,j} \triangleq& \left\lbrace{\check{x}}_{t,j,l}:l \in \mathbb{Z} \right\rbrace,
 \end{align}
 where $k = j_0,j$.\dean{ARE THESE EACH $n_{\theta}$ or $n_x$ DIMENSIONAL VECTORS?} Following this we can define the \dean{vectors or matrices} 
 \begin{align}
@@ -338,15 +338,15 @@ Now we have the compact for of the decomposition we can substitute this into the
 	+ e_t\left(r\right).
 \end{equation}
 The aim of the next part of the derivation is to isolate the state vector on the left hand side of the equation. To do this we first multiply both sides of equation~\eqref{eq:ApproxDiscreteTimeModel} by $\boldsymbol\mu\left(r\right)$ and integrate over space giving 
-\begin{equation}\label{eq:ApproxDiscreteTimeModel2}
-	\int_{\Omega} \boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) \mathrm{d}r \mathbf{x}_{t+1} = 
+\begin{align}\label{eq:ApproxDiscreteTimeModel2}
+	\int_{\Omega} \boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) \mathrm{d}r \mathbf{x}_{t+1} &= 
 	\xi \int_{\Omega}\boldsymbol\mu\left(r\right)\boldsymbol\mu^\top\left(r\right) \mathrm{d}r \mathbf{x}_t + 
 	T_s \int_{\Omega}\boldsymbol\mu\left(r\right)\int_\Omega { 
 	    \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
 	    f\left(\boldsymbol\mu^\top\left(r'\right)\mathbf{x}_t\right) 
-	\, \mathrm{d}r'\mathrm{d}r}  
-	+ \int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)\mathrm{d}r.
-\end{equation}
+	\, \mathrm{d}r'\mathrm{d}r}  \nonumber\\
+	&+ \int_{\Omega}\boldsymbol\mu\left(r\right)e_t\left(r\right)\mathrm{d}r.
+\end{align}
 To isolate the state vector, we now define the matrix 
 \begin{equation}
 	\label{eq:Lambdax}
@@ -381,11 +381,11 @@ with covariance (see \cite{Freestone2011} for proof)
 \boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(r\right) \eta\left(r-r'\right)\boldsymbol\mu^{\top}\left(r'\right)\,\mathrm{d}r'\mathrm{d}r\mathbf{\Lambda}_{x}^{-\top}.
 \end{equation} 
 
-The state-transition equation can be simplified by exploiting the isotropy of the scaling functions and the wavelets where
+\parham{The state-transition equation can be simplified if the chosen family of wavelets are isotropic  where}
 \begin{equation}
 	\boldsymbol{\lambda}_{j,l}(r-r') = \boldsymbol{\lambda}(2\mathbf{c}_{j,l}+r'-r). 
 \end{equation}
-Following this, we can switch the order of operations with the inner product and convolution in equation~\eqref{eq:ApproxDiscreteTimeModel4}. With this switch the convolution is now between the scaling functions and wavelets for the field and the scaling functions and wavelets for the connectivity kernel. This convolution can be calculated analytically when using B-spline wavelets and can be predefined once, since these are static functions. This has major computation advantages when solving the estimation problem. The predefined convolution can be written as
+Following this, we can switch the order of operations with the inner product and convolution in equation~\eqref{eq:ApproxDiscreteTimeModel4}. With this switch the convolution is now between the scaling functions and wavelets for the field and the scaling functions and wavelets for the connectivity kernel. This convolution can be calculated analytically when using B-spline wavelets and can be predefined once, since these are static functions. This has major computation advantages when solving the estimation problem. \parham{Although this switch holds theoretically it should be noted that it will introduce numerical error, specially close to the edges, due to the finite extent of the field. } The predefined convolution can be written as
 \begin{equation}
 	\left[\Gamma(r')\right]_{:j,l} = T_s \mathbf{\Lambda}_{x}^{-1}\int_{\Omega} \boldsymbol\mu\left(r\right)\boldsymbol\lambda\left(2c_{j,l} + r'-r\right) \,\mathrm{d}r
 \end{equation}
@@ -471,7 +471,7 @@ r^3 & \text{if $ 0\le r\le1$}, \\
 0 & \mathrm{elsewhere}.
 \end{cases}
 \end{align}
-The convolution and inner product of B-spline functions are required in order to formulate the multi-resolution framework described in the previous section (construction of $\boldsymbol\Lambda_x$, $\boldsymbol\Lambda_{\theta}$ and $\boldsymbol\Sigma_w$). To show how the convolution of two B-splines is calculated, \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself
+The convolution and inner product of B-spline functions are required in order to formulate the multi-resolution framework described in the previous section (construction of $\boldsymbol\Lambda_{x}$, $\boldsymbol\Gamma$ and $\boldsymbol\Sigma_w$). To show how the convolution of two B-splines is calculated, \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself
 \begin{equation}\label{eq:N1convolutions}
  N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right).
 \end{equation}
