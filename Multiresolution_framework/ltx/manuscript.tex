@@ -439,7 +439,7 @@ B-spline functions are one of the most basic elements for wavelet construction. 
 \label{fig:Figure0}
 \end{figure}
  
-B-spline wavelet and scaling functions were formulated independently by Chui and Wang, and Unser et al \cite{Chui1992b,Chui1992,Unser1993}.  The scaling functions are $m$-th order B-splines and the compact support wavelet functions are a linear combination of scaling functions. B-spline wavelet and scaling functions approach optimal time/frequency localisation as the order of the spline increases. In fact, for the cubic B-spline scaling and wavelet functions it is already close to the optimal limit for Gaussian functions and they have a better approximation rate then other wavelets with the same number of vanishing moments \cite{Unser1999}. 
+B-spline wavelet and scaling functions were formulated independently by Chui and Wang, and Unser et al \cite{Chui1992b,Chui1992,Unser1993}.  The scaling functions are $m$-th order B-splines and the compact support wavelet functions are a linear combination of scaling functions. B-spline wavelet and scaling functions approach optimal time/frequency localisation as the order of the spline increases. In fact, for the cubic B-spline scaling and wavelet functions it is already close to the optimal limit for Gaussian functions and they have a better approximation rate than other wavelets with the same number of vanishing moments \cite{Unser1999}. 
 
 B-spline wavelet and scaling functions are particularly suited in this framework due to the property of being able to analytically define the convolution and inner product to form MRAIDE components. The following summarises some important characteristics of B-splines relevant to the proposed modelling framework. 
 
@@ -462,7 +462,7 @@ Following this, a B-spline of any order, $N_m(r)$, can be computed using the rec
  \end{equation}
 The most commonly used form of splines is the cubic spline $\left(m=4\right)$, comprised of third degree polynomials added together at the joining points, with an explicit expression given by
 \begin{align}
-N_{4}\left(r\right)=
+3!N_{4}\left(r\right)=
 \begin{cases}
 r^3 & \text{if $ 0\le r\le1$}, \\
 4-12r+12r^2-3r^3 & \text{if $1\le r\le2$}, \\
@@ -526,6 +526,7 @@ By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, 
   \left\langle N_{m;j_1,l_1}(r),\varphi_{m;j_2,l_2}(r)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2.
  \label{eq:MRA-PhiPsiOrthogonality}
  \end{equation}
+  \parham{Note from \eqref{eq:MRA-PsiPsiOrthogonality} Bspline wavelets are semiorthogonal as they are not orthogonal with respect to translation on a given scale.} 
 
 In order to analytically calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale using the two-scale relation pair defined in equations (\ref{eq:MRA-TwoScalepair1}-\ref{eq:MRA-TwoScalepair2coefs}). For scaling functions this can be done  by using \eqref{eq:MRA-TwoScalepair1} recursively, giving
 \begin{align}\label{eq:MRA-ConvertingFormulaForscalingFunctions}
@@ -546,15 +547,18 @@ The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also pro
  In this paper, 4th -- order cardinal B-spline scaling and wavelet functions are used, resulting in  8th and 12th order B-spline functions when calculating \eqref{eq:Lambdax}, \eqref{eq:Lambdatheta} and \eqref{eq:CovMatrix} whose values at integer points are given in Table~\ref{table:MRA-BsplineatIntegerPoints}.
 \begin {table}[t]
 \begin{center}
-\begin{tabular}{lcccc}
- & $k$& $7!N_{8}\left(k\right)$ & $11!N_{12}\left(k\right)$\\ \hline\hline
- & 1  & $1$ & $1$\\
- & 2  & $120$ & $2,036$\\
- & 3  & $1,191$ & $152,637$\\
- & 4  & $2,416$ & $2,203,488$\\
- & 5  & $\space$ & $9,738,114$\\
- & 6  & $\space$ & $15,724,248$
- \end{tabular}
+	\begin{tabular}{lcccc}
+	\hline \hline
+	& $k$ & $3!N_{4}\left(k\right)$ & $7!N_{8}\left(k\right)$ & $11!N_{12}\left(k\right)$\\ 
+	\hline 
+	& 1 & $1$ & $1$ & $1$\\
+	& 2 & $4$ & $120$ & $2,036$\\
+	& 3 & $\space$ & $1,191$ & $152,637$\\
+	& 4 & $\space$ & $2,416$ & $2,203,488$\\
+	& 5 & $\space$ & $\space$ & $9,738,114$\\
+	& 6 & $\space$ & $\space$ & $15,724,248$\\
+	\hline \hline
+	\end{tabular}
  \caption {{\bf Cardinal B-Splines at the knot sequence}. Table entries are calculated using \eqref{eq:MRA-recursiveBsplineatintegerpoints} and can be also found in \cite{Goswami1999}.} 
  \label{table:MRA-BsplineatIntegerPoints}
  \end{center}
