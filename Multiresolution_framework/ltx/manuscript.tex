@@ -481,6 +481,12 @@ r^3 & \text{if $ 0\le r\le1$}, \\
 0 & \mathrm{elsewhere}.
 \end{cases}
 \end{align}
+\parham{One important feature of B-spline is the \emph{partition of unity} property, meaning that the unity can be expressed as a linear sum of B-splines, i.e
+\begin{equation}
+	\sum_{l}N_m(r+l)\equiv1
+	\end{equation}
+	This is important as the underlying field can be reconstructed in saturation without introducing numerical errors which is not the case for example in the case of Gaussian basis functions. }
+	
 The convolution and inner product of B-spline functions are required in order to formulate the multi-resolution framework described in the previous section (construction of $\boldsymbol\Lambda_{x}$, $\boldsymbol\Gamma$ and $\boldsymbol\Sigma_w$). To show how the convolution of two B-splines is calculated, \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself
 \begin{equation}\label{eq:N1convolutions}
  N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right).
