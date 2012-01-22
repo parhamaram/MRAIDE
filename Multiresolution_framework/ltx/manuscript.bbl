@@ -124,19 +124,29 @@ M.~Dewar, K.~Scerri, and V.~Kadirkamanathan, ``Data-driven spatio-temporal
   modeling using the integro-difference equation,'' \emph{Signal Processing,
   IEEE Transactions on}, vol.~57, no.~1, pp. 83--91, Jan. 2009.
 
-\bibitem{Bishop2006}
-C.~Bishop, \emph{Pattern Recognition and Machine Learning}.\hskip 1em plus
-  0.5em minus 0.4em\relax Springer New York, 2006, vol.~4.
+\bibitem{Bilmes1998}
+J.~Bilmes, ``A gentle tutorial of the em algorithm and its application to
+  parameter estimation for gaussian mixture and hidden markov models,''
+  \emph{International Computer Science Institute}, vol.~4, p. 126, 1998.
 
 \bibitem{RAUCH1965}
 H.~E. Rauch, F.~Tung, and C.~T. Striebel, ``Maximum likelihood estimates of
   linear dynamic systems,'' \emph{AIAA Journal}, vol.~3, no.~8, pp. 1445--1450,
   1965.
 
+\bibitem{Kalman1960}
+R.~Kalman, ``A new approach to linear filtering and prediction problems,''
+  \emph{Transactions of the ASME-Journal of Basic Engineering}, vol. 82(Series
+  D), pp. 35--45, 1960.
+
 \bibitem{Gibsona2005}
 S.~Gibson and B.~Ninness, ``Robust maximum-likelihood estimation of
   multivariable dynamic systems,'' \emph{Automatica}, vol.~41, no.~10, pp.
   1667--1682, Oct. 2005.
+
+\bibitem{Bishop2006}
+C.~Bishop, \emph{Pattern Recognition and Machine Learning}.\hskip 1em plus
+  0.5em minus 0.4em\relax Springer New York, 2006, vol.~4.
 
 \bibitem{McLachlan1997}
 G.~McLachlan and T.~Krishnan, \emph{{The EM algorithm and extensions}},
@@ -205,5 +215,16 @@ K.~Xu, C.~Wikle, and N.~Fox, ``{A kernel-based spatio-temporal dynamical model
 \bibitem{Meyer1992}
 Y.~Meyer, \emph{Wavelets and Operators}.\hskip 1em plus 0.5em minus 0.4em\relax
   New York: Cambridge University Press, 1992.
+
+\bibitem{VanRotterdam1982}
+A.~Van~Rotterdam, F.~Lopes~da Silva, J.~Van~den Ende, M.~Viergever, and
+  A.~Hermans, ``{A model of the spatial-temporal characteristics of the alpha
+  rhythm},'' \emph{Bulletin of Mathematical Biology}, vol.~44, no.~2, pp.
+  283--305, 1982.
+
+\bibitem{Ghosh2008}
+A.~Ghosh, Y.~Rho, A.~McIntosh, R.~K{\"o}tter, and V.~Jirsa, ``Noise during rest
+  enables the exploration of the brain's dynamic repertoire,'' \emph{PLoS
+  Computational Biology}, vol.~4, no.~10, p. e1000196, 2008.
 
 \end{thebibliography}
