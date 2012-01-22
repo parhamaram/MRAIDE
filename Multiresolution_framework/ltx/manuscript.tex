@@ -129,7 +129,7 @@ to demonstrate the framework.
 \section{Introduction}
 \IEEEPARstart{T}{he} human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
 
-Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. The key components of these models typically describe the macroscopic dynamics of the human brain, but can also descriptive of finer-scale neurodynamics. \parham{Examples are, the post-synaptic response kernels (the pulse to wave function) and the activation function (wave to pulse function) \cite{Jirsa1997}. The former can be descriptive of inhibitory and excitatory post-synaptic potentials in microscopic single neural models, such as integrate and fire, or an ensemble response to stimulation in macroscopic neural mass models. The latter,  can be used to model spiking statistics across spatial scales from single neurons (where is can be considered a CDF of the probability of firing) to mean firing rates of neural masses.} The key factor linking the key functions of the model to particular spatial scales is geometry of the connectivity, hence the ability to infer a multi-resolution connectivity kernel will enable to the formulation of a multi-resolution neural field model. 
+Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. The key components of these models typically describe the macroscopic dynamics of the human brain, but can also descriptive of finer-scale neurodynamics. \parham{Examples are, the post-synaptic response kernels (the pulse to wave function) and the activation function (wave to pulse function) \cite{Jirsa1997}. The former can be descriptive of inhibitory and excitatory post-synaptic potentials in microscopic single neural models, such as integrate and fire, or an ensemble response to stimulation in macroscopic neural mass models. The latter,  can be used to model spiking statistics across spatial scales from single neurons (where it can be considered a CDF of the probability of firing) to mean firing rates of neural masses.} The key factor linking the key functions of the model to particular spatial scales is geometry of the connectivity, hence the ability to infer a multi-resolution connectivity kernel will enable to the formulation of a multi-resolution neural field model. 
 
 The utility of these models for answering questions in clinical neuroscience and neurology lies in the ability to infer parameters from electrophysiological data. The ability to create patient-specific neural models will contribute to our knowledge base of diseases such as epilepsy and will enable the development of new treatment strategies. This is particularly relevant to the advent of new devices that use therapeutic electrical stimulation. Stimulation strategies for devices currently operate in an open loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists enormous potential to improve the performance of these devices using systems theory, which in turn requires a suitable dynamic model. Neural mass and neural field models are ideal candidates for estimation algorithms due to their strong links with physiology and their parsimony. It is expected that parameters of the neural fields models will be patient-specific and will, therefore, need to be inferred from data.
 
@@ -140,7 +140,7 @@ The human neocortex has an inherent multi-resolution architecture. On finer scal
 \begin{equation}
 	v\left(\mathbf{r},t\right) = \sum_{j} v_j\left(\mathbf{r},t\right),
 \end{equation}
-where $v\left(\mathbf{r},t\right)$ is a voltage field that may be measured with a multi-electrode array or voltage sensitive dye, $\mathbf{r}\in \mathbb{R}^n$ (where $n\le3$) describes the spatial location with the field, $t$ denotes time, and $j$ indexes the different levels of resolution in the field. 
+where $v\left(\mathbf{r},t\right)$ is a voltage field that may be measured with a multi-electrode array or voltage sensitive dye, $\mathbf{r}\in \mathbb{R}^n$ (where $n\le3$) describes the spatial location \parham{with} the field, $t$ denotes time, and $j$ indexes the different levels of resolution in the field. 
 
 This multi-resolution structure has been described by numerous methods \cite{Wilson1973}. This idea of multi-resolution can be thought of a generalisation of modelling the layers of the cortex separately, where the connectivity kernel, or neural foot-print, has varying widths.
 
@@ -214,7 +214,17 @@ The stochastic IDE form of the Amari neural field  formulation~\cite{Amari1977} 
 	\, \mathrm{d}\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Membrane dynamics are included through the parameter $\xi=1-T_s/\tau$, where $\tau$ is the membrane time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977,Atay2005}. The term $e_t(\mathbf r)$ is a zero mean Gaussian disturbance, spatially coloured but temporally white, with covariance function 
+where the post-synaptic membrane voltage at time $t$ of a population of neurons at position $\mathbf r$ is denoted $v_t\left(\mathbf r\right)$. Membrane dynamics are included through the parameter $\xi=1-T_s/\tau$, where $\tau$ is the membrane time constant and $T_s$ is the sampling time. The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977,Atay2005}. The components of the model are shown in Figure~\ref{fig:Modelcomponents}
+\begin{figure}[!t]
+\centering
+\includegraphics[scale=.6]{./Graph/ConnectivityKernel.pdf}
+\includegraphics[scale=.6]{./Graph/Synaptickernel.pdf}
+\includegraphics[scale=.6]{./Graph/Sigmoid.pdf}
+\caption{ {\bf The IDE neural field model components}. (\textbf{a}) The mexican hat connectivity kernel. (\textbf{b}) First order synaptic kernel. (\textbf{c}) A representative of the activation function.}
+\label{fig:Modelcomponents}
+\end{figure}
+
+ The term $e_t(\mathbf r)$ is a zero mean Gaussian disturbance, spatially coloured but temporally white, with covariance function 
 \begin{equation}
 cov\left(e_{t}\left(\mathbf{r}\right),e_{t+t'}\left(\mathbf{r'}\right)\right)=\eta(\mathbf{r}-\mathbf{r'})\delta(t-t'),
 \label{eq:FieldDisturbance}
@@ -242,7 +252,7 @@ where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j
 \phi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\phi\left(2^j r-l\right) \\	
 \psi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\psi\left(2^j r-l\right).
 \end{align}
-The parameters $j$ and $l$ control the scale (dilation) and translation (spatial shift), respectively. \dean{NEED SOMETHING ABOUT HOW j AND l ARE SET HERE - AS IN THAT THEY ARE KNOWN - AND THAT WE ONLY NEED TO ESTIMATE THE COEFFICIENTS.} Scaling functions retain the lowest frequency components, due to their low-pass properties, while the wavelet functions extract successively higher frequency components due to their band-pass characteristics. 
+The parameters $j$ and $l$ control the scale (dilation) and translation (spatial shift), respectively. \dean{NEED SOMETHING ABOUT HOW j AND l ARE SET HERE - AS IN THAT THEY ARE KNOWN - AND THAT WE ONLY NEED TO ESTIMATE THE COEFFICIENTS.} \parham{The number of spatial shifts is dependent on the scale, j, and can be chosen such that the basis functions cover the spatial range. The number of scales depends on the spatial characteristics of the field which will be described later.}Scaling functions retain the lowest frequency components, due to their low-pass properties, while the wavelet functions extract successively higher frequency components due to their band-pass characteristics. 
 
 % At each spatial scale indexed by $j$ (level of decomposition), the neural field can be written as
 % \begin{equation}
@@ -508,7 +518,11 @@ where
  \end{align}
 and $\left[\cdot\right]_n$ denotes the $n$-th element of the vector coefficients \cite{Chui1992}. \dean{Need to explicitly say why this is important and what this gives us here.}
 
-Figure~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its associated wavelet function with dilation and translation parameters set to zero. 
+Figure~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its associated wavelet function with dilation and translation parameters set to zero. Note in general the supports of the scaling and wavelet functions are given by 
+\begin{align}
+	\mathrm{supp}(N_{m;j,l})&=\left[\frac{l}{2^j},\frac{m+l}{2^j}\right] \\  
+  \mathrm{supp}(\varphi_{m;j,l})&=\left[\frac{l}{2^j},\frac{2m-1+l}{2^j}\right] 
+	\end{align} 
 \begin{figure}[!t]
 \centering
 \includegraphics{./Graph/Figure1.pdf}
@@ -610,7 +624,7 @@ to give the state transition equation
  \mathbf x_{t+1} &=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t\\
 \label{eq:A_theta}
  \mathbf A(\boldsymbol \theta) &= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I.
-\end{align}
+\end{align} 
 \parham{
  \begin{itemize}
 	\item when likelihood is difficult to maximise directly (when we have hidden variable) so we maximise the joint likelihood function 
@@ -618,16 +632,28 @@ to give the state transition equation
 	\item E-step for state-space model is the smoothing problem
 	\item so when we have joint state parameter estimation for stae-space models  we only need to do two things: 1- use smoother for the E-step 2- construct the lower bound which might not be straightforward even in linear case so DCM is rubbish
 \end{itemize}}
-The linear state-space representation of the MRAIDE allows the use of the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the kernel and the field from electrophysiological data. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
+The problem of joint state and parameter estimation for the state-space model given by () can be formulated as 
+\begin{equation}
+	{\hat{\mathbf X},\hat{\boldsymbol\theta}}=\arg\max_{\mathbf X,\boldsymbol\theta}p(\mathbf Y;\boldsymbol\theta),
+ \end{equation}  
+where $\mathbf X$ and $\mathbf Y$ denote the entire sequences of the states and observations at all time, $\boldsymbol\theta$ is the parameter set and $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of observations $\mathbf Y$ parameterised  by $\boldsymbol\theta$ known as the likelihood function. This problem cannot be solved separately as for the state estimation we need the parameter of the system and for parameter estimation the state of the system should be known. One approach is to iteratively solve the state and parameter of the system, a natural framework to perform this is the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the kernel (parameter set) and the field (states) from electrophysiological data (obsrevations). The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
 \begin{equation}
 	\boldsymbol\theta_{\text{ML}}=\arg\max_{\boldsymbol\theta}~p(\mathbf Y;\boldsymbol\theta),
- \end{equation}
- %We use the standard EM algorithm for linear dynamic systems \cite{Shumway2000} and hence only describe aspects of the algorithm that are specific to MRA neural field equations.
- and the posterior distribution of the field over time. Here $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of the entire sequence of observations $\mathbf Y$ parameterised  by $\boldsymbol\theta$ known as the likelihood function. The goal of the EM algorithm is to maximise  the likelihood function in the presence of the hidden variables, the weights of the field basis functions in this case. The EM finds increasingly tighter lower bounds on the likelihood of the parameters so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. By exploiting the total probability rule it is rather straightforward to show that 
+ \end{equation}   
+and the posterior distribution of the field over time. There are two main applications of the EM algorithm. The first is when the observations are incomplete due to a faulty observation process or limitations. The second is the case when the direct maximisation of the likelihood function is difficult but can be simplified by assuming the existence of an additional however missing (or hidden) variables, the weights of the field basis functions in this case \cite{Bilmes1998}.
+
+Both the E and the M steps of the EM algorithm find increasingly tighter lower bounds on the likelihood of the parameters so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For state-space model the E step corresponds to the smoothing problem which can be solved using the Rauch Tung Streibel (RTS) smoother \cite{RAUCH1965}. For the M-step the lower bound on the likelihood function should be constructed, the steps needed
+to compute the required quantities are very dependent on the particular application which is described in detail for our problem. In summary, to solve the joint state and parameter estimation for the state space models one can adapt the EM algorithm, solving the smoothing problem for the E-step and constructing and maximising the lower bound in the M-step. A schematic representation of the EM algorithm is represented in Figure
+
+
+
+It is rather straightforward to show that 
 \begin{equation}
 	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \Theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \Theta)\right], 
 \end{equation}
-is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix...)  where $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ is the joint probability distribution of the states and the observations. .... The rest of this section is to construct the lower bound $\mathcal Q$ for the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ can be written as
+is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix...)  where $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ is the joint probability distribution of the states and the observations.
+
+ The rest of this section is to construct the lower bound $\mathcal Q$ for the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ can be written as
  \begin{equation}\label{eq:jointdistribution}
   p(\mathbf X,\mathbf Y;\boldsymbol \Theta)=\prod_{t=0}^{T-1} p(\mathbf y_{t+1}|\mathbf x_{t+1})p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)p(\mathbf x_0).
  \end{equation}
@@ -636,8 +662,7 @@ is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix.
   \mathcal Q(\boldsymbol \Theta,\boldsymbol\Theta')&=\mathbf E_{\boldsymbol \Theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \Theta)\right] \nonumber \\
  &=\mathbf E_{\boldsymbol\Theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf y_{t+1}|\mathbf x_{t+1})+\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)
  +\sum_{t=0}^{T-1}2\ln p(\mathbf x_0)\right],
- \end{align}
-% where $ \mathbf E_{\boldsymbol \Theta'}\left[ .\right] $ denotes the expectation taken with respect to the distribution $p(\mathbf X | \mathbf Y;\boldsymbol \Theta') $ and $\boldsymbol \Theta'$ is the current parameter estimate maximising $p(\mathbf Y;\boldsymbol\theta)$. 
+ \end{align}   
 It should be noted that neither $p(\mathbf y_{t+1}|\mathbf x_{t+1})$ nor $p(\mathbf x_0)$ are functions of the parameter set and therefore the $\mathcal Q$-function can be rewritten as
 \begin{equation}
 \mathcal Q(\boldsymbol \Theta,\boldsymbol\Theta')=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)\right]+\mathrm{const.}
@@ -925,7 +950,11 @@ The MRAIDE approach is not limited to neural fields; the framework can be applie
 % In order to apply the framework to real data some assumptions must be made. A critical assumption is that the model provides an apt description of the cortical dynamics.
 An assumption was made where the firing rate behaves linearly. The implementation of the framework in the non-linear case can be addressed as future work. Another future avenue would be the modification of the estimation framework to perform efficiently at higher dimensions. The reconstruction of the neural field requires $2^n-1$ wavelets, where $n$ is the dimension of the space. For example a two-dimensional MRA can be implemented using 2-D scaling and wavelet functions built up using the tensor-product approach \cite{Meyer1992}. In this case three wavelet functions are required to  extract fine features of the field at vertical, horizontal and diagonal orientations. Although provided formulations can be easily extended into two dimensions the  computational load of the estimation algorithm will be significant. It is important to investigate methods for choosing basis functions to balance the complexity with the reconstruction capability of the model.
  
-The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The key development is the multi-resolution decomposition forming the state-space model. While the decomposition holds for more sophisticated models, efficiently performing nonlinear smoothing in the large state-space remains a challenge. Additional avenues for future work include extending the model to capture a $2^{nd}$-order synaptic response kernel, and time delays according to spatial resolutions. The estimation techniques should also be extended to deal with spatiotemporal heterogeneity in the kernel. Finally, future work should be directed towards applying and validating the framework on real data.
+The authors acknowledge that there is, and will always be, a discrepancy between the model and cortex. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The key development is the multi-resolution decomposition forming the state-space model. While the decomposition holds for more sophisticated models, efficiently performing nonlinear smoothing in the large state-space remains a challenge. 
+
+Additional extension for future work include extending the model to capture a $2^{nd}$-order synaptic response kernel, The second order postsynaptic kernel proposed in \cite{VanRotterdam1982} leads to dynamics that are more reminiscent to real postsynaptic potentials. 
+
+Another extension of this framework is the inclusion of finite distant-dependant action potential propagation velocity into the parametric neural field equations. In small networks the delays via propagation can be neglected, however they must be accounted for in large scale networks. For instance, it is shown by \cite{Ghosh2008} that inclusion of time delays arising from propagation along connecting fibres are essential for the fluctuations to be appeared in the default networks. Finally, future work should be directed towards applying and validating the framework on real data.
 \section{Appendix}
 \subsection{Inner product of two B-spline scaling functions}\label{ap:InnerProductOfBsplines}
 In this section, an analytic formula is derived for the inner product of two B-spline scaling functions. Consider two B-spline scaling functions of order $m$ and $m'$. The support of $N_m\left(s\right)$ is $\left[ 0,m\right]$ and  is symmetric with respect to $r=\frac{m}{2}$, i.e.
