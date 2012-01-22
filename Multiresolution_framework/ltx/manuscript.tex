@@ -644,9 +644,9 @@ and the posterior distribution of the field over time. There are two main applic
 
 Both the E and the M steps of the EM algorithm find increasingly tighter lower bounds on the likelihood of the parameters so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For state-space model the E step corresponds to the smoothing problem which can be solved using the Rauch Tung Streibel (RTS) smoother \cite{RAUCH1965}. For the M-step the lower bound on the likelihood function should be constructed, the steps needed
 to compute the required quantities are very dependent on the particular application which is described in detail for our problem. In summary, to solve the joint state and parameter estimation for the state space models one can adapt the EM algorithm, solving the smoothing problem for the E-step and constructing and maximising the lower bound in the M-step. A schematic representation of the EM algorithm is represented in Figure
-
-
-
+  \subsection{E-step}
+  As mentioned earlier the E-step for the state-space models is equivalent to the smoothing problem.
+ \subsection{M-step}
 It is rather straightforward to show that 
 \begin{equation}
 	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \Theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \Theta)\right], 
