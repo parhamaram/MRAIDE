@@ -663,7 +663,7 @@ It is rather straightforward to show that
 \begin{equation}
 	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \Theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \Theta)\right], 
 \end{equation}
-is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix...)  where $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ is the joint probability distribution of the states and the observations.
+is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix...)  where $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ is the joint probability distribution of the states and the observations and where $ \mathbf E_{\boldsymbol \Theta'}\left[ .\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\Theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \Theta'$). Note that this is actually the smoother output.
 
  The rest of this section is to construct the lower bound $\mathcal Q$ for the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ can be written as
  \begin{equation}\label{eq:jointdistribution}
