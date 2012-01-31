@@ -208,7 +208,7 @@ The single layer homogeneous neural field model in the most general form is desc
 	\label{FullDoubleIntModel} \underbrace{v\left(\mathbf{r},t\right)}_{\text{field}} =
 	\int_{-\infty}^t 
 	\underbrace{h\left(t - t'\right)}_{\text{synapse}} \int_\Omega
-	\theta\underbrace{w\left(\mathbf{r},\mathbf{r}'\right)}_{\text{connectivity}} 
+	\parham{\theta}\underbrace{w\left(\mathbf{r},\mathbf{r}'\right)}_{\text{connectivity}} 
 	\underbrace{f\left( v\left( \mathbf{r}',t' \right)\right)}_{\text{firing}}
 	\, \mathrm{d}\mathbf{r}'\mathrm{d}t',
 \end{equation}
@@ -494,7 +494,7 @@ One important feature of the B-spline functions is the \emph{partition of unity}
 \begin{equation}
 	\sum_{l}N_m(r+l)\equiv1
 	\end{equation}
-	This is important as the underlying field can be reconstructed in saturation without introducing numerical errors which is not the case for example in the case of Gaussian basis functions.
+	This is important as the underlying field can be reconstructed when its saturated without introducing numerical errors which is not the case for example in the case of Gaussian basis functions.
 	
 The convolution and inner product of B-spline functions are required in order to formulate the multi-resolution framework described in the previous section (construction of $\boldsymbol\Lambda_{x}$, $\boldsymbol\Gamma$ and $\boldsymbol\Sigma_w$). To show how the convolution of two B-splines is calculated, \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself
 \begin{equation}\label{eq:N1convolutions}
@@ -555,7 +555,7 @@ By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, 
   \left\langle N_{m;j_1,l_1}(r),\varphi_{m;j_2,l_2}(r)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2.
  \label{eq:MRA-PhiPsiOrthogonality}
  \end{equation}
-  \parham{Note from \eqref{eq:MRA-PsiPsiOrthogonality} Bspline wavelets are semiorthogonal as they are not orthogonal with respect to translation on a given scale.} 
+  \parham{Note from \eqref{eq:MRA-PsiPsiOrthogonality} B-spline wavelets are semiorthogonal as they are not orthogonal with respect to translation on a given scale.} 
 
 In order to analytically calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale using the two-scale relation pair defined in equations (\ref{eq:MRA-TwoScalepair1}-\ref{eq:MRA-TwoScalepair2coefs}). For scaling functions this can be done  by using \eqref{eq:MRA-TwoScalepair1} recursively, giving
 \begin{align}\label{eq:MRA-ConvertingFormulaForscalingFunctions}
@@ -604,7 +604,7 @@ The convolution theorem states that the Fourier transform of the convolution of 
 \begin{align}\label{eq:MRA-NmFouriertransform}
 \mathcal F(N_m(r))=\left(\frac{1-\mathrm{exp}(-2\pi i \nu)}{2\pi i\nu}\right)^m.
 \end{align}
-\dean{Need to say how the FT is used somewhere here before proceeding.} \parham{The Fourier transform of the $m$-th order Bspline allows the calculation of the spatial frequency response of the wavelets using \eqref{eq:MRA-TwoScalepair2} from which the level of approximation, $j$, can be determined. This way we choose wavelets upto level $j$ which fully describe the spatial frequency contents of the underlying neural field estimated from observations.}
+\dean{Need to say how the FT is used somewhere here before proceeding.} \parham{The Fourier transform of the $m$-th order B-spline allows the calculation of the spatial frequency response of the wavelets using \eqref{eq:MRA-TwoScalepair2} from which the level of approximation, $j$, can be determined. This way we choose wavelets upto level $j$ which fully describe the spatial frequency contents of the underlying neural field estimated from observations.}
 
 
 \section{State and Parameter Estimation}
