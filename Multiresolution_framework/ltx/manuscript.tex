@@ -647,7 +647,7 @@ The problem of joint state and parameter estimation for the state-space model gi
 \begin{equation}
 	{\hat{\mathbf X},\hat{\boldsymbol\theta}}=\arg\max_{\mathbf X,\boldsymbol\theta}p(\mathbf Y;\boldsymbol\theta),
  \end{equation}  
-where $\mathbf X$ and $\mathbf Y$ denote the entire sequences of the states and observations respectively, $\boldsymbol\theta$ is the parameter set and $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of the observations, $\mathbf Y$, parameterised  by $\boldsymbol\theta$, known as the likelihood function. This problem cannot be solved separately as for the state estimation the knowledge of the system's parameters is required and for the parameter estimation the states of the system need to be known. One approach is to iteratively estimate the states and parameters of the system and monitor the convergence of the algorithm. A natural framework to perform this is the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the parameter set and the states from the observations corresponding to the connectivity kernel, the neural field and electrophysiological data in our application. There are two main applications of the EM algorithm:  first is when the observations are incomplete due to a faulty observation process or existing limitations and the second  when the direct maximisation of the likelihood function is difficult but can be simplified by assuming the existence of an additional however missing (or hidden) variables \cite{Bilmes1998}, the weights of the field basis functions in this case. The EM algorithm, when used in the latter context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
+where $\mathbf X$ and $\mathbf Y$ denote the entire sequences of the states and observations respectively, $\boldsymbol\theta$ is the parameter set and $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of the observations parameterised  by $\boldsymbol\theta$, known as the likelihood function. This problem cannot be solved separately as for the state estimation the knowledge of the system's parameters is required and for the parameter estimation the states of the system need to be known. One approach is to iteratively estimate the states and parameters of the system and monitor the convergence of the algorithm. A natural framework to perform this is the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the parameter set and the states from the observations corresponding to the connectivity kernel, the neural field and electrophysiological data in our application. There are two main applications of the EM algorithm:  first is when the observations are incomplete due to a faulty observation process or existing limitations and the second  when the direct maximisation of the likelihood function is difficult but can be simplified by assuming the existence of an additional however missing (or hidden) variables \cite{Bilmes1998}, the weights of the field basis functions in this case. The EM algorithm, when used in the latter context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
 \begin{equation}
 	\boldsymbol\theta_{\text{ML}}=\arg\max_{\boldsymbol\theta}~p(\mathbf Y;\boldsymbol\theta),
  \end{equation}   
@@ -670,7 +670,7 @@ It is rather straightforward to show that
 \begin{equation}
 	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \theta)\right], 
 \end{equation}
-is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix...)  where $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ is the joint probability distribution of the states and the observations and where $ \mathbf E_{\boldsymbol \theta'}\left[\cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). Note that this is actually the smoother output.
+is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix~\ref{ap:Lowerbound} )  where $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ is the joint probability distribution of the states and the observations and where $ \mathbf E_{\boldsymbol \theta'}\left[\cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). Note that this is actually the smoother output.
 
  The rest of this section is to construct the lower bound $\mathcal Q$ for the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ can be written as
  \begin{equation}\label{eq:jointdistribution}
@@ -720,7 +720,7 @@ where
 \boldsymbol\Xi_0&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right] \label{eq:MRA-Xi0}\\
 \boldsymbol\Xi_1&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t}^\top\right] \label{eq:MRA-Xi1}.
 \end{align}
-The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \cite{Gibsona2005}, (see Appendix~ for more details)
+The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \cite{Gibsona2005}, (see Appendix~\ref{ap:Xiderivation} for more details)
 \begin{align}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \label{eq:Xi0} \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).  \label{eq:Xi1}
@@ -1016,7 +1016,7 @@ $N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of $N_m(2^{j
 \end{align}
 Substituting \eqref{eq:AppendixNj-1intermsofNj} in to \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} completes the proof. 
 
-\subsection{Lower bound on likelihood function}\label{ap:MStep}
+\subsection{Lower bound on likelihood function}\label{ap:Lowerbound}
 A derivation of the lower bound on the likelihood function that is based on \citet{Bishop2006} is provided in this Appendix. We want to maximise the likelihood function which is difficult to perform directly
 \begin{equation}
  p(\mathbf Y;\boldsymbol\theta)=\int_{\mathbf X}p(\mathbf X,\mathbf Y;\boldsymbol\theta)d\mathbf X.
@@ -1052,7 +1052,7 @@ The EM algorithm alternates between maximising the lower bound with respect to t
 &=\mathcal{Q}(\boldsymbol\theta,\boldsymbol\theta')+\mathrm{const.}~,\label{eq:EM-ComDaLogLike}
 \end{align}
 where $ \mathbf E_{\boldsymbol \theta'}\left[ \cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). The constant term is the negative entropy of $q(\mathbf X)$ and is independent of $\boldsymbol\theta$.   It becomes clear from \eqref{eq:EM-ComDaLogLike} that, the M-step essentially maximises the expectation of the complete data log-likelihood. 
-\section{Calculation of $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}
+\section{Calculation of $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}\label{ap:Xiderivation}
 The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here we present the derivation for completeness.  The expression for  $\boldsymbol\Xi_{0}$ as defined in equation~\eqref{eq:Xi0} of the main text is given by
    \begin{equation}\label{eq:appXi0}
 	 \boldsymbol\Xi_0=\mathbf E_{\theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right].
