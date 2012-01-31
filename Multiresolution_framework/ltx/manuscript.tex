@@ -721,9 +721,9 @@ where
 \boldsymbol\Xi_1&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t}^\top\right] \label{eq:MRA-Xi1}.
 \end{align}
 The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \cite{Gibsona2005}, (see Appendix~ for more details)
-\begin{align}\label{eq:Xivariables}
-\boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
- \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
+\begin{align}
+\boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \label{eq:Xi0} \\
+ \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).  \label{eq:Xi1}
 \end{align} 
 
 The three traces that form \eqref{eq:MRA-QintermsofTraces} are dealt with in turn. To begin, the first trace is written in terms of element-wise summations
@@ -1052,50 +1052,39 @@ The EM algorithm alternates between maximising the lower bound with respect to t
 &=\mathcal{Q}(\boldsymbol\Theta,\boldsymbol\Theta')+\mathrm{const.}~,\label{eq:EM-ComDaLogLike}
 \end{align}
 where $ \mathbf E_{\boldsymbol \Theta'}\left[ .\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \Theta'$). The constant term is the negative entropy of $q(\mathbf X)$ and is independent of $\boldsymbol\Theta$.   It becomes clear from \eqref{eq:EM-ComDaLogLike} that, the M-step essentially maximises the expectation of the complete data log-likelihood. 
-\section{Calculating $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}
-The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here we present the derivation for completeness.
-The expression for  $\Xi_{0}$ as defined in equation~\ref{eq:defofXi0} of the main text is given by
-\begin{equation}\label{eq:Xi0}
- \Xi_1=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_{t+1}\mathbf x_{t+1}^\top\right].
-\end{equation}
-We start by expanding the covariance matrix as following
-\begin{align}
- \mathbf P_{t}&=\mathbf E_{\theta'}\left[(\mathbf x_{t}-\mathbf{\hat x}_{t})(\mathbf x_{t}-\mathbf{\hat x}_{t})^\top\right] \nonumber \\
-&=\mathbf E_{\theta'}\left[\mathbf x_{t}\mathbf x_{t}^\top\right]-\mathbf E_{\Theta'}\left[\mathbf x_{t}\mathbf{\hat x}_{t}^\top\right]-\mathbf E_{\theta'}\left[\mathbf{\hat x}_{t}\mathbf x_{t}^\top\right]+\mathbf E_{\theta'}\left[\mathbf{\hat x}_{t}\mathbf{\hat x}_{t}^\top\right] \nonumber \\
-&=\mathbf E_{\theta'}\left[\mathbf x_{t}\mathbf x_{t}^\top\right]-\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top-\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top+\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top \nonumber \\
-&=\mathbf E_{\theta'}\left[\mathbf x_{t}\mathbf x_{t}^\top\right]-\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top,
+\section{Calculation of $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}
+The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here we present the derivation for completeness.  The expression for  $\boldsymbol\Xi_{0}$ as defined in equation~\eqref{eq:Xi0} of the main text is given by
+   \begin{equation}\label{eq:appXi0}
+	 \boldsymbol\Xi_0=\mathbf E_{\theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right].
+	\end{equation}                                                                                                
+	We start by expanding the equation \eqref{eq:appXi0}, giving
+	
+\begin{align}\label{eq:Xi0derivation0} 
+ \mathbf M_{t+1}&=\mathbf E_{\theta'}\left[(\mathbf x_t-\mathbf{\hat x}_t)(\mathbf x_{t+1}-\mathbf{\hat x}_{t+1})^\top\right] \nonumber \\
+&=\mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\mathbf E_{\theta'}\left[\mathbf x_t\hat{\mathbf x}_{t+1}^\top\right]-\mathbf E_{\theta'}\left[\hat{\mathbf x}_t\mathbf x_{t+1}^\top\right]+\mathbf E_{\theta'}\left[\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top\right]  \nonumber \\
+&= \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top-\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top+\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top\nonumber \\
+&= \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top.
 \end{align}
-therefore we can write
+Rearranging  equation \eqref{eq:Xi0derivation0} we get
 \begin{equation}\label{eq:Xi0derivation1}
- \mathbf E_{\theta'}\left[\mathbf x_{t}\mathbf x_{t}^\top\right]=\mathbf P_{t}+\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top,
+ \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]=\mathbf M_{t+1}+\mathbf {\hat x}_t\mathbf{\hat x}_{t+1}^\top
 \end{equation}
-substituting \ref{eq:Xi0derivation1} in \ref{eq:Xi0} we get
+substituting \ref{eq:Xi0derivation1} into \ref{eq:appXi0}, noting the expectation commutes with the sum we get
 \begin{equation}
- \Xi_1=\sum_{t=0}^{T-1}\left(\mathbf P_{t}+\mathbf{\hat x}_{t}\mathbf{\hat x}_{t}^\top\right).
+ \boldsymbol\Xi_1=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right)
+\end{equation}   
+An expression for $\boldsymbol\Xi_1$ in terms of the smoothed states can be also found in a similar way by expanding the covariance matrix,
+\begin{equation}\label{eq:appXi1}
+ \boldsymbol\Xi_1=\mathbf E_{\theta'}\left[\sum_{t=0}^{T-1}\mathbf x_{t}\mathbf x_{t}^\top\right],
 \end{equation}
-To calculate $\Xi_0$, from equation~\ref{eq:defofXi1} of the main text we have
-\begin{equation}\label{eq:Xi1}
- \Xi_0=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right].
-\end{equation}
-An expression for $\Xi_1$ in terms of the smoothed states can be also found in a similar way by expanding the cross-covariance matrix,
-\begin{align}
- \mathbf M_{t+1}&=\mathbf E_{\Theta'}\left[(\mathbf x_t-\mathbf{\hat x}_t)(\mathbf x_{t+1}-\mathbf{\hat x}_{t+1})^\top\right] \nonumber \\
-&=\mathbf E_{\Theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\mathbf {\hat x}_t\mathbf{\hat x}_{t+1}^\top
-\end{align}
 therefore we can write
 \begin{equation}\label{eq:Xi1derivation1}
- \mathbf E_{\Theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]=\mathbf M_{t+1}+\mathbf {\hat x}_t\mathbf{\hat x}_{t+1}^\top
+ \mathbf E_{\theta'}\left[\mathbf x_{t}\mathbf x_{t}^\top\right]=\mathbf P_{t}+\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top,
 \end{equation}
-substituting \ref{eq:Xi1derivation1} in \ref{eq:Xi1} we get
+substituting \ref{eq:Xi1derivation1} into \ref{eq:appXi1} we get
 \begin{equation}
- \Xi_1=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right)
+ \boldsymbol\Xi_1=\sum_{t=0}^{T-1}\left(\mathbf P_{t}+\mathbf{\hat x}_{t}\mathbf{\hat x}_{t}^\top\right).
 \end{equation}
-
-                                                                       
-
-
-
-
 \ifCLASSOPTIONcaptionsoff
   \newpage
 \fi
