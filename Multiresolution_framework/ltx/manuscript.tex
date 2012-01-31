@@ -1,134 +1,58 @@
- % TO DELETE
+\documentclass[review,authoryear,3p]{elsarticle}
 
-%    \documentclass[journal,a4paper]{IEEEtran}
-%  \documentclass[journal]{IEEEtran}
-
-%     \documentclass[10pt,twocolumn,twoside]{IEEEtran}
-     \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
-%         \topmargin       -6.0mm
-%          \oddsidemargin      0mm
-%          \evensidemargin     0mm
-%          \textheight     223.5mm
-%         \textwidth      170.0mm
-\usepackage{setspace} 
-\usepackage{color}
-\newcommand{\mike}[1]{\textcolor{red}{#1}}
-\newcommand{\dean}[1]{\textcolor{green}{#1}}
-\newcommand{\parham}[1]{\textcolor{blue}{#1}} 
-\newcommand{\ken}[1]{\textsf{\emph{\textbf{\textcolor{magenta}{#1}}}}} 
-\newcommand{\cut}[1]{\textcolor{cyan}{#1}} 
-
-\usepackage{cite}
-%Reduce the spacing between figures and captions
-% \usepackage[belowskip=-15pt,aboveskip=10pt]{caption}
-%  \setlength{\intextsep}{2pt plus 2pt minus 2pt}
-
-\ifCLASSINFOpdf
-   \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
-\fi
-
-\usepackage[cmex10]{amsmath}
-\interdisplaylinepenalty=2500
+\usepackage{amsmath}
 \usepackage{amssymb}
-\ifCLASSOPTIONcompsoc
-  \usepackage[tight,normalsize,sf,SF]{subfigure}
-\else
-  \usepackage[tight,footnotesize]{subfigure}
-\fi
+\usepackage{graphicx}
+\usepackage{setspace} 
+\usepackage[usenames,dvipsnames]{color}      
 
-\usepackage{natbib}
-
-\usepackage{stfloats}
-\usepackage{float}
-\floatstyle{ruled}
-%This bit is how to use hyperlink without stupid coloured rectangles around it
-\usepackage{float}
-\usepackage{hyperref}
-\hypersetup{colorlinks,linkcolor=black,filecolor=black,urlcolor=black,citecolor=black}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\newfloat{algorithm}{htbp}{loa}%[chapter]
-\floatname{algorithm}{Algorithm}
-
+\newcommand{\dean}[1]{\textcolor{green}{#1}}
+\newcommand{\parham}[1]{\textcolor{blue}{#1}}
+% \newcommand{\mike}[1]{\textcolor{Plum}{#1}}
+  
+%\newfloat{algorithm}{htbp}{loa}%[chapter]
+%\floatname{algorithm}{Algorithm}
+\journal{Neuroimage}
 \begin{document}
-%
-% paper title
-% can use linebreaks \\ within to get better formatting as desired
+\begin{frontmatter}
 \title{Spatiotemporal Multi-Resolution Approximation of the Amari Type Neural Field Model}
+  
+\author[US]{P. Aram\corref{cor1}}
+\ead{p.aram@sheffield.ac.uk}
+\author[DEEE,BEI,UE]{D. R. Freestone}
+\ead{dfreestone@bionicear.org} 
+\author[UE,CU]{M. Dewar}
+\ead{mike.dewar@columbia.edu}
+\author[UM]{K. Scerri}
+\ead{kenneth.scerri@um.edu.mt}
+\author[DEEE,BEI]{D. B. Grayden}
+\ead{grayden@unimelb.edu.au}
+\author[US]{V. Kadirkamanathan}
+\ead{visakan@sheffield.ac.uk}
 
+\address[US]{Department of Automatic Control and Systems Engineering, University of Sheffield, Sheffield, UK}
+\address[DEEE]{Department of Electrical and Electronic Engineering, University of Melbourne, Melbourne, VIC, Australia}
+\address[BEI]{The Bionic Ear Institute, East Melbourne, VIC, Australia}
+\address[UE]{Institute for Adaptive and Neural Computation, University of Edinburgh, Edinburgh, UK}
+\address[CU]{Department of Applied Physics and Applied Mathematics, Columbia University, New York, NY, USA}
+\address[UM]{Department of Systems and Control Engineering, University of Malta, Msida, MSD, Malta}
 
-\author{P. Aram, D.R. Freestone, M. Dewar, K.Scerri, D.B. Grayden and V. Kadirkamanathan % <-this % stops a space
-\thanks{P. Aram* and V. Kadirkamanathan are with the Department of Automatic Control and Systems Engineering, University of Sheffield, Sheffield, S1 3JD, U.K. (e-mail:parham.aram@univ-amu.fr; visakan@sheffield.ac.uk).}% <-this % stops a space
-\thanks{D.\ R.\ Freestone and D.\ B.\ Grayden are with the Department
-of Electrical and Electronic Engineering, The University of Melbourne, and The Bionic Ear Institute, VIC, Australia. (e-mail:dfreestone@bionicear.org; grayden@unimelb.edu.au). The Bionic Ear Institute acknowledges the support it receives from the Victorian State Government through the Operational Infrastructure Support Program.}
-\thanks{M. Dewar is with the Department of Applied Physics and Applied Mathematics, Columbia University, New York, NY, USA. (e-mail:mike.dewar@columbia.edu).}
-\thanks{K. Scerri is with the Department of Systems and Control Engineering, University
-of Malta, Msida, MSD, Malta. (e-mail:kenneth.scerri@um.edu.mt).}}
-% <-this % stops a space
-%\thanks{Manuscript received April 19, 2005; revised January 11, 2007.}}
-
-
-
-% The paper headers
-% \markboth{Journal of }%
-% {Aram \MakeLowercase{\textit{et al.}}: Wavelet Multiresolution Spatio-Temporal Modelling Using the Integro-Difference Equation}
-% The only time the second header will appear is for the odd numbered pages
-% after the title page when using the twoside option.
-% 
-% *** Note that you probably will NOT want to include the author's ***
-% *** name in the headers of peer review papers.                   ***
-% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
-% you desire.
- \ifCLASSOPTIONpeerreview
-\else
-\fi
-
-% If you want to put a publisher's ID mark on the page you can do it like
-% this:
-%\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
-% Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark.
-
-% make the title area
-\maketitle
-
+\cortext[cor1]{Corresponding author}
 
 \begin{abstract}
 %\boldmath
 We develop a multi-resolution approximation (MRA) framework for the integro-difference equation (IDE) neural field model based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is performed using the Expectation Maximization (EM) algorithm. A synthetic example is provided
 to demonstrate the framework.
-\end{abstract}
-% Note that keywords are not normally used for peerreview papers.
- \begin{IEEEkeywords}
-  Neural field model, multi-resolution approximation (MRA), Expectation Maximization (EM) algorithm, wavelets.
-  \end{IEEEkeywords}
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-%   \begin{center} \bfseries EDICS Category: SSP-IDEN \end{center}
-%   \fi
-%
-%  For peerreview papers, this IEEEtran command inserts a page break and
-%creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
+\end{abstract} 
+%\begin{keyword}
+ % Neural Field Model \sep multi-resolution approximation (MRA) \sep Expectation Maximisation (EM) algorithm \sepWavelets
+%\end{keyword}
+
+\end{frontmatter}
 
 
 \section{Introduction}
-\IEEEPARstart{T}{he} human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
+The human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
 
 Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. The key components of these models typically describe the macroscopic dynamics of the human brain, but can also descriptive of finer-scale neurodynamics. \parham{Examples are, the post-synaptic response kernels (the pulse to wave function) and the activation function (wave to pulse function) \citep{Jirsa1997}. The former can be descriptive of inhibitory and excitatory post-synaptic potentials in microscopic single neural models, such as integrate and fire, or an ensemble response to stimulation in macroscopic neural mass models. The latter,  can be used to model spiking statistics across spatial scales from single neurons (where it can be considered a CDF of the probability of firing) to mean firing rates of neural masses.} The key factor linking the key functions of the model to particular spatial scales is geometry of the connectivity, hence the ability to infer a multi-resolution connectivity kernel will enable to the formulation of a multi-resolution neural field model. 
 
@@ -818,48 +742,41 @@ The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}
 
 
 The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\boldsymbol\theta,\boldsymbol\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge. The RTS  algorithm is given in Algorithm~\ref{alg:MRA-RTS} for completeness. 
-\begin{algorithm}
-\caption{Summary of the Rauch-Tung-Striebel smoother}
+\renewcommand{\arraystretch}{1.7}
+\begin{table*}[!ht]
+\begin{tabular}{|c|}\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{1.} Forward initialization} \\ 
+$\hat{\mathbf x}_0, \mathbf P_0$ \\
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{2.} Forward iteration: for $t\in\left\lbrace 0,\cdots,T\right\rbrace $, calculate the predicted state and the predicted covariance matrix } \\
+$\hat{\mathbf x}_{t+1}^{f-}=\mathbf A \hat{\mathbf x}_{t}^{f}$  \\ 
+$\mathbf P_{t+1}^{f-}=\mathbf A \mathbf P_{t}^{f}\mathbf A^{\top}+\boldsymbol\Sigma_e$  \\
+\multicolumn{1}{|p{16cm}|}{Compute the filter gain, the filtered state and the filtered covariance matrix} \\
+$\hat{\mathbf x}_{t+1}^{f-}=\sum_{i=0}^{2n_x} W_i^{(m)}\mathcal X_{i,t+1}^{f-} $ \\
+$\mathbf P_{t +1}^{f-}=\sum_{i=0}^{2n_x} W_i^{(c)}(\mathcal X_{i,t+1}^{f-}-\hat{\mathbf x}_{t +1}^{f-})(\mathcal X_{i,t+1}^{f-}-\hat{\mathbf x}_{t +1}^{f-})^\top+\boldsymbol \Sigma_e$ \\ 
+\multicolumn{1}{|p{16cm}|}{Compute the filter gain, the filtered state and the filtered covariance matrix using the standard Kalman filter update equations} \\
+$\mathcal K_{t+1}=\mathbf P_{t +1}^{f-}\mathbf C ^\top(\mathbf C \mathbf P_{t +1}^{f-}\mathbf C ^\top+\boldsymbol \Sigma_{\varepsilon})^{-1}$\\
+$\hat{\mathbf x}_{t+1}^{f}=\hat{\mathbf x}_{t+1}^{f-}+\mathcal K_{t+1}(\mathbf y_{t+1}-\mathbf C\hat{\mathbf x}_{t +1}^{f-})$\\
+$\mathbf P_{t+1}^f=(\mathbf I - \mathcal K_{t+1}\mathbf C)\mathbf P_{t +1}^{f-}$\\
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{3.} Backward initialization}\\
+ $\mathbf P_T^b= \mathbf P_T^f, \quad \hat{\mathbf x}^b_T= \hat{\mathbf x}^f_T$\\
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{4.} Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $ compute the smoother gain, the smoothed state and the smoothed covariance matrix}\\  
+$\mathcal S_{t}=\mathbf P_{t}^{f}\mathbf A^{\top}\left[ \mathbf P_{t +1}^{f-}\right]^{-1}$ \\
+ $\hat{\mathbf x}_t^b=\hat{\mathbf x}_t^f+\mathcal S_t(\hat{\mathbf x}_{t+1}^{b}-\hat{\mathbf x}_{t+1}^{f-})$ \\
+ $\mathbf P_{t}^{b}=\mathbf P_{t}^{f}+\mathcal S_t(\mathbf P_{t+1}^{b}-\mathbf P_{t+1}^{f-})\mathcal S_t^\top$\\  
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{5.} Compute the smoothed cross covariance matrix, initialization}\\
+$\mathbf M_T=(\mathbf I-\mathcal K_T\mathbf C)\mathbf A\mathbf P_{T-1}^b$\\
+\multicolumn{1}{|p{16cm}|}{For $t\in\left\lbrace T-1,\cdots,0\right\rbrace $ compute}\\
+$\mathbf M_t= \mathbf P_t^{f}\mathcal S_{t-1}^{\top}+\mathcal S_{t}(\mathbf M_{t+1}-\mathbf A\mathbf P_t^{f} )\mathcal S_{t-1}^{\top}$\\
+\hline
+\end{tabular}
+\caption{\textbf{Algorithm for the RTS smoother} This table shows the steps in the  Rauch-Tung-Striebel smoother algorithm. The lower bound is maximised after each iteration to update the parameter estimates.}
 \label{alg:MRA-RTS}
- % \begin{tabbing}
- \begin{enumerate}
- \item Forward initialisation: 
- \begin{equation*}
- \hat{\mathbf x}_0, \mathbf P_0
- \end{equation*}
- \item Forward iteration: for $t\in\left\lbrace 0,\cdots,T\right\rbrace $, calculate the predicted state and the predicted covariance matrix
- \begin{align}
- \hat{\mathbf x}_{t+1}^{f-}&=\mathbf A \hat{\mathbf x}_{t}^{f} \nonumber \\
- \mathbf P_{t+1}^{f-}&=\mathbf A \mathbf P_{t}^{f}\mathbf A^{\top}+\boldsymbol\Sigma_e \nonumber 
- \end{align}
- \item Compute the filter gain, the filtered state and the filtered covariance matrix
- \begin{align}
- \mathcal K_{t+1}&=\mathbf P_{t +1}^{f-}\mathbf C ^\top(\mathbf C \mathbf P_{t +1}^{f-}\mathbf C ^\top+\boldsymbol \Sigma_{\varepsilon})^{-1} \nonumber\\
-\hat{\mathbf x}_{t+1}^{f}&=\hat{\mathbf x}_{t+1}^{f-}+\mathcal K_{t+1}(\mathbf y_{t+1}-\mathbf C\hat{\mathbf x}_{t +1}^{f-})\nonumber \\
- \mathbf P_{t+1}^f&=(\mathbf I - \mathcal K_{t+1}\mathbf C)\mathbf P_{t +1}^{f-} \nonumber 
- \end{align}
- \item  Backward initialisation:
- \begin{equation*}
- \mathbf P_T^b= \mathbf P_T^f, \quad \hat{\mathbf x}^b_T= \hat{\mathbf x}^f_T
- \end{equation*}
- \item Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $ compute the smoother gain, the smoothed state and the smoothed covariance matrix
- \begin{align}
-  \mathcal S_{t}&=\mathbf P_{t}^{f}\mathbf A^{\top}\left[ \mathbf P_{t +1}^{f-}\right]^{-1} \nonumber\\
- \hat{\mathbf x}_t^b&=\hat{\mathbf x}_t^f+\mathcal S_t(\hat{\mathbf x}_{t+1}^{b}-\hat{\mathbf x}_{t+1}^{f-})\nonumber \\
- \mathbf P_{t}^{b}&=\mathbf P_{t}^{f}+\mathcal S_t(\mathbf P_{t+1}^{b}-\mathbf P_{t+1}^{f-})\mathcal S_t^\top \nonumber
- \end{align}
- \item compute the smoothed cross covariance matrix\\
- initialisation:
- \begin{align}
-  \mathbf M_T=(\mathbf I-\mathcal K_T\mathbf C)\mathbf A\mathbf P_{T-1}^b \nonumber
- \end{align}
- Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $
- \begin{align}
- \mathbf M_t= \mathbf P_t^{f}\mathcal S_{t-1}^{\top}+\mathcal S_{t}(\mathbf M_{t+1}-\mathbf A\mathbf P_t^{f} )\mathcal S_{t-1}^{\top}\nonumber
- \end{align}
- \end{enumerate}
- % \end{tabbing}
- \end{algorithm}
+\end{table*}
+\renewcommand{\arraystretch}{1}
 \subsection{Stopping rule}
 The stopping criterion is usually associated with either the change in the parameter estimates or the log-likelihood variation \cite{McLachlan1997}. The stopping rule adopted herein is
 \begin{equation}
@@ -1087,18 +1004,12 @@ substituting \ref{eq:Xi1derivation1} into \ref{eq:appXi1} we get
 \begin{equation}
  \boldsymbol\Xi_1=\sum_{t=0}^{T-1}\left(\mathbf P_{t}+\mathbf{\hat x}_{t}\mathbf{\hat x}_{t}^\top\right).
 \end{equation}
-\ifCLASSOPTIONcaptionsoff
-  \newpage
-\fi
 
-%   \newpage
-% \bibliographystyle{unsrt} 
-\bibliographystyle{apalike}
+\bibliographystyle{./elsarticle/model2-names} 
 \bibliography{MRAIDE}
 
-% \bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
- % \bibliography{IEEEabrv,MRAIDE}
+
+
 
 
 \end{document}
