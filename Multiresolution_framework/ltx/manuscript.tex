@@ -1000,23 +1000,23 @@ Therefore
 &=N_{m+m'}\left(m+l_{1}-l_{2}\right) \nonumber \\
 &=N_{m+m'}\left(m'+l_{2}-l_{1}\right).
 \end{align}
-\subsection{Induction}\label{ap:Induction}
-For $n_1$ in equation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} we have
+\subsection{Scaling function expansion}\label{ap:Induction}  
+In this appendix we show by induction that how the scaling function at $j=0$ can be written in terms of the scaling function at level $j$. For $n_1$ in equation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} we have
 \begin{align}
  N_{m}\left(r\right)&=\sum_{n_1=0}^{m} \left[\mathbf p\right]_{n_1} N_{m}\left(2r-n_1\right) \label{eq:App-TwoScalepair1},
   \end{align}
-which clearly holds (see \eqref{eq:MRA-TwoScalepair1}). Now assuming \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} for $n_{j-1}$ we have
+which clearly holds from two-scale relation pair (see \eqref{eq:MRA-TwoScalepair1}). Now assuming \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} for $n_{j-1}$ we can write 
 \begin{align}\label{eq:app-ConvertingFormulaForscalingFunctions}
  &N_m(r)=\nonumber \\
 &\sum_{n_1,n_2, \dots n_{j-1}=0}^{m}\left[\mathbf p\right]_{n_1} \left[\mathbf p\right]_{n_2}\dots \left[\mathbf p\right]_{n_{j-1}}N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}}),
 \end{align}
-$N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of $N_m(2^{j}r)$ as
+in which $N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of $N_m(2^{j}r)$ as
 \begin{align}\label{eq:AppendixNj-1intermsofNj}
  &N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})=\nonumber \\
 &\sum_{n_j=0}^m \left[\mathbf p\right]_{n_j}N_m(2^jr-2\times k_{n_1,n_2, \dots, n_{j-1}}-n_j)\nonumber \\
-&=\sum_{n_j=0}^m \left[\mathbf p\right]_{n_j}N_m(2^jr- k_{n_1,n_2, \dots, n_{j}})
+&=\sum_{n_j=0}^m \left[\mathbf p\right]_{n_j}N_m(2^jr- k_{n_1,n_2, \dots, n_{j}}).
 \end{align}
-Substituting \eqref{eq:AppendixNj-1intermsofNj} in to \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} completes the proof. 
+Substituting \eqref{eq:AppendixNj-1intermsofNj} into \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} completes the proof. 
 
 \subsection{Lower bound on likelihood function}\label{ap:Lowerbound}
 A derivation of the lower bound on the likelihood function that is based on \citet{Bishop2006} is provided in this Appendix. We want to maximise the likelihood function which is difficult to perform directly
