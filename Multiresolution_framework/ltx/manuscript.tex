@@ -642,25 +642,20 @@ to give the state transition equation
 \label{eq:A_theta}
  \mathbf A(\boldsymbol \theta) &= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I.
 \end{align} 
-\parham{
- \begin{itemize}
-	\item when likelihood is difficult to maximise directly (when we have hidden variable) so we maximise the joint likelihood function 
-	\item EM maximises the lower bound and show what exactly this lower bound is (shown in Appendix).
-	\item E-step for state-space model is the smoothing problem
-	\item so when we have joint state parameter estimation for stae-space models  we only need to do two things: 1- use smoother for the E-step 2- construct the lower bound which might not be straightforward even in linear case so DCM is rubbish
-\end{itemize}}
 The problem of joint state and parameter estimation for the state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation} can be formulated as 
 \begin{equation}
 	{\hat{\mathbf X},\hat{\boldsymbol\theta}}=\arg\max_{\mathbf X,\boldsymbol\theta}p(\mathbf Y;\boldsymbol\theta),
  \end{equation}  
-where $\mathbf X$ and $\mathbf Y$ denote the entire sequences of the states and observations at all time, $\boldsymbol\theta$ is the parameter set and $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of observations $\mathbf Y$ parameterised  by $\boldsymbol\theta$ known as the likelihood function. This problem cannot be separated as for the state estimation the knowledge of the system's parameter is required and for the parameter estimation the states of the system need to be known. One approach is to iteratively solve the state and parameter of the system and monitor the convergence of the estimates. A natural framework to perform this is the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the parameter set and the states from observations corresponding to the connectivity kernel, neural field and electrophysiological data in our application. There are two main applications of the EM algorithm:  first is when the observations are incomplete due to a faulty observation process or limitations and the second is the case when the direct maximisation of the likelihood function is difficult but can be simplified by assuming the existence of an additional however missing (or hidden) variables \cite{Bilmes1998}, the weights of the field basis functions in this case. The EM algorithm, when used in this context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
+where $\mathbf X$ and $\mathbf Y$ denote the entire sequences of the states and observations respectively, $\boldsymbol\theta$ is the parameter set and $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of the observations, $\mathbf Y$, parameterised  by $\boldsymbol\theta$, known as the likelihood function. This problem cannot be solved separately as for the state estimation the knowledge of the system's parameters is required and for the parameter estimation the states of the system need to be known. One approach is to iteratively estimate the states and parameters of the system and monitor the convergence of the algorithm. A natural framework to perform this is the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the parameter set and the states from the observations corresponding to the connectivity kernel, the neural field and electrophysiological data in our application. There are two main applications of the EM algorithm:  first is when the observations are incomplete due to a faulty observation process or existing limitations and the second  when the direct maximisation of the likelihood function is difficult but can be simplified by assuming the existence of an additional however missing (or hidden) variables \cite{Bilmes1998}, the weights of the field basis functions in this case. The EM algorithm, when used in the latter context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
 \begin{equation}
 	\boldsymbol\theta_{\text{ML}}=\arg\max_{\boldsymbol\theta}~p(\mathbf Y;\boldsymbol\theta),
  \end{equation}   
 and the posterior distribution of the field over time.
 
-Both the E and the M steps of the EM algorithm find increasingly tighter lower bounds on the likelihood of the parameters so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For state-space model the E-step corresponds to the smoothing problem which can be solved using the Rauch Tung Streibel (RTS) smoother \cite{RAUCH1965}. For the M-step the lower bound on the likelihood function should be constructed where the steps needed
-to compute the required quantities are very dependent on the particular application which is described in detail for our problem. In summary, to solve the joint state and parameter estimation for the state-,space models one can adapt the EM algorithm, solving the smoothing problem for the E-step and constructing and maximising the lower bound in the M-step. A schematic representation of the EM algorithm is represented in Figure~\ref{fig:EMBlockDiagram}.  
+Both the E and the M steps of the EM algorithm find increasingly tighter lower bounds on the likelihood of the parameters so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For state-space models, the E-step corresponds to the smoothing problem which can be solved using the Rauch Tung Streibel (RTS) smoother \cite{RAUCH1965}. For the M-step, a lower bound on the likelihood function should be constructed where the steps needed
+to compute the required quantities are very dependent on the particular application which is described in detail for our problem. 
+
+In summary, to solve the joint state and parameter estimation for linear state-space models one can adapt the EM algorithm, solving the smoothing problem for the E-step and constructing and maximising the lower bound in the M-step. A schematic representation of the EM algorithm is represented in Figure~\ref{fig:EMBlockDiagram}.  
 \begin{figure}[!t]
 \centering
 \includegraphics[scale=1]{./Graph/EMBlockDiagram.pdf}
@@ -668,17 +663,17 @@ to compute the required quantities are very dependent on the particular applicat
 \label{fig:EMBlockDiagram}
 \end{figure}
   \subsection{E-step}
-  As mentioned earlier the E-step for the state-space models is equivalent to the smoothing problem. We use the RTS smoother in order to infer the state of the system. The RTS smoother uses the Kalman filter \cite{Kalman1960} in forward pass along withe a backward iteration to calculate its outputs: state estimates $\hat{\mathbf x}_t$ and covariance, $\hat{\mathbf P}_t=\mathrm{cov}(\hat{\mathbf{x}}_t)$. Following \cite{Gibsona2005}, an additional backwards recursion is included (step 6 of the RTS algorithm)	to calculate cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t},\mathbf{x}_{t+1})$, which is also required to construct the lower bound. Note that the following quantities from the forward iteration should be stored when implementing the RTS smoother: predicted and corrected estimates for both state estimates and covariance matrices, and also the final value of the Kalman gain in order to initialise the backward cross-covariance computation. 
+  As mentioned earlier the E-step for state-space models is equivalent to the smoothing problem. We use the RTS smoother in order to infer the states of the system. The RTS smoother uses the Kalman filter \cite{Kalman1960} in forward pass along withe a backward iteration to calculate its outputs: smoothed states $\hat{\mathbf x}^b_t$ and covariances, $\mathbf P^b_t=\mathrm{cov}(\mathbf{x}_t)$. Following \cite{Gibsona2005}, an additional backwards recursion is also included (step 6 of the RTS algorithm)	to calculate cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t},\mathbf{x}_{t+1})$, which is also required in forming the lower bound to be maximised in the M-step. Note that the following quantities from the forward iteration (filtering) should be stored when implementing the RTS smoother: predicted and corrected estimates for both state estimates ($\mathbf{x}_t^{f-}$, $\mathbf{x}_t^{f}$) and covariance matrices ($\mathbf P_t^{f-}$,$\mathbf P_t^f$). Also the final value of the Kalman gain, $\mathcal K_T$, should be stored in order to initialise the backward cross-covariance computation. 
  \subsection{M-step}
 It is rather straightforward to show that 
 \begin{equation}
-	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \Theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \Theta)\right], 
+	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \theta)\right], 
 \end{equation}
-is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix...)  where $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ is the joint probability distribution of the states and the observations and where $ \mathbf E_{\boldsymbol \Theta'}\left[ .\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\Theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \Theta'$). Note that this is actually the smoother output.
+is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix...)  where $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ is the joint probability distribution of the states and the observations and where $ \mathbf E_{\boldsymbol \theta'}\left[\cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). Note that this is actually the smoother output.
 
- The rest of this section is to construct the lower bound $\mathcal Q$ for the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \Theta)$ can be written as
+ The rest of this section is to construct the lower bound $\mathcal Q$ for the linear state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ can be written as
  \begin{equation}\label{eq:jointdistribution}
-  p(\mathbf X,\mathbf Y;\boldsymbol \Theta)=\prod_{t=0}^{T-1} p(\mathbf y_{t+1}|\mathbf x_{t+1})p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)p(\mathbf x_0).
+  p(\mathbf X,\mathbf Y;\boldsymbol \theta)=\prod_{t=0}^{T-1} p(\mathbf y_{t+1}|\mathbf x_{t+1})p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)p(\mathbf x_0).
  \end{equation}
  The $\mathcal Q$-function, or lower-bound on the likelihood, can be expressed in terms of the joint distribution components
  \begin{align}
@@ -714,7 +709,7 @@ is constant with respect to parameter $\boldsymbol\theta$ and will disappear sub
 &-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace\nonumber \\
 &-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace.
 \end{align}
-Rearranging and taking the expectation of the log-likelihood function over all time instants gives the required lower-bound which is to be maximised for the optimal parameter estimates. Therefore 
+Rearranging and taking the expectation of the log-likelihood function over all time instants gives the required lower-bound which is to be maximised for the optimal parameter estimates. Note that the expectation distributes over the trace sum. Therefore, 
 \begin{align}\label{eq:MRA-QintermsofTraces}
 \mathcal Q(\boldsymbol \theta, \boldsymbol\theta')&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \boldsymbol\Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
 &-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace,
@@ -724,7 +719,13 @@ where
 \boldsymbol\Xi_0&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right] \label{eq:MRA-Xi0}\\
 \boldsymbol\Xi_1&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t}^\top\right] \label{eq:MRA-Xi1}.
 \end{align}
-Note that the expectation distributes over the trace sum. The three traces that form \eqref{eq:MRA-QintermsofTraces} are dealt with in turn. To begin, the first trace is written in terms of element-wise summations
+The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \cite{Gibsona2005}, (see Appendix~ for more details)
+\begin{align}\label{eq:Xivariables}
+\boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
+ \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
+\end{align} 
+
+The three traces that form \eqref{eq:MRA-QintermsofTraces} are dealt with in turn. To begin, the first trace is written in terms of element-wise summations
 \begin{align}\label{eq:MRA-trace1}
 \mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i=1}^{n_x}\left[ \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right]_{ii} \nonumber \\
 &=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}  \boldsymbol\Lambda_{\theta}\right]_{ji}\nonumber\\
@@ -812,11 +813,7 @@ The second derivative of the $\mathcal Q$-function is given by
 \end{equation}
 The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}$ matrix $\mathrm{vec}(\mathbf U)$ is of rank $n_{\theta}$ (\cite{Dewar2009}, Lemma 3), where $\mathrm{vec}(\cdot)$ denotes the vectorisation operator. Under this condition $\boldsymbol\Upsilon$ is  invertible and the second derivative is negative definite representing a maximum of the $\mathcal Q$-function. 
 
-The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the Rauch Tung Streibel smoother \cite{RAUCH1965} outputs: state estimates, $\hat{\mathbf x}_t$, covariance, $\mathbf P_t=\mathrm{cov}(\mathbf{x_t})$, and cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t},\mathbf{x}_{t+1})$ \cite{Gibsona2005},
-\begin{align}\label{eq:Xivariables}
-\boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \\
- \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).
-\end{align}
+
 The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\theta,\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge. The RTS  algorithm is given in Algorithm~\ref{alg:MRA-RTS} for completeness. 
 \begin{algorithm}
 \caption{Summary of the Rauch-Tung-Striebel smoother}
