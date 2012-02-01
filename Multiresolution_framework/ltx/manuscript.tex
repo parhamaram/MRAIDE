@@ -728,7 +728,7 @@ The stopping criterion is usually associated with either the change in the param
  \end{equation}
  where $\epsilon$ is a threshold value and $\parallel \mathbf{A} \parallel_{F}^{(i)}$ and $ \parallel \mathbf{A} \parallel_{F}^{(i-1)}$ are the Frobenius norms  of the successive estimates of $\mathbf{A} $ matrices which is defined by \citet{Meyer2000}
  \begin{equation}
-  \parallel \mathbf{A} \parallel_{F}=\sqrt{\sum_{i,j=1}^{n_x}\mid a_{i,j} \mid^2}=\sqrt{\mathrm{tr} (\mathbf A^{\top}\mathbf A)}
+  \parallel \mathbf{A} \parallel_{F}=\sqrt{\sum_{i,j=1}^{n_x}\mid a_{i,j} \mid^2}=\sqrt{\mathrm{tr} (\mathbf A^{\top}\mathbf A)}.
  \end{equation}
 \subsection{Computational complexity} 
 All $n_x^2$ blocks of $\boldsymbol\Gamma_1$ and $\boldsymbol\Gamma_2$  can be computed as a one-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the implementation in \citet{Dewar2009}. The complexity of each step of the algorithm is summarised in Table~\ref{table:MRA-ComputationalComplexity} where for ease of comparison the computational complexity of the method in \citet{Dewar2009} is also identified. It can be seen from the table that the state dimension is an important factor at each iteration of the estimation algorithm, emphasizing the advantage of the proposed algorithm compared to \citet{Dewar2009}. This also suggests the use of an efficient algorithm to choose the minimum number of basis functions (states of the system) while achieving the desired details of the underlying field.  
