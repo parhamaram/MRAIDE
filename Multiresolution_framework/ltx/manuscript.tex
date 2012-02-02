@@ -497,14 +497,14 @@ where
 \begin{align}
  l_{n_1,n_2, \dots, n_j}=2^{j-1}n_1+2^{j-2}n_2+ \dots +2^{0}n_j.
 \end{align}
-The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see Appendix ...). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using \eqref{eq:MRA-TwoScalepair2}. Examples of such expansions are given in Figure~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
+The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see Appendix~\ref{ap:Induction}). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using \eqref{eq:MRA-TwoScalepair2}. Examples of such expansions are given in Figure~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
 \begin{figure}[!t] 
  	\centering
  		\includegraphics[scale=1]{./Graph/Decomposition.pdf}
  		\caption{{\bf The scaling and the wavelet function decomposition}. (\textbf{A}) The scaling function (blue) at $j=0$ is obtained using 625 scaling functions (black) at $j=4$. (\textbf{B}) The wavelet function (blue) at $j=0$ is obtained using 1250 scaling functions (black) at $j=4$.}
  	\label{fig:MRA-BasisDecomposition}
  \end{figure}  
- In this paper, 4th -- order cardinal B-spline scaling and wavelet functions are used, resulting in  8th and 12th order B-spline functions when calculating \eqref{eq:Lambdax}, \eqref{eq:Lambdatheta} and \eqref{eq:CovMatrix} whose values at integer points are given in Table~\ref{table:MRA-BsplineatIntegerPoints}.
+ In this paper, 4th -- order cardinal B-spline scaling and wavelet functions are used, resulting in  8th and 12th order B-spline functions when calculating \eqref{eq:Lambdax} and \eqref{eq:Uij} respectively  whose values at integer points are given in Table~\ref{table:MRA-BsplineatIntegerPoints}.
 \begin {table}[t]
 \begin{center}
 	\begin{tabular}{lcccc}
@@ -525,7 +525,7 @@ The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also pro
  \end {table}
 
 \subsection{Frequency Analysis}
-To determine the level of approximation in the model, detailed in the previous section, that is the number of basis functions required to reconstruct the field, $v_t(r)$, the frequency response of the B-spline function needs to be computed by applying the Fourier transform to \eqref{eq:N1convolutions}. To proceed the Fourier transform of $N_1(r)$ is first calculated, 
+To determine the level of approximation in the model, $j$, detailed in the previous section, that is the number of basis functions required to reconstruct the field, $v_t(r)$, the frequency response of the B-spline function needs to be computed by applying the Fourier transform to \eqref{eq:N1convolutions}. To proceed the Fourier transform of $N_1(r)$ is first calculated, 
 \begin{align}\label{eq:MRA-N1Fouriertransform}
 \mathcal F(N_1(r))&=\int_{-\infty}^{+\infty}N_1(r)\mathrm{exp}(-2\pi i \nu r)dr \nonumber \\
 &=\int_{0}^{1} \mathrm{exp}(-2\pi i \nu r)dr \nonumber \\
@@ -543,11 +543,11 @@ There exist many variations of state and parameter estimation methods for state-
 
 To demonstrate the MRAIDE framework we shall consider the parameters to be static and we shall also assume that the relationship between the mean membrane potential and the mean firing rate is predominantly linear. Note that there is a difference between forward and inverse modeling when making these assumptions. For example, by using a linear activation function in the estimator we are not assuming that there is necessarily a linear relationship between the membrane voltage and firing rate, but that the statistics of the neural masses fall within a linear operating region over the estimation time period. 
 
-It is important to point out there is no doubt that there will always be a mismatch between neural mass models and actual cortical tissue. Nevertheless, the simplifications used in formulating the equation enable the development of new methods for extracting information from electrophysiological data, that has the potential to influence the treatment of diseases such as epilepsy. The trade-off between parsimony and complexity is always difficult when considering neurodynamics and this is further complicated when using estimation algorithms that have huge computational demands with such high-dimensional systems.
+It is important to point out there is no doubt that there will always be a mismatch between neural mass models and actual cortical tissue. Nevertheless, the simplifications used in formulating the equations enable the development of new methods for extracting information from electrophysiological data, that has the potential to influence the treatment of diseases such as epilepsy. The trade-off between parsimony and complexity is always difficult when considering neurodynamics and this is further complicated when using estimation algorithms that have huge computational demands with such high-dimensional systems.
 
 By assuming a linear activation function of the form
 \begin{equation}
-	f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r})
+	f(v_t(\mathbf{r})) = \varsigma v_t(\mathbf{r}),
 \end{equation}
 the state transition equation~\eqref{eq:ApproxDiscreteTimeModel4} simplifies to
 \begin{equation}\label{eq:ApproxDiscreteTimeModel_Linear}
@@ -564,14 +564,16 @@ Now we can further simplify the system by defining
 	\label{eq:Lambdatheta}
 	 \mathbf{\Lambda}_{\theta} &\triangleq \int_{\Omega}\boldsymbol\mu\left(r\right) \int_\Omega { 
 		   \boldsymbol\theta^\top\boldsymbol\lambda\left(r-r'\right)
-		    \boldsymbol\mu^\top\left(r\right)\ \mathrm{d}r'\mathrm{d}r}
+		    \boldsymbol\mu^\top\left(r\right)\ \mathrm{d}r'\mathrm{d}r},
 \end{align}
 to give the state transition equation
-\begin{align}\label{eq:StateEquation}
- \mathbf x_{t+1} &=\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t\\
-\label{eq:A_theta}
- \mathbf A(\boldsymbol \theta) &= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I.
-\end{align} 
+\begin{equation}\label{eq:StateEquation}
+ \mathbf x_{t+1} =\mathbf A(\boldsymbol \theta) \mathbf x_t+ \mathbf w_t,
+\end{equation} 
+where
+\begin{equation}\label{eq:A_theta}
+ \mathbf A(\boldsymbol \theta)= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I.
+\end{equation} 
 The problem of joint state and parameter estimation for the state-space model given by \eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation} can be formulated as 
 \begin{equation}
 	{\hat{\mathbf X},\hat{\boldsymbol\theta}}=\arg\max_{\mathbf X,\boldsymbol\theta}p(\mathbf Y;\boldsymbol\theta),
@@ -702,7 +704,7 @@ where $[\cdot]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix. Each
 \end{equation}
 where $ [\cdot]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix, and where
 each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is 
-\begin{align}
+\begin{align}\label{eq:Uij}
 \left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{i:} dr,
 \end{align}
 where $[\cdot]_{i:} $ denotes the i-th row.  By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from \eqref{eq:MRA-LambdaThetaElements} the trace given in \eqref{eq:MRA-trace1} can be written as
