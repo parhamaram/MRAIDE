@@ -1,140 +1,66 @@
- % TO DELETE
+\documentclass[review,authoryear,3p]{elsarticle}
 
-%    \documentclass[journal,a4paper]{IEEEtran}
-%  \documentclass[journal]{IEEEtran}
-
-%     \documentclass[10pt,twocolumn,twoside]{IEEEtran}
-     \documentclass[11pt,draftcls,onecolumn,peerreview]{IEEEtran} 
-%         \topmargin       -6.0mm
-%          \oddsidemargin      0mm
-%          \evensidemargin     0mm
-%          \textheight     223.5mm
-%         \textwidth      170.0mm
-\usepackage{setspace} 
-\usepackage{color}
-\newcommand{\mike}[1]{\textcolor{red}{#1}}
-\newcommand{\dean}[1]{\textcolor{green}{#1}}
-\newcommand{\parham}[1]{\textcolor{blue}{#1}} 
-\newcommand{\ken}[1]{\textsf{\emph{\textbf{\textcolor{magenta}{#1}}}}} 
-\newcommand{\cut}[1]{\textcolor{cyan}{#1}} 
-
-\usepackage{cite}
-%Reduce the spacing between figures and captions
-% \usepackage[belowskip=-15pt,aboveskip=10pt]{caption}
-%  \setlength{\intextsep}{2pt plus 2pt minus 2pt}
-
-\ifCLASSINFOpdf
-   \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
-\fi
-
-\usepackage[cmex10]{amsmath}
-\interdisplaylinepenalty=2500
+\usepackage{amsmath}
 \usepackage{amssymb}
-\ifCLASSOPTIONcompsoc
-  \usepackage[tight,normalsize,sf,SF]{subfigure}
-\else
-  \usepackage[tight,footnotesize]{subfigure}
-\fi
+\usepackage{graphicx}
+\usepackage{setspace} 
+\usepackage[usenames,dvipsnames]{color}  
+\usepackage{enumerate}    
 
-\usepackage{natbib}
-
-\usepackage{stfloats}
-\usepackage{float}
-\floatstyle{ruled}
-%This bit is how to use hyperlink without stupid coloured rectangles around it
-\usepackage{float}
-\usepackage{hyperref}
-\hypersetup{colorlinks,linkcolor=black,filecolor=black,urlcolor=black,citecolor=black}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\newfloat{algorithm}{htbp}{loa}%[chapter]
-\floatname{algorithm}{Algorithm}
-
+\newcommand{\dean}[1]{\textcolor{green}{#1}}
+\newcommand{\parham}[1]{\textcolor{blue}{#1}}
+% \newcommand{\mike}[1]{\textcolor{Plum}{#1}}
+  
+%\newfloat{algorithm}{htbp}{loa}%[chapter]
+%\floatname{algorithm}{Algorithm}
+\journal{Neuroimage}
 \begin{document}
-%
-% paper title
-% can use linebreaks \\ within to get better formatting as desired
+\begin{frontmatter}
 \title{Spatiotemporal Multi-Resolution Approximation of the Amari Type Neural Field Model}
+  
+\author[TNG]{P. Aram\corref{cor1}}
+\ead{parham.aram@univ-amu.fr}
+\author[DEEE,BEI,UE]{D. R. Freestone}
+\ead{dfreestone@bionicear.org} 
+\author[UE,CU]{M. Dewar}
+\ead{mike.dewar@columbia.edu}
+\author[UM]{K. Scerri}
+\ead{kenneth.scerri@um.edu.mt}
+\author[DEEE,BEI]{D. B. Grayden}
+\ead{grayden@unimelb.edu.au}
+\author[US]{V. Kadirkamanathan}
+\ead{visakan@sheffield.ac.uk}
 
+\address[TNG]{Theoretical Neuroscience Group, UMR 1106, Institut de Neurosciences des Systemes, 13385 Marseille, France}
+\address[DEEE]{Department of Electrical and Electronic Engineering, University of Melbourne, Melbourne, VIC, Australia}
+\address[BEI]{The Bionic Ear Institute, East Melbourne, VIC, Australia}
+\address[UE]{Institute for Adaptive and Neural Computation, University of Edinburgh, Edinburgh, UK}
+\address[CU]{Department of Applied Physics and Applied Mathematics, Columbia University, New York, NY, USA}
+\address[UM]{Department of Systems and Control Engineering, University of Malta, Msida, MSD, Malta}
+ \address[US]{Department of Automatic Control and Systems Engineering, University of Sheffield, Sheffield, UK}
 
-\author{P. Aram, D.R. Freestone, M. Dewar, K.Scerri, D.B. Grayden and V. Kadirkamanathan % <-this % stops a space
-\thanks{P. Aram* and V. Kadirkamanathan are with the Department of Automatic Control and Systems Engineering, University of Sheffield, Sheffield, S1 3JD, U.K. (e-mail:parham.aram@univ-amu.fr; visakan@sheffield.ac.uk).}% <-this % stops a space
-\thanks{D.\ R.\ Freestone and D.\ B.\ Grayden are with the Department
-of Electrical and Electronic Engineering, The University of Melbourne, and The Bionic Ear Institute, VIC, Australia. (e-mail:dfreestone@bionicear.org; grayden@unimelb.edu.au). The Bionic Ear Institute acknowledges the support it receives from the Victorian State Government through the Operational Infrastructure Support Program.}
-\thanks{M. Dewar is with the Department of Applied Physics and Applied Mathematics, Columbia University, New York, NY, USA. (e-mail:mike.dewar@columbia.edu).}
-\thanks{K. Scerri is with the Department of Systems and Control Engineering, University
-of Malta, Msida, MSD, Malta. (e-mail:kenneth.scerri@um.edu.mt).}}
-% <-this % stops a space
-%\thanks{Manuscript received April 19, 2005; revised January 11, 2007.}}
-
-
-
-% The paper headers
-% \markboth{Journal of }%
-% {Aram \MakeLowercase{\textit{et al.}}: Wavelet Multiresolution Spatio-Temporal Modelling Using the Integro-Difference Equation}
-% The only time the second header will appear is for the odd numbered pages
-% after the title page when using the twoside option.
-% 
-% *** Note that you probably will NOT want to include the author's ***
-% *** name in the headers of peer review papers.                   ***
-% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
-% you desire.
- \ifCLASSOPTIONpeerreview
-\else
-\fi
-
-% If you want to put a publisher's ID mark on the page you can do it like
-% this:
-%\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
-% Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark.
-
-% make the title area
-\maketitle
-
+\cortext[cor1]{Corresponding author}
 
 \begin{abstract}
 %\boldmath
 We develop a multi-resolution approximation (MRA) framework for the integro-difference equation (IDE) neural field model based on semi-orthogonal cardinal B-spline wavelets. State and parameter estimation is performed using the Expectation Maximization (EM) algorithm. A synthetic example is provided
 to demonstrate the framework.
-\end{abstract}
-% Note that keywords are not normally used for peerreview papers.
- \begin{IEEEkeywords}
-  Neural field model, multi-resolution approximation (MRA), Expectation Maximization (EM) algorithm, wavelets.
-  \end{IEEEkeywords}
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-%   \begin{center} \bfseries EDICS Category: SSP-IDEN \end{center}
-%   \fi
-%
-%  For peerreview papers, this IEEEtran command inserts a page break and
-%creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
+\end{abstract} 
+\begin{keyword}
+  Neural Field Model, multi-resolution approximation (MRA), Expectation Maximization (EM) algorithm
+\end{keyword}
+
+\end{frontmatter}
 
 
 \section{Introduction}
-\IEEEPARstart{T}{he} human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
+The human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
 
 Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. The key components of these models typically describe the macroscopic dynamics of the human brain, but can also descriptive of finer-scale neurodynamics. \parham{Examples are, the post-synaptic response kernels (the pulse to wave function) and the activation function (wave to pulse function) \citep{Jirsa1997}. The former can be descriptive of inhibitory and excitatory post-synaptic potentials in microscopic single neural models, such as integrate and fire, or an ensemble response to stimulation in macroscopic neural mass models. The latter,  can be used to model spiking statistics across spatial scales from single neurons (where it can be considered a CDF of the probability of firing) to mean firing rates of neural masses.} The key factor linking the key functions of the model to particular spatial scales is geometry of the connectivity, hence the ability to infer a multi-resolution connectivity kernel will enable to the formulation of a multi-resolution neural field model. 
 
 The utility of these models for answering questions in clinical neuroscience and neurology lies in the ability to infer parameters from electrophysiological data. The ability to create patient-specific neural models will contribute to our knowledge base of diseases such as epilepsy and will enable the development of new treatment strategies. This is particularly relevant to the advent of new devices that use therapeutic electrical stimulation. Stimulation strategies for devices currently operate in an open loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists enormous potential to improve the performance of these devices using systems theory, which in turn requires a suitable dynamic model. Neural mass and neural field models are ideal candidates for estimation algorithms due to their strong links with physiology and their parsimony. It is expected that parameters of the neural fields models will be patient-specific and will, therefore, need to be inferred from data.
 
-The first work (to the authors best knowledge) describing data-driven mesoscopic neural modelling used a neural mass model to fit EEG data~\citep{Valdes1999}. This approach was extended to coupled neural masses through a Bayesian estimation scheme dubbed Dynamic Causal Modelling (DCM)~\citep{David2003}. Following this work, data-driven modelling was extended to continuum field equations that explained the richer dynamics of spatiotemporal neural fields \citep{Galka2008,schiff2008kalman,Daunizeau2009}. Most recently, a framework was developed where a finite element model (FEM) of the neural field (via a global Galerkin projection) was formed, using a basis function decomposition, to transform the PDE neural field equations into a finite dimension system to facilitate efficient state and parameter estimation~\citep{Freestone2011}. This paper is an extension to the aforementioned study, where we derive a neural field state-space model that accounts for the multi-resolution architecture and spatial dynamics of the human cortex. In this way, a flexible framework is created, whereby both macroscopic and microscopic behaviour of the system can be represented simultaneously and completely.
+The first work (to the authors best knowledge) describing data-driven mesoscopic neural modeling used a neural mass model to fit EEG data~\citep{Valdes1999}. This approach was extended to coupled neural masses through a Bayesian estimation scheme dubbed Dynamic Causal Modeling (DCM)~\citep{David2003}. Following this work, data-driven modeling was extended to continuum field equations that explained the richer dynamics of spatiotemporal neural fields \citep{Galka2008,schiff2008kalman,Daunizeau2009}. Most recently, a framework was developed where a finite element model (FEM) of the neural field (via a global Galerkin projection) was formed, using a basis function decomposition, to transform the PDE neural field equations into a finite dimension system to facilitate efficient state and parameter estimation~\citep{Freestone2011}. This paper is an extension to the aforementioned study, where we derive a neural field state-space model that accounts for the multi-resolution architecture and spatial dynamics of the human cortex. In this way, a flexible framework is created, whereby both macroscopic and microscopic behavior of the system can be represented simultaneously and completely.
 
 \section{Multi-Resolution Cortical Architecture}
 The human neocortex has an inherent multi-resolution architecture. The spatiotemporal neural field can be written as 
@@ -150,7 +76,7 @@ connectivity kernel components at each spatial resolution.}
 	\label{fig:MultiLayerFieldModel}
 \end{figure}
 
-The multi-resolution structure has been described by numerous methods. For example, this idea of multi-resolution can be thought of a generalisation of modelling the layers of the cortex separately, where the connectivity kernel, or neural foot-print, has varying widths \citep{Wilson1973}.
+The multi-resolution structure has been described by numerous methods. For example, this idea of multi-resolution can be thought of a generalization of modeling the layers of the cortex separately, where the connectivity kernel, or neural foot-print, has varying widths \citep{Wilson1973}.
 
 Typically, the experimentalist only has access the net field generated by the multi-resolution architecture. Follow this, it is natural to ask how do we best describe the multi-resolution structure of the neural system. The solution to this problem was proposed by \citet{Breakspear2005} in using a wavelet decomposition. This paper is directed at developing a framework for patient-specific multi-resolution neural field models. 
 
@@ -177,7 +103,7 @@ Typically, the experimentalist only has access the net field generated by the mu
 	$m(\mathbf{r}_n)$ & observation kernel where $n$ is sensor index $n=1,..,n_y$ & n.a. \\
 	$w(\mathbf{r})$ & spatial connectivity kernel & n.a.\\
 	$h(t)$ & post-synaptic response kernel & mV\\
-	$\tau$, $\xi$ & \parham{synaptic time constant} \& time constant parameter & s, n.a.\\
+	$\tau$, $\xi$ & membrane time constant \& time constant parameter & s, n.a.\\
 	$\delta(t)$ & Dirac-delta function & n.a.\\
 	\hline
 	\multicolumn{3}{|c|}{\emph{Reduced Model}} \\
@@ -204,7 +130,7 @@ Typically, the experimentalist only has access the net field generated by the mu
 \end{tabular}
 \caption{\textbf{Notation.} The first column of the table gives the symbols for all the notation used in the paper. The second column provides a brief description of the quantity, and the third column provides the SI units where relevant.}
 \label{tab:Notation}
-\end{table*}
+\end{table*}  
 \doublespacing
 
 The single layer homogeneous neural field model in the most general form is described by the equation
@@ -237,23 +163,23 @@ where in this first-order (in time) form of the model the membrane dynamics are 
 \label{fig:Modelcomponents}
 \end{figure}
 
-The term $e_t(\mathbf r)$ is a zero mean Gaussian disturbance, spatially coloured but temporally white, with covariance function 
+The term $e_t(\mathbf r)$ is a zero mean Gaussian disturbance, spatially colored but temporally white, with covariance function 
 \begin{equation}
 cov\left(e_{t}\left(\mathbf{r}\right),e_{t+t'}\left(\mathbf{r'}\right)\right)=\eta(\mathbf{r}-\mathbf{r'})\delta(t-t'),
 \label{eq:FieldDisturbance}
 \end{equation}
-where $\delta(\cdot)$ is the Dirac-delta function. %$ = \varsigma v_t(\mathbf{r})$ \cite{VanRotterdam1982,Murphy2009}.
+where \parham{$\eta(\mathbf{r}-\mathbf{r'})$ is a spatially homogeneous covariance function} and $\delta(\cdot)$ is the Dirac-delta function. %$ = \varsigma v_t(\mathbf{r})$ \cite{VanRotterdam1982,Murphy2009}.
 
 The observation equation describing the intracranial electrophysiological recordings is given by
 \begin{equation}\label{eq:ObservationEquation}
 	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, \mathrm{d}\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
 \end{equation}
-where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. \parham{the lead field thingy} 
+where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. \parham{The lead field parameters are not included in the observation equation as the intracranial recordings are considered here.} 
 
 \section{MRA of the IDE in State-Space}
 The purpose of forming the multi-resolution approximation (MRA) of the integro-difference equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.
 
-The goal of this section is to demonstrate how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure. Therefore, the goal is to form a parameterised equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
+The goal of this section is to demonstrate how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure. Therefore, the goal is to form a parameterized equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
 
 The multi-resolution approximation \citep{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering a  one-dimensional field, the static connectivity kernel is decomposed as,
 \begin{equation}
@@ -458,13 +384,13 @@ B-spline functions are one of the most basic elements for wavelet construction. 
 \centering
 \includegraphics{./Graph/Figure0.pdf}
 % \includegraphics{./Graph/Figure0b.pdf}
-\caption{{\bf Examples of cardinal B-spline functions}. Piecewise polynomial functions (coloured lines) are joined at the break points (black dots). (\textbf{A}) B-spline function of order 2 (linear B-spline). (\textbf{B}) B-spline function of order 8.}
+\caption{{\bf Examples of cardinal B-spline functions}. Piecewise polynomial functions (colored lines) are joined at the break points (black dots). (\textbf{A}) B-spline function of order 2 (linear B-spline). (\textbf{B}) B-spline function of order 8.}
 \label{fig:Figure0}
 \end{figure}
  
-B-spline wavelet and scaling functions were formulated independently by \citet{Chui1992b,Chui1992,Unser1993}.  The scaling functions are $m$-th order B-splines and the compact support wavelet functions are a linear combination of scaling functions. B-spline wavelet and scaling functions approach optimal time/frequency localisation as the order of the spline increases. In fact, for the cubic B-spline scaling and wavelet functions it is already close to the optimal limit for Gaussian functions and they have a better approximation rate than other wavelets with the same number of vanishing moments \citep{Unser1999}. 
+B-spline wavelet and scaling functions were formulated independently by \citet{Chui1992b,Chui1992,Unser1993}.  The scaling functions are $m$-th order B-splines and the compact support wavelet functions are a linear combination of scaling functions. B-spline wavelet and scaling functions approach optimal time/frequency localization as the order of the spline increases. In fact, for the cubic B-spline scaling and wavelet functions it is already close to the optimal limit for Gaussian functions and they have a better approximation rate than other wavelets with the same number of vanishing moments \citep{Unser1999}. 
 
-B-spline wavelet and scaling functions are particularly suited in this framework due to the property of being able to analytically define the convolution and inner product to form MRAIDE components. The following summarises some important characteristics of B-splines relevant to the proposed modelling framework. 
+B-spline wavelet and scaling functions are particularly suited in this framework due to the property of being able to analytically define the convolution and inner product to form MRAIDE components. The following summarizes some important characteristics of B-splines relevant to the proposed modeling framework. 
 
 The $m$-th  order cardinal B-spline function is defined by the recurrence relation \citep{Chui1992} 
 \begin{equation}
@@ -498,7 +424,7 @@ One important feature of the B-spline functions is the \emph{partition of unity}
 \begin{equation}
 	\sum_{l}N_m(r+l)\equiv1
 	\end{equation}
-	This is important as the underlying field can be reconstructed when its saturated without introducing numerical errors which is not the case for example in the case of Gaussian basis functions.
+	\parham{This is important as the underlying field can be reconstructed when its saturated without introducing numerical errors which is not the case for example in the case of Gaussian basis functions.}
 	
 The convolution and inner product of B-spline functions are required in order to formulate the multi-resolution framework described in the previous section (construction of $\boldsymbol\Lambda_{x}$, $\boldsymbol\Gamma$ and $\boldsymbol\Sigma_w$). To show how the convolution of two B-splines is calculated, \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself
 \begin{equation}\label{eq:N1convolutions}
@@ -559,7 +485,7 @@ By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, 
   \left\langle N_{m;j_1,l_1}(r),\varphi_{m;j_2,l_2}(r)\right\rangle =0  \quad \mathrm{for} \quad j_1\leq j_2.
  \label{eq:MRA-PhiPsiOrthogonality}
  \end{equation}
-  \parham{Note from \eqref{eq:MRA-PsiPsiOrthogonality} B-spline wavelets are semiorthogonal as they are not orthogonal with respect to translation on a given scale.} 
+  \parham{Note from \eqref{eq:MRA-PsiPsiOrthogonality} B-spline wavelets are semi-orthogonal as they are not orthogonal with respect to translation on a given scale.} 
 
 In order to analytically calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Lambda_{\theta}$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale using the two-scale relation pair defined in equations (\ref{eq:MRA-TwoScalepair1}-\ref{eq:MRA-TwoScalepair2coefs}). For scaling functions this can be done  by using \eqref{eq:MRA-TwoScalepair1} recursively, giving
 \begin{align}\label{eq:MRA-ConvertingFormulaForscalingFunctions}
@@ -614,7 +540,7 @@ The convolution theorem states that the Fourier transform of the convolution of 
 \section{State and Parameter Estimation}
 There exist many variations of state and parameter estimation methods for state-space models. The choice of algorithm is normally determined by the dimension of the system, whether the system is linear or nonlinear and whether or not the parameters are considered static or dynamic. Up to this point of the paper, we have not made any assumptions on any of these criteria for choosing an estimation algorithm. The MRAIDE neural field model formulation may be used in any of the above scenarios. 
 
-To demonstrate the MRAIDE framework we shall consider the parameters to be static and we shall also assume that the relationship between the mean membrane potential and the mean firing rate is predominantly linear. Note that there is a difference between forward and inverse modelling when making these assumptions. For example, by using a linear activation function in the estimator we are not assuming that there is necessarily a linear relationship between the membrane voltage and firing rate, but that the statistics of the neural masses fall within a linear operating region over the estimation time period. 
+To demonstrate the MRAIDE framework we shall consider the parameters to be static and we shall also assume that the relationship between the mean membrane potential and the mean firing rate is predominantly linear. Note that there is a difference between forward and inverse modeling when making these assumptions. For example, by using a linear activation function in the estimator we are not assuming that there is necessarily a linear relationship between the membrane voltage and firing rate, but that the statistics of the neural masses fall within a linear operating region over the estimation time period. 
 
 It is important to point out there is no doubt that there will always be a mismatch between neural mass models and actual cortical tissue. Nevertheless, the simplifications used in formulating the equation enable the development of new methods for extracting information from electrophysiological data, that has the potential to influence the treatment of diseases such as epilepsy. The trade-off between parsimony and complexity is always difficult when considering neurodynamics and this is further complicated when using estimation algorithms that have huge computational demands with such high-dimensional systems.
 
@@ -649,7 +575,7 @@ The problem of joint state and parameter estimation for the state-space model gi
 \begin{equation}
 	{\hat{\mathbf X},\hat{\boldsymbol\theta}}=\arg\max_{\mathbf X,\boldsymbol\theta}p(\mathbf Y;\boldsymbol\theta),
  \end{equation}  
-where $\mathbf X$ and $\mathbf Y$ denote the entire sequences of the states and observations respectively, $\boldsymbol\theta$ is the parameter set and $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of the observations parameterised  by $\boldsymbol\theta$, known as the likelihood function. This problem cannot be solved separately as for the state estimation the knowledge of the system's parameters is required and for the parameter estimation the states of the system need to be known. One approach is to iteratively estimate the states and parameters of the system and monitor the convergence of the algorithm. A natural framework to perform this is the well known Expectation Maximisation (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the parameter set and the states from the observations corresponding to the connectivity kernel, the neural field and electrophysiological data in our application. There are two main applications of the EM algorithm:  first is when the observations are incomplete due to a faulty observation process or existing limitations and the second  when the direct maximisation of the likelihood function is difficult but can be simplified by assuming the existence of an additional however missing (or hidden) variables \cite{Bilmes1998}, the weights of the field basis functions in this case. The EM algorithm, when used in the latter context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
+where $\mathbf X$ and $\mathbf Y$ denote the entire sequences of the states and observations respectively, $\boldsymbol\theta$ is the parameter set and $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of the observations parameterized  by $\boldsymbol\theta$, known as the likelihood function. This problem cannot be solved separately as for the state estimation the knowledge of the system's parameters is required and for the parameter estimation the states of the system need to be known. One approach is to iteratively estimate the states and parameters of the system and monitor the convergence of the algorithm. A natural framework to perform this is the well known Expectation Maximization (EM) algorithm \cite{Dempster1977,Shumway2000} to infer both the parameter set and the states from the observations corresponding to the connectivity kernel, the neural field and electrophysiological data in our application. There are two main applications of the EM algorithm:  first is when the observations are incomplete due to a faulty observation process or existing limitations and the second  when the direct maximization of the likelihood function is difficult but can be simplified by assuming the existence of an additional however missing (or hidden) variables \cite{Bilmes1998}, the weights of the field basis functions in this case. The EM algorithm, when used in the latter context \cite{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
 \begin{equation}
 	\boldsymbol\theta_{\text{ML}}=\arg\max_{\boldsymbol\theta}~p(\mathbf Y;\boldsymbol\theta),
  \end{equation}   
@@ -658,15 +584,50 @@ and the posterior distribution of the field over time.
 Both the E and the M steps of the EM algorithm find increasingly tighter lower bounds on the likelihood of the parameters so that, at convergence, the maximum of the bound corresponds to the maximum of the likelihood. For state-space models, the E-step corresponds to the smoothing problem which can be solved using the Rauch Tung Streibel (RTS) smoother \cite{RAUCH1965}. For the M-step, a lower bound on the likelihood function should be constructed where the steps needed
 to compute the required quantities are very dependent on the particular application which is described in detail for our problem. 
 
-In summary, to solve the joint state and parameter estimation for linear state-space models one can adapt the EM algorithm, solving the smoothing problem for the E-step and constructing and maximising the lower bound in the M-step. A schematic representation of the EM algorithm is represented in Figure~\ref{fig:EMBlockDiagram}.  
+In summary, to solve the joint state and parameter estimation for linear state-space models one can adapt the EM algorithm, solving the smoothing problem for the E-step and constructing and maximizing the lower bound in the M-step. A schematic representation of the EM algorithm is represented in Figure~\ref{fig:EMBlockDiagram}.  
 \begin{figure}[!t]
 \centering
 \includegraphics[scale=1]{./Graph/EMBlockDiagram.pdf}
-\caption{{\bf Schematic of the EM algorithm}. The RTS smoother (E-step) and the maximisation of the lower bound, $\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')$, (M-step) are shown. The dashed box shows the iterative two step algorithm once it is initialised.}
+\caption{{\bf Schematic of the EM algorithm}. The RTS smoother (E-step) and the maximization of the lower bound, $\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')$, (M-step) are shown. The dashed box shows the iterative two step algorithm once it is initialized.}
 \label{fig:EMBlockDiagram}
 \end{figure}
   \subsection{E-step}
-  As mentioned earlier the E-step for state-space models is equivalent to the smoothing problem. We use the RTS smoother in order to infer the states of the system. The RTS smoother uses the Kalman filter \cite{Kalman1960} in forward pass along withe a backward iteration to calculate its outputs: smoothed states $\hat{\mathbf x}^b_t$ and covariances, $\mathbf P^b_t=\mathrm{cov}(\mathbf{x}_t)$. Following \cite{Gibsona2005}, an additional backwards recursion is also included (step 6 of the RTS algorithm)	to calculate cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t},\mathbf{x}_{t+1})$, which is also required in forming the lower bound to be maximised in the M-step. Note that the following quantities from the forward iteration (filtering) should be stored when implementing the RTS smoother: predicted and corrected estimates for both state estimates ($\mathbf{x}_t^{f-}$, $\mathbf{x}_t^{f}$) and covariance matrices ($\mathbf P_t^{f-}$,$\mathbf P_t^f$). Also the final value of the Kalman gain, $\mathcal K_T$, should be stored in order to initialise the backward cross-covariance computation. 
+  As mentioned earlier the E-step for state-space models is equivalent to the smoothing problem. We use the RTS smoother in order to infer the states of the system. The RTS smoother uses the Kalman filter \cite{Kalman1960} in forward pass along withe a backward iteration to calculate its outputs: smoothed states $\hat{\mathbf x}^b_t$ and covariances, $\mathbf P^b_t=\mathrm{cov}(\mathbf{x}_t)$. The RTS  algorithm is given in Table~\ref{alg:MRA-RTS}. Following \cite{Gibsona2005}, an additional backwards recursion is also included (Step~5 of the RTS algorithm)	to calculate cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t},\mathbf{x}_{t+1})$, which is also required in forming the lower bound to be maximized in the M-step. Note that the following quantities from the forward iteration (filtering) should be stored when implementing the RTS smoother: predicted and corrected estimates for both state estimates ($\mathbf{x}_t^{f-}$, $\mathbf{x}_t^{f}$) and covariance matrices ($\mathbf P_t^{f-}$,$\mathbf P_t^f$). Also the final value of the Kalman gain, $\mathcal K_T$, should be stored in order to initialize the backward cross-covariance computation. 
+\renewcommand{\arraystretch}{1.7}
+\begin{table*}[!ht]
+\begin{tabular}{|c|}\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{1.} Forward initialization} \\ 
+$\hat{\mathbf x}_0, \mathbf P_0$ \\
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{2.} Forward iteration: for $t\in\left\lbrace 0,\cdots,T\right\rbrace $, calculate the predicted state and the predicted covariance matrix } \\
+$\hat{\mathbf x}_{t+1}^{f-}=\mathbf A \hat{\mathbf x}_{t}^{f}$  \\ 
+$\mathbf P_{t+1}^{f-}=\mathbf A \mathbf P_{t}^{f}\mathbf A^{\top}+\boldsymbol\Sigma_e$  \\
+\multicolumn{1}{|p{16cm}|}{Compute the filter gain, the filtered state and the filtered covariance matrix} \\
+$\hat{\mathbf x}_{t+1}^{f-}=\sum_{i=0}^{2n_x} W_i^{(m)}\mathcal X_{i,t+1}^{f-} $ \\
+$\mathbf P_{t +1}^{f-}=\sum_{i=0}^{2n_x} W_i^{(c)}(\mathcal X_{i,t+1}^{f-}-\hat{\mathbf x}_{t +1}^{f-})(\mathcal X_{i,t+1}^{f-}-\hat{\mathbf x}_{t +1}^{f-})^\top+\boldsymbol \Sigma_e$ \\ 
+\multicolumn{1}{|p{16cm}|}{Compute the filter gain, the filtered state and the filtered covariance matrix using the standard Kalman filter update equations} \\
+$\mathcal K_{t+1}=\mathbf P_{t +1}^{f-}\mathbf C ^\top(\mathbf C \mathbf P_{t +1}^{f-}\mathbf C ^\top+\boldsymbol \Sigma_{\varepsilon})^{-1}$\\
+$\hat{\mathbf x}_{t+1}^{f}=\hat{\mathbf x}_{t+1}^{f-}+\mathcal K_{t+1}(\mathbf y_{t+1}-\mathbf C\hat{\mathbf x}_{t +1}^{f-})$\\
+$\mathbf P_{t+1}^f=(\mathbf I - \mathcal K_{t+1}\mathbf C)\mathbf P_{t +1}^{f-}$\\
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{3.} Backward initialization}\\
+ $\mathbf P_T^b= \mathbf P_T^f, \quad \hat{\mathbf x}^b_T= \hat{\mathbf x}^f_T$\\
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{4.} Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $ compute the smoother gain, the smoothed state and the smoothed covariance matrix}\\  
+$\mathcal S_{t}=\mathbf P_{t}^{f}\mathbf A^{\top}\left[ \mathbf P_{t +1}^{f-}\right]^{-1}$ \\
+ $\hat{\mathbf x}_t^b=\hat{\mathbf x}_t^f+\mathcal S_t(\hat{\mathbf x}_{t+1}^{b}-\hat{\mathbf x}_{t+1}^{f-})$ \\
+ $\mathbf P_{t}^{b}=\mathbf P_{t}^{f}+\mathcal S_t(\mathbf P_{t+1}^{b}-\mathbf P_{t+1}^{f-})\mathcal S_t^\top$\\  
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{5.} Compute the smoothed cross covariance matrix, initialization}\\
+$\mathbf M_T=(\mathbf I-\mathcal K_T\mathbf C)\mathbf A\mathbf P_{T-1}^b$\\
+\multicolumn{1}{|p{16cm}|}{For $t\in\left\lbrace T-1,\cdots,0\right\rbrace $ compute}\\
+$\mathbf M_t= \mathbf P_t^{f}\mathcal S_{t-1}^{\top}+\mathcal S_{t}(\mathbf M_{t+1}-\mathbf A\mathbf P_t^{f} )\mathcal S_{t-1}^{\top}$\\
+\hline
+\end{tabular}
+\caption{\textbf{Algorithm for the RTS smoother} This table shows the steps in the  Rauch-Tung-Striebel smoother algorithm. The lower bound is maximized after each iteration to update the parameter estimates.}
+\label{alg:MRA-RTS}
+\end{table*}
+\renewcommand{\arraystretch}{1}
  \subsection{M-step}
 It is rather straightforward to show that 
 \begin{equation}
@@ -688,7 +649,7 @@ It should be noted that neither $p(\mathbf y_{t+1}|\mathbf x_{t+1})$ nor $p(\mat
 \begin{equation}
 \mathcal Q(\boldsymbol \theta,\boldsymbol\theta')=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)\right]+\mathrm{const.}
 \end{equation}
-where the constant term can be ignored as it is independent of the parameters. Under the condition that the state distribution is Gaussian --- ignoring the normalising term, $1/(2\pi)^{\frac{n_x}{2}}\mid\boldsymbol\Sigma_w\mid^{-\frac{1}{2}}$ --- the conditional distribution $p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\theta)$ can be written as
+where the constant term can be ignored as it is independent of the parameters. Under the condition that the state distribution is Gaussian --- ignoring the normalizing term, $1/(2\pi)^{\frac{n_x}{2}}\mid\boldsymbol\Sigma_w\mid^{-\frac{1}{2}}$ --- the conditional distribution $p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\theta)$ can be written as
 \begin{align}
 p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\theta)=  \exp\left({-\frac{1}{2}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)^\top\boldsymbol\Sigma_w^{-1}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)}\right).
 \end{align}
@@ -712,7 +673,7 @@ is constant with respect to parameter $\boldsymbol\theta$ and will disappear sub
 &-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace\nonumber \\
 &-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace.
 \end{align}
-Rearranging and taking the expectation of the log-likelihood function over all time instants gives the required lower-bound which is to be maximised for the optimal parameter estimates. Note that the expectation distributes over the trace sum. Therefore, 
+Rearranging and taking the expectation of the log-likelihood function over all time instants gives the required lower-bound which is to be maximized for the optimal parameter estimates. Note that the expectation distributes over the trace sum. Therefore, 
 \begin{align}\label{eq:MRA-QintermsofTraces}
 \mathcal Q(\boldsymbol \theta, \boldsymbol\theta')&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \boldsymbol\Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
 &-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace,
@@ -782,7 +743,32 @@ and
 \begin{equation}\label{eq:Epsilon}
 \boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}
 \end{equation}
-All $n_x^2$ blocks of $\boldsymbol\Gamma_1$ and $\boldsymbol\Gamma_2$  can be computed as a one-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the implementation in \citet{Dewar2009}. The complexity of each step of the algorithm is summarised in Table~\ref{table:MRA-ComputationalComplexity} where for ease of comparison the computational complexity of the method in \citet{Dewar2009} is also identified.
+By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
+\begin{align}\label{eq:MRA-QDerivative}
+\frac{\partial \mathcal Q}{\partial \boldsymbol\theta}&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-T_s\varsigma(\boldsymbol\Upsilon^\top+\boldsymbol\Upsilon)\boldsymbol\theta \nonumber \\
+&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-2T_s\varsigma\boldsymbol\Upsilon^\top\boldsymbol\theta.
+\end{align}
+Equating \eqref{eq:MRA-QDerivative} to $\mathbf 0$ yields
+\begin{align}\label{eq:MRA-thetahat}
+\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top.
+\end{align}
+The second derivative of the $\mathcal Q$-function is given by
+\begin{equation}
+\frac{\partial^2\mathcal Q}{\partial\boldsymbol\theta^2}=-2T_s\varsigma\boldsymbol\Upsilon.
+\end{equation}
+The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}$ matrix $\mathrm{vec}(\mathbf U)$ is of rank $n_{\theta}$ (\citep{Dewar2009}, Lemma 3), where $\mathrm{vec}(\cdot)$ denotes the vectorization operator. Under this condition $\boldsymbol\Upsilon$ is  invertible and the second derivative is negative definite representing a maximum of the $\mathcal Q$-function. 
+
+\subsection{Stopping rule}
+The stopping criterion is usually associated with either the change in the parameter estimates or the log-likelihood variation \cite{McLachlan1997}. The stopping rule adopted herein is
+\begin{equation}
+ \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\epsilon,
+ \end{equation}
+ where $\epsilon$ is a threshold value and $\parallel \mathbf{A} \parallel_{F}^{(i)}$ and $ \parallel \mathbf{A} \parallel_{F}^{(i-1)}$ are the Frobenius norms  of the successive estimates of $\mathbf{A} $ matrices which is defined by \citet{Meyer2000}
+ \begin{equation}
+  \parallel \mathbf{A} \parallel_{F}=\sqrt{\sum_{i,j=1}^{n_x}\mid a_{i,j} \mid^2}=\sqrt{\mathrm{tr} (\mathbf A^{\top}\mathbf A)}.
+ \end{equation}
+\subsection{Computational complexity} 
+All $n_x^2$ blocks of $\mathbf U$, $\boldsymbol\Gamma_1$ and $\boldsymbol\Gamma_2$  can be computed as a one-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the implementation in \citet{Dewar2009}. The complexity of each step of the algorithm is summarized in Table~\ref{table:MRA-ComputationalComplexity} where for ease of comparison the computational complexity of the method in \citet{Dewar2009} is also identified. It can be seen from the table that the state dimension is an important factor at each iteration of the estimation algorithm, emphasizing the advantage of the proposed algorithm compared to \citet{Dewar2009}. This also suggests the use of an efficient algorithm to choose the minimum number of basis functions (states of the system) while achieving the desired details of the underlying field.  
 \begin {table}
 \begin{center}
 \scalebox{1}{\begin{tabular}{lllc}
@@ -799,84 +785,53 @@ $\hat{\boldsymbol\theta} $&\eqref{eq:MRA-thetahat}&$O(n_{\theta}^3)$&-\\
  \caption {{\bf The Computational complexity of the estimation algorithm}. A comparison between the algorithm proposed herein and that of \citet{Dewar2009}.} 
 \label{table:MRA-ComputationalComplexity}
 \end{center}
-\end {table}
+\end {table} 
 
-By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
-\begin{align}\label{eq:MRA-QDerivative}
-\frac{\partial \mathcal Q}{\partial \boldsymbol\theta}&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-T_s\varsigma(\boldsymbol\Upsilon^\top+\boldsymbol\Upsilon)\boldsymbol\theta \nonumber \\
-&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-2T_s\varsigma\boldsymbol\Upsilon^\top\boldsymbol\theta.
-\end{align}
-Equating \eqref{eq:MRA-QDerivative} to $\mathbf 0$ yields
-\begin{align}\label{eq:MRA-thetahat}
-\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top.
-\end{align}
-The second derivative of the $\mathcal Q$-function is given by
-\begin{equation}
-\frac{\partial^2\mathcal Q}{\partial\boldsymbol\theta^2}=-2T_s\varsigma\boldsymbol\Upsilon.
-\end{equation}
-The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}$ matrix $\mathrm{vec}(\mathbf U)$ is of rank $n_{\theta}$ (\citep{Dewar2009}, Lemma 3), where $\mathrm{vec}(\cdot)$ denotes the vectorization operator. Under this condition $\boldsymbol\Upsilon$ is  invertible and the second derivative is negative definite representing a maximum of the $\mathcal Q$-function. 
-
-
-The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\boldsymbol\theta,\boldsymbol\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge. The RTS  algorithm is given in Algorithm~\ref{alg:MRA-RTS} for completeness. 
-\begin{algorithm}
-\caption{Summary of the Rauch-Tung-Striebel smoother}
-\label{alg:MRA-RTS}
- % \begin{tabbing}
- \begin{enumerate}
- \item Forward initialisation: 
- \begin{equation*}
- \hat{\mathbf x}_0, \mathbf P_0
- \end{equation*}
- \item Forward iteration: for $t\in\left\lbrace 0,\cdots,T\right\rbrace $, calculate the predicted state and the predicted covariance matrix
- \begin{align}
- \hat{\mathbf x}_{t+1}^{f-}&=\mathbf A \hat{\mathbf x}_{t}^{f} \nonumber \\
- \mathbf P_{t+1}^{f-}&=\mathbf A \mathbf P_{t}^{f}\mathbf A^{\top}+\boldsymbol\Sigma_e \nonumber 
- \end{align}
- \item Compute the filter gain, the filtered state and the filtered covariance matrix
- \begin{align}
- \mathcal K_{t+1}&=\mathbf P_{t +1}^{f-}\mathbf C ^\top(\mathbf C \mathbf P_{t +1}^{f-}\mathbf C ^\top+\boldsymbol \Sigma_{\varepsilon})^{-1} \nonumber\\
-\hat{\mathbf x}_{t+1}^{f}&=\hat{\mathbf x}_{t+1}^{f-}+\mathcal K_{t+1}(\mathbf y_{t+1}-\mathbf C\hat{\mathbf x}_{t +1}^{f-})\nonumber \\
- \mathbf P_{t+1}^f&=(\mathbf I - \mathcal K_{t+1}\mathbf C)\mathbf P_{t +1}^{f-} \nonumber 
- \end{align}
- \item  Backward initialisation:
- \begin{equation*}
- \mathbf P_T^b= \mathbf P_T^f, \quad \hat{\mathbf x}^b_T= \hat{\mathbf x}^f_T
- \end{equation*}
- \item Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $ compute the smoother gain, the smoothed state and the smoothed covariance matrix
- \begin{align}
-  \mathcal S_{t}&=\mathbf P_{t}^{f}\mathbf A^{\top}\left[ \mathbf P_{t +1}^{f-}\right]^{-1} \nonumber\\
- \hat{\mathbf x}_t^b&=\hat{\mathbf x}_t^f+\mathcal S_t(\hat{\mathbf x}_{t+1}^{b}-\hat{\mathbf x}_{t+1}^{f-})\nonumber \\
- \mathbf P_{t}^{b}&=\mathbf P_{t}^{f}+\mathcal S_t(\mathbf P_{t+1}^{b}-\mathbf P_{t+1}^{f-})\mathcal S_t^\top \nonumber
- \end{align}
- \item compute the smoothed cross covariance matrix\\
- initialisation:
- \begin{align}
-  \mathbf M_T=(\mathbf I-\mathcal K_T\mathbf C)\mathbf A\mathbf P_{T-1}^b \nonumber
- \end{align}
- Backward iteration: for $t\in\left\lbrace T-1,\cdots,0\right\rbrace $
- \begin{align}
- \mathbf M_t= \mathbf P_t^{f}\mathcal S_{t-1}^{\top}+\mathcal S_{t}(\mathbf M_{t+1}-\mathbf A\mathbf P_t^{f} )\mathcal S_{t-1}^{\top}\nonumber
- \end{align}
- \end{enumerate}
- % \end{tabbing}
- \end{algorithm}
-\subsection{Stopping rule}
-The stopping criterion is usually associated with either the change in the parameter estimates or the log-likelihood variation \cite{McLachlan1997}. The stopping rule adopted herein is
-\begin{equation}
- \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\epsilon,
- \end{equation}
- where $\epsilon$ is a threshold value and $\parallel \mathbf{A} \parallel_{F}^{(i)}$ and $ \parallel \mathbf{A} \parallel_{F}^{(i-1)}$ are the Frobenius norms  of the successive estimates of $\mathbf{A} $ matrices which is defined by \citet{Meyer2000}
- \begin{equation}
-  \parallel \mathbf{A} \parallel_{F}=\sqrt{\sum_{i,j=1}^{n_x}\mid a_{i,j} \mid^2}=\sqrt{\mathrm{tr} (\mathbf A^{\top}\mathbf A)}
- \end{equation}
-%\cut{The second terms in  \eqref{eq:upsilon0}, \eqref{eq:upsilon1}, and \eqref{eq:Upsilon} can be computed as a once-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the method in \cite{Dewar2009}.}
-
+The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\boldsymbol\theta,\boldsymbol\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge. A summary of the joint state parameter estimation is given in Table~\ref{alg:EMsteps}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\arraystretch}{1.7}
+\begin{table*}[!ht]
+\begin{tabular}{|c|}\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{1.} Initialization:  } \\ 
+\multicolumn{1}{|p{16cm}|}{Choose a bounded random state vector sequence and set $\mathbf P_t$ and $\mathbf M_t$ large} \\
+\multicolumn{1}{|p{16cm}|}{Compute} \\
+$\mathbf{\Lambda}_{x}=\int_{\Omega}\boldsymbol{\mu}\left(r\right)\boldsymbol{\mu}^\top\left(r\right) \mathrm{d}r$\\
+\multicolumn{1}{|p{16cm}|}{Compute all the $n^2_x$ blocks of block matrices $\mathbf U$, $\Gamma_1$ and  $\Gamma_2$ using} \\
+$\left[ \mathbf U\right] ^{k,i}=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{i:} dr$\\
+$\left[ \Gamma_1\right]^{j,i} =\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}$\\
+$\left[ \Gamma_2\right] ^{j,i}=\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}$\\
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{2.} Estimate the connectivity kernel parameters} \\
+$\boldsymbol\Xi_0=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right)$\\
+$\boldsymbol\Xi_1=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right)$\\
+$\boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]_{j,i}$\\
+$\boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_1]^{j,i}$\\
+$\boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}$\\
+$\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top$\\
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{3.} Form a state-space model}\\
+\multicolumn{1}{|p{16cm}|}{Compute all the elements of $\boldsymbol\Lambda_{\theta}$ using} \\
+$\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta$\\
+\multicolumn{1}{|p{16cm}|}{Compute transition matrix $\mathbf A(\boldsymbol\theta)$ } \\
+$\mathbf A(\boldsymbol \theta) = T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I$\\
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{4.} Compute the smoothed state $\mathbf x_t^b$, the smoothed covariance,$\mathbf P^b_t$ and cross-covariance $\mathbf M_t$ for $t\in\left\lbrace 0,\cdots,T\right\rbrace $ using the RTS smoother given in Table~\ref{alg:MRA-RTS}.}\\  
+\hline
+\multicolumn{1}{|p{16cm}|}{\textbf{5.} Convergence: go back to Step~2 unless }\\
+$ \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\epsilon$\\
+\hline
+\end{tabular}
+\caption{\textbf{State and parameter estimation for the MRAIDE model.} This table shows the steps for the joint state and parameter estimation using the EM based algorithm.}
+\label{alg:EMsteps}
+\end{table*}
+\renewcommand{\arraystretch}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}\label{sec:MRA-results}
 To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using equations \eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation}, allowing a comparison between true and estimated parameters. In doing so, the membrane time constant was set to $\tau = 10$~ms \citep{David2003}, and the sampling time was chosen ten times faster \citep{Stephan2008}, i.e. $T_s = 1$~ms, ensuring the discrepancy between the continuous neural field model and its discrete approximation is small. 
 
-Two different experiments were designed to test the framework. In the first one, 200 realisations of 1 second of data were used, where the field disturbance, $e_t$, and the observation noise, $\boldsymbol\varepsilon_t$, were regenerated each run. This way the net shape of the connectivity kernel could be formed by averaging over the parameters estimates from each realisation. In the second experiment, a single data set was generated and the field estimations are compared for five models, each accounting for a different level of approximation, i.e. $j=0$ to $j=4$. 
+Two different experiments were designed to test the framework. In the first one, 200 realizations of 1 second of data were used, where the field disturbance, $e_t$, and the observation noise, $\boldsymbol\varepsilon_t$, were regenerated each run. This way the net shape of the connectivity kernel could be formed by averaging over the parameters estimates from each realization. In the second experiment, a single data set was generated and the field estimations are compared for five models, each accounting for a different level of approximation, i.e. $j=0$ to $j=4$. 
 
-For each of the experiments, the estimation was applied to the final 900~ms, allowing the forward model's dynamics to stabilise from the initial conditions. The initial state, parameters and the support of the connectivity kernel were unknown to the estimator. The observation noise was set to $\boldsymbol\Sigma_{\varepsilon}=0.1 \times \mathbf{I}_{n_y}$ and the disturbance covariance function was set to $\gamma(r-r') = \varphi_{3,-2}(r-r')$ (B-spline, $j=3$).  The firing rate slope, $\varsigma$ was set to $0.56~mV^{-1}$ \citep{Wendling2005}. The observation kernel was modelled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude where the distance between adjacent sensors was $0.5$~mm, resulting into $n_y = 161$ observations. The spacing and bandwidth of the sensors allowed the full spatial bandwidth of the field to be observed.  With this number of observations, the estimation problem was well-posed, i.e. the number of states, $n_x < n_y$ at each level of the decomposition. This is because the scaling functions are orthogonal to the wavelets at the same and higher levels of decomposition, and  the wavelets are orthogonal to each other across different scales (see (\ref{eq:MRA-PsiPsiOrthogonality}-\ref{eq:MRA-PhiPsiOrthogonality})). 
+For each of the experiments, the estimation was applied to the final 900~ms, allowing the forward model's dynamics to stabilize from the initial conditions. The initial state, parameters and the support of the connectivity kernel were unknown to the estimator. The observation noise was set to $\boldsymbol\Sigma_{\varepsilon}=0.1 \times \mathbf{I}_{n_y}$ and the disturbance covariance function was set to $\gamma(r-r') = \varphi_{3,-2}(r-r')$ (B-spline, $j=3$).  The firing rate slope, $\varsigma$ was set to $0.56~mV^{-1}$ \citep{Wendling2005}. The observation kernel was modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude where the distance between adjacent sensors was $0.5$~mm, resulting into $n_y = 161$ observations. The spacing and bandwidth of the sensors allowed the full spatial bandwidth of the field to be observed.  With this number of observations, the estimation problem was well-posed, i.e. the number of states, $n_x < n_y$ at each level of the decomposition. This is because the scaling functions are orthogonal to the wavelets at the same and higher levels of decomposition, and  the wavelets are orthogonal to each other across different scales (see (\ref{eq:MRA-PsiPsiOrthogonality}-\ref{eq:MRA-PhiPsiOrthogonality})). 
 
 \subsection{Experiment I}
 The spatial frequency response of the observed field was used to specify the level of decomposition required to represent the field using the wavelets. This is shown in Figure~\ref{fig:ObservationFrequencyResponce} where the graph obtained by averaging the spectral power of the spatial frequency (over time) from the observations \citep{Scerri2009}. The spatial bandwidths of wavelets was calculated analytically using equation \eqref{eq:MRA-NmFouriertransform}. The result suggested that wavelets up to level $j=3$ (with the bandwidth $\approx[5,8]$ cycles/mm) can represent the significant spatial characteristics of the field which yields $n_x = 131$ states, corresponding to 9 scaling functions at $j=0$ and 8, 16, 32 and 66 wavelet functions, respectively at $j=0$, $j=1$, $j=2$ and $j=3$. 
@@ -902,7 +857,7 @@ The actual connectivity kernel and the decomposition is plotted in Figure~\ref{f
 \begin{figure}[!t]
 \includegraphics{./Graph/Figure5.pdf}
 \includegraphics{./Graph/Figure6.pdf}
-\caption{ {\bf Connectivity kernel estimate}. (\textbf{a}) The actual kernel and its components are shown by solid and dashed black lines, respectively. The mean kernel estimates over 200 realisations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (\textbf{b}) Kernel scaling and wavelets functions, respectively, at $j=1$ used in the estimation algorithm.}
+\caption{ {\bf Connectivity kernel estimate}. (\textbf{a}) The actual kernel and its components are shown by solid and dashed black lines, respectively. The mean kernel estimates over 200 realizations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (\textbf{b}) Kernel scaling and wavelets functions, respectively, at $j=1$ used in the estimation algorithm.}
 \label{fig:KernelEstimate}
 \end{figure}
 
@@ -931,7 +886,7 @@ The actual connectivity kernel and the decomposition is plotted in Figure~\ref{f
 \end{figure}
 
 \subsection{Experiment II}
-To study the performance of different models with various MRA capabilities, a single realisation was obtained using \eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation} under the same circumstances of the previous experiment. The generated data set was then employed to estimate the underlying field and the connectivity kernel parameters using different state-space models, $j=0$ up to $j=4$. The RMSE of the field estimation at different levels of approximation is shown in Figure~\ref{fig:RMSE}. By increasing the value of $j$, error in the estimation decreases and converges to a steady value of 0.71, confirming that $j=3$ is in fact adequate to capture the dynamics of the underlying field. The estimated field at a single time instant is shown in Figure~\ref{fig:FieldEstimates200}. The experiment was performed several times and the results were consistent over each run.
+To study the performance of different models with various MRA capabilities, a single realization was obtained using \eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation} under the same circumstances of the previous experiment. The generated data set was then employed to estimate the underlying field and the connectivity kernel parameters using different state-space models, $j=0$ up to $j=4$. The RMSE of the field estimation at different levels of approximation is shown in Figure~\ref{fig:RMSE}. By increasing the value of $j$, error in the estimation decreases and converges to a steady value of 0.71, confirming that $j=3$ is in fact adequate to capture the dynamics of the underlying field. The estimated field at a single time instant is shown in Figure~\ref{fig:FieldEstimates200}. The experiment was performed several times and the results were consistent over each run.
  \begin{figure}[!t] 
  	\centering
  		\includegraphics[scale=1]{./Graph/Figure3.pdf}
@@ -960,11 +915,11 @@ To study the performance of different models with various MRA capabilities, a si
 \section{Discussion}
 In this paper, we have presented a novel model-based framework for estimating cortical dynamics from electrophysiological measurements. The novel and key developments of the paper include the multi-resolution FEM representation of the neural field, and the estimator for an intracortical connectivity kernel with an arbitrary shape. This work is significant, as the ability to create patient specific neural field models has the potential to contribute to our understanding and improve treatment of diseases resulting from abnormal neurodynamics, such as epilepsy. Other groups have previously highlighted the importance of a multi-resolution approach in neural field modeling. It is thought that the dynamics and connectivity structure differs at different spatial scales~\citep{Qubbaj2009,Breakspear2005}. %\dean{This is a test to see if we can fit something about Breaky's paper in here. It would be nice to slot something in here because he used wavelets.} 
 
-For a larger space or in a case where the connectivity kernel decomposition comprises of  many scale levels, the number of parameters to be estimated increases significantly. One solution to this problem could be expectation-conditional maximisation (ECM) \citep{Meng1993,Meng1994} which replaces the M-step by a series of computationally simplified conditional maximization (CM) steps. The ECM is a class of generalised EM (GEM)  algorithms in which the $\mathcal{Q}$-function is increased rather than being maximised \citep{Fessler1994}. 
+For a larger space or in a case where the connectivity kernel decomposition comprises of  many scale levels, the number of parameters to be estimated increases significantly. One solution to this problem could be expectation-conditional maximization (ECM) \citep{Meng1993,Meng1994} which replaces the M-step by a series of computationally simplified conditional maximization (CM) steps. The ECM is a class of generalized EM (GEM)  algorithms in which the $\mathcal{Q}$-function is increased rather than being maximized \citep{Fessler1994}. 
 
 For systems with a high number of states, the ensemble Kalman smoother (EnKS) \citep{Evensen2003,Evensen2009a,Evensen2009} provides an alternative to the RTS smoother used in this work. The EnKS is a sequential Monte Carlo (MC) method where the state covariance matrix is approximated by a large stochastic ensemble of model states, thus alleviating computational load due to the storage and forward integration of the state covariance matrix. However, combining the EnKS with the EM algorithm suffers from the loss of monotonicity property --- increase in the likelihood function--- as MC error will be introduced at the E-step.
 
-Typically, a sequence of likelihood values will converge to a stationary point i.e. global (local) maximum or a saddle point. If the sequence of the EM is trapped in a local maximum or a saddle point, a small random perturbation diverges the algorithm from such stationary values \citep{McLachlan1997}. In general, convergence of the EM algorithm to any stationary point depends on the initialisation. In the examples presented in this paper, a bounded sequence of the state vectors was used to initialise the algorithm, which gave a satisfactory convergence and good state and parameter estimations.
+Typically, a sequence of likelihood values will converge to a stationary point i.e. global (local) maximum or a saddle point. If the sequence of the EM is trapped in a local maximum or a saddle point, a small random perturbation diverges the algorithm from such stationary values \citep{McLachlan1997}. In general, convergence of the EM algorithm to any stationary point depends on the initialization. In the examples presented in this paper, a bounded sequence of the state vectors was used to initialize the algorithm, which gave a satisfactory convergence and good state and parameter estimations.
 
 
 The MRAIDE approach is not limited to neural fields; the framework can be applied to modeling other multi-resolution spatiotemporal dynamical systems such as weather systems, ecological systems, and others~\citep{Wikle2002,Xu2005}. 
@@ -980,7 +935,7 @@ The authors acknowledge that there is, and will always be, a discrepancy between
 
 Additional extension for future work include extending the model to capture a second order synaptic response kernel, The second order postsynaptic kernel proposed in \citet{VanRotterdam1982} leads to dynamics that are more reminiscent to real postsynaptic potentials. 
 
-Another extension of this framework is the inclusion of finite distant-dependent action potential propagation velocity into the parametric neural field equations. In small networks the delays via propagation can be neglected, however they must be accounted for in large scale networks. For instance, it is shown by \citet{Ghosh2008} that inclusion of time delays arising from propagation along connecting fibres are essential for the fluctuations to be appeared in the default networks. Finally, future work should be directed towards applying and validating the framework on real data.
+Another extension of this framework is the inclusion of finite distant-dependent action potential propagation velocity into the parametric neural field equations. In small networks the delays via propagation can be neglected, however they must be accounted for in large scale networks. For instance, it is shown by \citet{Ghosh2008} that inclusion of time delays arising from propagation along connecting \parham{fibres} are essential for the fluctuations to be appeared in the default networks. Finally, future work should be directed towards applying and validating the framework on real data.
 
 \section{Appendix}
 \subsection{Inner product of two B-spline scaling functions}\label{ap:InnerProductOfBsplines}
@@ -994,7 +949,7 @@ A direct consequence of \eqref{eq:APP-SymmetrySplieEq} is
 \end{align}
 Therefore
 \begin{align}
-\int_{-\infty}^{+\infty}N_{m}\left(r-l_{1}\right)N_{m'}\left(r-l_{2}\right)ds&=\int_{-\infty}^{+\infty}N_{m}\left(m-r+l_{1}\right)N_{m'}\left(r-l_{2}\right)dr \nonumber \\
+\int_{-\infty}^{+\infty}N_{m}\left(r-l_{1}\right)N_{m'}\left(r-l_{2}\right)dr&=\int_{-\infty}^{+\infty}N_{m}\left(m-r+l_{1}\right)N_{m'}\left(r-l_{2}\right)dr \nonumber \\
 &=\int_{-\infty}^{+\infty}N_{m}\left(m+l_{1}-l_{2}-u\right)N_{m'}\left(u\right)du \nonumber \\
 &=\left(N_m \ast N_{m'}\right) \left(m+l_{1}-l_{2}\right) \nonumber \\
 &=N_{m+m'}\left(m+l_{1}-l_{2}\right) \nonumber \\
@@ -1019,11 +974,11 @@ in which $N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of 
 Substituting \eqref{eq:AppendixNj-1intermsofNj} into \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} completes the proof. 
 
 \subsection{Lower bound on likelihood function}\label{ap:Lowerbound}
-A derivation of the lower bound on the likelihood function that is based on \citet{Bishop2006} is provided in this Appendix. We want to maximise the likelihood function which is difficult to perform directly
+A derivation of the lower bound on the likelihood function that is based on \citet{Bishop2006} is provided in this Appendix. We want to maximize the likelihood function which is difficult to perform directly
 \begin{equation}
  p(\mathbf Y;\boldsymbol\theta)=\int_{\mathbf X}p(\mathbf X,\mathbf Y;\boldsymbol\theta)d\mathbf X.
 \end{equation}   
-Maximising the likelihood in terms of the parameter set is equivalent to the log-likelihood maximisation, as both the likelihood and log-likelihood functions share the same maximiser due to the monotonicity of the logarithm function. For any choice of distribution defined over the latent variables, $q(\mathbf X)$, the following decomposition holds
+Maximizing the likelihood in terms of the parameter set is equivalent to the log-likelihood maximization, as both the likelihood and log-likelihood functions share the same maximizer due to the monotonicity of the logarithm function. For any choice of distribution defined over the latent variables, $q(\mathbf X)$, the following decomposition holds
 \begin{equation}\label{eq:EM-loglikelihooddecomposition}
  \ln~p(\mathbf Y;\boldsymbol\theta)=\mathcal{L}(q,\boldsymbol\theta)+\mathrm{KL}(q\parallel p),
 \end{equation}
@@ -1038,7 +993,7 @@ Equation \eqref{eq:EM-loglikelihooddecomposition} can be verified by applying th
 	&- \int_{\mathbf X}q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace d\mathbf X\nonumber\\
 	&= \int_{\mathbf X}q(\mathbf X)\ln p(\mathbf Y; \boldsymbol\theta)d\mathbf X.
 \end{align}
-Noting  $q(\mathbf X)$ is a normalised distribution that integrates to one gives the log-likelihood function. Note \eqref{eq:EM-decomposition2} is the Kullback-Liebler distance between distributions $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)$ and $q(\mathbf X)$, therefore,
+Noting  $q(\mathbf X)$ is a normalized distribution that integrates to one gives the log-likelihood function. Note \eqref{eq:EM-decomposition2} is the Kullback-Liebler distance between distributions $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)$ and $q(\mathbf X)$, therefore,
 \begin{equation}
 	\mathrm{KL}(q\parallel p)\ge 0.
 \end{equation}   
@@ -1047,13 +1002,13 @@ The equality holds if and only if $q(\mathbf X)=p(\mathbf X \mid \mathbf Y;\bold
  \mathcal{L}(q,\boldsymbol\theta)\le \ln~p(\mathbf Y\mid\boldsymbol\theta)
 	\end{equation} 
 
-The EM algorithm alternates between maximising the lower bound with respect to the distribution $q(\mathbf X)$ and the parameter set $\boldsymbol\theta$, respectively, while holding the other fixed. Suppose that the current estimate of the parameter set is $\boldsymbol\theta'$, in the E-step the lower bound is maximised with respect to the distribution $q(\mathbf X)$ while $\boldsymbol\theta'$ is fixed. Since the value of $p(\mathbf Y;\boldsymbol\theta')$ is independent of $q(\mathbf X)$ the maximum of the lower bound occurs when the KL distance disappears or in other words when $q(\mathbf X)$ is exactly the conditional distribution $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)$. At this point, the lower bound becomes equal to the log-likelihood function. Note in the state-space model the E-step is equivalent to the smoothing problem. The maximum in the M-step is obtained by maximising the lower bound with respect to the parameter set while the distribution $q(\mathbf X)$ is held fixed. Since the distribution $q(\mathbf X)$ is computed using the old parameter estimates and kept fixed during the M-step, it is not equal to $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)$, resulting in a non-zero KL distance. Therefore, the growth of the log-likelihood function is greater than the growth of the lower bound. Substituting $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta')$ for $q(\mathbf X)$ in \eqref{eq:EM-decomposition1} gives
+The EM algorithm alternates between maximizing the lower bound with respect to the distribution $q(\mathbf X)$ and the parameter set $\boldsymbol\theta$, respectively, while holding the other fixed. Suppose that the current estimate of the parameter set is $\boldsymbol\theta'$, in the E-step the lower bound is maximized with respect to the distribution $q(\mathbf X)$ while $\boldsymbol\theta'$ is fixed. Since the value of $p(\mathbf Y;\boldsymbol\theta')$ is independent of $q(\mathbf X)$ the maximum of the lower bound occurs when the KL distance disappears or in other words when $q(\mathbf X)$ is exactly the conditional distribution $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)$. At this point, the lower bound becomes equal to the log-likelihood function. Note in the state-space model the E-step is equivalent to the smoothing problem. The maximum in the M-step is obtained by maximizing the lower bound with respect to the parameter set while the distribution $q(\mathbf X)$ is held fixed. Since the distribution $q(\mathbf X)$ is computed using the old parameter estimates and kept fixed during the M-step, it is not equal to $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)$, resulting in a non-zero KL distance. Therefore, the growth of the log-likelihood function is greater than the growth of the lower bound. Substituting $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta')$ for $q(\mathbf X)$ in \eqref{eq:EM-decomposition1} gives
 \begin{align}
  \mathcal{L}(q,\boldsymbol\theta)&=\int_{\mathbf X} p(\mathbf X\mid\mathbf Y;\boldsymbol\theta')\ln p(\mathbf X,\mathbf Y;\boldsymbol\theta)~d\mathbf X-\int_{\mathbf X} p(\mathbf X\mid\mathbf Y;\boldsymbol\theta')\ln p(\mathbf X\mid\mathbf Y;\boldsymbol\theta')~d\mathbf X \nonumber \\
 &= \mathbf E_{\boldsymbol\theta'}\left[ \ln p(\mathbf X,\mathbf Y;\boldsymbol\theta)\right] +\mathrm{const.}\nonumber\\
 &=\mathcal{Q}(\boldsymbol\theta,\boldsymbol\theta')+\mathrm{const.}~,\label{eq:EM-ComDaLogLike}
 \end{align}
-where $ \mathbf E_{\boldsymbol \theta'}\left[ \cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). The constant term is the negative entropy of $q(\mathbf X)$ and is independent of $\boldsymbol\theta$.   It becomes clear from \eqref{eq:EM-ComDaLogLike} that, the M-step essentially maximises the expectation of the complete data log-likelihood. 
+where $ \mathbf E_{\boldsymbol \theta'}\left[ \cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). The constant term is the negative entropy of $q(\mathbf X)$ and is independent of $\boldsymbol\theta$.   It becomes clear from \eqref{eq:EM-ComDaLogLike} that, the M-step essentially maximizes the expectation of the complete data log-likelihood. 
 \section{Calculation of $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}\label{ap:Xiderivation}
 The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here we present the derivation for completeness.  The expression for  $\boldsymbol\Xi_{0}$ as defined in equation~\eqref{eq:Xi0} of the main text is given by
    \begin{equation}\label{eq:appXi0}
@@ -1087,18 +1042,12 @@ substituting \ref{eq:Xi1derivation1} into \ref{eq:appXi1} we get
 \begin{equation}
  \boldsymbol\Xi_1=\sum_{t=0}^{T-1}\left(\mathbf P_{t}+\mathbf{\hat x}_{t}\mathbf{\hat x}_{t}^\top\right).
 \end{equation}
-\ifCLASSOPTIONcaptionsoff
-  \newpage
-\fi
-
-%   \newpage
-% \bibliographystyle{unsrt} 
-\bibliographystyle{apalike}
+\newpage
+\bibliographystyle{./elsarticle/model2-names} 
 \bibliography{MRAIDE}
 
-% \bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
- % \bibliography{IEEEabrv,MRAIDE}
+
+
 
 
 \end{document}
