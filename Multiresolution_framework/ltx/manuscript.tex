@@ -174,7 +174,7 @@ The observation equation describing the intracranial electrophysiological record
 \begin{equation}\label{eq:ObservationEquation}
 	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, \mathrm{d}\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
 \end{equation}
-where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. \parham{the lead field thingy} 
+where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. \parham{The lead field parameters are not included in the observation equation as the intracranial recordings are considered here.} 
 
 \section{MRA of the IDE in State-Space}
 The purpose of forming the multi-resolution approximation (MRA) of the integro-difference equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.
