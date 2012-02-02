@@ -177,9 +177,9 @@ The observation equation describing the intracranial electrophysiological record
 where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. \parham{The lead field parameters are not included in the observation equation as the intracranial recordings are considered here.} 
 
 \section{MRA of the IDE in State-Space}
-The purpose of forming the multi-resolution approximation (MRA) of the integro-difference equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.
+\parham{The purpose of} forming the multi-resolution approximation (MRA) of the integro-difference equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.
 
-The goal of this section is to demonstrate how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure. Therefore, the goal is to form a parameterized equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
+\parham{The goal of this section is to demonstrate} how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure. \parham{Therefore, the goal is to form} a parameterized equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
 
 The multi-resolution approximation \citep{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering a  one-dimensional field, the static connectivity kernel is decomposed as,
 \begin{equation}
@@ -217,9 +217,9 @@ Now we will simplify the notation by defining vectors that contain all the trans
 	\boldsymbol\alpha_{j_0} \triangleq& \left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace \\
 	\boldsymbol\beta_{j} \triangleq& \left\lbrace\beta_{j, l}:l \in \mathbb{Z} \right\rbrace \\
 	\mathbf{x}_{t,j_0} \triangleq& \left\lbrace{x}_{t,j_{0},l}:l \in \mathbb{Z} \right\rbrace \\
-	\check{\mathbf{x}}_{t,j} \triangleq& \left\lbrace{\check{x}}_{t,j,l}:l \in \mathbb{Z} \right\rbrace,
+	\check{\mathbf{x}}_{t,j} \triangleq& \left\lbrace{\check{x}}_{t,j,l}:l \in \mathbb{Z} \right\rbrace.
 \end{align}
-where $k = j_0,j$. Following this we can define the vectors 
+Following this we can define the vectors 
 \begin{align}
 \boldsymbol\theta^\top \triangleq& [\begin{array}{ccccc} \boldsymbol\alpha_{j_0}^\top & \boldsymbol\beta_{j_0}^\top & \boldsymbol\beta_{j_0+1}^\top & \cdots & \boldsymbol\beta_{J}^\top \end{array}] 
 \label{KernelWeights} \\
@@ -276,7 +276,7 @@ which allow us to write the neural field and connectivity kernel decomposition i
 % \end{align}
 % 
 % The vectors in  (\ref{KernelBasisVector}) and (\ref{FieldBasisVector}) are constructed in the same manner as the vectors in  (\ref{KernelWeights}) and (\ref{FieldWeights}).  
-Now we have the compact for of the decomposition we can substitute this into the neural field equation \eqref{eq:DiscreteTimeModel} giving
+Now we have the compact form of the decomposition we can substitute this into the neural field equation \eqref{eq:DiscreteTimeModel} giving
 \begin{equation}\label{eq:ApproxDiscreteTimeModel}
 	\boldsymbol\mu^\top\left(r\right)\mathbf{x}_{t+1} = 
 	\xi \boldsymbol\mu^\top\left(r\right)\mathbf{x}_t + 
@@ -299,7 +299,7 @@ The aim of the next part of the derivation is to isolate the state vector on the
 To isolate the state vector, we now define the matrix 
 \begin{equation}
 	\label{eq:Lambdax}
-	 \mathbf{\Lambda}_{x} \triangleq \int_{\Omega}\boldsymbol{\mu}\left(r\right)\boldsymbol{\mu}^\top\left(r\right) \mathrm{d}r
+	 \mathbf{\Lambda}_{x} \triangleq \int_{\Omega}\boldsymbol{\mu}\left(r\right)\boldsymbol{\mu}^\top\left(r\right) \mathrm{d}r,
 \end{equation}
 and substitute into equation~\eqref{eq:ApproxDiscreteTimeModel2} giving
 \begin{equation}\label{eq:ApproxDiscreteTimeModel3}
@@ -321,7 +321,7 @@ Cross-multiplying by $\mathbf{\Lambda}_{x}^{-1}$ gives the state transition equa
 	\, \mathrm{d}r'\mathrm{d}r}  
 	+ \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol{\mu}\left(r\right) e_t\left(r\right) \mathrm{d}r.
 \end{equation}
-A very nice property of the MRAIDE framework is the the disturbance term becomes a vector valued, zero-mean normally distributed, white noise process 
+A very nice property of the MRAIDE framework is the disturbance term becomes a vector valued, zero-mean normally distributed, white noise process 
 \begin{equation}\label{eq:Disturbance}
 \mathbf w_t= \mathbf{\Lambda}_{x}^{-1}\int_{\Omega}\boldsymbol\mu \left(r\right)e_t\left(r\right)\,\mathrm{d}r,
 \end{equation}
@@ -335,8 +335,8 @@ with covariance (see \citep{Freestone2011} for proof)
 	\boldsymbol{\lambda}_{j,l}(r-r') = \boldsymbol{\lambda}(2\mathbf{c}_{j,l}+r'-r). 
 \end{equation}
 Following this, we can switch the order of operations with the inner product and convolution in equation~\eqref{eq:ApproxDiscreteTimeModel4}. With this switch the convolution is now between the scaling functions and wavelets for the field and the scaling functions and wavelets for the connectivity kernel. This convolution can be calculated analytically when using B-spline wavelets and can be predefined once, since these are static functions. This has major computation advantages when solving the estimation problem. \parham{Although this switch holds theoretically it should be noted that it will introduce numerical error, specially close to the edges, due to the finite extent of the field. } The predefined convolution can be written as
-\begin{equation}
-	\left[\Gamma(r')\right]_{:j,l} = T_s \mathbf{\Lambda}_{x}^{-1}\int_{\Omega} \boldsymbol\mu\left(r\right)\boldsymbol\lambda\left(2c_{j,l} + r'-r\right) \,\mathrm{d}r
+\begin{equation}\label{eq:Gammaij}
+	\left[\Gamma(r')\right]_{:j,l} = T_s \mathbf{\Lambda}_{x}^{-1}\int_{\Omega} \boldsymbol\mu\left(r\right)\boldsymbol\lambda\left(2c_{j,l} + r'-r\right) \,\mathrm{d}r,
 \end{equation}
 giving
 \begin{equation}
@@ -344,7 +344,7 @@ giving
 	\xi \mathbf{x}_t + 
 	\int_{\Omega} \Gamma\left(r'\right)f\left(\boldsymbol\mu^\top\left(r'\right) \mathbf{x}_t\right) 
 	\, \mathrm{d}r' \boldsymbol\theta
-	+ \mathbf w_t
+	+ \mathbf w_t.
 \end{equation}
 
 % Substituting \eqref{eq:KernelFiniteExpansion} and \eqref{eq:FieldFiniteExpansion} in \eqref{eq:DiscreteTimeModel}, pre-multiplying by $\boldsymbol\mu\left(r\right)$, and integrating over the space gives
@@ -388,7 +388,8 @@ B-spline functions are one of the most basic elements for wavelet construction. 
 \label{fig:Figure0}
 \end{figure}
  
-B-spline wavelet and scaling functions were formulated independently by \citet{Chui1992b,Chui1992,Unser1993}.  The scaling functions are $m$-th order B-splines and the compact support wavelet functions are a linear combination of scaling functions. B-spline wavelet and scaling functions approach optimal time/frequency localization as the order of the spline increases. In fact, for the cubic B-spline scaling and wavelet functions it is already close to the optimal limit for Gaussian functions and they have a better approximation rate than other wavelets with the same number of vanishing moments \citep{Unser1999}. 
+B-spline wavelet and scaling functions were formulated independently by \citet{Chui1992b,Chui1992,Unser1993}.  The scaling functions are $m$-th order B-splines and the compact support wavelet functions are a linear combination of scaling functions. B-spline wavelet and scaling functions approach optimal time/frequency localization as the order of the spline increases. In fact, for the cubic B-spline scaling and wavelet functions it is already close to the optimal limit for Gaussian functions\citep{Unser1999}. 
+%and they have a better approximation rate than other wavelets with the same number of vanishing moments 
 
 B-spline wavelet and scaling functions are particularly suited in this framework due to the property of being able to analytically define the convolution and inner product to form MRAIDE components. The following summarizes some important characteristics of B-splines relevant to the proposed modeling framework. 
 
@@ -424,9 +425,9 @@ One important feature of the B-spline functions is the \emph{partition of unity}
 \begin{equation}
 	\sum_{l}N_m(r+l)\equiv1
 	\end{equation}
-	\parham{This is important as the underlying field can be reconstructed when its saturated without introducing numerical errors which is not the case for example in the case of Gaussian basis functions.}
+	\parham{This is important as the underlying field can be reconstructed when its saturated without introducing numerical errors which is not the case for example when Gaussian basis functions are used.}
 	
-The convolution and inner product of B-spline functions are required in order to formulate the multi-resolution framework described in the previous section (construction of $\boldsymbol\Lambda_{x}$, $\boldsymbol\Gamma$ and $\boldsymbol\Sigma_w$). To show how the convolution of two B-splines is calculated, \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself
+The convolution and inner product of B-spline functions are required in order to formulate the multi-resolution framework described in the previous section (construction of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Gamma$). To show how the convolution of two B-splines is calculated, \eqref{SplineConvolutionIntegral} can be rewritten as $(m-1)$ convolutions of the indicator function with itself
 \begin{equation}\label{eq:N1convolutions}
  N_{m}\left(r\right)=\underbrace{\left(N_{1}\ast N_{1}\ast \cdots \ast N_{1}\right)}_{m-1\quad \text{convolutions}}\left(r\right).
 \end{equation}
@@ -476,7 +477,7 @@ Figure~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its a
 \label{fig:MRA-Figure1}
 \end{figure}
 
-By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, the integrals in \eqref{eq:Lambdax}, \eqref{eq:Lambdatheta} and \eqref{eq:CovMatrix} can be computed analytically. In constructing $\boldsymbol\Lambda_{x}$, it is important to note that B-spline scaling and wavelet functions possess the following orthogonality properties \citep{Unser1993}: 
+By exploiting \eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProduct}, the integrals in \eqref{eq:Lambdax} and \eqref{eq:Gammaij} can be computed analytically. In constructing $\boldsymbol\Lambda_{x}$, it is important to note that B-spline scaling and wavelet functions possess the following orthogonality properties \citep{Unser1993}: 
 \begin{equation}
   \left\langle \varphi_{m;j_1,l_1}(r),\varphi_{m;j_2,l_2}(r)\right\rangle =0  \quad \mathrm{for} \quad j_1\neq j_2
  \label{eq:MRA-PsiPsiOrthogonality} 
