@@ -602,7 +602,7 @@ In summary, to solve the joint state and parameter estimation for linear state-s
 \multicolumn{1}{|p{16cm}|}{\textbf{1.} Forward initialization} \\ 
 $\hat{\mathbf x}_0, \mathbf P_0$ \\
 \hline
-\multicolumn{1}{|p{16cm}|}{\textbf{2.} Forward iteration: for $t\in\left\lbrace 0,\cdots,T\right\rbrace $, calculate the predicted state and the predicted covariance matrix } \\
+\multicolumn{1}{|p{16cm}|}{\textbf{2.} Forward iteration: for $t\in\left\lbrace 0,\cdots,T-1\right\rbrace $, calculate the predicted state and the predicted covariance matrix } \\
 $\hat{\mathbf x}_{t+1}^{f-}=\mathbf A \hat{\mathbf x}_{t}^{f}$  \\ 
 $\mathbf P_{t+1}^{f-}=\mathbf A \mathbf P_{t}^{f}\mathbf A^{\top}+\boldsymbol\Sigma_e$  \\
 \multicolumn{1}{|p{16cm}|}{Compute the filter gain, the filtered state and the filtered covariance matrix} \\
@@ -623,7 +623,7 @@ $\mathcal S_{t}=\mathbf P_{t}^{f}\mathbf A^{\top}\left[ \mathbf P_{t +1}^{f-}\ri
 \hline
 \multicolumn{1}{|p{16cm}|}{\textbf{5.} Compute the smoothed cross covariance matrix, initialization}\\
 $\mathbf M_T=(\mathbf I-\mathcal K_T\mathbf C)\mathbf A\mathbf P_{T-1}^b$\\
-\multicolumn{1}{|p{16cm}|}{For $t\in\left\lbrace T-1,\cdots,0\right\rbrace $ compute}\\
+\multicolumn{1}{|p{16cm}|}{For $t\in\left\lbrace T-1,\cdots,1\right\rbrace $ compute}\\
 $\mathbf M_t= \mathbf P_t^{f}\mathcal S_{t-1}^{\top}+\mathcal S_{t}(\mathbf M_{t+1}-\mathbf A\mathbf P_t^{f} )\mathcal S_{t-1}^{\top}$\\
 \hline
 \end{tabular}
