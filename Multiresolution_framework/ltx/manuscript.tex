@@ -1025,26 +1025,22 @@ The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of sm
 &= \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top-\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top+\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top\nonumber \\
 &= \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top.
 \end{align}
-Rearranging  equation \eqref{eq:Xi0derivation0} we get
+Rearranging  equation \eqref{eq:Xi0derivation0} gives
 \begin{equation}\label{eq:Xi0derivation1}
- \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]=\mathbf M_{t+1}+\mathbf {\hat x}_t\mathbf{\hat x}_{t+1}^\top
+ \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]=\mathbf M_{t+1}+\mathbf {\hat x}_t\mathbf{\hat x}_{t+1}^\top.
 \end{equation}
-substituting \ref{eq:Xi0derivation1} into \ref{eq:appXi0}, noting the expectation commutes with the sum we get
+Substituting \ref{eq:Xi0derivation1} into \ref{eq:appXi0}, noting the expectation commutes with the sum yields
 \begin{equation}
  \boldsymbol\Xi_1=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right)
 \end{equation}   
-An expression for $\boldsymbol\Xi_1$ in terms of the smoothed states can be also found in a similar way by expanding the covariance matrix,
-\begin{equation}\label{eq:appXi1}
- \boldsymbol\Xi_1=\mathbf E_{\theta'}\left[\sum_{t=0}^{T-1}\mathbf x_{t}\mathbf x_{t}^\top\right],
-\end{equation}
-therefore we can write
-\begin{equation}\label{eq:Xi1derivation1}
- \mathbf E_{\theta'}\left[\mathbf x_{t}\mathbf x_{t}^\top\right]=\mathbf P_{t}+\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top,
-\end{equation}
-substituting \ref{eq:Xi1derivation1} into \ref{eq:appXi1} we get
-\begin{equation}
- \boldsymbol\Xi_1=\sum_{t=0}^{T-1}\left(\mathbf P_{t}+\mathbf{\hat x}_{t}\mathbf{\hat x}_{t}^\top\right).
-\end{equation}
+An expression for $\boldsymbol\Xi_1$ in terms of the smoothed states can be also found in a similar way by calculating the covariance matrix, $\mathbf P_t$.
+%\begin{equation}\label{eq:Xi1derivation1}
+% \mathbf E_{\theta'}\left[\mathbf x_{t}\mathbf x_{t}^\top\right]=\mathbf P_{t}+\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top,
+%\end{equation}
+%substituting \ref{eq:Xi1derivation1} into \ref{eq:appXi1} we get
+%\begin{equation}
+ %\boldsymbol\Xi_1=\sum_{t=0}^{T-1}\left(\mathbf P_{t}+\mathbf{\hat x}_{t}\mathbf{\hat x}_{t}^\top\right).
+%\end{equation}
 \newpage
 \bibliographystyle{./elsarticle/model2-names} 
 \bibliography{MRAIDE}
