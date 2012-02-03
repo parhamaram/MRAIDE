@@ -854,7 +854,7 @@ The EM algorithm was allowed to run until a maximum number of 20 iterations was 
 \begin{figure}[t]
  	\centering
  		\includegraphics[scale=1]{./Graph/ConvergenceRate.pdf}
- 		\caption{{\bf Convergence of the EM algorithm}. Representative plot of
+ 		\caption{{\bf Convergence of the EM based algorithm}. Representative plot of
 the $\mathbf A(\boldsymbol\theta)$ Frobenius norm vs iterations of EM based algorithm. The change in the stopping criterion falls below $10^{-6}$ after less than 10 iterations.} 
 \label{fig:MRA-Convergence}  
  \end{figure}     
@@ -862,10 +862,10 @@ the $\mathbf A(\boldsymbol\theta)$ Frobenius norm vs iterations of EM based algo
 
 
 The actual connectivity kernel and the decomposition is plotted in Fig.~\ref{fig:KernelEstimate}(A). No assumptions where made about the shape of the kernel. The reconstructed kernel is in good accordance with the actual kernel, where the actual kernel lies inside the confidence interval. The large standard deviation is due to the high number of parameters need to be estimated. The small error in the estimate is attributed to the MRA of the system used to form the estimator. Fig.~\ref{fig:KernelEstimate}(B) and (C) illustrate the kernel scaling and wavelet functions, respectively. A total number of 25 basis functions was used to reconstruct the kernel, comprising 13 and 12 scaling and wavelet functions at $j=1$ accordingly. 
-\begin{figure}[!t]
-\includegraphics{./Graph/Figure5.pdf}
-\includegraphics{./Graph/Figure6.pdf}
-\caption{ {\bf Connectivity kernel estimate}. (\textbf{A}) The actual kernel and its components are shown by solid and dashed black lines, respectively. The mean kernel estimates over 200 realizations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (\textbf{B}) Kernel scaling and wavelets functions, respectively, at $j=1$ used in the estimation algorithm.}
+\begin{figure}[!t]  
+ \centering
+\includegraphics{./Graph/fig2.pdf}
+\caption{ {\bf Connectivity kernel estimate}. (\textbf{A}) The actual kernel and its components are shown by solid and dashed black lines, respectively. The mean kernel estimates over 200 realizations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (\textbf{B},\textbf{C}) Kernel scaling and wavelets functions, respectively, at $j=1$ used in the estimation algorithm.}
 \label{fig:KernelEstimate}
 \end{figure}
 
