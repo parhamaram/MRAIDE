@@ -195,7 +195,6 @@ where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j
 \psi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\psi\left(2^j r-l\right).
 \end{align}
 The parameters $j$ and $l$ control the scale (dilation) and translation (spatial shift), respectively. \dean{NEED SOMETHING ABOUT HOW j AND l ARE SET HERE - AS IN THAT THEY ARE KNOWN - AND THAT WE ONLY NEED TO ESTIMATE THE COEFFICIENTS.} \parham{The number of spatial shifts is dependent on the scale, $j$, and can be chosen such that the basis functions cover the spatial domain of interest. The number of scales depends on the spectral characteristics of the field, which will be described later.} Scaling functions retain the lowest frequency components, due to their low-pass properties, while the wavelet functions extract successively higher frequency components due to their band-pass characteristics. 
-
 % At each spatial scale indexed by $j$ (level of decomposition), the neural field can be written as
 % \begin{equation}
 % 	v_{j,t}\left(\mathbf{r}\right) = \begin{cases}
@@ -203,7 +202,6 @@ The parameters $j$ and $l$ control the scale (dilation) and translation (spatial
 % 	\sum_{l \in \mathbb{Z}}\check{x}_{t,j,l}\psi_{j,l}\left(\mathbf{r}\right) & \text{otherwise}
 % \end{cases}
 % \end{equation}
-
 The dynamic neural field is decomposed using
 \begin{equation}
  v_t\left(r\right)=\sum_{l \in \mathbb{Z}}x_{t,j_{0},l} \underbrace{\phi_{j_0,l}\left(r\right)}_{\text{scaling functions}} + \sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}^n} \check{x}_{t,j,l} \underbrace{\psi_{j,l}\left(r\right)}_{\text{wavelets}},
@@ -250,7 +248,6 @@ which allow us to write the neural field and connectivity kernel decomposition i
 	v_t\left(r\right) &\approx \boldsymbol\mu^\top\left(r\right)\mathbf{x}_t.
 	\label{eq:FieldFiniteExpansion}
 \end{align}
-
 % where the unknown parameter and state vectors, $\boldsymbol\theta \in \mathbb{R}^{n_{\theta}}$ and $\mathbf{x}_t \in \mathbb{R}^{n_x}$, \dean{($\boldsymbol\theta \in \mathbb{R}^{n_{\theta}\times (J+2)}$ and $\mathbf{x}_t \in \mathbb{R}^{n_x \times (J+2)}$)} are defined as 
 % \begin{align}
 % \boldsymbol\theta^\top \triangleq& [\begin{array}{ccccc} \boldsymbol\alpha_{j_0}^\top & \boldsymbol\beta_{j_0}^\top & \boldsymbol\beta_{j_0+1}^\top & \cdots & \boldsymbol\beta_{J}^\top \end{array}] 
@@ -349,7 +346,6 @@ giving
 	\, \mathrm{d}r' \boldsymbol\theta
 	+ \mathbf w_t.
 \end{equation}
-
 % Substituting Eq.~\eqref{eq:KernelFiniteExpansion} and Eq.~\eqref{eq:FieldFiniteExpansion} in Eq.~\eqref{eq:DiscreteTimeModel}, pre-multiplying by $\boldsymbol\mu\left(r\right)$, and integrating over the space gives
 % \begin{align}\label{eq:DecomposedModel2} 
 % 	&\mathbf{\Lambda}_{x} \mathbf{x}_{t+1} = 
@@ -369,7 +365,6 @@ giving
 % \begin{equation}\label{eq:CovMatrix}
 % \boldsymbol\Sigma_w =\mathbf{\Lambda}_{x}^{-1}\iint\limits_{\boldsymbol\Omega}\boldsymbol\mu\left(r\right) \eta\left(r-r'\right)\boldsymbol\mu^{\top}\left(r'\right)dr'dr\mathbf{\Lambda}_{x}^{-\top}.
 % \end{equation}
-
 The observation equation of the state-space model is found by substituting decomposition \eqref{eq:FieldFiniteExpansion}
  into Eq.~\eqref{eq:ObservationEquation} giving
 \begin{equation}\label{eq:ReducedObservationEquation} 
@@ -379,7 +374,6 @@ where each element of the observation matrix, $\mathbf{C}$, is given by
 \begin{equation}\label{eq:Observationmatrix}
 	\mathbf{C}_{ik} \triangleq \int_{\Omega}m(r_i -r')\boldsymbol{\mu}_k(r') \, \mathrm{d}r'.
 \end{equation}
-
 \section{B-Spline MRAIDE in State-Space }
 \subsection{A Brief Introduction to B-Spline Wavelets}
 B-spline functions are one of the most basic elements for wavelet construction. These functions are composed of piecewise polynomials combined smoothly at some breaking points (knots), which are equally spaced in the case of cardinal B-splines. The degree of smoothness is determined by the order of splines \citep{Goswami1999}, where the higher the order the smoother the resulting B-spline becomes (see Fig.~\ref{fig:Figure0}).
@@ -446,7 +440,7 @@ A direct consequence of Eq.~\eqref{eq:BsplineConvolution} is the inner product b
 =&N_{m+m'}\left(m'+l_{2}-l_{1}\right),
 \label{eq:BsplineInnerProduct}
 \end{align}
-where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This holds as the support of $N_m\left(r\right)$ is $\left[ 0,m\right]$ and  is symmetric with respect to $r=\frac{m}{2}$, i.e. $ N_{m}\left(\frac{m}{2}+r\right)=N_{m}\left(\frac{m}{2}-r\right)$ (see Appendix~\ref{ap:InnerProductOfBsplines} for explicit derivation). The values of $N_{m+m'}$ in Eq.~\eqref{eq:BsplineInnerProduct} can be easily determined recursively by evaluating Eq.~\eqref{eq:MRA-DoBoorFormula} at integer points, i.e.
+where $\left\langle \cdot,\cdot\right\rangle $ denotes the inner product. This holds as the support of $N_m\left(r\right)$ is $\left[ 0,m\right]$ and  is symmetric with respect to $r=\frac{m}{2}$, i.e. $ N_{m}\left(\frac{m}{2}+r\right)=N_{m}\left(\frac{m}{2}-r\right)$ (see \ref{ap:InnerProductOfBsplines} for explicit derivation). The values of $N_{m+m'}$ in Eq.~\eqref{eq:BsplineInnerProduct} can be easily determined recursively by evaluating Eq.~\eqref{eq:MRA-DoBoorFormula} at integer points, i.e.
  \begin{equation}\label{eq:MRA-recursiveBsplineatintegerpoints}
  \begin{cases}
  N_2(k)=\delta(k-1)\quad k\in \mathbb{Z}, \\
@@ -500,7 +494,7 @@ where
 \begin{align}
  l_{n_1,n_2, \dots, n_j}=2^{j-1}n_1+2^{j-2}n_2+ \dots +2^{0}n_j.
 \end{align}
-The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see Appendix~\ref{ap:Induction}). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using Eq.~\eqref{eq:MRA-TwoScalepair2}. Examples of such expansions are given in Fig.~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
+The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see \ref{ap:Induction}). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using Eq.~\eqref{eq:MRA-TwoScalepair2}. Examples of such expansions are given in Fig.~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
 \begin{figure}[!t] 
  	\centering
  		\includegraphics[scale=1]{./Graph/fig5.pdf}
@@ -526,7 +520,6 @@ The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also pro
  \label{table:MRA-BsplineatIntegerPoints}
  \end{center}
  \end {table}
-
 \subsection{Frequency Analysis}
 To determine the level of approximation in the model, $j$, detailed in the previous section, that is the number of basis functions required to reconstruct the field, $v_t(r)$, the frequency response of the B-spline function needs to be computed by applying the Fourier transform to Eq.~\eqref{eq:N1convolutions}. To proceed the Fourier transform of $N_1(r)$ is first calculated, 
 \begin{align}\label{eq:MRA-N1Fouriertransform}
@@ -544,8 +537,6 @@ The convolution theorem states that the Fourier transform of the convolution of 
 	&=\sum_{n=0}^{3m-2} \frac{\left(-1\right)^n}{2^{m}} \left[\mathbf q\right]_n \mathrm{exp}(-2\pi in\nu)\left(\frac{1-\mathrm{exp}(-\pi i \nu)}{\pi i\nu}\right)^m.\label{eq:MRA-Wavelettransform}
 \end{align}
  From Eq.~\eqref{eq:MRA-Wavelettransform} the level of approximation, $j$, can be determined. This way we choose wavelets upto level $j$ which fully describe the spatial frequency contents of the underlying dynamics estimated from the observed field.}
-
-
 \section{State and Parameter Estimation}
 There exist many variations of state and parameter estimation methods for state-space models. The choice of algorithm is normally determined by the dimension of the system, whether the system is linear or nonlinear and whether or not the parameters are considered static or dynamic. Up to this point of the paper, we have not made any assumptions on any of these criteria for choosing an estimation algorithm. The MRAIDE neural field model formulation may be used in any of the above scenarios. 
 
@@ -644,7 +635,7 @@ It is rather straightforward to show that
 \begin{equation}
 	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \theta)\right], 
 \end{equation}
-is a lower bound on the log-likelihood function \cite{Bishop2006} (see Appendix~\ref{ap:Lowerbound} )  where $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ is the joint probability distribution of the states and the observations and where $ \mathbf E_{\boldsymbol \theta'}\left[\cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). Note that this is actually the smoother output which is obtained at the E-step.
+is a lower bound on the log-likelihood function \cite{Bishop2006} (see \ref{ap:Lowerbound} )  where $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ is the joint probability distribution of the states and the observations and where $ \mathbf E_{\boldsymbol \theta'}\left[\cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). Note that this is actually the smoother output which is obtained at the E-step.
 
  The rest of this section is dedicated to the construction of the lower bound, $\mathcal Q$, for the linear state-space model given by Eq.~\eqref{eq:StateEquation} and Eq.~\eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ can be written as
  \begin{equation}\label{eq:jointdistribution}
@@ -694,7 +685,7 @@ where
 \boldsymbol\Xi_0&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right] \label{eq:MRA-Xi0}\\
 \boldsymbol\Xi_1&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t}^\top\right] \label{eq:MRA-Xi1}.
 \end{align}
-The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \cite{Gibsona2005}, (see Appendix~\ref{ap:Xiderivation} for more details)
+The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \cite{Gibsona2005}, (see \ref{ap:Xiderivation} for more details)
 \begin{align}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \label{eq:Xi0} \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).  \label{eq:Xi1}
@@ -843,7 +834,6 @@ To demonstrate the performance of the MRAIDE estimation framework, data was gene
 Two different experiments were designed to test the framework. In the first one, 200 realizations of 1 second of data were used, where the field disturbance, $e_t$, and the observation noise, $\boldsymbol\varepsilon_t$, were regenerated each run. This way the net shape of the connectivity kernel could be formed by averaging over the parameters estimates from each realization. In the second experiment, a single data set was generated and the field estimations are compared for five state-space models, each accounting for a different level of approximation, i.e. $j=0$ to $j=4$. 
 
 For each of the experiments, the estimation was applied to the final 900~ms, allowing the forward model's dynamics to stabilize from the initial conditions. The initial state, parameters and the support of the connectivity kernel were unknown to the estimator. The observation noise was set to $\boldsymbol\Sigma_{\varepsilon}=0.1 \times \mathbf{I}_{n_y}$ and the disturbance covariance function was set to $\gamma(r-r') = \varphi_{3,-2}(r-r')$ (B-spline, $j=3$).  The firing rate slope, $\varsigma$ was set to $0.56~mV^{-1}$ \citep{Wendling2005}. The observation kernel was modeled using a B-spline function, with a width of 0.8~mm at half the maximum amplitude where the distance between adjacent sensors was $0.5$~mm, resulting into $n_y = 161$ observations. The choice of B-spline function to model the observation kernel is justified by the experiment performed in \citep{Freestone2011}. The spacing and bandwidth of the sensors allowed the full spatial bandwidth of the field to be observed.  With this number of observations, the estimation problem was well-posed, i.e. the number of states, $n_x < n_y$ at each level of the decomposition. This is because the scaling functions are orthogonal to the wavelets at the same and higher levels of decomposition, and  the wavelets are orthogonal to each other across different scales (see (\ref{eq:MRA-PsiPsiOrthogonality}-\ref{eq:MRA-PhiPsiOrthogonality})). 
-
 \subsection{Experiment I}
 The spatial frequency response of the observed field was used to specify the level of decomposition required to represent the field using the wavelets. This is shown in Fig.~\ref{fig:ObservationFrequencyResponce} where the graph obtained by averaging the spectral power of the spatial frequency (over time) from the observations \citep{Scerri2009}. The spatial bandwidths of wavelets was calculated analytically using  Eq.~\eqref{eq:MRA-Wavelettransform}. The result suggested that wavelets up to level $j=3$ (with the bandwidth $\approx[5,8]$ cycles/mm) can represent the significant spatial characteristics of the field which yields $n_x = 131$ states, corresponding to 9 scaling functions at $j=0$ and 8, 16, 32 and 66 wavelet functions, respectively at $j=0$, $j=1$, $j=2$ and $j=3$. 
 \begin{figure}[!t]
@@ -852,7 +842,6 @@ The spatial frequency response of the observed field was used to specify the lev
  		\caption{{\bf Spatial frequency analysis}. The average (over time) power in dB of the spatial frequency of the observations.}  
 \label{fig:ObservationFrequencyResponce} 
  \end{figure}
-
 The EM algorithm was allowed to run until a maximum number of 20 iterations was reached, though typically the change in the transition matrix Frobenius norm dropped below $10^{-6}$ after less than 10 iterations. The rate of convergence of the EM based algorithm is depicted in Fig.~\ref{fig:MRA-Convergence}. 
 \begin{figure}[t]
  	\centering
@@ -862,8 +851,6 @@ the $\mathbf A(\boldsymbol\theta)$ Frobenius norm vs iterations of EM based algo
 \label{fig:MRA-Convergence}  
  \end{figure}     
 % The spatial cutoff frequency of the observed field was used to specify the level of decomposition required to represent the field using the wavelets. Using an oversampling parameter of 5, the cutoff spatial frequency was $\nu_{cy} \approx 6.9 $ cycles/mm, obtained by averaging the spectral power of the spatial frequency (over time) from the observations \cite{Scerri2009}. Therefore, wavelets up to level $j=3$ (with the bandwidth $\approx[5,8]$ cycles/mm) can represent the significant spatial characteristics of the field, yielding $n_x = 131$ states. 
-
-
 The actual connectivity kernel and the decomposition is plotted in Fig.~\ref{fig:KernelEstimate}(A). No assumptions where made about the shape of the kernel. The reconstructed kernel is in good accordance with the actual kernel, where the actual kernel lies inside the confidence interval. The large standard deviation is due to the high number of parameters need to be estimated. The small error in the estimate is attributed to the MRA of the system used to form the estimator. Fig.~\ref{fig:KernelEstimate}(B) and (C) illustrate the kernel scaling and wavelet functions, respectively. A total number of 25 basis functions was used to reconstruct the kernel, comprising 13 and 12 scaling and wavelet functions at $j=1$ accordingly. 
 \begin{figure}[!t]  
  \centering
@@ -871,13 +858,6 @@ The actual connectivity kernel and the decomposition is plotted in Fig.~\ref{fig
 \caption{ {\bf Connectivity kernel estimate}. (\textbf{A}) The actual kernel and its components are shown by solid and dashed black lines, respectively. The mean kernel estimates over 200 realizations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (\textbf{B},\textbf{C}) Kernel scaling and wavelets functions, respectively, at $j=1$ used in the estimation algorithm.}
 \label{fig:KernelEstimate}
 \end{figure}
-
-% \begin{figure}[!h] 
-% 	\centering
-% 		\includegraphics[scale=1]{./Graph/fig2.pdf}
-% 		\caption{Connectivity kernel estimate. (a) The actual kernel and its components are shown by solid and dashed black lines, respectively. The mean kernel estimates over 200 realizations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (b)-(c) Kernel scaling and wavelets functions, respectively, at $j=1$ used in estimation algorithm.}
-% 	\label{fig:KernelEstimate}
-% \end{figure}
  One snap shot of the field reconstruction, at different levels of approximation is given in Fig.~\ref{fig:FieldEstimates100}, showing small discrepancy between the actual and estimated field at $j=3$. From this figure, it can be observed that the overall trend of the underlying field can be also captured at the coarser levels.
 \begin{figure}[!t]
 \centering
@@ -894,7 +874,6 @@ To study the performance of different models with various MRA capabilities, a si
  		\caption{{\bf Error in the field reconstruction for experiment II}. The mean (over time) of average (over space) RMSE of the estimated field of state-space models with different MRA capabilities. $j=0$, $RMSE = 1.83$; $j=1$, $RMSE = 1.41$; $j=2$, $RMSE = 0.83$; $j=3$, $RMSE = 0.71$; $j=4$, $RMSE=0.71$}
 \label{fig:RMSE}
  \end{figure} 
- 
 \begin{figure}[t]
 	\centering
 		\includegraphics[scale=1]{./Graph/fig12.png}
@@ -927,8 +906,8 @@ Additional extension for future work include extending the model to capture a se
 
 Another extension of this framework is the inclusion of finite distant-dependent action potential propagation velocity into the parametric neural field equations. In small networks the delays via propagation can be neglected, however they must be accounted for in large scale networks. For instance, it is shown by \citet{Ghosh2008} that inclusion of time delays arising from propagation along connecting \parham{fibres} are essential for the fluctuations to be appeared in the default networks. Finally, future work should be directed towards applying and validating the framework on real data.
 
-\section{Appendix}
-\subsection{Inner product of two B-spline scaling functions}\label{ap:InnerProductOfBsplines}
+\appendix
+\section{Inner product of two B-spline scaling functions}\label{ap:InnerProductOfBsplines}
 In this section, an analytic formula is derived for the inner product of two B-spline scaling functions. Consider two B-spline scaling functions of order $m$ and $m'$. The support of $N_m\left(s\right)$ is $\left[ 0,m\right]$ and  is symmetric with respect to $r=\frac{m}{2}$, i.e.
 \begin{align}\label{eq:APP-SymmetrySplieEq}
  N_{m}\left(\frac{m}{2}+r\right)=N_{m}\left(\frac{m}{2}-r\right).
@@ -945,7 +924,7 @@ Therefore
 &=N_{m+m'}\left(m+l_{1}-l_{2}\right) \nonumber \\
 &=N_{m+m'}\left(m'+l_{2}-l_{1}\right).
 \end{align}
-\subsection{Scaling function expansion}\label{ap:Induction}  
+\section{Scaling function expansion}\label{ap:Induction}  
 In this appendix we show by induction that how the scaling function at $j=0$ can be written in terms of the scaling function at level $j$. For $n_1$ in  Eq.~\eqref{eq:MRA-ConvertingFormulaForscalingFunctions} we have
 \begin{align}
  N_{m}\left(r\right)&=\sum_{n_1=0}^{m} \left[\mathbf p\right]_{n_1} N_{m}\left(2r-n_1\right) \label{eq:App-TwoScalepair1},
@@ -963,7 +942,7 @@ in which $N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of 
 \end{align}
 Substituting Eq.~\eqref{eq:AppendixNj-1intermsofNj} into Eq.~\eqref{eq:MRA-ConvertingFormulaForscalingFunctions} completes the proof. 
 
-\subsection{Lower bound on likelihood function}\label{ap:Lowerbound}
+\section{Lower bound on likelihood function}\label{ap:Lowerbound}
 A derivation of the lower bound on the likelihood function that is based on \citet{Bishop2006} is provided in this Appendix. We want to maximize the likelihood function which is difficult to perform directly
 \begin{equation}
  p(\mathbf Y;\boldsymbol\theta)=\int_{\mathbf X}p(\mathbf X,\mathbf Y;\boldsymbol\theta)d\mathbf X.
@@ -977,7 +956,7 @@ where
  \mathcal{L}(q,\boldsymbol\theta)&=\int_{\mathbf X} q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X,\mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace d\mathbf X \label{eq:EM-decomposition1}\\
 \mathrm{KL}(q\parallel p)&=-\int_{\mathbf X}q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace d\mathbf X. \label{eq:EM-decomposition2}
 \end{align}
-Equation \eqref{eq:EM-loglikelihooddecomposition} can be verified by applying the probability product rule to the joint distribution $p(\mathbf X,\mathbf Y;\boldsymbol\theta)$ in Eq.~\eqref{eq:EM-decomposition1} giving
+Eq.~\eqref{eq:EM-loglikelihooddecomposition} can be verified by applying the probability product rule to the joint distribution $p(\mathbf X,\mathbf Y;\boldsymbol\theta)$ in Eq.~\eqref{eq:EM-decomposition1} giving
 \begin{align}
 	\mathcal{L}(q,\boldsymbol\theta)+\mathrm{KL}(q\parallel p)&= \int_{\mathbf X} q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)p(\mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace d\mathbf X \nonumber\\
 	&- \int_{\mathbf X}q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace d\mathbf X\nonumber\\
@@ -1030,14 +1009,7 @@ An expression for $\boldsymbol\Xi_1$ in terms of the smoothed states can be also
 %\end{equation}
 \newpage
 \bibliographystyle{./elsarticle/model2-names}  
-%\bibliographystyle{plain}  
-
 \bibliography{MRAIDE}
-
-
-
-
-
 \end{document}
 
 
