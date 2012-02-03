@@ -5,10 +5,13 @@
 \usepackage{graphicx}
 \usepackage{setspace}                               
 \usepackage[usenames,dvipsnames]{color}  
-\usepackage{enumerate}    
+%This bit is how to use hyperlink without stupid coloured rectangles around it
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=black,filecolor=black,urlcolor=black,citecolor=black}
 
 \newcommand{\dean}[1]{\textcolor{green}{#1}}
-\newcommand{\parham}[1]{\textcolor{blue}{#1}}
+\newcommand{\parham}[1]{\textcolor{red}{#1}}
 % \newcommand{\mike}[1]{\textcolor{Plum}{#1}}
   
 %\newfloat{algorithm}{htbp}{loa}%[chapter]
