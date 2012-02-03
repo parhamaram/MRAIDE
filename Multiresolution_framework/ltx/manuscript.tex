@@ -70,7 +70,7 @@ The human neocortex has an inherent multi-resolution architecture. The spatiotem
 where $v\left(\mathbf{r},t\right)$ is a voltage field that may be measured with a multi-electrode array or voltage sensitive dye, $\mathbf{r}\in \mathbb{R}^n$ (where $n\le3$) describes the spatial location within the field, $t$ denotes time, and $j$ indexes the different levels of resolution in the field. This multi-resolution structure is depicted in Fig.~\ref{fig:MultiLayerFieldModel}.
 \begin{figure}[t]
 	\centering
-		\includegraphics[scale=1]{./Graph/MultiResNeuralField.pdf}
+		\includegraphics[scale=1]{./Graph/fig1.pdf}
 	\caption{{\bf Multi-layer neural field model}. The inset figures show the shape of the
 connectivity kernel components at each spatial resolution.}
 	\label{fig:MultiLayerFieldModel}
@@ -158,7 +158,7 @@ where in this first-order (in time) form of the model the membrane dynamics are 
 % The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977,Atay2005}. The components of the model are shown in Fig.~\ref{fig:Modelcomponents}
 \begin{figure}[!t]
 \centering
-\includegraphics[scale=1]{./Graph/ModelComponents.pdf}
+\includegraphics[scale=1]{./Graph/fig2.pdf}
 \caption{ {\bf The IDE neural field model components}. (\textbf{A}) The Mexican hat (dotted line) and Wizard hat (solid line) connectivity kernels. (\textbf{B}) First order (dotted line) and second order (solid line) synaptic kernels. (\textbf{C}) A representative of the activation function.}
 \label{fig:Modelcomponents}
 \end{figure}
@@ -382,7 +382,7 @@ where each element of the observation matrix, $\mathbf{C}$, is given by
 B-spline functions are one of the most basic elements for wavelet construction. These functions are composed of piecewise polynomials combined smoothly at some breaking points (knots), which are equally spaced in the case of cardinal B-splines. The degree of smoothness is determined by the order of splines \citep{Goswami1999}, where the higher the order the smoother the resulting B-spline becomes (see Fig.~\ref{fig:Figure0}).
 \begin{figure}[!t]
 \centering
-\includegraphics{./Graph/Figure0.pdf}
+\includegraphics{./Graph/fig3.pdf}
 % \includegraphics{./Graph/Figure0b.pdf}
 \caption{{\bf Examples of cardinal B-spline functions}. Piecewise polynomial functions (colored lines) are joined at the break points (black dots). (\textbf{A}) B-spline function of order 2 (linear B-spline). (\textbf{B}) B-spline function of order 8.}
 \label{fig:Figure0}
@@ -471,7 +471,7 @@ Fig.~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its ass
 	\end{align} 
 \begin{figure}[!t]
 \centering
-\includegraphics{./Graph/Figure1.pdf}
+\includegraphics{./Graph/fig4.pdf}
 % \includegraphics{./Graph/Figure1b.pdf}
 \caption{{\bf Examples of B-spline scaling and wavelet functions}. (\textbf{A}) The cubic B-spline scaling function. (\textbf{B}) The corresponding wavelet function.}
 \label{fig:MRA-Figure1}
@@ -500,7 +500,7 @@ where
 The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see Appendix~\ref{ap:Induction}). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using \eqref{eq:MRA-TwoScalepair2}. Examples of such expansions are given in Fig.~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
 \begin{figure}[!t] 
  	\centering
- 		\includegraphics[scale=1]{./Graph/Decomposition.pdf}
+ 		\includegraphics[scale=1]{./Graph/fig5.pdf}
  		\caption{{\bf The scaling and the wavelet function decomposition}. (\textbf{A}) The scaling function (blue) at $j=0$ is obtained using 625 scaling functions (black) at $j=4$. (\textbf{B}) The wavelet function (blue) at $j=0$ is obtained using 1250 scaling functions (black) at $j=4$.}
  	\label{fig:MRA-BasisDecomposition}
  \end{figure}  
@@ -595,7 +595,7 @@ to compute the required quantities are very dependent on the particular applicat
 In summary, to solve the joint state and parameter estimation for linear state-space models one can adapt the EM algorithm, solving the smoothing problem for the E-step and constructing and maximizing the lower bound in the M-step. A schematic representation of the EM algorithm is represented in Fig.~\ref{fig:EMBlockDiagram}. Note the algorithm can be initialized by either a random parameter set or a sequence of the random bounded state vectors. Here the latter is chosen as shown in the block diagram ensuring the resultant kernel is stable.  
 \begin{figure}[!t]
 \centering
-\includegraphics[scale=1]{./Graph/EMBlockDiagram.pdf}
+\includegraphics[scale=1]{./Graph/fig6.pdf}
 \caption{{\bf Schematic of the EM algorithm}. The RTS smoother (E-step) and the maximization of the lower bound, $\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')$, (M-step) are shown. The dashed box shows the iterative two step algorithm once it is initialized.}
 \label{fig:EMBlockDiagram}
 \end{figure}
@@ -845,7 +845,7 @@ For each of the experiments, the estimation was applied to the final 900~ms, all
 The spatial frequency response of the observed field was used to specify the level of decomposition required to represent the field using the wavelets. This is shown in Fig.~\ref{fig:ObservationFrequencyResponce} where the graph obtained by averaging the spectral power of the spatial frequency (over time) from the observations \citep{Scerri2009}. The spatial bandwidths of wavelets was calculated analytically using equation \eqref{eq:MRA-Wavelettransform}. The result suggested that wavelets up to level $j=3$ (with the bandwidth $\approx[5,8]$ cycles/mm) can represent the significant spatial characteristics of the field which yields $n_x = 131$ states, corresponding to 9 scaling functions at $j=0$ and 8, 16, 32 and 66 wavelet functions, respectively at $j=0$, $j=1$, $j=2$ and $j=3$. 
 \begin{figure}[!t]
  	\centering
- 		\includegraphics[scale=1]{./Graph/Figure2.pdf}
+ 		\includegraphics[scale=1]{./Graph/fig7.pdf}
  		\caption{{\bf Spatial frequency analysis}. The average (over time) power in dB of the spatial frequency of the observations.}  
 \label{fig:ObservationFrequencyResponce} 
  \end{figure}
@@ -853,7 +853,7 @@ The spatial frequency response of the observed field was used to specify the lev
 The EM algorithm was allowed to run until a maximum number of 20 iterations was reached, though typically the change in the transition matrix Frobenius norm dropped below $10^{-6}$ after less than 10 iterations. The rate of convergence of the EM based algorithm is depicted in Fig.~\ref{fig:MRA-Convergence}. 
 \begin{figure}[t]
  	\centering
- 		\includegraphics[scale=1]{./Graph/ConvergenceRate.pdf}
+ 		\includegraphics[scale=1]{./Graph/fig8.pdf}
  		\caption{{\bf Convergence of the EM based algorithm}. Representative plot of
 the $\mathbf A(\boldsymbol\theta)$ Frobenius norm vs iterations of EM based algorithm. The change in the stopping criterion falls below $10^{-6}$ after less than 10 iterations.} 
 \label{fig:MRA-Convergence}  
@@ -864,7 +864,7 @@ the $\mathbf A(\boldsymbol\theta)$ Frobenius norm vs iterations of EM based algo
 The actual connectivity kernel and the decomposition is plotted in Fig.~\ref{fig:KernelEstimate}(A). No assumptions where made about the shape of the kernel. The reconstructed kernel is in good accordance with the actual kernel, where the actual kernel lies inside the confidence interval. The large standard deviation is due to the high number of parameters need to be estimated. The small error in the estimate is attributed to the MRA of the system used to form the estimator. Fig.~\ref{fig:KernelEstimate}(B) and (C) illustrate the kernel scaling and wavelet functions, respectively. A total number of 25 basis functions was used to reconstruct the kernel, comprising 13 and 12 scaling and wavelet functions at $j=1$ accordingly. 
 \begin{figure}[!t]  
  \centering
-\includegraphics{./Graph/fig2.pdf}
+\includegraphics{./Graph/fig9.pdf}
 \caption{ {\bf Connectivity kernel estimate}. (\textbf{A}) The actual kernel and its components are shown by solid and dashed black lines, respectively. The mean kernel estimates over 200 realizations and confidence interval are shown by the red line and red shaded region ($\pm2$ std.). (\textbf{B},\textbf{C}) Kernel scaling and wavelets functions, respectively, at $j=1$ used in the estimation algorithm.}
 \label{fig:KernelEstimate}
 \end{figure}
@@ -878,7 +878,7 @@ The actual connectivity kernel and the decomposition is plotted in Fig.~\ref{fig
  One snap shot of the field reconstruction, at different levels of approximation is given in Fig.~\ref{fig:FieldEstimates100}, showing small discrepancy between the actual and estimated field at $j=3$. From this figure, it can be observed that the overall trend of the underlying field can be also captured at the coarser levels.
 \begin{figure}[!t]
 \centering
-\includegraphics{./Graph/fig1.pdf}
+\includegraphics{./Graph/fig10.pdf}
 \caption{ {\bf Examples of the actual and estimated neural fields for experiment I}. Actual (grey) and estimated (black) neural fields at a single time instant for different spatial resolutions. (\textbf{A}) $j=0$, $n_x=17$. (\textbf{B}) $j=1$, $n_x=33$. (\textbf{C}) $j=2$, $n_x=65$. (\textbf{D}) $j=3$, $n_x=131$.}
 % (\textbf{e}) $j=4$, $n_x=263$.
 \label{fig:FieldEstimates100}
@@ -887,37 +887,17 @@ The actual connectivity kernel and the decomposition is plotted in Fig.~\ref{fig
 To study the performance of different models with various MRA capabilities, a single realization was obtained using \eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation} under the same circumstances of the previous experiment. The generated data set was then employed to estimate the underlying field and the connectivity kernel parameters using different state-space models, $j=0$ up to $j=4$. The RMSE of the field estimation for different models is shown in Fig.~\ref{fig:RMSE}. By increasing the value of $j$, error in the estimation decreases and converges to a steady value of 0.71, confirming that the model with $j=3$ is in fact adequate to capture the dynamics of the underlying field. The spatiotemporal characteristics of the reconstructed fields (A-E) along with the actual field (F)  are shown in Fig.~\ref{fig:FieldEstimation}. The experiment was performed several times and the results were consistent over each run.
  \begin{figure}[!t]	 
  	\centering
- 		\includegraphics[scale=1]{./Graph/Figure3.pdf}
+ 		\includegraphics[scale=1]{./Graph/fig11.pdf}
  		\caption{{\bf Error in the field reconstruction for experiment II}. The mean (over time) of average (over space) RMSE of the estimated field of state-space models with different MRA capabilities. $j=0$, $RMSE = 1.83$; $j=1$, $RMSE = 1.41$; $j=2$, $RMSE = 0.83$; $j=3$, $RMSE = 0.71$; $j=4$, $RMSE=0.71$}
 \label{fig:RMSE}
  \end{figure} 
  
 \begin{figure}[t]
 	\centering
-		\includegraphics[scale=1]{./Graph/STMultiRes.png}
+		\includegraphics[scale=1]{./Graph/fig12.png}
 	\caption{{\bf Actual and estimated spatiotemporal neural field using state-space models with different MRA capabilities}. (\textbf{A}) The reconstructed field of the reduced model at $j=0$. (\textbf{B}) The reconstructed field at $j=1$. (\textbf{C}) The reconstructed field at $j=2$. (\textbf{D}) The reconstructed field at $j=3$. (\textbf{E}) The reconstructed field at $j=4$. (\textbf{F}) The actual field.} 
 \label{fig:FieldEstimation}
 \end{figure}
-
-
-%\begin{figure}[!t]
-%\centering
-%\includegraphics{./Graph/Figure5a.pdf}\\
-%\includegraphics{./Graph/Figure5b.pdf}\\
-%\includegraphics{./Graph/Figure5c.pdf}\\
-%\includegraphics{./Graph/Figure5d.pdf}\\
-%\includegraphics{./Graph/Figure5e.pdf}\\
-%\caption{ {\bf Examples of the actual and estimated neural fields for experiment II}. Actual (grey) and estimated (black) neural fields at a single time instant  for models with different spatial resolutions. (\textbf{a}) $j=0$, $n_x=17$. (\textbf{b}) $j=1$, $n_x=33$. (\textbf{c}) $j=2$, $n_x=65$. (\textbf{d}) $j=3$, $n_x=131$. (\textbf{e}) $j=4$, $n_x=263$.}
-%\label{fig:FieldEstimates200}
-%\end{figure}
-% The field reconstruction, at different levels of approximations, is shown in \figurename{\ref{fig:FieldEstimates}}. The figure confirms that $j=3$ is adequate to capture the dynamics of the underlying field, where the RMSE converges to a steady value of 0.78. Fig.~\ref{fig:FieldEstimates} confirms good state estimation performance, where the estimated field is in good accordance with the true field. 
-% \begin{figure}[!h] 
-% 	\centering
-% 		\includegraphics[scale=1]{./Graph/fig1.pdf}
-% 		\caption{Actual (gray) and estimated (black) neural fields at a time instant for different spatial resolutions. (a) $j=0$, $n_x=17$, $RMSE = 1.93$. (b) $j=1$, $n_x=33$, $RMSE = 1.39$. (c) $j=2$, $n_x=65$, $RMSE = 0.90$. (d) $j=3$, $n_x=131$, $RMSE = 0.78$. (e) $j=4$, $n_x=263$, $RMSE=0.78$.}
-% 	\label{fig:FieldEstimates}
-% \end{figure} 
-
 % \caption{The actual connectivity kernel is shown with the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std.). The 7 weighted kernel basis functions are shown by the black dashed lines.}
 \section{Discussion}
 In this paper, we have presented a novel model-based framework for estimating cortical dynamics from electrophysiological measurements. The novel and key developments of the paper include the multi-resolution FEM representation of the neural field, and the estimator for an intracortical connectivity kernel with an arbitrary shape. This work is significant, as the ability to create patient specific neural field models has the potential to contribute to our understanding and improve treatment of diseases resulting from abnormal neurodynamics, such as epilepsy. Other groups have previously highlighted the importance of a multi-resolution approach in neural field modeling. It is thought that the dynamics and connectivity structure differs at different spatial scales~\citep{Qubbaj2009,Breakspear2005}. %\dean{This is a test to see if we can fit something about Breaky's paper in here. It would be nice to slot something in here because he used wavelets.} 
