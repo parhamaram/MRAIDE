@@ -710,7 +710,7 @@ each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matri
 where $[\cdot]_{i:} $ denotes the i-th row.  By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from \eqref{eq:MRA-LambdaThetaElements} the trace given in \eqref{eq:MRA-trace1} can be written as
 \begin{align}
 \mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}\boldsymbol\theta \nonumber \\
-&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta,
 \end{align}
 where
 \begin{align}
@@ -737,21 +737,21 @@ Therefore the $\mathcal Q$-function can be rewritten as
 \end{equation}
 where
 \begin{equation}\label{eq:epsilon0}
-\boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]_{j,i}
+\boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]_{j,i},
 \end{equation}
-and
 \begin{equation}\label{eq:epsilon1}
-\boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_1]^{j,i}
-\end{equation}
+\boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_1]^{j,i},
+\end{equation}                                                                                 
+and
 \begin{equation}\label{eq:Epsilon}
-\boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}
+\boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}.
 \end{equation}
 By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
 \begin{align}\label{eq:MRA-QDerivative}
 \frac{\partial \mathcal Q}{\partial \boldsymbol\theta}&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-T_s\varsigma(\boldsymbol\Upsilon^\top+\boldsymbol\Upsilon)\boldsymbol\theta \nonumber \\
 &=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-2T_s\varsigma\boldsymbol\Upsilon^\top\boldsymbol\theta.
 \end{align}
-Equating \eqref{eq:MRA-QDerivative} to $\mathbf 0$ yields
+Equating \eqref{eq:MRA-QDerivative} to $\mathbf 0$ vector yields
 \begin{align}\label{eq:MRA-thetahat}
 \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top.
 \end{align}
@@ -777,15 +777,15 @@ All $n_x^2$ blocks of $\mathbf U$, $\boldsymbol\Gamma_1$ and $\boldsymbol\Gamma_
 \scalebox{1}{\begin{tabular}{lllc}
 \hline \hline
 Variable &Equation&Order&Order obtained from \citet{Dewar2009}\\ \hline\\
-$\Xi_0, \Xi_1$&\eqref{eq:MRA-Xi0}, \eqref{eq:MRA-Xi1}&$O(Tn_x^2)$& -\\
+$\Xi_0, \Xi_1$&\eqref{eq:Xi0}, \eqref{eq:Xi1}&$O(Tn_x^2)$& -\\
 $\boldsymbol\upsilon_0, \boldsymbol\upsilon_1$&\eqref{eq:epsilon0},\eqref{eq:epsilon1} &$O(n_x^2n_{\theta})$ &$O(n_x^2n_{\theta})+O(n_x^3)$ \\
 $\boldsymbol\Upsilon$&\eqref{eq:Epsilon}&$O(n_x^2n_{\theta}^2)$&$O(n_x^4n_{\theta}^2)$\\
 $\mathbf A(\boldsymbol\theta)$&\eqref{eq:A_theta}&$O(n_x^3)$&-\\
-$\boldsymbol\Lambda_{\theta}$&\eqref{eq:Lambdatheta}&$O(n_x^2n_{\theta})$&-\\
+$\boldsymbol\Lambda_{\theta}$&\eqref{eq:MRA-LambdaThetaElements}&$O(n_x^2n_{\theta})$&-\\
 $\hat{\boldsymbol\theta} $&\eqref{eq:MRA-thetahat}&$O(n_{\theta}^3)$&-\\
 \hline \hline
 \end{tabular}}
- \caption {{\bf The Computational complexity of the estimation algorithm}. A comparison between the algorithm proposed herein and that of \citet{Dewar2009}.} 
+ \caption {{\bf The Computational complexity of the estimation algorithm}. A comparison between the algorithm proposed herein and that of \citet{Dewar2009} is also provided. The dashes indicate equal complexities for both algorithms.} 
 \label{table:MRA-ComputationalComplexity}
 \end{center}
 \end {table} 
