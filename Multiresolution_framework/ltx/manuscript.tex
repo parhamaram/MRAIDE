@@ -646,7 +646,7 @@ The $\mathcal Q$-function, or lower-bound on the likelihood, can be expressed in
  \begin{align}
   \mathcal Q(\boldsymbol \theta,\boldsymbol\theta')&=\mathbf E_{\boldsymbol \theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \theta)\right] \nonumber \\
  &=\mathbf E_{\boldsymbol\theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf y_{t+1}|\mathbf x_{t+1})+\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)
- +\sum_{t=0}^{T-1}2\ln p(\mathbf x_0)\right],
+ +\sum_{t=0}^{T-1}2\ln p(\mathbf x_0)\right].
  \end{align}   
 It should be noted that neither $p(\mathbf y_{t+1}|\mathbf x_{t+1})$ nor $p(\mathbf x_0)$ are functions of the parameter set and therefore the $\mathcal Q$-function can be rewritten as
 \begin{equation}
