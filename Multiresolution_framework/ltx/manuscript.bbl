@@ -1,240 +1,328 @@
-\begin{thebibliography}{}
-
-\bibitem[Amari, 1977]{Amari1977}
-Amari, S. (1977).
-\newblock {Dynamics of pattern formation in lateral-inhibition type neural
-  fields}.
-\newblock {\em Biological Cybernetics}, 27(2):77--87.
-
-\bibitem[Bilmes, 1998]{Bilmes1998}
-Bilmes, J. (1998).
-\newblock A gentle tutorial of the em algorithm and its application to
-  parameter estimation for gaussian mixture and hidden markov models.
-\newblock {\em International Computer Science Institute}, 4:126.
-
-\bibitem[Bishop, 2006]{Bishop2006}
-Bishop, C. (2006).
-\newblock {\em Pattern Recognition and Machine Learning}, volume~4.
-\newblock Springer New York.
-
-\bibitem[Breakspear and Stam, 2005]{Breakspear2005}
-Breakspear, M. and Stam, C. (2005).
-\newblock {Dynamics of a neural system with a multiscale architecture}.
-\newblock {\em Philosophical Transactions of the Royal Society B: Biological
-  Sciences}, 360(1457):1051.
-
-\bibitem[Chui and Wang, 1992a]{Chui1992b}
-Chui, C. and Wang, J. (1992a).
-\newblock A general framework of compactly supported splines and wavelets*1.
-\newblock {\em Journal of Approximation Theory}, 71(3):263--304.
-
-\bibitem[Chui and Wang, 1992b]{Chui1992}
-Chui, C.~K. and Wang, J. (1992b).
-\newblock On compactly supported spline wavelets and a duality principle.
-\newblock {\em American Mathematical Society}, 330(2):903--915.
-
-\bibitem[Daunizeau et~al., 2009]{Daunizeau2009}
-Daunizeau, J., Kiebel, S., and Friston, K. (2009).
-\newblock {Dynamic causal modelling of distributed electromagnetic responses}.
-\newblock {\em NeuroImage}, 47(2):590--601.
-
-\bibitem[David and Friston, 2003]{David2003}
-David, O. and Friston, K. (2003).
-\newblock {A neural mass model for MEG/EEG: coupling and neuronal dynamics}.
-\newblock {\em NeuroImage}, 20(3):1743--1755.
-
-\bibitem[De~Boor, 2001]{DeBoor2001}
-De~Boor, C. (2001).
-\newblock {\em A Practical Guide to Splines}.
-\newblock Springer Verlag.
-
-\bibitem[Dempster et~al., 1977]{Dempster1977}
-Dempster, A.~P., Laird, N.~M., and Rubin, D.~B. (1977).
-\newblock Maximum likelihood from incomplete data via the {EM} algorithm.
-\newblock {\em Journal of the Royal Statistical Society. Series B
-  (Methodological)}, 39(1):1--38.
-
-\bibitem[Dewar et~al., 2009]{Dewar2009}
-Dewar, M., Scerri, K., and Kadirkamanathan, V. (2009).
-\newblock Data-driven spatio-temporal modeling using the integro-difference
-  equation.
-\newblock {\em Signal Processing, IEEE Transactions on}, 57(1):83--91.
-
-\bibitem[Evensen, 2003]{Evensen2003}
-Evensen, G. (2003).
-\newblock The ensemble kalman filter: theoretical formulation and practical
-  implementation.
-\newblock {\em Ocean Dynamics}, 53:343--367.
-
-\bibitem[Evensen, 2009a]{Evensen2009}
-Evensen, G. (2009a).
-\newblock {\em Data assimilation: The ensemble Kalman filter}.
-\newblock Springer Verlag.
-
-\bibitem[Evensen, 2009b]{Evensen2009a}
-Evensen, G. (2009b).
-\newblock The ensemble kalman filter for combined state and parameter
-  estimation.
-\newblock {\em IEEE Control Systems Magazine}, pages 83--104.
-
-\bibitem[Fessler and Hero, 1994]{Fessler1994}
-Fessler, J. and Hero, A. (1994).
-\newblock Space-alternating generalized expectation-maximization algorithm.
-\newblock {\em Signal Processing, IEEE Transactions on}, 42(10):2664--2677.
-
-\bibitem[Freestone et~al., 2011]{Freestone2011}
-Freestone, D., Aram, P., Dewar, M., Scerri, K., Grayden, D., and
-  Kadirkamanathan, V. (2011).
-\newblock {A data-driven framework for neural field modeling}.
-\newblock {\em NeuroImage}, 56(3):1043--1058.
-
-\bibitem[Galka et~al., 2008]{Galka2008}
-Galka, A., Ozaki, T., Muhle, H., Stephani, U., and Siniatchkin, M. (2008).
-\newblock {A data-driven model of the generation of human EEG based on a
-  spatially distributed stochastic wave equation}.
-\newblock {\em Cognitive Neurodynamics}, 2(2):101--113.
-
-\bibitem[Ghosh et~al., 2008]{Ghosh2008}
-Ghosh, A., Rho, Y., McIntosh, A., K{\"o}tter, R., and Jirsa, V. (2008).
-\newblock Noise during rest enables the exploration of the brain's dynamic
-  repertoire.
-\newblock {\em PLoS Computational Biology}, 4(10):e1000196.
-
-\bibitem[Gibson and Ninness, 2005]{Gibsona2005}
-Gibson, S. and Ninness, B. (2005).
-\newblock Robust maximum-likelihood estimation of multivariable dynamic
-  systems.
-\newblock {\em Automatica}, 41(10):1667--1682.
-
-\bibitem[Goswami and Chan, 1999]{Goswami1999}
-Goswami, J.~C. and Chan, A. (1999).
-\newblock {\em Fundamentals of Wavelets: Theory, Algorithms, and Applications}.
-\newblock Wiley, New York.
-
-\bibitem[Jirsa and Haken, 1997]{Jirsa1997}
-Jirsa, V. and Haken, H. (1997).
-\newblock A derivation of a macroscopic field theory of the brain from the
-  quasi-microscopic neural dynamics.
-\newblock {\em Physica D: Nonlinear Phenomena}, 99(4):503--526.
-
-\bibitem[Kalman, 1960]{Kalman1960}
-Kalman, R. (1960).
-\newblock A new approach to linear filtering and prediction problems.
-\newblock {\em Transactions of the ASME-Journal of Basic Engineering},
-  82(Series D):35--45.
-
-\bibitem[Mallat, 1989]{Mallat1989a}
-Mallat, S.~G. (1989).
-\newblock A theory for multiresolution signal decomposition: the wavelet
-  representation.
-\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
-  on}, 2(7):674--693.
-
-\bibitem[McLachlan and Krishnan, 1997]{McLachlan1997}
-McLachlan, G. and Krishnan, T. (1997).
-\newblock {\em {The EM algorithm and extensions}}, volume 274.
-\newblock Wiley New York, 2 edition.
-
-\bibitem[Meng, 1994]{Meng1994}
-Meng, X. (1994).
-\newblock On the rate of convergence of the ecm algorithm.
-\newblock {\em The Annals of Statistics}, pages 326--339.
-
-\bibitem[Meng and Rubin, 1993]{Meng1993}
-Meng, X. and Rubin, D. (1993).
-\newblock Maximum likelihood estimation via the ecm algorithm: A general
-  framework.
-\newblock {\em Biometrika}, 80(2):267--278.
-
-\bibitem[Meyer, 2000]{Meyer2000}
-Meyer, C. (2000).
-\newblock {\em Matrix analysis and applied linear algebra: solutions manual},
-  volume~2.
-\newblock Society for Industrial and Applied Mathematics.
-
-\bibitem[Meyer, 1992]{Meyer1992}
-Meyer, Y. (1992).
-\newblock {\em Wavelets and Operators}.
-\newblock Cambridge University Press, New York.
-
-\bibitem[Qubbaj and Jirsa, 2009]{Qubbaj2009}
-Qubbaj, M. and Jirsa, V. (2009).
-\newblock {Neural field dynamics under variation of local and global
-  connectivity and finite transmission speed}.
-\newblock {\em Physica D: Nonlinear Phenomena}, 238(23-24):2331--2346.
-
-\bibitem[Rauch et~al., 1965]{RAUCH1965}
-Rauch, H.~E., Tung, F., and Striebel, C.~T. (1965).
-\newblock Maximum likelihood estimates of linear dynamic systems.
-\newblock {\em AIAA Journal}, 3(8):1445--1450.
-
-\bibitem[Scerri et~al., 2009]{Scerri2009}
-Scerri, K., Dewar, M., and Kadirkamanathan, V. (2009).
-\newblock Estimation and model selection for an \text{IDE}-based
-  spatio-temporal model.
-\newblock {\em Signal Processing, IEEE Transactions on}, 57(2):482--492.
-
-\bibitem[Schiff and Sauer, 2008]{schiff2008kalman}
-Schiff, S. and Sauer, T. (2008).
-\newblock {Kalman filter control of a model of spatiotemporal cortical
-  dynamics}.
-\newblock {\em Journal of Neural Engineering}, 5:1--8.
-
-\bibitem[Shumway and Stoffer, 2000]{Shumway2000}
-Shumway, R. and Stoffer, D. (2000).
-\newblock {\em Time Series Analysis and Its Applications}.
-\newblock Springer Verlag.
-
-\bibitem[Stephan et~al., 2008]{Stephan2008}
-Stephan, K., Kasper, L., Harrison, L., Daunizeau, J., den Ouden, H.,
-  Breakspear, M., and Friston, K. (2008).
-\newblock {Nonlinear dynamic causal models for fMRI}.
-\newblock {\em NeuroImage}, 42(2):649--662.
-
-\bibitem[Unser, 1999]{Unser1999}
-Unser, M. (1999).
-\newblock Splines: a perfect fit for signal and image processing.
-\newblock {\em Signal Processing Magazine, IEEE}, 16(6):22--38.
-
-\bibitem[Unser et~al., 1993]{Unser1993}
-Unser, M., Aldroubi, A., and Eden, M. (1993).
-\newblock A family of polynomial spline wavelet transforms.
-\newblock {\em Signal Processing}, 30(2):141--162.
-
-\bibitem[Valdes et~al., 1999]{Valdes1999}
-Valdes, P., Jimenez, J., Riera, J., Biscay, R., and Ozaki, T. (1999).
-\newblock {Nonlinear EEG analysis based on a neural mass model}.
-\newblock {\em Biological Cybernetics}, 81(5):415--424.
-
-\bibitem[Van~Rotterdam et~al., 1982]{VanRotterdam1982}
-Van~Rotterdam, A., Lopes~da Silva, F., Van~den Ende, J., Viergever, M., and
-  Hermans, A. (1982).
-\newblock {A model of the spatial-temporal characteristics of the alpha
-  rhythm}.
-\newblock {\em Bulletin of Mathematical Biology}, 44(2):283--305.
-
-\bibitem[Wendling, 2005]{Wendling2005}
-Wendling, F. (2005).
-\newblock Neurocomputational models in the study of epileptic phenomena.
-\newblock {\em Journal of Clinical Neurophysiology}, 22(5):285.
-
-\bibitem[Wikle, 2004]{Wikle2002}
-Wikle, C.~K. (2004).
-\newblock A kernel-based spectral model for non-\text{G}aussian spatio-temporal
-  processes.
-\newblock {\em Statistical Modelling}, 2:299--314.
-
-\bibitem[Wilson and Cowan, 1973]{Wilson1973}
-Wilson, H. and Cowan, J. (1973).
-\newblock {A mathematical theory of the functional dynamics of cortical and
-  thalamic nervous tissue}.
-\newblock {\em Biological Cybernetics}, 13(2):55--80.
-
-\bibitem[Xu et~al., 2005]{Xu2005}
-Xu, K., Wikle, C., and Fox, N. (2005).
-\newblock {A kernel-based spatio-temporal dynamical model for nowcasting
-  weather radar reflectivities}.
-\newblock {\em Journal of the American Statistical Association},
-  100(472):1133--1144.
+\begin{thebibliography}{42}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Amari(1977)}]{Amari1977}
+\bibinfo{author}{Amari, S.}, \bibinfo{year}{1977}.
+\newblock \bibinfo{title}{{Dynamics of pattern formation in lateral-inhibition
+  type neural fields}}.
+\newblock \bibinfo{journal}{Biological Cybernetics} \bibinfo{volume}{27},
+  \bibinfo{pages}{77--87}.
+%Type = Article
+\bibitem[{Bilmes(1998)}]{Bilmes1998}
+\bibinfo{author}{Bilmes, J.}, \bibinfo{year}{1998}.
+\newblock \bibinfo{title}{A gentle tutorial of the em algorithm and its
+  application to parameter estimation for gaussian mixture and hidden markov
+  models}.
+\newblock \bibinfo{journal}{International Computer Science Institute}
+  \bibinfo{volume}{4}, \bibinfo{pages}{126}.
+%Type = Book
+\bibitem[{Bishop(2006)}]{Bishop2006}
+\bibinfo{author}{Bishop, C.}, \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{Pattern Recognition and Machine Learning}.
+  volume~\bibinfo{volume}{4}.
+\newblock \bibinfo{publisher}{Springer New York}.
+%Type = Article
+\bibitem[{Breakspear and Stam(2005)}]{Breakspear2005}
+\bibinfo{author}{Breakspear, M.}, \bibinfo{author}{Stam, C.},
+  \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{{Dynamics of a neural system with a multiscale
+  architecture}}.
+\newblock \bibinfo{journal}{Philosophical Transactions of the Royal Society B:
+  Biological Sciences} \bibinfo{volume}{360}, \bibinfo{pages}{1051}.
+%Type = Article
+\bibitem[{Chui and Wang(1992a)}]{Chui1992b}
+\bibinfo{author}{Chui, C.}, \bibinfo{author}{Wang, J.}, \bibinfo{year}{1992}a.
+\newblock \bibinfo{title}{A general framework of compactly supported splines
+  and wavelets*1}.
+\newblock \bibinfo{journal}{Journal of Approximation Theory}
+  \bibinfo{volume}{71}, \bibinfo{pages}{263--304}.
+%Type = Article
+\bibitem[{Chui and Wang(1992b)}]{Chui1992}
+\bibinfo{author}{Chui, C.K.}, \bibinfo{author}{Wang, J.},
+  \bibinfo{year}{1992}b.
+\newblock \bibinfo{title}{On compactly supported spline wavelets and a duality
+  principle}.
+\newblock \bibinfo{journal}{American Mathematical Society}
+  \bibinfo{volume}{330}, \bibinfo{pages}{903--915}.
+%Type = Article
+\bibitem[{Daunizeau et~al.(2009)Daunizeau, Kiebel and Friston}]{Daunizeau2009}
+\bibinfo{author}{Daunizeau, J.}, \bibinfo{author}{Kiebel, S.},
+  \bibinfo{author}{Friston, K.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{{Dynamic causal modelling of distributed
+  electromagnetic responses}}.
+\newblock \bibinfo{journal}{NeuroImage} \bibinfo{volume}{47},
+  \bibinfo{pages}{590--601}.
+%Type = Article
+\bibitem[{David and Friston(2003)}]{David2003}
+\bibinfo{author}{David, O.}, \bibinfo{author}{Friston, K.},
+  \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{{A neural mass model for MEG/EEG: coupling and
+  neuronal dynamics}}.
+\newblock \bibinfo{journal}{NeuroImage} \bibinfo{volume}{20},
+  \bibinfo{pages}{1743--1755}.
+%Type = Book
+\bibitem[{De~Boor(2001)}]{DeBoor2001}
+\bibinfo{author}{De~Boor, C.}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{A Practical Guide to Splines}.
+\newblock \bibinfo{publisher}{Springer Verlag}.
+%Type = Article
+\bibitem[{Dempster et~al.(1977)Dempster, Laird and Rubin}]{Dempster1977}
+\bibinfo{author}{Dempster, A.P.}, \bibinfo{author}{Laird, N.M.},
+  \bibinfo{author}{Rubin, D.B.}, \bibinfo{year}{1977}.
+\newblock \bibinfo{title}{Maximum likelihood from incomplete data via the {EM}
+  algorithm}.
+\newblock \bibinfo{journal}{Journal of the Royal Statistical Society. Series B
+  (Methodological)} \bibinfo{volume}{39}, \bibinfo{pages}{1--38}.
+%Type = Article
+\bibitem[{Dewar et~al.(2009)Dewar, Scerri and Kadirkamanathan}]{Dewar2009}
+\bibinfo{author}{Dewar, M.}, \bibinfo{author}{Scerri, K.},
+  \bibinfo{author}{Kadirkamanathan, V.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Data-driven spatio-temporal modeling using the
+  integro-difference equation}.
+\newblock \bibinfo{journal}{Signal Processing, IEEE Transactions on}
+  \bibinfo{volume}{57}, \bibinfo{pages}{83--91}.
+%Type = Article
+\bibitem[{Evensen(2003)}]{Evensen2003}
+\bibinfo{author}{Evensen, G.}, \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{The ensemble kalman filter: theoretical formulation
+  and practical implementation}.
+\newblock \bibinfo{journal}{Ocean Dynamics} \bibinfo{volume}{53},
+  \bibinfo{pages}{343--367}.
+%Type = Book
+\bibitem[{Evensen(2009a)}]{Evensen2009}
+\bibinfo{author}{Evensen, G.}, \bibinfo{year}{2009}a.
+\newblock \bibinfo{title}{Data assimilation: The ensemble Kalman filter}.
+\newblock \bibinfo{publisher}{Springer Verlag}.
+%Type = Article
+\bibitem[{Evensen(2009b)}]{Evensen2009a}
+\bibinfo{author}{Evensen, G.}, \bibinfo{year}{2009}b.
+\newblock \bibinfo{title}{The ensemble kalman filter for combined state and
+  parameter estimation}.
+\newblock \bibinfo{journal}{IEEE Control Systems Magazine} ,
+  \bibinfo{pages}{83--104}.
+%Type = Article
+\bibitem[{Fessler and Hero(1994)}]{Fessler1994}
+\bibinfo{author}{Fessler, J.}, \bibinfo{author}{Hero, A.},
+  \bibinfo{year}{1994}.
+\newblock \bibinfo{title}{Space-alternating generalized
+  expectation-maximization algorithm}.
+\newblock \bibinfo{journal}{Signal Processing, IEEE Transactions on}
+  \bibinfo{volume}{42}, \bibinfo{pages}{2664--2677}.
+%Type = Article
+\bibitem[{Freestone et~al.(2011)Freestone, Aram, Dewar, Scerri, Grayden and
+  Kadirkamanathan}]{Freestone2011}
+\bibinfo{author}{Freestone, D.}, \bibinfo{author}{Aram, P.},
+  \bibinfo{author}{Dewar, M.}, \bibinfo{author}{Scerri, K.},
+  \bibinfo{author}{Grayden, D.}, \bibinfo{author}{Kadirkamanathan, V.},
+  \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{{A data-driven framework for neural field modeling}}.
+\newblock \bibinfo{journal}{NeuroImage} \bibinfo{volume}{56},
+  \bibinfo{pages}{1043--1058}.
+%Type = Article
+\bibitem[{Galka et~al.(2008)Galka, Ozaki, Muhle, Stephani and
+  Siniatchkin}]{Galka2008}
+\bibinfo{author}{Galka, A.}, \bibinfo{author}{Ozaki, T.},
+  \bibinfo{author}{Muhle, H.}, \bibinfo{author}{Stephani, U.},
+  \bibinfo{author}{Siniatchkin, M.}, \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{{A data-driven model of the generation of human EEG
+  based on a spatially distributed stochastic wave equation}}.
+\newblock \bibinfo{journal}{Cognitive Neurodynamics} \bibinfo{volume}{2},
+  \bibinfo{pages}{101--113}.
+%Type = Article
+\bibitem[{Ghosh et~al.(2008)Ghosh, Rho, McIntosh, K{\"o}tter and
+  Jirsa}]{Ghosh2008}
+\bibinfo{author}{Ghosh, A.}, \bibinfo{author}{Rho, Y.},
+  \bibinfo{author}{McIntosh, A.}, \bibinfo{author}{K{\"o}tter, R.},
+  \bibinfo{author}{Jirsa, V.}, \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{Noise during rest enables the exploration of the
+  brain's dynamic repertoire}.
+\newblock \bibinfo{journal}{PLoS Computational Biology} \bibinfo{volume}{4},
+  \bibinfo{pages}{e1000196}.
+%Type = Article
+\bibitem[{Gibson and Ninness(2005)}]{Gibsona2005}
+\bibinfo{author}{Gibson, S.}, \bibinfo{author}{Ninness, B.},
+  \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{Robust maximum-likelihood estimation of multivariable
+  dynamic systems}.
+\newblock \bibinfo{journal}{Automatica} \bibinfo{volume}{41},
+  \bibinfo{pages}{1667--1682}.
+%Type = Book
+\bibitem[{Goswami and Chan(1999)}]{Goswami1999}
+\bibinfo{author}{Goswami, J.C.}, \bibinfo{author}{Chan, A.},
+  \bibinfo{year}{1999}.
+\newblock \bibinfo{title}{Fundamentals of Wavelets: Theory, Algorithms, and
+  Applications}.
+\newblock \bibinfo{publisher}{Wiley}, \bibinfo{address}{New York}.
+%Type = Article
+\bibitem[{Jirsa and Haken(1997)}]{Jirsa1997}
+\bibinfo{author}{Jirsa, V.}, \bibinfo{author}{Haken, H.}, \bibinfo{year}{1997}.
+\newblock \bibinfo{title}{A derivation of a macroscopic field theory of the
+  brain from the quasi-microscopic neural dynamics}.
+\newblock \bibinfo{journal}{Physica D: Nonlinear Phenomena}
+  \bibinfo{volume}{99}, \bibinfo{pages}{503--526}.
+%Type = Article
+\bibitem[{Kalman(1960)}]{Kalman1960}
+\bibinfo{author}{Kalman, R.}, \bibinfo{year}{1960}.
+\newblock \bibinfo{title}{A new approach to linear filtering and prediction
+  problems}.
+\newblock \bibinfo{journal}{Transactions of the ASME-Journal of Basic
+  Engineering} \bibinfo{volume}{82(Series D)}, \bibinfo{pages}{35--45}.
+%Type = Article
+\bibitem[{Mallat(1989)}]{Mallat1989a}
+\bibinfo{author}{Mallat, S.G.}, \bibinfo{year}{1989}.
+\newblock \bibinfo{title}{A theory for multiresolution signal decomposition:
+  the wavelet representation}.
+\newblock \bibinfo{journal}{Pattern Analysis and Machine Intelligence, IEEE
+  Transactions on} \bibinfo{volume}{2}, \bibinfo{pages}{674--693}.
+%Type = Book
+\bibitem[{McLachlan and Krishnan(1997)}]{McLachlan1997}
+\bibinfo{author}{McLachlan, G.}, \bibinfo{author}{Krishnan, T.},
+  \bibinfo{year}{1997}.
+\newblock \bibinfo{title}{{The EM algorithm and extensions}}. volume
+  \bibinfo{volume}{274}.
+\newblock \bibinfo{publisher}{Wiley New York}. \bibinfo{edition}{2} edition.
+%Type = Article
+\bibitem[{Meng(1994)}]{Meng1994}
+\bibinfo{author}{Meng, X.}, \bibinfo{year}{1994}.
+\newblock \bibinfo{title}{On the rate of convergence of the ecm algorithm}.
+\newblock \bibinfo{journal}{The Annals of Statistics} ,
+  \bibinfo{pages}{326--339}.
+%Type = Article
+\bibitem[{Meng and Rubin(1993)}]{Meng1993}
+\bibinfo{author}{Meng, X.}, \bibinfo{author}{Rubin, D.}, \bibinfo{year}{1993}.
+\newblock \bibinfo{title}{Maximum likelihood estimation via the ecm algorithm:
+  A general framework}.
+\newblock \bibinfo{journal}{Biometrika} \bibinfo{volume}{80},
+  \bibinfo{pages}{267--278}.
+%Type = Book
+\bibitem[{Meyer(2000)}]{Meyer2000}
+\bibinfo{author}{Meyer, C.}, \bibinfo{year}{2000}.
+\newblock \bibinfo{title}{Matrix analysis and applied linear algebra: solutions
+  manual}. volume~\bibinfo{volume}{2}.
+\newblock \bibinfo{publisher}{Society for Industrial and Applied Mathematics}.
+%Type = Book
+\bibitem[{Meyer(1992)}]{Meyer1992}
+\bibinfo{author}{Meyer, Y.}, \bibinfo{year}{1992}.
+\newblock \bibinfo{title}{Wavelets and Operators}.
+\newblock \bibinfo{publisher}{Cambridge University Press},
+  \bibinfo{address}{New York}.
+%Type = Article
+\bibitem[{Qubbaj and Jirsa(2009)}]{Qubbaj2009}
+\bibinfo{author}{Qubbaj, M.}, \bibinfo{author}{Jirsa, V.},
+  \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{{Neural field dynamics under variation of local and
+  global connectivity and finite transmission speed}}.
+\newblock \bibinfo{journal}{Physica D: Nonlinear Phenomena}
+  \bibinfo{volume}{238}, \bibinfo{pages}{2331--2346}.
+%Type = Article
+\bibitem[{Rauch et~al.(1965)Rauch, Tung and Striebel}]{RAUCH1965}
+\bibinfo{author}{Rauch, H.E.}, \bibinfo{author}{Tung, F.},
+  \bibinfo{author}{Striebel, C.T.}, \bibinfo{year}{1965}.
+\newblock \bibinfo{title}{Maximum likelihood estimates of linear dynamic
+  systems}.
+\newblock \bibinfo{journal}{AIAA Journal} \bibinfo{volume}{3},
+  \bibinfo{pages}{1445--1450}.
+%Type = Article
+\bibitem[{Scerri et~al.(2009)Scerri, Dewar and Kadirkamanathan}]{Scerri2009}
+\bibinfo{author}{Scerri, K.}, \bibinfo{author}{Dewar, M.},
+  \bibinfo{author}{Kadirkamanathan, V.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Estimation and model selection for an
+  \text{IDE}-based spatio-temporal model}.
+\newblock \bibinfo{journal}{Signal Processing, IEEE Transactions on}
+  \bibinfo{volume}{57}, \bibinfo{pages}{482--492}.
+%Type = Article
+\bibitem[{Schiff and Sauer(2008)}]{schiff2008kalman}
+\bibinfo{author}{Schiff, S.}, \bibinfo{author}{Sauer, T.},
+  \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{{Kalman filter control of a model of spatiotemporal
+  cortical dynamics}}.
+\newblock \bibinfo{journal}{Journal of Neural Engineering} \bibinfo{volume}{5},
+  \bibinfo{pages}{1--8}.
+%Type = Book
+\bibitem[{Shumway and Stoffer(2000)}]{Shumway2000}
+\bibinfo{author}{Shumway, R.}, \bibinfo{author}{Stoffer, D.},
+  \bibinfo{year}{2000}.
+\newblock \bibinfo{title}{Time Series Analysis and Its Applications}.
+\newblock \bibinfo{publisher}{Springer Verlag}.
+%Type = Article
+\bibitem[{Stephan et~al.(2008)Stephan, Kasper, Harrison, Daunizeau, den Ouden,
+  Breakspear and Friston}]{Stephan2008}
+\bibinfo{author}{Stephan, K.}, \bibinfo{author}{Kasper, L.},
+  \bibinfo{author}{Harrison, L.}, \bibinfo{author}{Daunizeau, J.},
+  \bibinfo{author}{den Ouden, H.}, \bibinfo{author}{Breakspear, M.},
+  \bibinfo{author}{Friston, K.}, \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{{Nonlinear dynamic causal models for fMRI}}.
+\newblock \bibinfo{journal}{NeuroImage} \bibinfo{volume}{42},
+  \bibinfo{pages}{649--662}.
+%Type = Article
+\bibitem[{Unser(1999)}]{Unser1999}
+\bibinfo{author}{Unser, M.}, \bibinfo{year}{1999}.
+\newblock \bibinfo{title}{Splines: a perfect fit for signal and image
+  processing}.
+\newblock \bibinfo{journal}{Signal Processing Magazine, IEEE}
+  \bibinfo{volume}{16}, \bibinfo{pages}{22--38}.
+%Type = Article
+\bibitem[{Unser et~al.(1993)Unser, Aldroubi and Eden}]{Unser1993}
+\bibinfo{author}{Unser, M.}, \bibinfo{author}{Aldroubi, A.},
+  \bibinfo{author}{Eden, M.}, \bibinfo{year}{1993}.
+\newblock \bibinfo{title}{A family of polynomial spline wavelet transforms}.
+\newblock \bibinfo{journal}{Signal Processing} \bibinfo{volume}{30},
+  \bibinfo{pages}{141--162}.
+%Type = Article
+\bibitem[{Valdes et~al.(1999)Valdes, Jimenez, Riera, Biscay and
+  Ozaki}]{Valdes1999}
+\bibinfo{author}{Valdes, P.}, \bibinfo{author}{Jimenez, J.},
+  \bibinfo{author}{Riera, J.}, \bibinfo{author}{Biscay, R.},
+  \bibinfo{author}{Ozaki, T.}, \bibinfo{year}{1999}.
+\newblock \bibinfo{title}{{Nonlinear EEG analysis based on a neural mass
+  model}}.
+\newblock \bibinfo{journal}{Biological Cybernetics} \bibinfo{volume}{81},
+  \bibinfo{pages}{415--424}.
+%Type = Article
+\bibitem[{Van~Rotterdam et~al.(1982)Van~Rotterdam, Lopes~da Silva, Van~den
+  Ende, Viergever and Hermans}]{VanRotterdam1982}
+\bibinfo{author}{Van~Rotterdam, A.}, \bibinfo{author}{Lopes~da Silva, F.},
+  \bibinfo{author}{Van~den Ende, J.}, \bibinfo{author}{Viergever, M.},
+  \bibinfo{author}{Hermans, A.}, \bibinfo{year}{1982}.
+\newblock \bibinfo{title}{{A model of the spatial-temporal characteristics of
+  the alpha rhythm}}.
+\newblock \bibinfo{journal}{Bulletin of Mathematical Biology}
+  \bibinfo{volume}{44}, \bibinfo{pages}{283--305}.
+%Type = Article
+\bibitem[{Wendling(2005)}]{Wendling2005}
+\bibinfo{author}{Wendling, F.}, \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{Neurocomputational models in the study of epileptic
+  phenomena.}
+\newblock \bibinfo{journal}{Journal of Clinical Neurophysiology}
+  \bibinfo{volume}{22}, \bibinfo{pages}{285}.
+%Type = Article
+\bibitem[{Wikle(2004)}]{Wikle2002}
+\bibinfo{author}{Wikle, C.K.}, \bibinfo{year}{2004}.
+\newblock \bibinfo{title}{A kernel-based spectral model for non-\text{G}aussian
+  spatio-temporal processes}.
+\newblock \bibinfo{journal}{Statistical Modelling} \bibinfo{volume}{2},
+  \bibinfo{pages}{299--314}.
+%Type = Article
+\bibitem[{Wilson and Cowan(1973)}]{Wilson1973}
+\bibinfo{author}{Wilson, H.}, \bibinfo{author}{Cowan, J.},
+  \bibinfo{year}{1973}.
+\newblock \bibinfo{title}{{A mathematical theory of the functional dynamics of
+  cortical and thalamic nervous tissue}}.
+\newblock \bibinfo{journal}{Biological Cybernetics} \bibinfo{volume}{13},
+  \bibinfo{pages}{55--80}.
+%Type = Article
+\bibitem[{Xu et~al.(2005)Xu, Wikle and Fox}]{Xu2005}
+\bibinfo{author}{Xu, K.}, \bibinfo{author}{Wikle, C.}, \bibinfo{author}{Fox,
+  N.}, \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{{A kernel-based spatio-temporal dynamical model for
+  nowcasting weather radar reflectivities}}.
+\newblock \bibinfo{journal}{Journal of the American Statistical Association}
+  \bibinfo{volume}{100}, \bibinfo{pages}{1133--1144}.
 
 \end{thebibliography}
