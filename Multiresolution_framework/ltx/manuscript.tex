@@ -595,7 +595,7 @@ In summary, to solve the joint state and parameter estimation for linear state-s
 \label{fig:EMBlockDiagram}
 \end{figure}
   \subsection{E-step}
-As mentioned earlier the E-step for state-space models is equivalent to the smoothing problem. We use the RTS smoother, given in Table~\ref{alg:MRA-RTS} for completeness, in order to infer the states of the system. The RTS smoother uses the Kalman filter \cite{Kalman1960} in forward pass (Steps~1 and 2 in Table~\ref{alg:MRA-RTS}) along with a backward iteration to calculate its outputs (Steps~3 and 4 in Table~\ref{alg:MRA-RTS}): smoothed states $\hat{\mathbf x}^b_t$ and covariances, $\mathbf P^b_t=\mathrm{cov}(\mathbf{x}_t)$. Following \cite{Gibsona2005}, an additional backwards recursion is also included (Step~5 in Table~\ref{alg:MRA-RTS})	to calculate cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t},\mathbf{x}_{t+1})$, which is also required in forming the lower bound to be maximized in the M-step. Note that the following quantities from the forward iteration (filtering) should be stored when implementing the RTS smoother: predicted and corrected estimates for both state estimates ($\hat{\mathbf{x}}_t^{f-}$, $\hat{\mathbf{x}}_t^{f}$) and covariance matrices ($\mathbf P_t^{f-}$,$\mathbf P_t^f$). Also the final value of the Kalman gain, $\mathcal K_T$, should be stored in order to initialize the backward cross-covariance computation. 
+As mentioned earlier the E-step for state-space models is equivalent to the smoothing problem. We use the RTS smoother, given in Table~\ref{alg:MRA-RTS} for completeness, in order to infer the states of the system. The RTS smoother uses the Kalman filter \cite{Kalman1960} in forward pass (Steps~1 and 2 in Table~\ref{alg:MRA-RTS}) along with a backward iteration to calculate its outputs (Steps~3 and 4 in Table~\ref{alg:MRA-RTS}): smoothed states $\hat{\mathbf x}^b_t$ and covariances, $\mathbf P^b_t=\mathrm{cov}(\mathbf{x}_t)$. Following \cite{Gibsona2005}, an additional backwards recursion is also included (Step~5 in Table~\ref{alg:MRA-RTS})	to calculate cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t},\mathbf{x}_{t+1})$, which is also required in forming the lower bound to be maximized in the M-step. Note that the following quantities from the forward iteration should be stored when implementing the RTS smoother: predicted and corrected estimates for both state estimates ($\hat{\mathbf{x}}_t^{f-}$, $\hat{\mathbf{x}}_t^{f}$) and covariance matrices ($\mathbf P_t^{f-}$,$\mathbf P_t^f$). Also the final value of the Kalman gain, $\mathcal K_T$, should be stored in order to initialize the backward cross-covariance computation. 
 \renewcommand{\arraystretch}{1.7}
 \begin{table*}[!ht]
 \begin{tabular}{|c|}\hline
@@ -624,7 +624,7 @@ $\mathbf M_T=(\mathbf I-\mathcal K_T\mathbf C)\mathbf A\mathbf P_{T-1}^b$\\
 $\mathbf M_t= \mathbf P_t^{f}\mathcal S_{t-1}^{\top}+\mathcal S_{t}(\mathbf M_{t+1}-\mathbf A\mathbf P_t^{f} )\mathcal S_{t-1}^{\top}$\\
 \hline
 \end{tabular}
-\caption{\textbf{Algorithm for the RTS smoother} This table shows the steps in the  Rauch-Tung-Striebel smoother algorithm. The lower bound is maximized after each iteration to update the parameter estimates.}
+\caption{\textbf{Algorithm for the RTS smoother} This table shows the steps in the  Rauch-Tung-Striebel smoother algorithm. The lower bound, $\mathcal{Q}(\boldsymbol{\theta},\boldsymbol{\theta'})$, is maximized after each iteration to update the parameter estimates.}
 \label{alg:MRA-RTS}
 \end{table*}
 \renewcommand{\arraystretch}{1}
