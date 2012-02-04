@@ -658,7 +658,7 @@ Twice the logarithm of the above distribution, once expanded, is given by
 2\ln p(\mathbf x_{t+1} , \mathbf y_{t+1};\boldsymbol\theta)=&-\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_{t+1}+2\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf A( \boldsymbol\theta)\mathbf x_t\nonumber \\
 &-\mathbf x_t^\top\mathbf A^\top(\boldsymbol\theta)\boldsymbol\Sigma_w^{-1}\mathbf A(\boldsymbol\theta)\mathbf x_t.
 \end{align}
-Substituting $\mathbf A( \boldsymbol\theta)$ from Eq.~\eqref{eq:A_theta} into Eq.~\eqref{eq:Qfunction} gives
+The factor of 2 is included to simplify the derivation in the later steps. Substituting $\mathbf A( \boldsymbol\theta)$ from Eq.~\eqref{eq:A_theta} into Eq.~\eqref{eq:Qfunction} gives
 \begin{align}
 2\ln p(\mathbf x_{t+1}, \mathbf y_{t+1};\boldsymbol\theta)=&\beta+2 T_s\varsigma\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t \nonumber \\
 &-T_s^2\varsigma^2\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t-2\xi \varsigma T_s\mathbf x_t^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t,\nonumber \\
