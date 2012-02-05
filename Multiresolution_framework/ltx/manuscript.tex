@@ -5,7 +5,7 @@
 \usepackage{graphicx}
 \usepackage{setspace}                               
 \usepackage[usenames,dvipsnames]{color}  
-%This bit is how to use hyperlink without stupid coloured rectangles around it
+%This bit is how to use hyperlink without  coloured rectangles around it
 \usepackage{float}
 \usepackage{hyperref}
 \hypersetup{colorlinks,linkcolor=black,filecolor=black,urlcolor=black,citecolor=black}
@@ -942,7 +942,7 @@ To study the performance of different models with various MRA capabilities, a si
 \end{figure}
 % \caption{The actual connectivity kernel is shown with the black solid line. The estimated kernel and confidence interval is shown by the red line and red shaded region ($\pm2$ std.). The 7 weighted kernel basis functions are shown by the black dashed lines.}
 \section{Discussion}
-In this paper, we have presented a novel model-based framework for estimating cortical dynamics from electrophysiological measurements. The novel and key developments of the paper include the multi-resolution FEM representation of the neural field, and the estimator for an intracortical connectivity kernel with an arbitrary shape. This work is significant, as the ability to create patient specific neural field models has the potential to contribute to our understanding and improve treatment of diseases resulting from abnormal neurodynamics, such as epilepsy. Other groups have previously highlighted the importance of a multi-resolution approach in neural field modeling. It is thought that the dynamics and connectivity structure differs at different spatial scales~\citep{Qubbaj2009,Breakspear2005}. %\dean{This is a test to see if we can fit something about Breaky's paper in here. It would be nice to slot something in here because he used wavelets.} 
+In this paper, we have presented a novel model-based framework for estimating cortical dynamics from electrophysiological measurements. The novel and key developments of the paper include the multi-resolution FEM representation of the neural field, and the estimator for an intracortical connectivity kernel with an arbitrary shape. This work is significant, as the ability to create patient specific neural field models has the potential to contribute to our understanding and improve treatment of diseases resulting from abnormal neurodynamics, such as epilepsy. Other groups have previously highlighted the importance of a multi-resolution approach in neural field modeling. It is thought that the dynamics and connectivity structure differs at different spatial scales~\citep{Qubbaj2009,Breakspear2005,Schultze-Kraft2010}. %\dean{This is a test to see if we can fit something about Breaky's paper in here. It would be nice to slot something in here because he used wavelets.} 
 
 For a larger space or in a case where the connectivity kernel decomposition comprises of  many scale levels, the number of parameters to be estimated increases significantly. One solution to this problem could be expectation-conditional maximization (ECM) \citep{Meng1993,Meng1994} which replaces the M-step by a series of computationally simplified conditional maximization (CM) steps. The ECM is a class of generalized EM (GEM)  algorithms in which the $\mathcal{Q}$-function is increased rather than being maximized \citep{Fessler1994}. 
 
