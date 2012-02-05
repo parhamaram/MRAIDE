@@ -209,8 +209,8 @@ The multi-resolution approximation \citep{Mallat1989a} of the neural IDE (MRAIDE
 \end{equation}
 where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$, and $\beta_{j,l}$ are the detail coefficients at different scales $j$, with
 \begin{align}
-\phi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\phi\left(2^j r-l\right) \\	
-\psi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\psi\left(2^j r-l\right).
+\phi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\phi\left(2^j r-l\right) \label{eq:generalscalingfinction}\\	
+\psi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\psi\left(2^j r-l\right).  \label{eq:generalwaveletfinction}
 \end{align}
 The parameters $j$ and $l$ control the scale (dilation) and translation (spatial shift), respectively. \dean{NEED SOMETHING ABOUT HOW j AND l ARE SET HERE - AS IN THAT THEY ARE KNOWN - AND THAT WE ONLY NEED TO ESTIMATE THE COEFFICIENTS.} \parham{The number of spatial shifts, $l$, is dependent on the scale, $j$, and can be chosen such that the basis functions cover the spatial domain of interest. The number of scales depends on the spectral characteristics of the field, which will be described later.} Scaling functions retain the lowest frequency components, due to their low-pass properties, while the wavelet functions extract successively higher frequency components due to their band-pass characteristics. 
 
@@ -480,11 +480,12 @@ where
  \end{align}
 and $\left[\cdot\right]_n$ denotes the $n$-th element of the vector coefficients \citep{Chui1992}. \dean{Need to explicitly say why this is important and what this gives us here.}
 
-Fig.~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its associated wavelet function with dilation and translation parameters set to zero. Note in general the supports of the scaling and wavelet functions are given by 
+Fig.~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its associated wavelet function with dilation and translation parameters set to zero. Note in general the supports of B-spline scaling and wavelet functions are given by 
 \begin{align}
-	\mathrm{supp}(N_{m;j,l})&=\left[\frac{l}{2^j},\frac{m+l}{2^j}\right] \\  
-  \mathrm{supp}(\varphi_{m;j,l})&=\left[\frac{l}{2^j},\frac{2m-1+l}{2^j}\right] 
-	\end{align} 
+	\mathrm{supp}(N_{m;j,l})&=\left[\frac{l}{2^j},\frac{m+l}{2^j}\right] \label{eq:ScalingSupport}\\  
+  \mathrm{supp}(\varphi_{m;j,l})&=\left[\frac{l}{2^j},\frac{2m-1+l}{2^j}\right],\label{eq:WaveletSupport}
+	\end{align}    
+where subscripts $j$ and $l$ in Eqs.~\eqref{eq:ScalingSupport} and \eqref{eq:WaveletSupport} are introduced to $N_{m}(r)$ and $\varphi_{m}(r)$ to indicate the scale and translation parameters as defined in Eqs~\eqref{eq:generalscalingfinction} and \eqref{eq:generalwaveletfinction}. 
 \begin{figure}[!t]
 \centering
 \includegraphics{./Graph/fig4.pdf}
@@ -492,7 +493,7 @@ Fig.~\ref{fig:MRA-Figure1} shows the cubic B-spline scaling function and its ass
 \caption{{\bf Examples of B-spline scaling and wavelet functions}. (\textbf{A}) The cubic B-spline scaling function. (\textbf{B}) The corresponding wavelet function.}
 \label{fig:MRA-Figure1}
 \end{figure}
-
+ 
 By exploiting Eq.~\eqref{eq:BsplineConvolution} and Eq.~\eqref{eq:BsplineInnerProduct}, the integrals in Eq.~\eqref{eq:Lambdax} and Eq.~\eqref{eq:Gammaij} can be computed analytically. In constructing $\boldsymbol\Lambda_{x}$, it is important to note that B-spline scaling and wavelet functions possess the following orthogonality properties \citep{Unser1993}: 
 \begin{equation}
   \left\langle \varphi_{m;j_1,l_1}(r),\varphi_{m;j_2,l_2}(r)\right\rangle =0  \quad \mathrm{for} \quad j_1\neq j_2
@@ -844,7 +845,10 @@ $ \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_
 \renewcommand{\arraystretch}{1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}\label{sec:MRA-results}
-To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using Eqs.~\eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation}, allowing a comparison between true and estimated parameters. In doing so, the membrane time constant was set to $\tau = 10$~ms \citep{David2003}, and the sampling time was chosen ten times faster \citep{Stephan2008}, i.e. $T_s = 1$~ms, ensuring the discrepancy between the continuous neural field model and its discrete approximation is small. 
+To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using Eqs.~\eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation}, allowing a comparison between true and estimated parameters. In doing so, the membrane time constant was set to $\tau = 10$~ms \citep{David2003}, and the sampling time was chosen ten times faster \citep{Stephan2008}, i.e. $T_s = 1$~ms, ensuring the discrepancy between the continuous neural field model and its discrete approximation is small. Data is generated using the connectivity kernel composed of two B-spline scaling functions at $j=0$ and $j=1$ forming a compact support Mexican hat shape (see Fig.\ref{fig:KernelEstimate}) given by
+\begin{equation}\label{eq:ConnectivityKernelForData}
+	w(r-r')=200\times N_{4;1,-3}(r-r')-100\times N_{4;0,-3}(r-r')
+\end{equation}
 
 Two different experiments were designed to test the framework. In the first one, 200 realizations of 1 second of data were used, where the field disturbance, $e_t$, and the observation noise, $\boldsymbol\varepsilon_t$, were regenerated each run. This way the net shape of the connectivity kernel could be formed by averaging over the parameters estimates from each realization, the frequency response of the observed field used to decide on the level... . In the second experiment, a single data set was generated and the field estimations are compared for five state-space models, each accounting upto a certain level of approximation, i.e. $j=0$ to $j=4$. All parameters for the model are given in Table~\ref{tab:Parameters}.
 
