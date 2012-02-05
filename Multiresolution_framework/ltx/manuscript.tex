@@ -847,7 +847,7 @@ $ \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_
 \section{Results}\label{sec:MRA-results}
 To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using Eqs.~\eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation}, allowing a comparison between true and estimated parameters. In doing so, the membrane time constant was set to $\tau = 10$~ms \citep{David2003}, and the sampling time was chosen ten times faster \citep{Stephan2008}, i.e. $T_s = 1$~ms, ensuring the discrepancy between the continuous neural field model and its discrete approximation is small. The connectivity kernel used for data generation composed of two B-spline scaling functions at $j=0$ and $j=1$ forming a compact support Mexican hat shape (see Fig.\ref{fig:KernelEstimate}) given by
 \begin{equation}\label{eq:ConnectivityKernelForData}
-	w(r-r')=\theta_1\times N_{4;1,2}(r-r')+\theta_2\times N_{4;0,2}(r-r').
+	w(r-r')=\theta_1\times N_{4;1,2}(r-r')+\theta_2\times N_{4;0,2}(r-r'),
 \end{equation}
 with $\theta_1=200$ and $\theta_2=-100$.
 
