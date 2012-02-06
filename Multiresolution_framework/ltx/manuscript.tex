@@ -23,21 +23,19 @@
   
 \author[TNG]{P. Aram\corref{cor1}}
 \ead{parham.aram@univ-amu.fr}
-\author[DEEE,BEI,UE]{D. R. Freestone}
-\ead{dfreestone@bionicear.org} 
+\author[DEEE]{D. R. Freestone}
+\ead{deanrf@unimelb.edu.au} 
 \author[UE,CU]{M. Dewar}
 \ead{mike.dewar@columbia.edu}
 \author[UM]{K. Scerri}
 \ead{kenneth.scerri@um.edu.mt}
-\author[DEEE,BEI]{D. B. Grayden}
+\author[DEEE]{D. B. Grayden}
 \ead{grayden@unimelb.edu.au}
 \author[US]{V. Kadirkamanathan}
 \ead{visakan@sheffield.ac.uk}
 
 \address[TNG]{Theoretical Neuroscience Group, UMR 1106, Institut de Neurosciences des Systemes, 13385 Marseille, France}
-\address[DEEE]{Department of Electrical and Electronic Engineering, University of Melbourne, Melbourne, VIC, Australia}
-\address[BEI]{The Bionic Ear Institute, East Melbourne, VIC, Australia}
-\address[UE]{Institute for Adaptive and Neural Computation, University of Edinburgh, Edinburgh, UK}
+\address[DEEE]{NeuroEngineering Laboratory, Department of Electrical and Electronic Engineering, University of Melbourne, Melbourne, VIC, Australia}
 \address[CU]{Department of Applied Physics and Applied Mathematics, Columbia University, New York, NY, USA}
 \address[UM]{Department of Systems and Control Engineering, University of Malta, Msida, MSD, Malta}
  \address[US]{Department of Automatic Control and Systems Engineering, University of Sheffield, Sheffield, UK}
@@ -59,7 +57,7 @@ to demonstrate the framework.
 \section{Introduction}
 The human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE), to address this challenge. 
 
-Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. The key components of these models typically describe the macroscopic dynamics of the human brain, but can also descriptive of finer-scale neurodynamics. \parham{Examples are, the post-synaptic response kernels (the pulse to wave function) and the activation function (wave to pulse function) \citep{Jirsa1997}. The former can be descriptive of inhibitory and excitatory post-synaptic potentials in microscopic single neural models, such as integrate and fire, or an ensemble response to stimulation in macroscopic neural mass models. The latter,  can be used to model spiking statistics across spatial scales from single neurons (where it can be considered a CDF of the probability of firing) to mean firing rates of neural masses.} The key factor linking the key functions of the model to particular spatial scales is geometry of the connectivity, hence the ability to infer a multi-resolution connectivity kernel will enable to the formulation of a multi-resolution neural field model. 
+Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics of the EEG. The key components of these models typically describe the macroscopic dynamics of the human brain, but can also descriptive of finer-scale neurodynamics. Examples are the post-synaptic response kernels (the pulse to wave function) and the activation function (wave to pulse function) \citep{Jirsa1997}. The former can be descriptive of inhibitory and excitatory post-synaptic potentials in microscopic single neural models, such as integrate and fire, or an ensemble response to stimulation in macroscopic neural mass models. The latter, can be used to model spiking statistics across spatial scales from single neurons (where it can be considered a CDF of the probability of firing) to mean firing rates of neural masses. The key factor linking the key functions of the model to particular spatial scales is geometry of the connectivity, hence the ability to infer a multi-resolution connectivity kernel will enable to the formulation of a multi-resolution neural field model. 
 
 The utility of these models for answering questions in clinical neuroscience and neurology lies in the ability to infer parameters from electrophysiological data. The ability to create patient-specific neural models will contribute to our knowledge base of diseases such as epilepsy and will enable the development of new treatment strategies. This is particularly relevant to the advent of new devices that use therapeutic electrical stimulation. Stimulation strategies for devices currently operate in an open loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists enormous potential to improve the performance of these devices using systems theory, which in turn requires a suitable dynamic model. Neural mass and neural field models are ideal candidates for estimation algorithms due to their strong links with physiology and their parsimony. It is expected that parameters of the neural fields models will be patient-specific and will, therefore, need to be inferred from data.
 
@@ -72,7 +70,7 @@ The human neocortex has an inherent multi-resolution architecture. The spatiotem
 \end{equation}
 where $v\left(\mathbf{r},t\right)$ is a voltage field that may be measured with a multi-electrode array or voltage sensitive dye, $\mathbf{r}\in \mathbb{R}^n$ (where $n\le3$) describes the spatial location within the field, $t$ denotes time, and $j$ indexes the different levels of resolution in the field. This multi-resolution structure is depicted in Fig.~\ref{fig:MultiLayerFieldModel}.
 \begin{figure}[t]
-	\centering
+	% \centering
 		\includegraphics[scale=1]{./Graph/fig1.pdf}
 	\caption{{\bf Multi-layer neural field model}. The inset figures show the shape of the
 connectivity kernel components at each spatial resolution.}
@@ -81,7 +79,7 @@ connectivity kernel components at each spatial resolution.}
  
 The multi-resolution structure has been described by numerous methods. For example, this idea of multi-resolution can be thought of a generalization of modeling the layers of the cortex separately, where the connectivity kernel, or neural foot-print, has varying widths \citep{Wilson1973}.
 
-Typically, the experimentalist only has access the net field generated by the multi-resolution architecture. Follow this, it is natural to ask how do we best describe the multi-resolution structure of the neural system. The solution to this problem was proposed by \citet{Breakspear2005} in using a wavelet decomposition. This paper is directed at developing a framework for patient-specific multi-resolution neural field models. 
+Typically, the experimentalist only has access the net field generated by the multi-resolution architecture. Follow this, it is natural to ask how do we best describe the multi-resolution structure of the neural system. The solution to this problem was proposed by \citet{Breakspear2005} in using a wavelet decomposition. This paper is directed at developing a framework for patient-specific multi-resolution neural field models, forming a fundamental link between data and theory. 
 
 \section{IDE Neural Field Model}
 \singlespacing
@@ -157,7 +155,7 @@ The stochastic IDE form of the Amari neural field formulation~\cite{Amari1977} i
 	\, \mathrm{d}\mathbf{r}'} 
 	+ e_t\left(\mathbf{r}\right), 
 \end{equation}
-where in this first-order (in time) form of the model the membrane dynamics are included through the parameter $\xi=1-T_s/\tau$, where $\tau$ is the membrane time constant and $T_s$ is the sampling time. 
+where in this first-order (in time) form of the model the membrane dynamics are included through the parameter $\xi=1-T_s/\tau$, $\tau$ is the membrane time constant and $T_s$ is the sampling time step. 
 % The connectivity strength between neural populations at a distance $\mid\mathbf{r}-\mathbf{r'}\mid$ is described by the connectivity kernel $w\left(\mathbf{r}-\mathbf{r}'\right)$. The connectivity kernel is taken as a ``Mexican hat'' function, which describes local excitation and lateral inhibition \cite{Amari1977,Atay2005}. The components of the model are shown in Fig.~\ref{fig:Modelcomponents}
 \begin{figure}[!t]
 \centering
@@ -177,12 +175,12 @@ The observation equation describing the intracranial electrophysiological record
 \begin{equation}\label{eq:ObservationEquation}
 	y_t(\mathbf{r}_{n_y}) = \int_{\Omega} { m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right) v_t\left(\mathbf{r}'\right) \, \mathrm{d}\mathbf{r}'} + \boldsymbol\epsilon_t(\mathbf{r}_{n_y}), 
 \end{equation}
-where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. \parham{The lead field parameters are not included in the observation equation as the intracranial recordings are considered here.} 
+where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at location $\mathbf{r}_{n_y}$ and  $\boldsymbol{\epsilon}_{t}\sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma}_{\epsilon}\right)$  is an i.i.d. Gaussian white noise process and the covariance matrix $\mathbf{\Sigma}_{\epsilon}=\sigma^2_{\epsilon}\mathbf I_{n_y}$, where $\mathbf I$ denotes the identity matrix. The observation kernel models the pickup range of the electrical fields of the brain. The lead field parameters are not included in the observation equation as the intracranial recordings are considered here. 
 
 \section{MRA of the IDE in State-Space}
-\parham{The purpose of} forming the multi-resolution approximation (MRA) of the integro-difference equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.
+The purpose of forming the multi-resolution approximation (MRA) of the integro-difference equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.
 
-\parham{The goal of this section is to demonstrate} how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure. \parham{Therefore, the goal is to form} a parameterized equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
+The goal of this section is to demonstrate how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure.   form} a parameterized equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
 
 The multi-resolution approximation \citep{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering a  one-dimensional field, the static connectivity kernel is decomposed as,
 \begin{equation}
