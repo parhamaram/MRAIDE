@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{43}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -244,6 +244,16 @@
   cortical dynamics}}.
 \newblock \bibinfo{journal}{Journal of Neural Engineering} \bibinfo{volume}{5},
   \bibinfo{pages}{1--8}.
+%Type = Article
+\bibitem[{Schultze-Kraft et~al.(2010)Schultze-Kraft, Becker, Breakspear and
+  Ritter}]{Schultze-Kraft2010}
+\bibinfo{author}{Schultze-Kraft, M.}, \bibinfo{author}{Becker, R.},
+  \bibinfo{author}{Breakspear, M.}, \bibinfo{author}{Ritter, P.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Exploiting the potential of three dimensional spatial
+  wavelet analysis to explore nesting of temporal oscillations and spatial
+  variance in simultaneous eeg-fmri data}.
+\newblock \bibinfo{journal}{Progress in Biophysics and Molecular Biology} .
 %Type = Book
 \bibitem[{Shumway and Stoffer(2000)}]{Shumway2000}
 \bibinfo{author}{Shumway, R.}, \bibinfo{author}{Stoffer, D.},
