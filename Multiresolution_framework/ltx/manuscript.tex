@@ -198,7 +198,7 @@ where $m\left(\mathbf{r}_{n_y}-\mathbf{r}'\right)$ is the observation kernel at 
 \section{MRA of the IDE in State-Space}
 The purpose of forming the multi-resolution approximation (MRA) of the integro-difference equation (IDE) is to form a multi-resolution finite-dimensional state-space model that best captures the spatiotemporal characteristics of the neural field. Given such a model, it is then possible to perform state and parameter estimation in an efficient and robust manner, thus allowing for subject-specific models.
 
-The goal of this section is to demonstrate how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure.   form} a parameterized equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
+The goal of this section is to demonstrate how to formulate a state-space model in a canonical form such that standard algorithms may be applied to estimate the multi-resolution connectivity structure.   form a parameterized equation for coefficients of the field basis functions $\mathbf{x}_t$, which becomes the state vector.
 
 The multi-resolution approximation \citep{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering a  one-dimensional field, the static connectivity kernel is decomposed as,
 \begin{equation}
@@ -935,7 +935,7 @@ To study the performance of different models with various MRA capabilities, a si
  \end{figure} 
 \begin{figure}[t]
 	\centering
-		\includegraphics[scale=1]{./Graph/fig12.png}
+		\includegraphics[scale=1]{./Graph/fig12.pdf}
 	\caption{{\bf Actual and estimated spatiotemporal neural field using state-space models with different MRA capabilities}. (\textbf{A}) The reconstructed field of the reduced model using wavelet upto $j=0$ with $n_x=17$. (\textbf{B}) The reconstructed field using wavelets upto $j=1$ with $n_x=33$. (\textbf{C}) The reconstructed field  using wavelets upto $j=2$ with $n_x=65$. (\textbf{D}) The reconstructed field using wavelets upto $j=3$ with $n_x=131$. (\textbf{E}) The reconstructed field using wavelets upto $j=4$ with $n_x=263$. (\textbf{F}) The actual field.} 
 \label{fig:FieldEstimation}
 \end{figure}
