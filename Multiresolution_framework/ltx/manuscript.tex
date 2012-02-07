@@ -1008,26 +1008,26 @@ in which $N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of 
 Substituting Eq.~\eqref{eq:AppendixNj-1intermsofNj} into Eq.~\eqref{eq:MRA-ConvertingFormulaForscalingFunctions} completes the proof. 
 
 \section{Lower bound on likelihood function}\label{ap:Lowerbound}
-A derivation of the lower bound on the likelihood function that is based on \citet{Bishop2006} is provided in this Appendix. We want to maximize the likelihood function which is difficult to perform directly
+A derivation of the lower bound on the likelihood function that is based on \citet{Bishop2006} is provided in this Appendix. We want to maximize the likelihood function, 
 \begin{equation}
- p(\mathbf Y;\boldsymbol\theta)=\int_{\mathbf X}p(\mathbf X,\mathbf Y;\boldsymbol\theta)d\mathbf X.
-\end{equation}   
-Maximizing the likelihood in terms of the parameter set is equivalent to the log-likelihood maximization, as both the likelihood and log-likelihood functions share the same maximizer due to the monotonicity of the logarithm function. For any choice of distribution defined over the latent variables, $q(\mathbf X)$, the following decomposition holds
+ p(\mathbf Y;\boldsymbol\theta)=\int_{\mathbf X}p(\mathbf X,\mathbf Y;\boldsymbol\theta)\mathrm{d}\mathbf X,
+\end{equation}
+which is difficult to perform directly. Maximizing the likelihood in terms of the parameter set is equivalent to the log-likelihood maximization, as both the likelihood and log-likelihood functions share the same maximizer due to the monotonicity of the logarithm function. For any choice of distribution defined over the latent variables, $q(\mathbf X)$, the following decomposition holds
 \begin{equation}\label{eq:EM-loglikelihooddecomposition}
  \ln~p(\mathbf Y;\boldsymbol\theta)=\mathcal{L}(q,\boldsymbol\theta)+\mathrm{KL}(q\parallel p),
 \end{equation}
 where
 \begin{align}
- \mathcal{L}(q,\boldsymbol\theta)&=\int_{\mathbf X} q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X,\mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace d\mathbf X \label{eq:EM-decomposition1}\\
-\mathrm{KL}(q\parallel p)&=-\int_{\mathbf X}q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace d\mathbf X. \label{eq:EM-decomposition2}
+ \mathcal{L}(q,\boldsymbol\theta)&=\int_{\mathbf X} q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X,\mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace \mathrm{d}\mathbf X \label{eq:EM-decomposition1}\\
+\mathrm{KL}(q\parallel p)&=-\int_{\mathbf X}q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace \mathrm{d}\mathbf X. \label{eq:EM-decomposition2}
 \end{align}
 Eq.~\eqref{eq:EM-loglikelihooddecomposition} can be verified by applying the probability product rule to the joint distribution $p(\mathbf X,\mathbf Y;\boldsymbol\theta)$ in Eq.~\eqref{eq:EM-decomposition1} giving
 \begin{align}
-	\mathcal{L}(q,\boldsymbol\theta)+\mathrm{KL}(q\parallel p)&= \int_{\mathbf X} q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)p(\mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace d\mathbf X \nonumber\\
-	&- \int_{\mathbf X}q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace d\mathbf X\nonumber\\
-	&= \int_{\mathbf X}q(\mathbf X)\ln p(\mathbf Y; \boldsymbol\theta)d\mathbf X.
+	\mathcal{L}(q,\boldsymbol\theta)+\mathrm{KL}(q\parallel p)&= \int_{\mathbf X} q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)p(\mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace \mathrm{d}\mathbf X \nonumber\\
+	&- \int_{\mathbf X}q(\mathbf X)\ln\left\lbrace \frac{p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)}{q(\mathbf X)} \right\rbrace \mathrm{d}\mathbf X\nonumber\\
+	&= \int_{\mathbf X}q(\mathbf X)\ln p(\mathbf Y; \boldsymbol\theta)\mathrm{d}\mathbf X.
 \end{align}
-Noting  $q(\mathbf X)$ is a normalized distribution that integrates to one gives the log-likelihood function. Note Eq.~\eqref{eq:EM-decomposition2} is the Kullback-Liebler distance between distributions $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)$ and $q(\mathbf X)$, therefore,
+Noting  $q(\mathbf X)$ is a normalized distribution that integrates to one gives the log-likelihood function. We also note that Eq.~\eqref{eq:EM-decomposition2} is the Kullback-Liebler distance between distributions $p(\mathbf X \mid \mathbf Y;\boldsymbol\theta)$ and $q(\mathbf X)$. Therefore,
 \begin{equation}
 	\mathrm{KL}(q\parallel p)\ge 0.
 \end{equation}   
