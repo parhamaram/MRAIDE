@@ -657,126 +657,43 @@ $\mathbf M_t= \mathbf P_t^{f}\mathcal S_{t-1}^{\top}+\mathcal S_{t}(\mathbf M_{t
 \renewcommand{\arraystretch}{1}
  \subsection{M-step}
 The lower bound on the log-likelihood function is given by \citep{Bishop2006} 
-\begin{equation}
+\begin{equation}\label{eq:Bishopbound}
 	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \theta)\right], 
 \end{equation}
 (see \ref{ap:Lowerbound} ) where $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ is the joint probability distribution of the states and the observations and $ \mathbf E_{\boldsymbol \theta'}\left[\cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). Note that this is actually the smoother output which is obtained at the E-step.
 
-The rest of this section is dedicated to the construction of the lower bound, $\mathcal Q$, for the linear state-space model given by Eqs.~\eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ can be written as
- \begin{equation}\label{eq:jointdistribution}
-  p(\mathbf X,\mathbf Y;\boldsymbol \theta)=\prod_{t=0}^{T-1} p(\mathbf y_{t+1}|\mathbf x_{t+1})p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)p(\mathbf x_0).
- \end{equation}
-The $\mathcal Q$-function, or lower-bound on the likelihood, can be expressed in terms of the joint distribution components
- \begin{align}
-  \mathcal Q(\boldsymbol \theta,\boldsymbol\theta')&=\mathbf E_{\boldsymbol \theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \theta)\right] \nonumber \\
- &=\mathbf E_{\boldsymbol\theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf y_{t+1}|\mathbf x_{t+1})+\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)
- +\sum_{t=0}^{T-1}2\ln p(\mathbf x_0)\right].
- \end{align}   
-It should be noted that neither $p(\mathbf y_{t+1}|\mathbf x_{t+1})$ nor $p(\mathbf x_0)$ are functions of the parameter set and therefore the $\mathcal Q$-function can be rewritten as
-\begin{equation}
-\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)\right]+\mathrm{constant},
+For the linear state-space model given by Eqs.~\eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}, the bound defined by Eq.~\eqref{eq:Bishopbound} is a quadratic of the form (see \ref{ap:QDerivation} for derivation) 
+\begin{equation}\label{eq:MRA-QCompact}
+\mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
-where the constant term can be ignored as it is independent of the parameters. Under the condition that the state distribution is Gaussian --- ignoring the normalizing term, $1/(2\pi)^{\frac{n_x}{2}}\mid\boldsymbol\Sigma_w\mid^{-\frac{1}{2}}$ --- the conditional distribution $p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\theta)$ can be written as
-\begin{align}
-p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\theta)=  \exp\left({-\frac{1}{2}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)^\top\boldsymbol\Sigma_w^{-1}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)}\right).
-\end{align}
-Twice the logarithm of the above distribution, once expanded, is given by
-\begin{align}\label{eq:Qfunction}
-2\ln p(\mathbf x_{t+1} , \mathbf y_{t+1};\boldsymbol\theta)=&-\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_{t+1}+2\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf A( \boldsymbol\theta)\mathbf x_t\nonumber \\
-&-\mathbf x_t^\top\mathbf A^\top(\boldsymbol\theta)\boldsymbol\Sigma_w^{-1}\mathbf A(\boldsymbol\theta)\mathbf x_t.
-\end{align}
-The factor of 2 is included to simplify the derivation in the later steps. Substituting $\mathbf A( \boldsymbol\theta)$ from Eq.~\eqref{eq:A_theta} into Eq.~\eqref{eq:Qfunction} gives
-\begin{align}
-2\ln p(\mathbf x_{t+1}, \mathbf y_{t+1};\boldsymbol\theta)=&\beta+2 T_s\varsigma\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t \nonumber \\
-&-T_s^2\varsigma^2\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t-2\xi \varsigma T_s\mathbf x_t^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t,\nonumber \\
-\end{align}
-where 
-\begin{equation}
-\beta=-\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_{t+1}+2\xi\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_t-\xi^2\mathbf x_t^\top\boldsymbol\Sigma_w^{-1}\mathbf x_t,
-\end{equation}
-is constant with respect to the parameter $\boldsymbol\theta$, and will disappear subject to differentiation with respect to $\boldsymbol\theta$. Taking the trace and rearranging, using the invariant cyclic permutations property of the trace, this distribution can be written as
-\begin{align}\label{eq:Qfunctionintrace}
-2\ln p(\mathbf x_{t+1}, \mathbf y_{t+1};\boldsymbol\theta)&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
-&-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace\nonumber \\
-&-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace.
-\end{align}
-Rearranging and taking the expectation of the log-likelihood function over all time instants gives the required lower-bound, which is to be maximized for the optimal parameter estimates. Note that the expectation distributes over the trace sum. Therefore, 
-\begin{align}\label{eq:MRA-QintermsofTraces}
-\mathcal Q(\boldsymbol \theta, \boldsymbol\theta')&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \boldsymbol\Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
-&-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace,
+where $\beta$ is constant with respect to $\boldsymbol\theta$. Equation~\eqref{eq:MRA-QCompact} is maximum at
+\begin{align}\label{eq:MRA-thetahat}
+\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top,
 \end{align}
 where
 \begin{align}
-\boldsymbol\Xi_0&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right] \label{eq:MRA-Xi0}\\
-\boldsymbol\Xi_1&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t}^\top\right] \label{eq:MRA-Xi1}.
+\boldsymbol\upsilon_0&=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]_{j,i}\label{eq:epsilon0} \\
+\boldsymbol\upsilon_1&=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_1]^{j,i} \label{eq:epsilon1}\\
+\boldsymbol\Upsilon&=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i},\label{eq:Epsilon}
+\end{align} 
+where $[\cdot]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix, and $ [\cdot]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix and where 
+\begin{align}
+\left[ \Gamma_1\right]^{j,i} &=\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i},\\
+\left[ \Gamma_2\right] ^{j,i}&=\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}.
 \end{align}
-The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005}, (see \ref{ap:Xiderivation} for more details)
+Each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is 
+\begin{align}\label{eq:Uij}
+\left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) \mathrm{d}r'\right]_{i:} \mathrm{d}r,
+\end{align}
+where $[\cdot]_{i:} $ denotes the $i^{th}$ row.  Each element of $\boldsymbol\Lambda_{\theta}$ can be calculated using
+\begin{equation}\label{eq:MRA-LambdaThetaElements}
+\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta.
+\end{equation}
+The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon} are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005}, 
 \begin{align}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \label{eq:Xi0} \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).  \label{eq:Xi1}
 \end{align} 
-The goal of the remainder of the derivation is to isolate $\boldsymbol\theta$ from the terms forming $\mathcal{Q}$. The three traces that form Eq.~\eqref{eq:MRA-QintermsofTraces} are dealt with in turn. To begin, the first trace is written in terms of element-wise summations
-\begin{align}\label{eq:MRA-trace1}
-\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i=1}^{n_x}\left[ \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right]_{ii} \nonumber \\
-&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}  \boldsymbol\Lambda_{\theta}\right]_{ji}\nonumber\\
-&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{jk} \left[ \boldsymbol\Lambda_{\theta}\right]_{ki},
-\end{align}
-where $[\cdot]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix. Each element of $\boldsymbol\Lambda_{\theta}$ can be calculated using
-\begin{equation}\label{eq:MRA-LambdaThetaElements}
-\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta,
-\end{equation}
-where $ [\cdot]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix. Each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is 
-\begin{align}\label{eq:Uij}
-\left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) \mathrm{d}r'\right]_{i:} \mathrm{d}r,
-\end{align}
-where $[\cdot]_{i:} $ denotes the $i^{th}$ row.  By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from Eq.~\eqref{eq:MRA-LambdaThetaElements} the trace given in Eq.~\eqref{eq:MRA-trace1} can be written as
-\begin{align}
-\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}\boldsymbol\theta \nonumber \\
-&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta,
-\end{align}
-where
-\begin{align}
-\left[ \Gamma_1\right]^{j,i} =\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}.
-\end{align}
-The second trace of Eq.~\eqref{eq:MRA-QintermsofTraces} is dealt with in a similar manner, giving
-\begin{align}
-\mathrm{tr} \left\lbrace \boldsymbol \Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=
-\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_1\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta.
-\end{align}
-Likewise, the third trace of Eq.~\eqref{eq:MRA-QintermsofTraces} is broken down into element-wise summations
-\begin{align}
-\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j,k,m=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}[\boldsymbol\Lambda_{\theta}^{\top}]_{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\boldsymbol\Lambda_{\theta}]_{mi} \nonumber \\
-=&\boldsymbol\theta^\top\sum_{i,j=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}~\boldsymbol\theta \nonumber \\
-&=\boldsymbol\theta^\top\sum_{i,j=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}\left[ \Gamma_2\right] ^{j,i}\boldsymbol\theta,
-\end{align}
-where
-\begin{align}
-\left[ \Gamma_2\right] ^{j,i}=\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}.
-\end{align}
-Therefore the $\mathcal Q$-function can be rewritten as
-\begin{equation}\label{eq:MRA-QCompact}
-\mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
-\end{equation}
-where
-\begin{equation}\label{eq:epsilon0}
-\boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]_{j,i},
-\end{equation}
-\begin{equation}\label{eq:epsilon1}
-\boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_1]^{j,i},
-\end{equation}                                                                                 
-and
-\begin{equation}\label{eq:Epsilon}
-\boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}.
-\end{equation}
-By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
-\begin{align}\label{eq:MRA-QDerivative}
-\frac{\partial \mathcal Q}{\partial \boldsymbol\theta}&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-T_s\varsigma(\boldsymbol\Upsilon^\top+\boldsymbol\Upsilon)\boldsymbol\theta \nonumber \\
-&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-2T_s\varsigma\boldsymbol\Upsilon^\top\boldsymbol\theta.
-\end{align}
-Equating Eq.~\eqref{eq:MRA-QDerivative} to $\mathbf 0$ vector yields
-\begin{align}\label{eq:MRA-thetahat}
-\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top.
-\end{align}
 The second derivative of the $\mathcal Q$-function is given by
 \begin{equation}
 \frac{\partial^2\mathcal Q}{\partial\boldsymbol\theta^2}=-2T_s\varsigma\boldsymbol\Upsilon.
@@ -1045,6 +962,120 @@ The EM algorithm alternates between maximizing the lower bound with respect to t
 &=\mathcal{Q}(\boldsymbol\theta,\boldsymbol\theta')+\mathrm{const.}~,\label{eq:EM-ComDaLogLike}
 \end{align}
 where $ \mathbf E_{\boldsymbol \theta'}\left[ \cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). The constant term is the negative entropy of $q(\mathbf X)$ and is independent of $\boldsymbol\theta$.   It becomes clear from Eq.~\eqref{eq:EM-ComDaLogLike} that, the M-step essentially maximizes the expectation of the complete data log-likelihood. 
+
+\section{Lower bound}\label{ap:QDerivation}
+For the linear state-space model given by Eqs.~\eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ can be written as
+ \begin{equation}\label{eq:jointdistribution}
+  p(\mathbf X,\mathbf Y;\boldsymbol \theta)=\prod_{t=0}^{T-1} p(\mathbf y_{t+1}|\mathbf x_{t+1})p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)p(\mathbf x_0).
+ \end{equation}
+The $\mathcal Q$-function, or lower-bound on the likelihood, can be expressed in terms of the joint distribution components
+ \begin{align}
+  \mathcal Q(\boldsymbol \theta,\boldsymbol\theta')&=\mathbf E_{\boldsymbol \theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \theta)\right] \nonumber \\
+ &=\mathbf E_{\boldsymbol\theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf y_{t+1}|\mathbf x_{t+1})+\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)
+ +\sum_{t=0}^{T-1}2\ln p(\mathbf x_0)\right].
+ \end{align}   
+It should be noted that neither $p(\mathbf y_{t+1}|\mathbf x_{t+1})$ nor $p(\mathbf x_0)$ are functions of the parameter set and therefore the $\mathcal Q$-function can be rewritten as
+\begin{equation}
+\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}2\ln p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)\right]+\mathrm{constant},
+\end{equation}
+where the constant term can be ignored as it is independent of the parameters. Under the condition that the state distribution is Gaussian --- ignoring the normalizing term, $1/(2\pi)^{\frac{n_x}{2}}\mid\boldsymbol\Sigma_w\mid^{-\frac{1}{2}}$ --- the conditional distribution $p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\theta)$ can be written as
+\begin{align}
+p(\mathbf x_{t+1} | \mathbf x_{t};\boldsymbol\theta)=  \exp\left({-\frac{1}{2}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)^\top\boldsymbol\Sigma_w^{-1}\left(\mathbf x_{t+1}-\mathbf A\left(\boldsymbol\theta\right)\mathbf  x_t\right)}\right).
+\end{align}
+Twice the logarithm of the above distribution, once expanded, is given by
+\begin{align}\label{eq:Qfunction}
+2\ln p(\mathbf x_{t+1} , \mathbf y_{t+1};\boldsymbol\theta)=&-\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_{t+1}+2\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf A( \boldsymbol\theta)\mathbf x_t\nonumber \\
+&-\mathbf x_t^\top\mathbf A^\top(\boldsymbol\theta)\boldsymbol\Sigma_w^{-1}\mathbf A(\boldsymbol\theta)\mathbf x_t.
+\end{align}
+The factor of 2 is included to simplify the derivation in the later steps. Substituting $\mathbf A( \boldsymbol\theta)$ from Eq.~\eqref{eq:A_theta} into Eq.~\eqref{eq:Qfunction} gives
+\begin{align}
+2\ln p(\mathbf x_{t+1}, \mathbf y_{t+1};\boldsymbol\theta)=&\beta+2 T_s\varsigma\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t \nonumber \\
+&-T_s^2\varsigma^2\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t-2\xi \varsigma T_s\mathbf x_t^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\mathbf x_t,\nonumber \\
+\end{align}
+where 
+\begin{equation}
+\beta=-\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_{t+1}+2\xi\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\mathbf x_t-\xi^2\mathbf x_t^\top\boldsymbol\Sigma_w^{-1}\mathbf x_t,
+\end{equation}
+is constant with respect to the parameter $\boldsymbol\theta$, and will disappear subject to differentiation with respect to $\boldsymbol\theta$. Taking the trace and rearranging, using the invariant cyclic permutations property of the trace, this distribution can be written as
+\begin{align}\label{eq:Qfunctionintrace}
+2\ln p(\mathbf x_{t+1}, \mathbf y_{t+1};\boldsymbol\theta)&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t+1}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
+&-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_t^\top \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace\nonumber \\
+&-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \mathbf x_t\mathbf x_{t}^\top\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace.
+\end{align}
+Rearranging and taking the expectation of the log-likelihood function over all time instants gives the required lower-bound, which is to be maximized for the optimal parameter estimates. Note that the expectation distributes over the trace sum. Therefore, 
+\begin{align}\label{eq:MRA-QintermsofTraces}
+\mathcal Q(\boldsymbol \theta, \boldsymbol\theta')&=\beta+2 T_s\varsigma\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace-2\xi\varsigma T_s\mathrm{tr} \left\lbrace \boldsymbol\Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace \nonumber \\
+&-T_s^2\varsigma^2\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace,
+\end{align}
+where
+\begin{align}
+\boldsymbol\Xi_0&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right] \label{eq:app-Xi0}\\
+\boldsymbol\Xi_1&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t}^\top\right] \label{eq:app-Xi1}.
+\end{align}
+The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs (see \ref{ap:Xiderivation} for more details)
+
+The goal of the remainder of the derivation is to isolate $\boldsymbol\theta$ from the terms forming $\mathcal{Q}$. The three traces that form Eq.~\eqref{eq:MRA-QintermsofTraces} are dealt with in turn. To begin, the first trace is written in terms of element-wise summations
+\begin{align}\label{eq:MRA-trace1}
+\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i=1}^{n_x}\left[ \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right]_{ii} \nonumber \\
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}  \boldsymbol\Lambda_{\theta}\right]_{ji}\nonumber\\
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{jk} \left[ \boldsymbol\Lambda_{\theta}\right]_{ki},
+\end{align}
+where $[\cdot]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix. Each element of $\boldsymbol\Lambda_{\theta}$ can be calculated using
+\begin{equation}\label{eq:MRA-LambdaThetaElements}
+\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta,
+\end{equation}
+where $ [\cdot]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix. Each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is 
+\begin{align}\label{eq:Uij}
+\left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) \mathrm{d}r'\right]_{i:} \mathrm{d}r,
+\end{align}
+where $[\cdot]_{i:} $ denotes the $i^{th}$ row.  By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from Eq.~\eqref{eq:MRA-LambdaThetaElements} the trace given in Eq.~\eqref{eq:MRA-trace1} can be written as
+\begin{align}
+\mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}\boldsymbol\theta \nonumber \\
+&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta,
+\end{align}
+where
+\begin{align}
+\left[ \Gamma_1\right]^{j,i} =\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}.
+\end{align}
+The second trace of Eq.~\eqref{eq:MRA-QintermsofTraces} is dealt with in a similar manner, giving
+\begin{align}
+\mathrm{tr} \left\lbrace \boldsymbol \Xi_1\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=
+\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_1\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta.
+\end{align}
+Likewise, the third trace of Eq.~\eqref{eq:MRA-QintermsofTraces} is broken down into element-wise summations
+\begin{align}
+\mathrm{tr} \left\lbrace \boldsymbol\Xi_1 \boldsymbol\Lambda_{\theta}^\top\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j,k,m=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}[\boldsymbol\Lambda_{\theta}^{\top}]_{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\boldsymbol\Lambda_{\theta}]_{mi} \nonumber \\
+=&\boldsymbol\theta^\top\sum_{i,j=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}~\boldsymbol\theta \nonumber \\
+&=\boldsymbol\theta^\top\sum_{i,j=1}^{n_x}\left[\boldsymbol\Xi_1\right] _{i,j}\left[ \Gamma_2\right] ^{j,i}\boldsymbol\theta,
+\end{align}
+where
+\begin{align}
+\left[ \Gamma_2\right] ^{j,i}=\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}.
+\end{align}
+Therefore the $\mathcal Q$-function can be rewritten as
+\begin{equation}\label{eq:appQCompact}
+\mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
+\end{equation}
+where
+\begin{equation}\label{eq:appepsilon0}
+\boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]_{j,i},
+\end{equation}
+\begin{equation}\label{eq:appepsilon1}
+\boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_1]^{j,i},
+\end{equation}                                                                                 
+and
+\begin{equation}\label{eq:appEpsilon}
+\boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}.
+\end{equation}
+By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
+\begin{align}\label{eq:MRA-QDerivative}
+\frac{\partial \mathcal Q}{\partial \boldsymbol\theta}&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-T_s\varsigma(\boldsymbol\Upsilon^\top+\boldsymbol\Upsilon)\boldsymbol\theta \nonumber \\
+&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-2T_s\varsigma\boldsymbol\Upsilon^\top\boldsymbol\theta.
+\end{align}
+Equating Eq.~\eqref{eq:MRA-QDerivative} to $\mathbf 0$ vector yields
+\begin{align}\label{eq:MRA-thetahat}
+\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top.
+\end{align}   
 \section{Calculation of $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}\label{ap:Xiderivation}
 The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here we present the derivation for completeness.  The expression for  $\boldsymbol\Xi_{0}$ as defined in Eq.~\eqref{eq:MRA-Xi0} of the main text is given by
    \begin{equation}\label{eq:appXi0}
