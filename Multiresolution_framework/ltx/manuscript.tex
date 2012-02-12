@@ -758,11 +758,11 @@ $ \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_
 \renewcommand{\arraystretch}{1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}\label{sec:MRA-results}
-To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using Eqs.~\eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation}, allowing a comparison between true and estimated parameters. In doing so, the membrane time constant was set to $\tau = 10$~ms \citep{David2003}, and the sampling time was chosen ten times faster \citep{Stephan2008}, i.e. $T_s = 1$~ms, ensuring the discrepancy between the continuous neural field model and its discrete approximation is small. The connectivity kernel used for data generation composed of two B-spline scaling functions at $j=0$ and $j=1$ forming a compact support Mexican hat shape (see Fig.\ref{fig:KernelEstimate}) given by
+To demonstrate the performance of the MRAIDE estimation framework, data was generated synthetically  using Eqs.~\eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation}, allowing a comparison between true and estimated parameters. In doing so, the membrane time constant was set to $\tau = 10$~ms \citep{David2003}, and the sampling time was chosen ten times faster \citep{Stephan2008}, i.e. $T_s = 1$~ms, ensuring the discrepancy between the continuous neural field model and its discrete approximation is small. The connectivity kernel used for data generation composed of two B-spline scaling functions at $j=0$ and $j=1$ forming a compact support Mexican hat shape 
 \begin{equation}\label{eq:ConnectivityKernelForData}
 	w(r-r')=\theta_1\times N_{4;1,2}(r-r')+\theta_2\times N_{4;0,2}(r-r'),
 \end{equation}
-with $\theta_1=200$ and $\theta_2=-100$. \dean{This is depicted in Figure~\ref{fig:}}
+with $\theta_1=200$ and $\theta_2=-100$. This is depicted in Fig.~\ref{fig:KernelEstimate}(A).
 
 Two different experiments were designed to test the framework. In the first one, 200 realizations of 1 second of data were used, where the field disturbance, $e_t$, and the observation noise, $\boldsymbol\epsilon_t$, were regenerated each run. This way the net shape of the connectivity kernel could be formed by averaging over the parameters estimates from each realization. \dean{the frequency response of the observed field used to decide on the level...} . In the second experiment, a single data set was generated and the field estimations are compared for five state-space models, each accounting up to a certain level of approximation, i.e. $j=0$ to $j=4$. All parameters for the model are given in Table~\ref{tab:Parameters}.
 
@@ -919,7 +919,7 @@ A derivation of the lower bound on the likelihood function that is based on \cit
 \begin{equation}
  p(\mathbf Y;\boldsymbol\theta)=\int_{\mathbf X}p(\mathbf X,\mathbf Y;\boldsymbol\theta)\mathrm{d}\mathbf X,
 \end{equation}
-which is difficult to perform directly. Maximizing the likelihood in terms of the parameter set is equivalent to the log-likelihood maximization, as both the likelihood and log-likelihood functions share the same maximizer due to the monotonicity of the logarithm function. For any choice of distribution defined over the latent variables, $q(\mathbf X)$, the following decomposition holds
+which is difficult to perform directly. Maximizing the likelihood in terms of the parameter set is equivalent to the log-likelihood maximization, as both the likelihood and log-likelihood functions share the same maximizer due to the monotonicity of the logarithm function. For any choice of distribution defined over the hidden variables, $q(\mathbf X)$, the following decomposition holds
 \begin{equation}\label{eq:EM-loglikelihooddecomposition}
  \ln~p(\mathbf Y;\boldsymbol\theta)=\mathcal{L}(q,\boldsymbol\theta)+\mathrm{KL}(q\parallel p),
 \end{equation}
@@ -1056,7 +1056,7 @@ The second derivative of the $\mathcal Q$-function is given by
 \end{equation}
 The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}$ matrix $\mathrm{vec}(\mathbf U)$ is of rank $n_{\theta}$ (\citep{Dewar2009}, Lemma 3), where $\mathrm{vec}(\cdot)$ denotes the vectorization operator. Under this condition $\boldsymbol\Upsilon$ is  invertible and the second derivative is negative definite representing a maximum of the $\mathcal Q$-function.  
 \section{Calculation of $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}\label{ap:Xiderivation}
-The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here we present the derivation for completeness.  The expression for  $\boldsymbol\Xi_{0}$ as defined in Eq.~\eqref{eq:MRA-Xi0} of the main text is given by
+The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here we present the derivation for completeness.  The expression for  $\boldsymbol\Xi_{0}$ as defined in Eq.~\eqref{eq:app-Xi0} of the main text is given by
    \begin{equation}\label{eq:appXi0}
 	 \boldsymbol\Xi_0=\mathbf E_{\theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right].
 	\end{equation}                                                                                                
