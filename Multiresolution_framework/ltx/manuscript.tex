@@ -959,7 +959,7 @@ The EM algorithm alternates between maximizing the lower bound with respect to t
 \end{align}
 where $ \mathbf E_{\boldsymbol \theta'}\left[ \cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). The constant term is the negative entropy of $q(\mathbf X)$ and is independent of $\boldsymbol\theta$.   It becomes clear from Eq.~\eqref{eq:EM-ComDaLogLike} that, the M-step essentially maximizes the expectation of the complete data log-likelihood. 
 
-\section{Lower bound}\label{ap:QDerivation}
+\section{Construction and maximization of the Lower bound for the state-space representation of the MRAIDE}\label{ap:QDerivation}
 For the linear state-space model given by Eqs.~\eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ can be written as
  \begin{equation}\label{eq:jointdistribution}
   p(\mathbf X,\mathbf Y;\boldsymbol \theta)=\prod_{t=0}^{T-1} p(\mathbf y_{t+1}|\mathbf x_{t+1})p(\mathbf x_{t+1}|\mathbf x_{t};\boldsymbol \theta)p(\mathbf x_0).
@@ -1008,7 +1008,7 @@ where
 \boldsymbol\Xi_0&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right] \label{eq:app-Xi0}\\
 \boldsymbol\Xi_1&=\mathbf E_{\Theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t}^\top\right] \label{eq:app-Xi1}.
 \end{align}
-The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs (see \ref{ap:Xiderivation} for more details)
+The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ are calculated using the RTS smoother outputs (see \ref{ap:Xiderivation} for more details).
 
 The goal of the remainder of the derivation is to isolate $\boldsymbol\theta$ from the terms forming $\mathcal{Q}$. The three traces that form Eq.~\eqref{eq:MRA-QintermsofTraces} are dealt with in turn. To begin, the first trace is written in terms of element-wise summations
 \begin{align}\label{eq:MRA-trace1}
@@ -1020,11 +1020,7 @@ Each element of $\boldsymbol\Lambda_{\theta}$ can be calculated using
 \begin{equation}\label{eq:LambdaThetaElements}
 \left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta,
 \end{equation}
-where each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is 
-\begin{align}\label{eq:app-Uij}
-\left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) \mathrm{d}r'\right]_{i:} \mathrm{d}r,
-\end{align}
-By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from Eq.~\eqref{eq:app-LambdaThetaElements} the trace given in Eq.~\eqref{eq:MRA-trace1} can be written as
+where $\left[ \mathbf U\right] ^{k,i}$ can be computed using Eq.~\eqref{eq:Uij}. By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from Eq.~\eqref{eq:LambdaThetaElements} the trace given in Eq.~\eqref{eq:MRA-trace1} can be written as
 \begin{align}
 \mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}\boldsymbol\theta \nonumber \\
 &=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta,
