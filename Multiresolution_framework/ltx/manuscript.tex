@@ -622,7 +622,7 @@ In summary, to solve the joint state and parameter estimation for linear state-s
 \label{fig:EMBlockDiagram}
 \end{figure}
 \subsection{E-step}
-As mentioned earlier, the E-step for state-space models is equivalent to the smoothing problem. We use the RTS smoother, given in Table~\ref{alg:MRA-RTS} for completeness, in order to infer the states of the system. The RTS smoother uses the Kalman filter \citep{Kalman1960} in forward pass (Steps~1 and 2 in Table~\ref{alg:MRA-RTS}), along with a backward iteration to calculate its outputs (Steps~3 and 4 in Table~\ref{alg:MRA-RTS}): smoothed states $\hat{\mathbf x}^b_t$ and covariances, $\mathbf P^b_t=\mathrm{cov}(\mathbf{x}_t)$. Following \cite{Gibsona2005}, an additional backwards recursion is also included (Step~5 in Table~\ref{alg:MRA-RTS})	to calculate cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t},\mathbf{x}_{t+1})$, which is also required in forming the lower bound to be maximized in the M-step. Note that the following quantities from the forward iteration should be stored when implementing the RTS smoother: predicted and corrected estimates for both state estimates ($\hat{\mathbf{x}}_t^{f-}$, $\hat{\mathbf{x}}_t^{f}$) and covariance matrices ($\mathbf P_t^{f-}$,$\mathbf P_t^f$). Also, the final value of the Kalman gain, $\mathcal K_T$, should be stored in order to initialize the backward cross-covariance computation. 
+As mentioned earlier, the E-step for state-space models is equivalent to the smoothing problem. We use the RTS smoother, given in Table~\ref{alg:MRA-RTS} for completeness, in order to infer the states of the system. The RTS smoother uses the Kalman filter \citep{Kalman1960} in forward pass (Steps~1 and 2 in Table~\ref{alg:MRA-RTS}), along with a backward iteration to calculate its outputs (Steps~3 and 4 in Table~\ref{alg:MRA-RTS}): smoothed states $\hat{\mathbf x}^b_t$ and covariances, $\mathbf P^b_t=\mathrm{cov}(\mathbf{x}_t)$. Following \cite{Gibsona2005}, an additional backwards recursion is also included (Step~5 in Table~\ref{alg:MRA-RTS})	to calculate cross-covariance matrix, $\mathbf M_t=\mathrm{cov}(\mathbf{x}_{t},\mathbf{x}_{t+1})$, which is also required in forming the lower bound to be maximized in the M-step. Note that the following quantities from the forward iteration should be stored when the RTS smoother is implemented: predicted and corrected estimates for both state estimates ($\hat{\mathbf{x}}_t^{f-}$, $\hat{\mathbf{x}}_t^{f}$) and covariance matrices ($\mathbf P_t^{f-}$,$\mathbf P_t^f$). Also, the final value of the Kalman gain, $\mathcal K_T$, should be stored in order to initialize the backward cross-covariance computation. 
 \renewcommand{\arraystretch}{1.7}
 \begin{table*}[!ht]
 \begin{tabular}{|c|}\hline
@@ -685,11 +685,7 @@ Each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matri
 \begin{align}\label{eq:Uij}
 \left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) \mathrm{d}r'\right]_{i:} \mathrm{d}r,
 \end{align}
-where $[\cdot]_{i:} $ denotes the $i^{th}$ row.  Each element of $\boldsymbol\Lambda_{\theta}$ can be calculated using
-\begin{equation}\label{eq:MRA-LambdaThetaElements}
-\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta.
-\end{equation}
-The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon} are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005}, 
+where $[\cdot]_{i:} $ denotes the $i^{th}$ row. The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon} are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005}, 
 \begin{align}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \label{eq:Xi0} \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).  \label{eq:Xi1}
@@ -720,7 +716,7 @@ $\Xi_0, \Xi_1$&Eqs.~\eqref{eq:Xi0} and \eqref{eq:Xi1}&$O(Tn_x^2)$& \----\\
 $\boldsymbol\upsilon_0, \boldsymbol\upsilon_1$&Eqs.~\eqref{eq:epsilon0} and \eqref{eq:epsilon1} &$O(n_x^2n_{\theta})$ &$O(n_x^2n_{\theta})+O(n_x^3)$ \\
 $\boldsymbol\Upsilon$&Eq.~\eqref{eq:Epsilon}&$O(n_x^2n_{\theta}^2)$&$O(n_x^4n_{\theta}^2)$\\
 $\mathbf A(\boldsymbol\theta)$&Eq.~\eqref{eq:A_theta}&$O(n_x^3)$&\----\\
-$\boldsymbol\Lambda_{\theta}$&Eq.~\eqref{eq:MRA-LambdaThetaElements}&$O(n_x^2n_{\theta})$&\----\\
+$\boldsymbol\Lambda_{\theta}$&Eq.~\eqref{eq:LambdaThetaElements}&$O(n_x^2n_{\theta})$&\----\\
 $\hat{\boldsymbol\theta} $&Eq.~\eqref{eq:MRA-thetahat}&$O(n_{\theta}^3)$&\----\\
 \hline \hline
 \end{tabular}}
@@ -1020,15 +1016,15 @@ The goal of the remainder of the derivation is to isolate $\boldsymbol\theta$ fr
 &=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}  \boldsymbol\Lambda_{\theta}\right]_{ji}\nonumber\\
 &=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{jk} \left[ \boldsymbol\Lambda_{\theta}\right]_{ki},
 \end{align}
-where $[\cdot]_{p,q}$ denotes the $\left(p,q\right)$-element of the matrix. Each element of $\boldsymbol\Lambda_{\theta}$ can be calculated using
-\begin{equation}\label{eq:MRA-LambdaThetaElements}
+Each element of $\boldsymbol\Lambda_{\theta}$ can be calculated using
+\begin{equation}\label{eq:LambdaThetaElements}
 \left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta,
 \end{equation}
-where $ [\cdot]^{p,q}$ denotes the $\left(p,q\right)$-block of the block matrix. Each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is 
-\begin{align}\label{eq:Uij}
+where each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matrix $\mathbf U$ is 
+\begin{align}\label{eq:app-Uij}
 \left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) \mathrm{d}r'\right]_{i:} \mathrm{d}r,
 \end{align}
-where $[\cdot]_{i:} $ denotes the $i^{th}$ row.  By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from Eq.~\eqref{eq:MRA-LambdaThetaElements} the trace given in Eq.~\eqref{eq:MRA-trace1} can be written as
+By substituting for $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}$ from Eq.~\eqref{eq:app-LambdaThetaElements} the trace given in Eq.~\eqref{eq:MRA-trace1} can be written as
 \begin{align}
 \mathrm{tr} \left\lbrace \boldsymbol \Xi_0\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\boldsymbol\Lambda_{\theta}\right\rbrace&=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}\boldsymbol\theta \nonumber \\
 &=\sum_{i,j=1}^{n_x}\left[ \boldsymbol\Xi_0\right]_{ij}\left[ \Gamma_1\right] ^{j,i}\boldsymbol\theta,
@@ -1056,24 +1052,16 @@ Therefore the $\mathcal Q$-function can be rewritten as
 \begin{equation}\label{eq:appQCompact}
 \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
-where
-\begin{equation}\label{eq:appepsilon0}
-\boldsymbol\upsilon_0=\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_0]_{i,j}[\boldsymbol\Gamma_1]_{j,i},
-\end{equation}
-\begin{equation}\label{eq:appepsilon1}
-\boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_1]^{j,i},
-\end{equation}                                                                                 
-and
-\begin{equation}\label{eq:appEpsilon}
-\boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}.
-\end{equation}
+where 
+$\boldsymbol\upsilon_0$, $\boldsymbol\upsilon_1$ and $\boldsymbol\Upsilon$ are defined in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon}.
+
 By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
 \begin{align}\label{eq:MRA-QDerivative}
 \frac{\partial \mathcal Q}{\partial \boldsymbol\theta}&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-T_s\varsigma(\boldsymbol\Upsilon^\top+\boldsymbol\Upsilon)\boldsymbol\theta \nonumber \\
 &=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-2T_s\varsigma\boldsymbol\Upsilon^\top\boldsymbol\theta.
 \end{align}
 Equating Eq.~\eqref{eq:MRA-QDerivative} to $\mathbf 0$ vector yields
-\begin{align}\label{eq:MRA-thetahat}
+\begin{align}\label{eq:app-thetahat}
 \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top.
 \end{align}   
 \section{Calculation of $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}\label{ap:Xiderivation}
