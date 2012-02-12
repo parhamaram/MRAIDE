@@ -690,11 +690,7 @@ where $[\cdot]_{i:} $ denotes the $i^{th}$ row. The matrices $\boldsymbol\Xi_0$ 
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \label{eq:Xi0} \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).  \label{eq:Xi1}
 \end{align} 
-The second derivative of the $\mathcal Q$-function is given by
-\begin{equation}
-\frac{\partial^2\mathcal Q}{\partial\boldsymbol\theta^2}=-2T_s\varsigma\boldsymbol\Upsilon.
-\end{equation}
-The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}$ matrix $\mathrm{vec}(\mathbf U)$ is of rank $n_{\theta}$ (\citep{Dewar2009}, Lemma 3), where $\mathrm{vec}(\cdot)$ denotes the vectorization operator. Under this condition $\boldsymbol\Upsilon$ is  invertible and the second derivative is negative definite representing a maximum of the $\mathcal Q$-function. 
+
 
 \subsection{Stopping rule}
 The stopping criterion is usually associated with either the change in the parameter estimates or the log-likelihood variation \citep{McLachlan1997}. The stopping rule adopted herein is
@@ -1049,9 +1045,7 @@ Therefore the $\mathcal Q$-function can be rewritten as
 \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
 where 
-$\boldsymbol\upsilon_0$, $\boldsymbol\upsilon_1$ and $\boldsymbol\Upsilon$ are defined in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon}.
-
-By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
+$\boldsymbol\upsilon_0$, $\boldsymbol\upsilon_1$ and $\boldsymbol\Upsilon$ are defined in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon}. By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$ we have
 \begin{align}\label{eq:MRA-QDerivative}
 \frac{\partial \mathcal Q}{\partial \boldsymbol\theta}&=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-T_s\varsigma(\boldsymbol\Upsilon^\top+\boldsymbol\Upsilon)\boldsymbol\theta \nonumber \\
 &=2T_s\varsigma(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top-2T_s\varsigma\boldsymbol\Upsilon^\top\boldsymbol\theta.
@@ -1059,7 +1053,12 @@ By differentiating the $\mathcal Q$-function with respect to $\boldsymbol\theta$
 Equating Eq.~\eqref{eq:MRA-QDerivative} to $\mathbf 0$ vector yields
 \begin{align}\label{eq:app-thetahat}
 \boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top.
-\end{align}   
+\end{align}
+The second derivative of the $\mathcal Q$-function is given by
+\begin{equation}
+\frac{\partial^2\mathcal Q}{\partial\boldsymbol\theta^2}=-2T_s\varsigma\boldsymbol\Upsilon.
+\end{equation}
+The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}$ matrix $\mathrm{vec}(\mathbf U)$ is of rank $n_{\theta}$ (\citep{Dewar2009}, Lemma 3), where $\mathrm{vec}(\cdot)$ denotes the vectorization operator. Under this condition $\boldsymbol\Upsilon$ is  invertible and the second derivative is negative definite representing a maximum of the $\mathcal Q$-function.  
 \section{Calculation of $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}\label{ap:Xiderivation}
 The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here we present the derivation for completeness.  The expression for  $\boldsymbol\Xi_{0}$ as defined in Eq.~\eqref{eq:MRA-Xi0} of the main text is given by
    \begin{equation}\label{eq:appXi0}
