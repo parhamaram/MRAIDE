@@ -690,8 +690,7 @@ where $[\cdot]_{i:} $ denotes the $i^{th}$ row. The matrices $\boldsymbol\Xi_0$ 
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \label{eq:Xi0} \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).  \label{eq:Xi1}
 \end{align} 
-
-
+The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\boldsymbol\theta,\boldsymbol\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge. A summary of the joint state parameter estimation is given in Table~\ref{alg:EMsteps}.   
 \subsection{Stopping rule}
 The stopping criterion is usually associated with either the change in the parameter estimates or the log-likelihood variation \citep{McLachlan1997}. The stopping rule adopted herein is
 \begin{equation}
@@ -720,8 +719,6 @@ $\hat{\boldsymbol\theta} $&Eq.~\eqref{eq:MRA-thetahat}&$O(n_{\theta}^3)$&\----\\
 \label{table:MRA-ComputationalComplexity}
 \end{center}
 \end {table} 
-
-The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\boldsymbol\theta,\boldsymbol\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge. A summary of the joint state parameter estimation is given in Table~\ref{alg:EMsteps}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\arraystretch}{1.7}
 \begin{table*}[!ht]
