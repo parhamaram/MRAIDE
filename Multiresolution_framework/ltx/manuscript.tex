@@ -660,7 +660,7 @@ The lower bound on the log-likelihood function is given by the expectation of th
 \begin{equation}\label{eq:Bishopbound}
 	\mathcal Q(\boldsymbol \theta,\boldsymbol\theta')= \mathbf E_{\boldsymbol \theta'}\left[2\ln p(\mathbf X,\mathbf Y;\boldsymbol \theta)\right], 
 \end{equation}
-where $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ is the joint probability distribution of the states and the observations and $ \mathbf E_{\boldsymbol \theta'}\left[\cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). Note that this is actually the smoother output which is obtained at the E-step.
+where $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ is the joint probability distribution of the states and the observations and $ \mathbf E_{\boldsymbol \theta'}\left[\cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). Note that $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$), is actually the smoother output which is obtained at the E-step.
 
 For the linear state-space model given by Eqs.~\eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}, the bound defined by Eq.~\eqref{eq:Bishopbound} is a quadratic of the form (see \ref{ap:QDerivation} for derivation) 
 \begin{equation}\label{eq:MRA-QCompact}
