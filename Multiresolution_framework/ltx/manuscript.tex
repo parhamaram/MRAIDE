@@ -685,7 +685,7 @@ Each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matri
 \begin{align}\label{eq:Uij}
 \left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) \mathrm{d}r'\right]_{i:} \mathrm{d}r,
 \end{align}
-where $[\cdot]_{i:} $ denotes the $i^{th}$ row. The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon} are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005}, 
+where $[\cdot]_{i:} $ denotes the $i^{th}$ row. The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon} are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005} (see \ref{ap:Xiderivation} for details), 
 \begin{align}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \label{eq:Xi0} \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).  \label{eq:Xi1}
@@ -1055,11 +1055,11 @@ The second derivative of the $\mathcal Q$-function is given by
 \end{equation}
 The matrix $\boldsymbol\Upsilon$ is positive definite if $n_x^2\times n_{\theta}$ matrix $\mathrm{vec}(\mathbf U)$ is of rank $n_{\theta}$ (\citep{Dewar2009}, Lemma 3), where $\mathrm{vec}(\cdot)$ denotes the vectorization operator. Under this condition $\boldsymbol\Upsilon$ is  invertible and the second derivative is negative definite representing a maximum of the $\mathcal Q$-function.  
 \section{Calculation of $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$}\label{ap:Xiderivation}
-The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here we present the derivation for completeness.  The expression for  $\boldsymbol\Xi_{0}$ as defined in Eq.~\eqref{eq:app-Xi0} is given by
+The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of smoother outputs can be found in \cite{Shumway2000}, here the derivation is presented for completeness.  We start with the expression for  $\boldsymbol\Xi_{0}$ as defined in Eq.~\eqref{eq:app-Xi0} 
    \begin{equation}\label{eq:appXi0}
 	 \boldsymbol\Xi_0=\mathbf E_{\theta'}\left[\sum_{t=0}^{T-1}\mathbf x_t\mathbf x_{t+1}^\top\right].
 	\end{equation}                                                                                                
-	We start by computing the cross-covariance matrix as 
+	First we compute the cross-covariance matrix giving
 	
 \begin{align}\label{eq:Xi0derivation0} 
  \mathbf M_{t+1}&=\mathbf E_{\theta'}\left[(\mathbf x_t-\mathbf{\hat x}_t)(\mathbf x_{t+1}-\mathbf{\hat x}_{t+1})^\top\right] \nonumber \\
@@ -1071,11 +1071,11 @@ Rearranging   Eq.~\eqref{eq:Xi0derivation0} gives
 \begin{equation}\label{eq:Xi0derivation1}
  \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]=\mathbf M_{t+1}+\mathbf {\hat x}_t\mathbf{\hat x}_{t+1}^\top.
 \end{equation}
-Substituting \ref{eq:Xi0derivation1} into \ref{eq:appXi0}, noting the expectation commutes with the sum yields
+Substituting Eq.~\eqref{eq:Xi0derivation1} into Eq.~\eqref{eq:appXi0}, noting the expectation commutes with the sum yields
 \begin{equation}
- \boldsymbol\Xi_1=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right)
+ \boldsymbol\Xi_0=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right)
 \end{equation}   
-An expression for $\boldsymbol\Xi_1$ in terms of the smoothed states can be also found in a similar way by calculating the covariance matrix, $\mathbf P_t$.
+An expression for $\boldsymbol\Xi_1$ in terms of the smoothed states can be also found in a similar way by calculating the covariance matrix, $\mathbf P_t$ and following the above steps.
 %\begin{equation}\label{eq:Xi1derivation1}
 % \mathbf E_{\theta'}\left[\mathbf x_{t}\mathbf x_{t}^\top\right]=\mathbf P_{t}+\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top,
 %\end{equation}
