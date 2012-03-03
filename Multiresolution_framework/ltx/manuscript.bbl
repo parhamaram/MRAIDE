@@ -1,4 +1,4 @@
-\begin{thebibliography}{43}
+\begin{thebibliography}{44}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -212,6 +212,12 @@
 \newblock \bibinfo{title}{Wavelets and Operators}.
 \newblock \bibinfo{publisher}{Cambridge University Press},
   \bibinfo{address}{New York}.
+%Type = Article
+\bibitem[{Pinotsis et~al.(2011)Pinotsis, Moran and Friston}]{Pinotsis2011}
+\bibinfo{author}{Pinotsis, D.}, \bibinfo{author}{Moran, R.},
+  \bibinfo{author}{Friston, K.}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Dynamic causal modeling with neural fields}.
+\newblock \bibinfo{journal}{NeuroImage} .
 %Type = Article
 \bibitem[{Qubbaj and Jirsa(2009)}]{Qubbaj2009}
 \bibinfo{author}{Qubbaj, M.}, \bibinfo{author}{Jirsa, V.},
