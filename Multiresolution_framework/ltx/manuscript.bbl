@@ -1,4 +1,4 @@
-\begin{thebibliography}{44}
+\begin{thebibliography}{47}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -14,11 +14,18 @@
 \newblock \bibinfo{journal}{Biological Cybernetics} \bibinfo{volume}{27},
   \bibinfo{pages}{77--87}.
 %Type = Article
+\bibitem[{Atay and Hutt(2005)}]{Atay2005}
+\bibinfo{author}{Atay, F.}, \bibinfo{author}{Hutt, A.}, \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{Stability and bifurcations in neural fields with
+  finite propagation speed and general connectivity}.
+\newblock \bibinfo{journal}{SIAM Journal on Applied Mathematics}
+  \bibinfo{volume}{65}, \bibinfo{pages}{644--666}.
+%Type = Article
 \bibitem[{Bilmes(1998)}]{Bilmes1998}
 \bibinfo{author}{Bilmes, J.}, \bibinfo{year}{1998}.
-\newblock \bibinfo{title}{A gentle tutorial of the em algorithm and its
-  application to parameter estimation for gaussian mixture and hidden markov
-  models}.
+\newblock \bibinfo{title}{A gentle tutorial of the {EM} algorithm and its
+  application to parameter estimation for {Gaussian} mixture and hidden
+  {Markov} models}.
 \newblock \bibinfo{journal}{International Computer Science Institute}
   \bibinfo{volume}{4}, \bibinfo{pages}{126}.
 %Type = Book
@@ -27,6 +34,15 @@
 \newblock \bibinfo{title}{Pattern Recognition and Machine Learning}.
   volume~\bibinfo{volume}{4}.
 \newblock \bibinfo{publisher}{Springer New York}.
+%Type = Article
+\bibitem[{Breakspear et~al.(2010)Breakspear, Heitmann and
+  Daffertshofer}]{Breakspear2010}
+\bibinfo{author}{Breakspear, M.}, \bibinfo{author}{Heitmann, S.},
+  \bibinfo{author}{Daffertshofer, A.}, \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Generative models of cortical oscillations:
+  neurobiological implications of the kuramoto model}.
+\newblock \bibinfo{journal}{Frontiers in Human Neuroscience}
+  \bibinfo{volume}{4}.
 %Type = Article
 \bibitem[{Breakspear and Stam(2005)}]{Breakspear2005}
 \bibinfo{author}{Breakspear, M.}, \bibinfo{author}{Stam, C.},
@@ -90,7 +106,7 @@
 %Type = Article
 \bibitem[{Evensen(2003)}]{Evensen2003}
 \bibinfo{author}{Evensen, G.}, \bibinfo{year}{2003}.
-\newblock \bibinfo{title}{The ensemble kalman filter: theoretical formulation
+\newblock \bibinfo{title}{The ensemble {Kalman} filter: theoretical formulation
   and practical implementation}.
 \newblock \bibinfo{journal}{Ocean Dynamics} \bibinfo{volume}{53},
   \bibinfo{pages}{343--367}.
@@ -102,7 +118,7 @@
 %Type = Article
 \bibitem[{Evensen(2009b)}]{Evensen2009a}
 \bibinfo{author}{Evensen, G.}, \bibinfo{year}{2009}b.
-\newblock \bibinfo{title}{The ensemble kalman filter for combined state and
+\newblock \bibinfo{title}{The ensemble {Kalman} filter for combined state and
   parameter estimation}.
 \newblock \bibinfo{journal}{IEEE Control Systems Magazine} ,
   \bibinfo{pages}{83--104}.
@@ -159,6 +175,11 @@
 \newblock \bibinfo{title}{Fundamentals of Wavelets: Theory, Algorithms, and
   Applications}.
 \newblock \bibinfo{publisher}{Wiley}, \bibinfo{address}{New York}.
+%Type = Book
+\bibitem[{Haykin(2001)}]{Haykin2001}
+\bibinfo{author}{Haykin, S.}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{{Kalman filtering and Neural Networks}}.
+\newblock \bibinfo{publisher}{Wiley Online Library}.
 %Type = Article
 \bibitem[{Jirsa and Haken(1997)}]{Jirsa1997}
 \bibinfo{author}{Jirsa, V.}, \bibinfo{author}{Haken, H.}, \bibinfo{year}{1997}.
@@ -190,14 +211,14 @@
 %Type = Article
 \bibitem[{Meng(1994)}]{Meng1994}
 \bibinfo{author}{Meng, X.}, \bibinfo{year}{1994}.
-\newblock \bibinfo{title}{On the rate of convergence of the ecm algorithm}.
+\newblock \bibinfo{title}{On the rate of convergence of the {ECM} algorithm}.
 \newblock \bibinfo{journal}{The Annals of Statistics} ,
   \bibinfo{pages}{326--339}.
 %Type = Article
 \bibitem[{Meng and Rubin(1993)}]{Meng1993}
 \bibinfo{author}{Meng, X.}, \bibinfo{author}{Rubin, D.}, \bibinfo{year}{1993}.
-\newblock \bibinfo{title}{Maximum likelihood estimation via the ecm algorithm:
-  A general framework}.
+\newblock \bibinfo{title}{Maximum likelihood estimation via the {ECM}
+  algorithm: A general framework}.
 \newblock \bibinfo{journal}{Biometrika} \bibinfo{volume}{80},
   \bibinfo{pages}{267--278}.
 %Type = Book
@@ -213,11 +234,12 @@
 \newblock \bibinfo{publisher}{Cambridge University Press},
   \bibinfo{address}{New York}.
 %Type = Article
-\bibitem[{Pinotsis et~al.(2011)Pinotsis, Moran and Friston}]{Pinotsis2011}
+\bibitem[{Pinotsis et~al.(2012)Pinotsis, Moran and Friston}]{Pinotsis2012}
 \bibinfo{author}{Pinotsis, D.}, \bibinfo{author}{Moran, R.},
-  \bibinfo{author}{Friston, K.}, \bibinfo{year}{2011}.
+  \bibinfo{author}{Friston, K.}, \bibinfo{year}{2012}.
 \newblock \bibinfo{title}{Dynamic causal modeling with neural fields}.
-\newblock \bibinfo{journal}{NeuroImage} .
+\newblock \bibinfo{journal}{NeuroImage} \bibinfo{volume}{59},
+  \bibinfo{pages}{1261--1274}.
 %Type = Article
 \bibitem[{Qubbaj and Jirsa(2009)}]{Qubbaj2009}
 \bibinfo{author}{Qubbaj, M.}, \bibinfo{author}{Jirsa, V.},
@@ -251,15 +273,16 @@
 \newblock \bibinfo{journal}{Journal of Neural Engineering} \bibinfo{volume}{5},
   \bibinfo{pages}{1--8}.
 %Type = Article
-\bibitem[{Schultze-Kraft et~al.(2010)Schultze-Kraft, Becker, Breakspear and
-  Ritter}]{Schultze-Kraft2010}
+\bibitem[{Schultze-Kraft et~al.(2011)Schultze-Kraft, Becker, Breakspear and
+  Ritter}]{Schultze-Kraft2011}
 \bibinfo{author}{Schultze-Kraft, M.}, \bibinfo{author}{Becker, R.},
   \bibinfo{author}{Breakspear, M.}, \bibinfo{author}{Ritter, P.},
-  \bibinfo{year}{2010}.
+  \bibinfo{year}{2011}.
 \newblock \bibinfo{title}{Exploiting the potential of three dimensional spatial
   wavelet analysis to explore nesting of temporal oscillations and spatial
-  variance in simultaneous eeg-fmri data}.
-\newblock \bibinfo{journal}{Progress in Biophysics and Molecular Biology} .
+  variance in simultaneous {EEG}-f{MRI} data}.
+\newblock \bibinfo{journal}{Progress in Biophysics and Molecular Biology}
+  \bibinfo{volume}{105}, \bibinfo{pages}{67--79}.
 %Type = Book
 \bibitem[{Shumway and Stoffer(2000)}]{Shumway2000}
 \bibinfo{author}{Shumway, R.}, \bibinfo{author}{Stoffer, D.},
