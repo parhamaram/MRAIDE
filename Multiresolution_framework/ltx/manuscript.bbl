@@ -1,4 +1,4 @@
-\begin{thebibliography}{47}
+\begin{thebibliography}{53}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -87,6 +87,14 @@
 \bibinfo{author}{De~Boor, C.}, \bibinfo{year}{2001}.
 \newblock \bibinfo{title}{A Practical Guide to Splines}.
 \newblock \bibinfo{publisher}{Springer Verlag}.
+%Type = Article
+\bibitem[{Deco et~al.(2010)Deco, Jirsa and McIntosh}]{Deco2010}
+\bibinfo{author}{Deco, G.}, \bibinfo{author}{Jirsa, V.},
+  \bibinfo{author}{McIntosh, A.}, \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Emerging concepts for the dynamical organization of
+  resting-state activity in the brain}.
+\newblock \bibinfo{journal}{Nature Reviews Neuroscience} \bibinfo{volume}{12},
+  \bibinfo{pages}{43--56}.
 %Type = Article
 \bibitem[{Dempster et~al.(1977)Dempster, Laird and Rubin}]{Dempster1977}
 \bibinfo{author}{Dempster, A.P.}, \bibinfo{author}{Laird, N.M.},
@@ -181,12 +189,44 @@
 \newblock \bibinfo{title}{{Kalman filtering and Neural Networks}}.
 \newblock \bibinfo{publisher}{Wiley Online Library}.
 %Type = Article
+\bibitem[{Jirsa(2004)}]{Jirsa2004}
+\bibinfo{author}{Jirsa, V.}, \bibinfo{year}{2004}.
+\newblock \bibinfo{title}{Connectivity and dynamics of neural information
+  processing}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{2},
+  \bibinfo{pages}{183--204}.
+%Type = Article
+\bibitem[{Jirsa and Haken(1996)}]{Jirsa1996}
+\bibinfo{author}{Jirsa, V.}, \bibinfo{author}{Haken, H.}, \bibinfo{year}{1996}.
+\newblock \bibinfo{title}{Field theory of electromagnetic brain activity}.
+\newblock \bibinfo{journal}{Physical Review Letters} \bibinfo{volume}{77},
+  \bibinfo{pages}{960--963}.
+%Type = Article
 \bibitem[{Jirsa and Haken(1997)}]{Jirsa1997}
 \bibinfo{author}{Jirsa, V.}, \bibinfo{author}{Haken, H.}, \bibinfo{year}{1997}.
 \newblock \bibinfo{title}{A derivation of a macroscopic field theory of the
   brain from the quasi-microscopic neural dynamics}.
 \newblock \bibinfo{journal}{Physica D: Nonlinear Phenomena}
   \bibinfo{volume}{99}, \bibinfo{pages}{503--526}.
+%Type = Article
+\bibitem[{Jirsa et~al.(2002)Jirsa, Jantzen, Fuchs and Kelso}]{Jirsa2002}
+\bibinfo{author}{Jirsa, V.}, \bibinfo{author}{Jantzen, K.},
+  \bibinfo{author}{Fuchs, A.}, \bibinfo{author}{Kelso, J.},
+  \bibinfo{year}{2002}.
+\newblock \bibinfo{title}{{Spatiotemporal forward solution of the EEG and MEG
+  using network modeling}}.
+\newblock \bibinfo{journal}{Medical Imaging, IEEE Transactions on}
+  \bibinfo{volume}{21}, \bibinfo{pages}{493--504}.
+%Type = Article
+\bibitem[{Jirsa et~al.(2010)Jirsa, Sporns, Breakspear, Deco and
+  McIntosh}]{Jirsa2010}
+\bibinfo{author}{Jirsa, V.}, \bibinfo{author}{Sporns, O.},
+  \bibinfo{author}{Breakspear, M.}, \bibinfo{author}{Deco, G.},
+  \bibinfo{author}{McIntosh, A.}, \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Towards the virtual brain: network modeling of the
+  intact and the damaged brain}.
+\newblock \bibinfo{journal}{Archives italiennes de biologie}
+  \bibinfo{volume}{148}, \bibinfo{pages}{189--205}.
 %Type = Article
 \bibitem[{Kalman(1960)}]{Kalman1960}
 \bibinfo{author}{Kalman, R.}, \bibinfo{year}{1960}.
@@ -289,6 +329,14 @@
   \bibinfo{year}{2000}.
 \newblock \bibinfo{title}{Time Series Analysis and Its Applications}.
 \newblock \bibinfo{publisher}{Springer Verlag}.
+%Type = Article
+\bibitem[{Stefanescu and Jirsa(2008)}]{Stefanescu2008}
+\bibinfo{author}{Stefanescu, R.}, \bibinfo{author}{Jirsa, V.},
+  \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{A low dimensional description of globally coupled
+  heterogeneous neural networks of excitatory and inhibitory neurons}.
+\newblock \bibinfo{journal}{PLoS Computational Biology} \bibinfo{volume}{4},
+  \bibinfo{pages}{e1000219}.
 %Type = Article
 \bibitem[{Stephan et~al.(2008)Stephan, Kasper, Harrison, Daunizeau, den Ouden,
   Breakspear and Friston}]{Stephan2008}
