@@ -1,4 +1,4 @@
-\begin{thebibliography}{53}
+\begin{thebibliography}{56}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -183,6 +183,28 @@
 \newblock \bibinfo{title}{Fundamentals of Wavelets: Theory, Algorithms, and
   Applications}.
 \newblock \bibinfo{publisher}{Wiley}, \bibinfo{address}{New York}.
+%Type = Article
+\bibitem[{Hagmann et~al.(2008)Hagmann, Cammoun, Gigandet, Meuli, Honey, Wedeen
+  and Sporns}]{Hagmann2008}
+\bibinfo{author}{Hagmann, P.}, \bibinfo{author}{Cammoun, L.},
+  \bibinfo{author}{Gigandet, X.}, \bibinfo{author}{Meuli, R.},
+  \bibinfo{author}{Honey, C.}, \bibinfo{author}{Wedeen, V.},
+  \bibinfo{author}{Sporns, O.}, \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{Mapping the structural core of human cerebral
+  cortex}.
+\newblock \bibinfo{journal}{PLoS biology} \bibinfo{volume}{6},
+  \bibinfo{pages}{e159}.
+%Type = Article
+\bibitem[{Haxby et~al.(2001)Haxby, Gobbini, Furey, Ishai, Schouten and
+  Pietrini}]{Haxby2001}
+\bibinfo{author}{Haxby, J.}, \bibinfo{author}{Gobbini, M.},
+  \bibinfo{author}{Furey, M.}, \bibinfo{author}{Ishai, A.},
+  \bibinfo{author}{Schouten, J.}, \bibinfo{author}{Pietrini, P.},
+  \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{Distributed and overlapping representations of faces
+  and objects in ventral temporal cortex}.
+\newblock \bibinfo{journal}{Science} \bibinfo{volume}{293},
+  \bibinfo{pages}{2425--2430}.
 %Type = Book
 \bibitem[{Haykin(2001)}]{Haykin2001}
 \bibinfo{author}{Haykin, S.}, \bibinfo{year}{2001}.
@@ -371,6 +393,15 @@
   model}}.
 \newblock \bibinfo{journal}{Biological Cybernetics} \bibinfo{volume}{81},
   \bibinfo{pages}{415--424}.
+%Type = Article
+\bibitem[{Van De~Ville et~al.(2005)Van De~Ville, Blu and
+  Unser}]{VanDeVille2005}
+\bibinfo{author}{Van De~Ville, D.}, \bibinfo{author}{Blu, T.},
+  \bibinfo{author}{Unser, M.}, \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{Isotropic polyharmonic {B}-splines: Scaling functions
+  and wavelets}.
+\newblock \bibinfo{journal}{Image Processing, IEEE Transactions on}
+  \bibinfo{volume}{14}, \bibinfo{pages}{1798--1813}.
 %Type = Article
 \bibitem[{Van~Rotterdam et~al.(1982)Van~Rotterdam, Lopes~da Silva, Van~den
   Ende, Viergever and Hermans}]{VanRotterdam1982}
