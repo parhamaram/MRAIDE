@@ -1,4 +1,4 @@
-\begin{thebibliography}{56}
+\begin{thebibliography}{58}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -351,6 +351,26 @@
   \bibinfo{year}{2000}.
 \newblock \bibinfo{title}{Time Series Analysis and Its Applications}.
 \newblock \bibinfo{publisher}{Springer Verlag}.
+%Type = Article
+\bibitem[{Spiegler et~al.(2010)Spiegler, Kiebel, Atay and
+  Kn{\"o}sche}]{Spiegler2010}
+\bibinfo{author}{Spiegler, A.}, \bibinfo{author}{Kiebel, S.},
+  \bibinfo{author}{Atay, F.}, \bibinfo{author}{Kn{\"o}sche, T.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Bifurcation analysis of neural mass models: Impact of
+  extrinsic inputs and dendritic time constants}.
+\newblock \bibinfo{journal}{NeuroImage} \bibinfo{volume}{52},
+  \bibinfo{pages}{1041--1058}.
+%Type = Article
+\bibitem[{Spiegler et~al.(2011)Spiegler, Kn{\"o}sche, Schwab, Haueisen and
+  Atay}]{Spiegler2011}
+\bibinfo{author}{Spiegler, A.}, \bibinfo{author}{Kn{\"o}sche, T.},
+  \bibinfo{author}{Schwab, K.}, \bibinfo{author}{Haueisen, J.},
+  \bibinfo{author}{Atay, F.}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Modeling brain resonance phenomena using a neural
+  mass model}.
+\newblock \bibinfo{journal}{PLoS Computational Biology} \bibinfo{volume}{7},
+  \bibinfo{pages}{e1002298}.
 %Type = Article
 \bibitem[{Stefanescu and Jirsa(2008)}]{Stefanescu2008}
 \bibinfo{author}{Stefanescu, R.}, \bibinfo{author}{Jirsa, V.},
