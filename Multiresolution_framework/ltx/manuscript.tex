@@ -509,22 +509,23 @@ By exploiting Eqs.~\eqref{eq:BsplineConvolution} and \eqref{eq:BsplineInnerProdu
  \end{equation}
 Note from Eq.~\eqref{eq:MRA-PsiPsiOrthogonality} B-spline wavelets are semi-orthogonal as they are not orthogonal with respect to translation on a given scale.
 
-In order to analytically calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Gamma$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale using the two-scale relation pair defined in Eqs.~(\eqref{eq:MRA-TwoScalepair1}-\eqref{eq:MRA-TwoScalepair2coefs}). For scaling functions this can be done  by using Eq.~\eqref{eq:MRA-TwoScalepair1} recursively, giving
-\begin{align}\label{eq:MRA-ConvertingFormulaForscalingFunctions}
- &N_m(r)=\nonumber \\
-&\sum_{n_1,n_2, \dots n_j=0}^{m}\left[\mathbf p\right]_{n_1} \left[\mathbf p\right]_{n_2}\dots \left[\mathbf p\right]_{n_j}N_m(2^jr-l_{n_1,n_2, \dots, n_j}),
-\end{align}
-where 
-\begin{align}
- l_{n_1,n_2, \dots, n_j}=2^{j-1}n_1+2^{j-2}n_2+ \dots +2^{0}n_j.
-\end{align}
-The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see \ref{ap:Induction}). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using Eq.~\eqref{eq:MRA-TwoScalepair2}. Examples of such expansions are given in Fig.~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
-\begin{figure}[!t] 
- 	\centering
- 		\includegraphics[scale=1]{./Graph/fig5.pdf}
- 		\caption{{\bf The scaling and the wavelet function decomposition}. (\textbf{A}) The scaling function (dotted line) at $j=0$ is obtained using 625 scaling functions (solid lines) at $j=4$. (\textbf{B}) The wavelet function (dotted line) at $j=0$ is obtained using 1250 scaling functions (solid lines) at $j=4$.}
- 	\label{fig:MRA-BasisDecomposition}
- \end{figure}  
+In order to analytically calculate elements of $\boldsymbol\Lambda_{x}$ and $\boldsymbol\Gamma$, the scaling and wavelet basis functions must be expanded in terms of $N_m$ at the appropriate scale using the two-scale relation pair defined in Eqs.~(\eqref{eq:MRA-TwoScalepair1}-\eqref{eq:MRA-TwoScalepair2coefs}). 
+% For scaling functions this can be done  by using Eq.~\eqref{eq:MRA-TwoScalepair1} recursively, giving
+% \begin{align}\label{eq:MRA-ConvertingFormulaForscalingFunctions}
+%  &N_m(r)=\nonumber \\
+% &\sum_{n_1,n_2, \dots n_j=0}^{m}\left[\mathbf p\right]_{n_1} \left[\mathbf p\right]_{n_2}\dots \left[\mathbf p\right]_{n_j}N_m(2^jr-l_{n_1,n_2, \dots, n_j}),
+% \end{align}
+% where 
+% \begin{align}
+%  l_{n_1,n_2, \dots, n_j}=2^{j-1}n_1+2^{j-2}n_2+ \dots +2^{0}n_j.
+% \end{align}  
+% The relation \eqref{eq:MRA-ConvertingFormulaForscalingFunctions} can be also proven by induction (see \ref{ap:Induction}). A similar method can be used for wavelet functions noting that they must be written first in terms of scaling functions using Eq.~\eqref{eq:MRA-TwoScalepair2}. Examples of such expansions are given in Fig.~\ref{fig:MRA-BasisDecomposition} where the scaling and wavelet functions at $j=0$ are written in terms of 625 and 1250 scaling functions at $j=4$ respectively.
+% \begin{figure}[!t] 
+%  	\centering
+%  		\includegraphics[scale=1]{./Graph/fig5.pdf}
+%  		\caption{{\bf The scaling and the wavelet function decomposition}. (\textbf{A}) The scaling function (dotted line) at $j=0$ is obtained using 625 scaling functions (solid lines) at $j=4$. (\textbf{B}) The wavelet function (dotted line) at $j=0$ is obtained using 1250 scaling functions (solid lines) at $j=4$.}
+%  	\label{fig:MRA-BasisDecomposition}
+%  \end{figure}  
 In this paper, $4^{th}$ -- order cardinal B-spline scaling and wavelet functions are used, resulting in  $8^{th}$ and $12^{th}$ order B-spline functions when calculating Eq.~\eqref{eq:Lambdax} and Eq.~\eqref{eq:Uij} respectively  whose values at integer points are given in Table~\ref{table:MRA-BsplineatIntegerPoints}.
 \begin {table}[t]
 \begin{center}
@@ -912,23 +913,23 @@ Therefore
 &=N_{m+m'}\left(m+l_{1}-l_{2}\right) \nonumber \\
 &=N_{m+m'}\left(m'+l_{2}-l_{1}\right).
 \end{align}
-\section{Scaling function expansion}\label{ap:Induction}  
-In this appendix we show by induction that how the scaling function at $j=0$ can be written in terms of the scaling function at level $j$. For $n_1$ in  Eq.~\eqref{eq:MRA-ConvertingFormulaForscalingFunctions} we have
-\begin{align}
- N_{m}\left(r\right)&=\sum_{n_1=0}^{m} \left[\mathbf p\right]_{n_1} N_{m}\left(2r-n_1\right) \label{eq:App-TwoScalepair1},
-  \end{align}
-which clearly holds from two-scale relation pair (see Eq.~\eqref{eq:MRA-TwoScalepair1}). Now assuming Eq.~\eqref{eq:MRA-ConvertingFormulaForscalingFunctions} for $n_{j-1}$ we can write 
-\begin{align}\label{eq:app-ConvertingFormulaForscalingFunctions}
- &N_m(r)=\nonumber \\
-&\sum_{n_1,n_2, \dots n_{j-1}=0}^{m}\left[\mathbf p\right]_{n_1} \left[\mathbf p\right]_{n_2}\dots \left[\mathbf p\right]_{n_{j-1}}N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}}),
-\end{align}
-in which $N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of $N_m(2^{j}r)$ as
-\begin{align}\label{eq:AppendixNj-1intermsofNj}
- N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})&=\sum_{n_j=0}^m \left[\mathbf p\right]_{n_j}N_m(2^jr-2\times k_{n_1,n_2, \dots, n_{j-1}}-n_j)\nonumber \\
-&=\sum_{n_j=0}^m \left[\mathbf p\right]_{n_j}N_m(2^jr- k_{n_1,n_2, \dots, n_{j}}).
-\end{align}
-Substituting Eq.~\eqref{eq:AppendixNj-1intermsofNj} into Eq.~\eqref{eq:app-ConvertingFormulaForscalingFunctions} completes the proof. 
-
+% \section{Scaling function expansion}\label{ap:Induction}  
+% In this appendix we show by induction that how the scaling function at $j=0$ can be written in terms of the scaling function at level $j$. For $n_1$ in  Eq.~\eqref{eq:MRA-ConvertingFormulaForscalingFunctions} we have
+% \begin{align}
+%  N_{m}\left(r\right)&=\sum_{n_1=0}^{m} \left[\mathbf p\right]_{n_1} N_{m}\left(2r-n_1\right) \label{eq:App-TwoScalepair1},
+%   \end{align}
+% which clearly holds from two-scale relation pair (see Eq.~\eqref{eq:MRA-TwoScalepair1}). Now assuming Eq.~\eqref{eq:MRA-ConvertingFormulaForscalingFunctions} for $n_{j-1}$ we can write 
+% \begin{align}\label{eq:app-ConvertingFormulaForscalingFunctions}
+%  &N_m(r)=\nonumber \\
+% &\sum_{n_1,n_2, \dots n_{j-1}=0}^{m}\left[\mathbf p\right]_{n_1} \left[\mathbf p\right]_{n_2}\dots \left[\mathbf p\right]_{n_{j-1}}N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}}),
+% \end{align}
+% in which $N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})$ can be written in terms of $N_m(2^{j}r)$ as
+% \begin{align}\label{eq:AppendixNj-1intermsofNj}
+%  N_m(2^{j-1}r-k_{n_1,n_2, \dots, n_{j-1}})&=\sum_{n_j=0}^m \left[\mathbf p\right]_{n_j}N_m(2^jr-2\times k_{n_1,n_2, \dots, n_{j-1}}-n_j)\nonumber \\
+% &=\sum_{n_j=0}^m \left[\mathbf p\right]_{n_j}N_m(2^jr- k_{n_1,n_2, \dots, n_{j}}).
+% \end{align}
+% Substituting Eq.~\eqref{eq:AppendixNj-1intermsofNj} into Eq.~\eqref{eq:app-ConvertingFormulaForscalingFunctions} completes the proof. 
+%                   
 %\section{Lower bound on likelihood function}\label{ap:Lowerbound}
 %A derivation of the lower bound on the likelihood function that is based on \citet{Bishop2006} is provided in this Appendix. We want to maximize the likelihood function, 
 %\begin{equation}
