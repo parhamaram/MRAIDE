@@ -59,7 +59,7 @@ to demonstrate the framework.
 \section{Introduction}
 The human cerebral cortex has a multi-resolution architecture, where spatial scales for information processing range from ion channels, to single neurons, to networks of millions of neurons. This multi-resolution cortical architecture poses major modeling challenges to efficiently describe the brain's dynamics. This paper introduces a multi-resolution data-driven framework for neural field modeling, the Multi-Resolution Approximate Integro-Difference Equation (MRAIDE) to address this challenge. 
 
-Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics leading to the generation of  electroencephalography (EEG) and magnetoencephalography (MEG) signals. The key components of these models typically describe the macroscopic dynamics of the human brain, but can also be descriptive of finer-scale neurodynamics. Examples are the post-synaptic response kernels (\vik{pulse to wave conversion}) and the activation function (\vik{wave to pulse conversion}) \citep{Jirsa1996,Jirsa1997}. The former can be descriptive of inhibitory and excitatory post-synaptic potentials \vik{in populations of microscopic single neural models, such as integrate and fire neurons,} or an ensemble response to stimulation in macroscopic neural mass models \citep{Stefanescu2008}. The latter can be used to model spiking statistics across spatial scales from single neurons (where it can be considered a cumulative distribution function (CDF) of the probability of firing) \vik{as} mean firing rates of neural masses. The key factor linking the functions of \vik{neural mass models} to particular spatial scales is \vik{the connectivity}, hence the ability to infer a multi-resolution connectivity kernel will enable the formulation of a multi-resolution neural field model.  
+Neural field models describe the mass action of the central nervous system and are a critical link in our understanding of the biophysics leading to the generation of  electroencephalography (EEG) and magnetoencephalography (MEG) signals. The key components of these models typically describe the macroscopic dynamics of the human brain, but can also be descriptive of finer-scale neurodynamics. Examples are the post-synaptic response kernels (pulse to wave conversion) and the activation function (wave to pulse conversion) \citep{Jirsa1996,Jirsa1997}. The former can be descriptive of inhibitory and excitatory post-synaptic potentials in populations of microscopic single neural models, such as integrate and fire neurons, or an ensemble response to stimulation in macroscopic neural mass models \citep{Stefanescu2008}. The latter can be used to model spiking statistics across spatial scales from single neurons (where it can be considered a cumulative distribution function (CDF) of the probability of firing) as mean firing rates of neural masses. The key factor linking the functions of neural mass models to particular spatial scales is the connectivity, hence the ability to infer a multi-resolution connectivity kernel will enable the formulation of a multi-resolution neural field model.  
 
 The utility of these models for answering questions in clinical neuroscience and neurology lies in the ability to infer parameters from electrophysiological data. The ability to create patient-specific neural models will contribute to our knowledge base of diseases such as epilepsy and will enable the development of new treatment strategies. \vik{Large-scale neuroinformatic efforts, such as the Virtual Brain project (\href{http://www.thevirtualbrain.org}{www.thevirtualbrain.org} \citep{Jirsa2010}), are on the way to enable patient-specific full brain modeling.} This is particularly relevant to the advent of new devices that use therapeutic electrical stimulation. Stimulation strategies for devices currently operate in an open loop, where stimulation parameters are chosen using a process of trial and error. Therefore, there exists enormous potential to improve the performance of these devices using systems theory, which in turn requires a suitable dynamic model. Neural mass and neural field models are ideal candidates for estimation algorithms due to their strong links with physiology and their parsimony. It is expected that parameters of the neural fields models will be patient-specific and will, therefore, need to be inferred from data. 
 
@@ -526,7 +526,7 @@ In order to analytically calculate elements of $\boldsymbol\Lambda_{x}$ and $\bo
 %  		\caption{{\bf The scaling and the wavelet function decomposition}. (\textbf{A}) The scaling function (dotted line) at $j=0$ is obtained using 625 scaling functions (solid lines) at $j=4$. (\textbf{B}) The wavelet function (dotted line) at $j=0$ is obtained using 1250 scaling functions (solid lines) at $j=4$.}
 %  	\label{fig:MRA-BasisDecomposition}
 %  \end{figure}  
-In this paper, $4^{th}$ -- order cardinal B-spline scaling and wavelet functions are used, resulting in  $8^{th}$ and $12^{th}$ order B-spline functions when calculating Eq.~\eqref{eq:Lambdax} and Eq.~\eqref{eq:Uij} respectively  whose values at integer points are given in Table~\ref{table:MRA-BsplineatIntegerPoints}.
+In this paper, $4^{th}$ order cardinal B-spline scaling and wavelet functions are used, resulting in  $8^{th}$ and $12^{th}$ order B-spline functions when calculating Eq.~\eqref{eq:Lambdax} and Eq.~\eqref{eq:Uij} respectively  whose values at integer points are given in Table~\ref{table:MRA-BsplineatIntegerPoints}.
 \begin {table}[t]
 \begin{center}
 	\begin{tabular}{lcccc}
@@ -570,7 +570,7 @@ There exist many variations of state and parameter estimation methods for state-
 
 To demonstrate the MRAIDE estimation framework we shall consider the parameters to be static and we shall also assume that the relationship between the mean membrane potential and the mean firing rate is predominantly linear. Note that there is a difference between forward and inverse modeling when making these assumptions. For example, by using a linear activation function in the estimator we are not assuming that there is necessarily a linear relationship between the membrane voltage and firing rate, but that the statistics of the neural masses fall within a linear operating region over the estimation time period. The major benefit of modeling the relationship between the mean membrane potential and firing rate is the ability to apply the EM algorithm. The loss in model accuracy may be offset estimation accuracy. 
 
-\vik{viktor suggested to delete this part: It is important to point out there is no doubt that there will always be a mismatch between the model and actual cortical tissue. Nevertheless,} the simplifications used in formulating the equations enable the development of new methods for extracting information from electrophysiological data. The trade-off between parsimony and complexity is always difficult when considering neurodynamics and this is further complicated when using estimation algorithms that have huge computational demands with such high-dimensional systems.   
+The simplifications used in formulating the equations enable the development of new methods for extracting information from electrophysiological data. The trade-off between parsimony and complexity is always difficult when considering neurodynamics and this is further complicated when using estimation algorithms that have huge computational demands with such high-dimensional systems.   
 
 % The linearised activation function is 
 % \begin{align}
@@ -607,11 +607,11 @@ with the parameterized transition matrix
 \begin{equation}\label{eq:A_theta}
  \mathbf A(\boldsymbol \theta)= T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I.
 \end{equation} 
-The problem of joint state and parameter estimation for the state-space model given by Eq.~\eqref{eq:StateEquation} and Eq.~\eqref{eq:ReducedObservationEquation} can now be formulated as 
+The problem of joint state and parameter estimation for the state-space model given by Eq.~\eqref{eq:ReducedObservationEquation} and Eq.~\eqref{eq:StateEquation}  can now be formulated as 
 \begin{equation}
 	{\hat{\mathbf X},\hat{\boldsymbol\theta}}=\arg\max_{\mathbf X,\boldsymbol\theta}p(\mathbf Y;\boldsymbol\theta),
  \end{equation}  
-where $\mathbf X$ and $\mathbf Y$ denote the entire sequences of the states and observations respectively, $\boldsymbol\theta$ is the parameter set and $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of the observations parameterized  by $\boldsymbol\theta$, known as the likelihood function. This dual estimation problem cannot be solved separately, as for the state estimation the knowledge of the system's parameters is required and for the parameter estimation the states of the system need to be known. One approach is to iteratively estimate the states and parameters of the system and monitor the convergence of the algorithm. A natural framework to perform this is the well known Expectation Maximization (EM) algorithm \citep{Dempster1977,Shumway2000} to infer both the parameter set and the states from the observations corresponding to the connectivity kernel, the neural field and electrophysiological data in our application. The EM algorithm is applicable  in two main situations:  first is when the observations are incomplete due to a faulty observation process or existing limitations and the second is when the direct maximization of the likelihood function is difficult but can be simplified by assuming the existence of an additional data referred to as hidden data \citep{Bilmes1998}, the weights of the field basis functions in this case. The EM algorithm, when used in the latter context \citep{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
+where $\mathbf X$ and $\mathbf Y$ denote the entire sequences of the states and observations respectively, $\boldsymbol\theta$ is the parameter set and $p(\mathbf Y;\boldsymbol\theta)$ denotes the probability density function of the observations parameterized  by $\boldsymbol\theta$, known as the likelihood function. This dual estimation problem cannot be solved separately, as for the state estimation the knowledge of the system's parameters is required and for the parameter estimation the states of the system need to be known. One approach is to iteratively estimate the states and parameters of the system and monitor the convergence of the algorithm. A natural framework to perform this is the well known EM algorithm \citep{Dempster1977,Shumway2000} to infer both the parameter set and the states from the observations corresponding to the connectivity kernel, the neural field and electrophysiological data in our application. The EM algorithm is applicable  in two main situations:  first is when the observations are incomplete due to a faulty observation process or existing limitations and the second is when the direct maximization of the likelihood function is difficult but can be simplified by assuming the existence of an additional data referred to as hidden data \citep{Bilmes1998}, the weights of the field basis functions in this case. The EM algorithm, when used in the latter context \citep{Dewar2009}, yields the maximum likelihood kernel estimate, i.e.
 \begin{equation}
 	\boldsymbol\theta_{\text{ML}}=\arg\max_{\boldsymbol\theta}~p(\mathbf Y;\boldsymbol\theta),
  \end{equation}   
@@ -668,7 +668,7 @@ The lower bound on the log-likelihood function is given by the expectation of th
 \end{equation}
 where $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ is the joint probability distribution of the states and the observations and $ \mathbf E_{\boldsymbol \theta'}\left[\cdot\right] $ denotes expectation taken with respect to the marginal distribution of the states conditioned on the observed field and the current estimate of the parameter set, $\boldsymbol\theta'$ i.e.  $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$). Note that $p(\mathbf X\mid\mathbf Y;\boldsymbol \theta'$), is in fact the smoother output which is obtained at the E-step.
 
-For the linear state-space model given by Eqs.~\eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}, the bound defined by Eq.~\eqref{eq:Bishopbound} is a quadratic of the form (see \ref{ap:QDerivation} for derivation) 
+For the linear state-space model given by Eqs.~\eqref{eq:ReducedObservationEquation} and \eqref{eq:StateEquation}, the bound defined by Eq.~\eqref{eq:Bishopbound} is a quadratic of the form (see \ref{ap:QDerivation} for derivation) 
 \begin{equation}\label{eq:MRA-QCompact}
 \mathcal Q\left(\boldsymbol \theta,\boldsymbol\theta'\right)=\beta+2T_s\varsigma\left(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1\right)\boldsymbol\theta-T_s\varsigma\boldsymbol\theta^\top\boldsymbol\Upsilon\boldsymbol\theta,
 \end{equation}
@@ -691,10 +691,10 @@ Each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matri
 \begin{align}\label{eq:Uij}
 \left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) \mathrm{d}r'\right]_{i:} \mathrm{d}r,
 \end{align}
-where $[\cdot]_{i:} $ denotes the $i^{th}$ row. The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon} are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005} (see \ref{ap:Xiderivation} for details), 
+where $[\cdot]_{i:} $ denotes the $i^{th}$ row. The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon} are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t^b$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005} (see \ref{ap:Xiderivation} for details), 
 \begin{align}
-\boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right) \label{eq:Xi0} \\
- \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t+\mathbf{\hat x}_t\mathbf{\hat x}_t^\top\right).  \label{eq:Xi1}
+\boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t^b\mathbf{\hat x}_{t+1}^{b\top}\right) \label{eq:Xi0} \\
+ \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t^b+\mathbf{\hat x}_t^b\mathbf{\hat x}_t^{b\top}\right).  \label{eq:Xi1}
 \end{align} 
 The algorithm has two steps: the E-step, which computes $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ based on the most recent parameter estimates using the RTS smoother, and the M-step, which updates the parameter estimates by computing the (analytic) maximum of $Q(\boldsymbol\theta,\boldsymbol\theta')$. The EM algorithm iterates between these two steps until the parameter estimates converge. A summary of the joint state parameter estimation is given in Table~\ref{alg:EMsteps}.   
 \subsection{Stopping rule}
@@ -1078,20 +1078,20 @@ The expressions for $\boldsymbol\Xi_{0}$ and $\boldsymbol\Xi_{1}$ in terms of sm
 	First we compute the cross-covariance matrix giving
 	
 \begin{align}\label{eq:Xi0derivation0} 
- \mathbf M_{t+1}&=\mathbf E_{\theta'}\left[(\mathbf x_t-\mathbf{\hat x}_t)(\mathbf x_{t+1}-\mathbf{\hat x}_{t+1})^\top\right] \nonumber \\
-&=\mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\mathbf E_{\theta'}\left[\mathbf x_t\hat{\mathbf x}_{t+1}^\top\right]-\mathbf E_{\theta'}\left[\hat{\mathbf x}_t\mathbf x_{t+1}^\top\right]+\mathbf E_{\theta'}\left[\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top\right]  \nonumber \\
-&= \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top-\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top+\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top\nonumber \\
-&= \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\hat{\mathbf x}_t\hat{\mathbf x}_{t+1}^\top.
+ \mathbf M_{t+1}&=\mathbf E_{\theta'}\left[(\mathbf x_t-\mathbf{\hat x}_t^b)(\mathbf x_{t+1}-\mathbf{\hat x}_{t+1}^b)^\top\right] \nonumber \\
+&=\mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\mathbf E_{\theta'}\left[\mathbf x_t\hat{\mathbf x}_{t+1}^{b\top}\right]-\mathbf E_{\theta'}\left[\hat{\mathbf x}_t^b\mathbf x_{t+1}^\top\right]+\mathbf E_{\theta'}\left[\hat{\mathbf x}_t^b\hat{\mathbf x}_{t+1}^{b\top}\right]  \nonumber \\
+&= \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\hat{\mathbf x}_t^b\hat{\mathbf x}_{t+1}^{b\top}-\hat{\mathbf x}_t^b\hat{\mathbf x}_{t+1}^{b\top}+\hat{\mathbf x}_t^b\hat{\mathbf x}_{t+1}^{b\top}\nonumber \\
+&= \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]-\hat{\mathbf x}_t^b\hat{\mathbf x}_{t+1}^{b\top}.
 \end{align}
 Rearranging   Eq.~\eqref{eq:Xi0derivation0} gives
 \begin{equation}\label{eq:Xi0derivation1}
- \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]=\mathbf M_{t+1}+\mathbf {\hat x}_t\mathbf{\hat x}_{t+1}^\top.
+ \mathbf E_{\theta'}\left[\mathbf x_t\mathbf x_{t+1}^\top\right]=\mathbf M_{t+1}+\mathbf {\hat x}_t^b\mathbf{\hat x}_{t+1}^{b\top}.
 \end{equation}
 Substituting Eq.~\eqref{eq:Xi0derivation1} into Eq.~\eqref{eq:appXi0}, noting the expectation commutes with the sum yields
 \begin{equation}
- \boldsymbol\Xi_0=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t\mathbf{\hat x}_{t+1}^\top\right)
+ \boldsymbol\Xi_0=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t^b\mathbf{\hat x}_{t+1}^{b\top}\right)
 \end{equation}   
-An expression for $\boldsymbol\Xi_1$ in terms of the smoothed states can be also found in a similar way by calculating the covariance matrix, $\mathbf P_t$ and following the above steps.
+An expression for $\boldsymbol\Xi_1$ in terms of the smoothed states can be also found in a similar way by calculating the covariance matrix, $\mathbf P_t^b$ and following the above steps.
 %\begin{equation}\label{eq:Xi1derivation1}
 % \mathbf E_{\theta'}\left[\mathbf x_{t}\mathbf x_{t}^\top\right]=\mathbf P_{t}+\mathbf {\hat x}_{t}\mathbf{\hat x}_{t}^\top,
 %\end{equation}
