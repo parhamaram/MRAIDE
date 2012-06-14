@@ -397,7 +397,7 @@ where each element of the observation matrix, $\mathbf{C}$, is given by
 \end{equation}
 \section{B-Spline MRAIDE in State-Space }
 \subsection{A Brief Introduction to B-Spline Wavelets}
-This section is included to provide the interested reader with an overview of the theory used in constructing the wavelets that form the basis of the multi-resolution model. Although a deep understanding of the theory presented in this section is not required for an understanding of the key results of the paper, it serves as a reference for implementing the methods.
+This section is included to provide the interested reader with an overview of the theory for the scaling and wavelet functions that form the basis of the multi-resolution model. Although a deep understanding of the theory presented in this section is not required for an understanding of the key results of the paper, it serves as a reference for implementing the methods.
 
 B-spline functions are one of the most basic elements for wavelet construction. These functions are composed of piecewise polynomials combined smoothly at some breaking points (knots), which are equally spaced in the case of cardinal B-splines. The degree of smoothness is determined by the order of splines \citep{Goswami1999}, where the higher the order the smoother the resulting B-spline becomes (see Fig.~\ref{fig:Figure0}).
 \begin{figure}[!t]
@@ -796,7 +796,7 @@ For each of the experiments, the estimation was applied to the final 900~ms, all
 	$n_y$ & number of sensors & 161 & n.a.\\ 
 	$\Delta_y$ & distance between adjacent sensors & 0.05 & mm\\
 	$\sigma_{m}$ & observation kernel full width at half maximum & 0.08 & mm \\
-	$\Sigma_{\varepsilon}$ & observation noise variance & $0.1 \times I_{n_y}$ & mm$^2$ \\
+	$\Sigma_{\varepsilon}$ & observation noise covariance matrix & $0.1 \times I_{n_y}$ & mm$^2$ \\
 	$\sigma_{\eta}$& disturbance covariance function full width at half maximum & 0.18 & mm\\
 	$\sigma_{d}$ & disturbance variance & 0.53 & mV \\
 	\hline 
