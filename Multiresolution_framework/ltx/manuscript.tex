@@ -638,7 +638,7 @@ $\hat{\mathbf x}_0, \mathbf P_0$ \\
 \multicolumn{1}{|p{16cm}|}{\textbf{2.} Forward iteration: for $t\in\left\lbrace 0,\cdots,T-1\right\rbrace $, calculate the predicted state and the predicted covariance matrix } \\
 $\hat{\mathbf x}_{t+1}^{f-}=\mathbf A \hat{\mathbf x}_{t}^{f}$  \\ 
 $\mathbf P_{t+1}^{f-}=\mathbf A \mathbf P_{t}^{f}\mathbf A^{\top}+\boldsymbol\Sigma_e$  \\
-\multicolumn{1}{|p{16cm}|}{Compute the filter gain, the filtered state and the filtered covariance matrix} \\
+\multicolumn{1}{|p{16cm}|}{compute the filter gain, the filtered state and the filtered covariance matrix} \\
 $\mathcal K_{t+1}=\mathbf P_{t +1}^{f-}\mathbf C ^\top(\mathbf C \mathbf P_{t +1}^{f-}\mathbf C ^\top+\boldsymbol \Sigma_{\varepsilon})^{-1}$\\
 $\hat{\mathbf x}_{t+1}^{f}=\hat{\mathbf x}_{t+1}^{f-}+\mathcal K_{t+1}(\mathbf y_{t+1}-\mathbf C\hat{\mathbf x}_{t +1}^{f-})$\\
 $\mathbf P_{t+1}^f=(\mathbf I - \mathcal K_{t+1}\mathbf C)\mathbf P_{t +1}^{f-}$\\
@@ -653,11 +653,11 @@ $\mathcal S_{t}=\mathbf P_{t}^{f}\mathbf A^{\top}\left[ \mathbf P_{t +1}^{f-}\ri
 \hline
 \multicolumn{1}{|p{16cm}|}{\textbf{5.} Compute the smoothed cross covariance matrix, initialization}\\
 $\mathbf M_T=(\mathbf I-\mathcal K_T\mathbf C)\mathbf A\mathbf P_{T-1}^b$\\
-\multicolumn{1}{|p{16cm}|}{For $t\in\left\lbrace T-1,\cdots,1\right\rbrace $ compute}\\
+\multicolumn{1}{|p{16cm}|}{for $t\in\left\lbrace T-1,\cdots,1\right\rbrace $ compute}\\
 $\mathbf M_t= \mathbf P_t^{f}\mathcal S_{t-1}^{\top}+\mathcal S_{t}(\mathbf M_{t+1}-\mathbf A\mathbf P_t^{f} )\mathcal S_{t-1}^{\top}$\\
 \hline
 \end{tabular}
-\caption{\textbf{Algorithm for the RTS smoother} This table shows the steps in the  Rauch-Tung-Striebel smoother algorithm. The lower bound, $\mathcal{Q}(\boldsymbol{\theta},\boldsymbol{\theta'})$, is maximized after each iteration to update the parameter estimates.}
+\caption{\textbf{Algorithm for the RTS smoother (E-step).} This table shows the steps in the  Rauch-Tung-Striebel smoother algorithm.}
 \label{alg:MRA-RTS}
 \end{table*}
 \renewcommand{\arraystretch}{1}
@@ -707,7 +707,7 @@ The stopping criterion is usually associated with either the change in the param
   \parallel \mathbf{A} \parallel_{F}=\sqrt{\sum_{i,j=1}^{n_x}\mid a_{i,j} \mid^2}=\sqrt{\mathrm{tr} (\mathbf A^{\top}\mathbf A)}.
  \end{equation}
 \subsection{Computational complexity} 
-All $n_x^2$ blocks of $\mathbf U$, $\boldsymbol\Gamma_1$ and $\boldsymbol\Gamma_2$  can be computed as a one-off before the commencement of the EM iterations, which increases the speed of the M-step significantly compared to the implementation of \citet{Dewar2009}. The complexity of each step of the algorithm is summarized in Table~\ref{table:MRA-ComputationalComplexity} where for ease of comparison the computational complexity of the method of \citet{Dewar2009} is also identified. It can be seen from the table that the state dimension is an important factor at each iteration of the estimation algorithm, emphasizing the advantage of the proposed algorithm compared to the method proposed in \citet{Dewar2009}. This also suggests the use of an efficient algorithm to choose the minimum number of basis functions (states of the system) while achieving the desired details of the underlying field.  
+All $n_x^2$ blocks of $\mathbf U$, $\boldsymbol\Gamma_1$ and $\boldsymbol\Gamma_2$  can be computed as a one-off before the commencement of the EM iterations (Step~1 in Table~\ref{alg:EMsteps} ), which increases the speed of the M-step significantly compared to the implementation of \citet{Dewar2009}. The complexity of each step of the algorithm is summarized in Table~\ref{table:MRA-ComputationalComplexity} where for ease of comparison the computational complexity of the method of \citet{Dewar2009} is also identified. It can be seen from the table that the state dimension is an important factor at each iteration of the estimation algorithm, emphasizing the advantage of the proposed algorithm compared to the method proposed in \citet{Dewar2009}. This also suggests the use of an efficient algorithm to choose the minimum number of basis functions (states of the system) while achieving the desired details of the underlying field.  
 \begin {table}
 \begin{center}
 \scalebox{1}{\begin{tabular}{lllc}
@@ -730,10 +730,10 @@ $\hat{\boldsymbol\theta} $&Eq.~\eqref{eq:MRA-thetahat}&$O(n_{\theta}^3)$&\----\\
 \begin{table*}[!ht]
 \begin{tabular}{|c|}\hline
 \multicolumn{1}{|p{16cm}|}{\textbf{1.} Initialization:  } \\ 
-\multicolumn{1}{|p{16cm}|}{Choose a bounded random state vector sequence and choose large values for $\mathbf P_t$ and $\mathbf M_t$} \\
-\multicolumn{1}{|p{16cm}|}{Compute} \\
+\multicolumn{1}{|p{16cm}|}{Choose a bounded random state vector sequence $\hat{\mathbf X}$, and set $\mathbf P_t$ and $\mathbf M_t$ large} \\
+\multicolumn{1}{|p{16cm}|}{compute} \\
 $\mathbf{\Lambda}_{x}=\int_{\Omega}\boldsymbol{\mu}\left(r\right)\boldsymbol{\mu}^\top\left(r\right) \mathrm{d}r$\\
-\multicolumn{1}{|p{16cm}|}{Compute all the $n^2_x$ blocks of block matrices $\mathbf U$, $\Gamma_1$ and  $\Gamma_2$ using} \\
+\multicolumn{1}{|p{16cm}|}{compute all the $n^2_x$ blocks of block matrices $\mathbf U$, $\Gamma_1$ and  $\Gamma_2$ using} \\
 $\left[ \mathbf U\right] ^{k,i}=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) dr'\right]_{i:} dr$\\
 $\left[ \Gamma_1\right]^{j,i} =\sum_{k=1}^{n_x}\left[ \boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1}\right]_{jk} \left[ \mathbf U\right]^{k,i}$\\
 $\left[ \Gamma_2\right] ^{j,i}=\sum_{k,m=1}^{n_x}[\mathbf U^{\top}]^{jk} \left[\boldsymbol\Lambda_x^{-1}\boldsymbol\Sigma_w^{-1}\boldsymbol\Lambda_x^{-1} \right]_{km}[\mathbf U]^{mi}$\\
@@ -746,15 +746,15 @@ $\boldsymbol\upsilon_1=\xi\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol
 $\boldsymbol\Upsilon=T_s\varsigma\sum_{i,j=1}^{n_x}[\boldsymbol\Xi_1]_{i,j}[\boldsymbol\Gamma_2]^{j,i}$\\
 $\boldsymbol \theta= \boldsymbol\Upsilon^{-\top}(\boldsymbol\upsilon_0-\boldsymbol\upsilon_1)^\top$\\
 \hline
-\multicolumn{1}{|p{16cm}|}{\textbf{3.} Form a state-space model}\\
-\multicolumn{1}{|p{16cm}|}{Compute all $n_x^2$ elements of $\boldsymbol\Lambda_{\theta}$ using} \\
+\multicolumn{1}{|p{16cm}|}{\textbf{3.} Form a state-space representation}\\
+\multicolumn{1}{|p{16cm}|}{compute all $n_x^2$ elements of $\boldsymbol\Lambda_{\theta}$ using} \\
 $\left[ \boldsymbol\Lambda_{\theta}\right] _{k,i}=\left[ \mathbf U\right]^{k,i}\boldsymbol\theta$\\
-\multicolumn{1}{|p{16cm}|}{Compute transition matrix $\mathbf A(\boldsymbol\theta)$ } \\
+\multicolumn{1}{|p{16cm}|}{compute transition matrix $\mathbf A(\boldsymbol\theta)$ } \\
 $\mathbf A(\boldsymbol \theta) = T_s\varsigma\mathbf{\Lambda}_{x}^{-1}\mathbf{\Lambda}_{\theta}+\xi\mathbf I$\\
 \hline
-\multicolumn{1}{|p{16cm}|}{\textbf{4.} Compute the smoothed state $\hat{\mathbf x}_t^b$, the smoothed covariance,$\mathbf P^b_t$ and cross-covariance $\mathbf M_t$ for $t\in\left\lbrace 0,\cdots,T\right\rbrace $ using the RTS smoother given in Table~\ref{alg:MRA-RTS}.}\\  
+\multicolumn{1}{|p{16cm}|}{\textbf{4.} Compute the smoothed state $\hat{\mathbf x}_t^b$, the smoothed covariance, $\mathbf P^b_t$ and cross-covariance, $\mathbf M_t$ for $t\in\left\lbrace 0,\cdots,T\right\rbrace $ using the RTS smoother given in Table~\ref{alg:MRA-RTS}.}\\  
 \hline
-\multicolumn{1}{|p{16cm}|}{\textbf{5.} Convergence: go back to Step~2 unless }\\
+\multicolumn{1}{|p{16cm}|}{\textbf{5.} Convergence: return to Step~2 unless }\\
 $ \left(\parallel \mathbf{A} \parallel_{F}^{(i)}-\parallel \mathbf{A} \parallel_{F}^{(i-1)}\right)<\epsilon$\\
 \hline
 \end{tabular}
