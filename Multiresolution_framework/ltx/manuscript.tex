@@ -779,35 +779,35 @@ For each of the experiments, the estimation was applied to the final 900~ms, all
 	\hline
 	\multicolumn{4}{|c|}{\emph{Domain and indices}}\\
 	\hline
-	$\Delta$ & spatial discretisation step & 0.01 & mm \\
-	$T_s$ & time step & $0.001$ & s\\
-	$T$ & number of time steps used in estimation & 900 & n.a.\\
+	$\Delta$ & Spatial discretisation step & 0.01 & mm \\
+	$T_s$ & Time step & $0.001$ & s\\
+	$T$ & Number of time steps used in estimation & 900 & n.a.\\
 	\hline 
 \multicolumn{4}{|c|}{\emph{Model}}\\
 	\hline
-	$\tau$ & membrane time constant & 0.01 & s$^{-1}$ \\
-	$\varsigma$ & slope of sigmoidal activation function & 0.56 \citep{Wendling2005} & mV$^{-1}$.spike.s$^{-1}$\\
-	$\boldsymbol{\theta}$ & vector of connectivity kernel parameters (data generation) & $\left[\begin{array}{cc}
+	$\tau$ & Membrane time constant & 0.01 & s$^{-1}$ \\
+	$\varsigma$ & Slope of activation function & 0.56 \citep{Wendling2005} & mV$^{-1}$.spike.s$^{-1}$\\
+	$\boldsymbol{\theta}$ & Vector of connectivity kernel parameters (data generation) & $\left[\begin{array}{cc}
 	200 & -100
 	\end{array}
 	\right]^{\top}$ & mV.spike$^{-1}$\\
 	%$\sigma_{\psi_{1}}, \sigma_{\psi_{2}}, \sigma_{\psi_{3}}$ & connectivity kernel width parameters & 1.8, 2.4, 6 & mm\\
-	$n_y$ & number of sensors & 161 & n.a.\\ 
-	$\Delta_y$ & distance between adjacent sensors & 0.05 & mm\\
-	$\sigma_{m}$ & observation kernel full width at half maximum & 0.08 & mm \\
-	$\Sigma_{\varepsilon}$ & observation noise covariance matrix & $0.1 \times I_{n_y}$ & mm$^2$ \\
-	$\sigma_{\eta}$& disturbance covariance function full width at half maximum & 0.18 & mm\\
-	$\sigma_{d}$ & disturbance variance & 0.53 & mV \\
+	$n_y$ & Number of sensors & 161 & n.a.\\ 
+	$\Delta_y$ & Distance between adjacent sensors & 0.05 & mm\\
+	$\sigma_{m}$ & Observation kernel full width at half maximum & 0.08 & mm \\
+	$\Sigma_{\varepsilon}$ & Observation noise covariance matrix & $0.1 \times I_{n_y}$ & mm$^2$ \\
+	$\sigma_{\eta}$& Disturbance covariance function full width at half maximum & 0.18 & mm\\
+	$\sigma_{d}$ & Disturbance variance & 0.53 & mV \\
 	\hline 
 	\multicolumn{4}{|c|}{\emph{Reduced Model}}\\
 	\hline
-	$n_x$ & number of field basis functions&& n.a.\\
+	$n_x$ & Number of field basis functions&& n.a.\\
 	$   $ &Experiment~I, $j=3$&131&\\
 	$   $ &Experiment~II, $j=0,1,2,3,4$&17, 33, 65, 131, 263&\\ 
 	\hline 
 	\multicolumn{4}{|c|}{\emph{Estimation}}\\ 
 	\hline
-	$n_{\theta}$&number of connectivity kernel basis functions for estimation&25&n.a.\\
+	$n_{\theta}$&Number of connectivity kernel basis functions for estimation&25&n.a.\\
 	\hline 
 \end{tabular}
 \caption{\textbf{Parameters.} Parameters for the neural field model and the reduced model and the estimation procedure.}
@@ -848,7 +848,7 @@ One snap shot of the field reconstruction, at different levels of approximation 
 \label{fig:FieldEstimates100}
 \end{figure}
 \subsection{Experiment II}
-To study the performance of different models with various MRA capabilities, a single realization was obtained using Eqs.~\eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation} under the same circumstances of the previous experiment. The generated data set was then employed to estimate the underlying field and the connectivity kernel parameters using different state-space models, $j=0$ up to $j=4$. The RMSE of the field estimation for different models is shown in Fig.~\ref{fig:RMSE}. By increasing the value of $j$, error in the estimation decreases and converges to a steady value of 0.71, confirming that the model with $j=3$ (used in the first experiment) is in fact adequate to capture the dynamics of the underlying field. The spatiotemporal characteristics of the reconstructed fields (A-E) along with the actual field (F)  are shown in Fig.~\ref{fig:FieldEstimation}. The experiment was performed several times and the results were consistent over each run.
+To study the performance of different models with various MRA capabilities, a single realization was obtained using Eqs.~\eqref{eq:DiscreteTimeModel} and \eqref{eq:ObservationEquation} under the same circumstances of the previous experiment. The generated data set was then employed to estimate the underlying field and the connectivity kernel parameters using different state-space models, $j=0$ up to $j=4$. The mean over time of the root mean square error (MRMSE) over space of the field estimation for different models is shown in Fig.~\ref{fig:RMSE}. By increasing the value of $j$, error in the estimation decreases and converges to a steady value of 0.71, confirming that the model with $j=3$ (used in the first experiment) is in fact adequate to capture the dynamics of the underlying field. The spatiotemporal characteristics of the reconstructed fields (A-E) along with the actual field (F)  are shown in Fig.~\ref{fig:FieldEstimation}. The experiment was performed several times and the results were consistent over each run.
  \begin{figure}[!t]	 
  	\centering
  		\includegraphics[scale=1]{./Graph/fig10.pdf}
