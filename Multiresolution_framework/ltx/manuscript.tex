@@ -397,7 +397,7 @@ where each element of the observation matrix, $\mathbf{C}$, is given by
 \end{equation}
 \section{B-Spline MRAIDE in State-Space }
 \subsection{A Brief Introduction to B-Spline Wavelets}
-This section is included to provide the interested reader with an overview of the theory for the scaling and wavelet functions that form the basis of the multi-resolution model. Although a deep understanding of the theory presented in this section is not required for an understanding of the key results of the paper, it serves as a reference for implementing the methods.
+This section is included to provide the interested reader with an overview of the theory for  scaling and wavelet functions that form the basis of the multi-resolution model. Although a deep understanding of the theory presented in this section is not required for an understanding of the key results of the paper, it serves as a reference for implementing the methods.
 
 B-spline functions are one of the most basic elements for wavelet construction. These functions are composed of piecewise polynomials combined smoothly at some breaking points (knots), which are equally spaced in the case of cardinal B-splines. The degree of smoothness is determined by the order of splines \citep{Goswami1999}, where the higher the order the smoother the resulting B-spline becomes (see Fig.~\ref{fig:Figure0}).
 \begin{figure}[!t]
@@ -827,8 +827,8 @@ The EM algorithm was allowed to run until a maximum number of 20 iterations was 
 \begin{figure}[t]
  	\centering
  		\includegraphics[scale=1]{./Graph/fig8.pdf}
- 		\caption{{\bf Convergence of the EM based algorithm}. Representative plot of
-the $\mathbf A(\boldsymbol\theta)$ Frobenius norm vs iterations of EM based algorithm. The change in the stopping criterion falls below $10^{-6}$ after less than 10 iterations.} 
+ 		\caption{{\bf Convergence of the EM based algorithm}. The mean  of
+the $\mathbf A(\boldsymbol\theta)$ Frobenius norm over 200 realizations vs iterations of the EM based algorithm. The change in the stopping criterion falls below $10^{-6}$ after less than 10 iterations.} 
 \label{fig:MRA-Convergence}  
  \end{figure}     
 % The spatial cutoff frequency of the observed field was used to specify the level of decomposition required to represent the field using the wavelets. Using an oversampling parameter of 5, the cutoff spatial frequency was $\nu_{cy} \approx 6.9 $ cycles/mm, obtained by averaging the spectral power of the spatial frequency (over time) from the observations \cite{Scerri2009}. Therefore, wavelets up to level $j=3$ (with the bandwidth $\approx[5,8]$ cycles/mm) can represent the significant spatial characteristics of the field, yielding $n_x = 131$ states. 
