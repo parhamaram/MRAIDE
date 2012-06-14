@@ -690,7 +690,7 @@ Each $ 1 \times n_{\theta}$ block of the $n_x \times n_x n_{\theta}$ block matri
 \begin{align}\label{eq:Uij}
 \left[ \mathbf U\right] ^{k,i}&=\int_{\boldsymbol \Omega}\left[\boldsymbol\mu(r) \right]_k \left[\int_{\boldsymbol\Omega} \boldsymbol\mu\left(r'\right)\boldsymbol \lambda^\top \left(r-r'\right) \mathrm{d}r'\right]_{i:} \mathrm{d}r,
 \end{align}
-where $[\cdot]_{i:} $ denotes the $i^{th}$ row. The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon} are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t^b$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005} (see \ref{ap:Xiderivation} for details), 
+where $\left[\cdot\right]_k$ denotes the $k^{th}$ element of the vector and $[\cdot]_{i:} $ denotes the $i^{th}$ row. The matrices $\boldsymbol\Xi_0$ and $\boldsymbol\Xi_1$ in Eqs.~\eqref{eq:epsilon0}-\eqref{eq:Epsilon} are calculated using the RTS smoother outputs: $\hat{\mathbf x}_t^b$, covariance, $\mathbf P_t^b$, and cross-covariance matrix, $\mathbf M_t$ \citep{Gibsona2005} (see \ref{ap:Xiderivation} for details), 
 \begin{align}
 \boldsymbol\Xi_0&=\sum_{t=0}^{T-1}\left(\mathbf M_{t+1}+\mathbf{\hat x}_t^b\mathbf{\hat x}_{t+1}^{b\top}\right) \label{eq:Xi0} \\
  \boldsymbol\Xi_1&=\sum_{t=0}^{T-1}\left(\mathbf P_t^b+\mathbf{\hat x}_t^b\mathbf{\hat x}_t^{b\top}\right).  \label{eq:Xi1}
