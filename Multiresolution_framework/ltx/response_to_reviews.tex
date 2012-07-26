@@ -10,8 +10,8 @@
 \newcommand{\mike}[1]{\textcolor{green}{#1}}
 \newcommand{\parham}[1]{\textcolor{blue}{#1}}
 
-\title{Responses - A Data-Driven Framework for Neural Field Modeling}
-\author{D. Freestone, P. Aram, M. Dewar, K. Scerri, D. Grayden, V. Kadirkamanathan}
+\title{Responses - Spatiotemporal Multi-Resolution Approximation of the Amari Type Neural Field Model}
+\author{ P. Aram, D. Freestone, M. Dewar, K. Scerri, V. Jirsa, D. Grayden, V. Kadirkamanathan}
 
 \begin{document}
     \maketitle
@@ -22,89 +22,93 @@
 Best Regards,
 \\
 
-Dean Freestone.
+Parham Aram.
+
+\section{Handling editor}
+\begin{enumerate}
+\item Whilst the paper does fit the scope of NI, I agree with R1 and R3, that explicit advantages of going to a multiresolution frame - in addition to the conceptual ones - compared to the prior work based on Gaussian basis functions needs clarification and elucidation. 
+
+\emph{Response here.}
+
+\item  In addition, at least a `proof of principle" inversion from empirical data would enhance the potential impact of the paper. 
+
+\emph{Response here.}
+	
+\end{enumerate}
 
     \section{Reviewer 1}
     
-    \subsection{Main Concerns}
-    It would be useful to mention the above (now below) explicitly in the introduction and try to address them in later sections of the paper.
+    % It would be useful to mention the above (now below) explicitly in the introduction and try to address them in later sections of the paper.
 
     \begin{enumerate}
-        \item Do not use real data for the validation of their approach
+        \item The exposition of the material and the relevant discussion have many similarities with the papers of the same authors (Freestone et al., 2011) and (Dewar et al., 2009) published in Neuroimage and IEEE Trans on Signal Processing  respectively.
 
-	\emph{The authors appreciate that the only way to truly validate the proposed framework is with real data. However, before validating the method on real data we believe that it is essential to first validate the estimation method using accepted models and synthetic data, where the true and estimated parameters can be compared. In an effort to make the method employed in the paper more explicit, we have added ``To illustrate the estimation framework, data is generated using the neural field equations incorporating modeled sensors enabling a comparison between the estimated and true parameters'' to the introduction. We plan to validate the framework on real data in future work. We have added that validating the framework on real data is required in the Conclusion.}
+	\emph{Response here.}
 	
-        \item Assume that a few kernel basis functions accurately represent the actual connectivity kernel, which might not be the case when using real data;
+        \item The authors say the paper at hand is an ``extension'' of Freestone et al. by which I understand they mean the use of a wavelet as opposed to a Gaussian basis for the decomposition.
 
-	\emph{Most examples presented in the paper use the Mexican hat connectivity kernel. The framework is also valid for other connectivity kernels provided they are spatially homogeneous and that they can be approximated by a set of weighted isotropic basis functions. The mathematical formulation does not place any further restrictions on the form of the spatial mixing kernel. However, more complex shapes may require more basis functions, leading to more parameters. We have added statements to the methods section (after equation~17) to be more explicit in describing subtleties of the method.}
+	\emph{Response here.}
 
-        \item Do not consider the EEG/MEG lead field when constructing their mapping between the membrane voltage and the electrophysiological data (observation function)
+        \item Since the methodology used is the same as in that earlier Neuroimage paper, the paper at hand repeats several of  the results of that previous paper, see sections 3 and 4: equations (2)-(5) and (20) -(33) have already appeared or are very similar to equations in Freestone et al.
 
-	\emph{In response to this important point, the authors have made an effort to be clear that we are not considering scalp EEG to be a valid data source for the estimation framework. Amendments have been made to the Introduction (last paragraph), Method (after equation 13), and Discussion (Implications for Experimental Design). We have primarily developed the framework for higher density intracranial measurements. This is explained in the spatial frequency analysis method and discussion.}
-	
-    \end{enumerate}
-    
-    \subsection{Additional Comments}
-    
-    \begin{enumerate}
-        \item The discrepancy of the results in Experiment II where the weights of the basis functions are not in agreement with the actual parameters while the reconstructed kernels seem satisfying.
+	\emph{Response here.}
+	        
+        \item Section 5 is a review of known results and standard background material from wavelet theory and includes a simple calculation of the Fourier transform of the particular basis used here, which would be more appropriate for an appendix (cf appendix H of the Freestone et al. paper where the Fourier transform of the Gaussian basis functions is calculated).
 
-		\emph{We have added to the results section describing experiment II: `These results indicate that the solution to the system may not be unique in non-ideal, practical situations. Nevertheless, the net shape of the connectivity kernel can be determined reasonably accurately.'}
+		\emph{Response here.}
 
-        \item The use of Euler discretisation and how this affects the system's behavior.
+        \item Section 6 also borrows heavily from Dewar et al, e.g. cf equation (58) of this paper with equation (19) of Dewar et al: the state transition matrix is a perturbation of the corresponding matrix used in that earlier paper. The approach used in both papers seems to be the same with an RTS smoother used in the E-step (this was also used and explained in Freestone et al.) and an M step optimizing a cost function, quadratic in the parameters, cf. equation (62) with  equation (29) of Theorem 2 of Dewar et al. In general, the derivations of section 6 and appendix B follow closely or are very similar to those of Dewar et al.
 
-		\emph{We have added some comments to  Appendix A, where the discretization is performed.}
+		\emph{Response here.}
 		
-        \item The derivation of Equations (30) and (31) (now equations (35) and (36)) and make them more transparent for the general audience.
+        \item Also, Appendix A is the analogue of Appendix D of Freestone et al. and Appendix C includes results known from the literature (as the authors point out).
 
-\emph{To address this point, we have added an extra appendix with a derivation of the sampling theorem with the appropriate cross-referencing to the main text. An effort was made to keep this derivation minimal and as clear as possible. We have also added the references to relevant part of the text (that should have been there before, as the reviewer has correctly pointed out). We felt that it was worth adding the extra appendix to provide a clear derivation that is contextually and notationally relevant to this paper.}
+\emph{Response here.}
 
-        \item The existing literature on inversion schemes for similar models of brain activity.
+        \item Although I value the use of a wavelet as opposed to a Gaussian basis, the advantages in the context of the analysis of brain imaging data have not been demonstrated and a comparison with the authors' earlier approach has not been performed.  The framework of Freestone et al., seemed not to assume a linear relation between mean membrane potential and firing rate and in that sense the present approach appears more restrictive.
 
-\emph{The existing literature has been discussed in more depth in the Introduction.}
+\emph{Response here.}
 
-        \item In section 3, Table 6 is mentioned however there is no such table in the ms.
+        \item The authors say that a multi-resolution approach would explain the``organizational level of the brain at which cognition and behaviour are best explaine'' but it is unclear what the alternative levels considered here are and what the significance of the results obtained is.
 
-\emph{The cross-referencing has been corrected.}
+\emph{Response here.}
+
+				\item Similar claims to the ones mentioned here regarding  implications for ``patient-specifi'' modelling have also been made in Freestone et al., so it is not clear how these relate to the current multi-resolution approach and also such remarks might look too ambitious given that only synthetic data with fixed parameters are considered.
+				
+				\emph{Response here.}
+				
+				\item The comments about model complexity and parsimony on p. 13 are somehow vague as these quantities are undefined.
+				
+				\emph{Response here.}
+				
+				\item Also, the comments on large scale networks and delays made on p.20 look irrelevant to the present framework.
+				
+				\emph{Response here.}
+				
+				\item much of the discussion of the last section focuses on technical issues, while the discussion of the observation kernel chosen on p.17 is limited.
+				
+				\emph{Response here.}
 
     \end{enumerate}
     
     \section{Reviewer 2}
     
 \begin{enumerate}
-    \item The handling of the (to borrow a term from numerical weather forecasting) `sub-grid scale physics' is inadequate for nervous systems (see, e.g., equation 8 (now equation 12) [The nonlinear IntegroDifference Equation]). I do very much appreciate the spectral estimation of spatial and temporal scales. But the model errors are lumped into an iid model error term that is not realistic. For instance, the flow of potassium in the extracellular spaces has a known dynamic that will affect network excitability, generating important sub-grid dynamics that is anything but iid. See, for instance, the example in Ullah et al PLoS Comp Biol 2010 where without such dynamics, state tracking and parameter estimation for a neural system fails. A beautiful overview of sub-grid effects in data assimilation is found in Kalnay's 2003 book. I would very much value the authors comments on these issues. I guess were I to respond to this question, that I might consider extending the model error term to an autoregressive model. But I will let the authors answer this question.
+    \item As a minor comment, I would suggest changing the notation for the scaling and wavelet coefficients in Eq. (6), for example into normal lowercase `a' and `c', respectively. The $\beta$ might be confused by B-spline notation. 
 
-	\emph{A more sophisticated model for the error will provide a more realistic description of the cortical dynamics. However, this will increase the number of parameters making the estimation problem more difficult. Furthermore, the authors believe that there is a benefit staying as close as possible to the classic WC equations, so future results can be compared to theoretical studies. A preferable alternative to an AR error term is to allow for time-varying parameters to account for changes in excitability levels. In future work, we also hope estimate the disturbance properties (spatial covariance and temporal variance). To address this point in this paper, we have added an extra paragraph to `Neural Field Model' section of the Methods, where we discuss the model mismatch and some basic modeling assumptions. We have also added to the Estimation section, stating that we are assuming the parameters are stationary of the estimation period. In addition, we have added to the discussion (Extensions section) with possible ways to relax these assumptions.}
+	\emph{Response here.}
 
-\item Although we all know the 1970s version of Wilson and Cowan's field equations, there was an intriguing stochasticization of these equations by Benayoun et al PloS Comp Biol 2010. I and others will value the authors' thoughts of how a more palatable stochasticization of these field equations might influence the future development of the data-assimilation framework presented in this paper.
+\item For the discussion, it might be useful to add a sentence that the basis structure (i.e., non-redundant, versus a (tight) frame representation) is a requirement for this framework.
 
-\emph{We have attempted to answer this assuming the reviewer is after a sensible method for choosing the disturbance parameters.}
+\emph{Response here.}
 
-\emph{The results of Benayoun et al. provide evidence that the variance in a stochastic WC model will depend on the number of neurons that are modeled (in a stochastic network), where a larger network behaves more like the deterministic WC equations. This work encourages the use of the WC model with an additive disturbance for data-assimilation, but suggests that the disturbance properties should also be estimated. The authors believe that estimating the noise properties is possible within an EM framework, and we are planning to demonstrate how to achieve this in our future work. We have added some comments to the Extension to the Framework section in this regard.}
 
-\item This is NeuroImage, not the Physical Review. Although most of this framework involves mathematics that is reasonable to follow for typical readers of this journal, I would suggest that the authors explain and expand a bit on the introduction of Green's functions where introduced in equation 6.
 
-\emph{A more detailed explanation has been added to the manuscript.}
+\item A small comment might also be considered for Sect 8.2: it is possible to apply other than dyadic subsampling schemes in multiple dimensions, which leads to less wavelet subbands. For example, in 2D, the quincunx scheme is well-known to have better isotropic properties. Unfortunately, in 3D, it is not possible to have a subsampling operator (acting on a Cartesian sampling lattice) that is performing subsampling at equal rate in each dimension at each iteration, see Van De Ville et al,`On the multidimensional extension of the quincunx subsampling lattice', IEEE SPL, 12:2, pp.  112-115, 2005, for a comment on this. 
 
-\item What is the relation of the substitution of the temporal and spatial basis functions as employed in this paper to Galerkin's projection? How do the two techniques differ? If this is close, the non-local case for a Galerkin projection (typically used in diffusive processes) has not, to my knowledge, been done. Certainly not in a way that is obvious for neural field theory. Perhaps this is my ignorance. This seems important to clarify for the rest of us.
+\emph{Response here.}
 
-\emph{We have added an extra step in the derivation of the state-space model to highlight the relationship to our basis function decomposition and Galerkin's projection. We have also added an extra Appendix to further explain the relationship.}
 
-\item In the isotropic and translationally invariant case examined here, would a Fourier basis for temporal and spatial structure have been a formally correct alternative?
-
-\emph{Yes. Fourier basis functions would be a correct alternative to the case examined in this paper. In fact, Fourier basis functions or any other orthonormal basis functions would simplify the state-space representation of the model, since $\Gamma$ (defined in equation 21) of the manuscript would be the identity matrix. However, we have chosen Gaussian basis functions due to their semi-compact support. A comment has been added for possible alternative basis functions under equation 22 of the manuscript.}
-
-\item In equation 29 (now equation 34), what would a reasonable $\boldsymbol{\nu}_c$ be for a real neuronal system (mammalian) given the number of neurons and scale of electrodes? I am concerned that it might be much higher than any of us wish to consider. One would perhaps be saved by the filter characteristics of brain (e.g. Phys. Rev. E 73, 051911 (2006)).
-
-\emph{The mean spatial frequency content is actually lower than one might first expect. We have added `From the work of (Freeman et al, 2000), the expected bandwidth of the human neocortex is approximately 0.1-0.4 cycles/mm which requires a sensor spacing of approximately 1.25 mm to avoid distortions due to aliasing' to the Frequency Analysis section of the paper to clear this up. We have also added to the discussion. Note, we expect the spatial bandwidth of the cortex to be governed by the connectivity kernel, since it is equivalent to a spatial low-pass filter acting on the firing rates.}
-
-\item The two covariance inflation parameters in equation 41 (now equation 46) make me cringe. How are we best to adjust these fudge factors?
-
-\emph{Values for the two parameters in equation 41 (now equation 46) along with the relevant references, that describe the rationale for parameter choice, have been added to the manuscript.}
-
-\item I understand that the Mexican Hat bases are in this paper often a composite of $\theta_0$, $\theta_1$, and $\theta_2$, representing short range excitation, short range inhibition, and long range excitation. But many will be confused by this subtlety, and at times in the text the Mexican Hat basis is described as if it were a single function. I would show how the theta's sum to create the general spatial basis shape of the hat in figure 1, and go through the paper in order to clarify this issue.
-
-\emph{This point is clarified by adding the connectivity kernel components superimposed by the resulting Mexican Hat basis in Figure 1. of the manuscript. It has also been clarified throughout the paper.}
  % 
  % \begin{figure*}[!ht]
  % \begin{center}
@@ -114,18 +118,82 @@ Dean Freestone.
  % \label{fig:Figure1}
  % \end{figure*}
 
-\item A few comments on how to adapt the smoother for real time implementation would be helpful. I presume that one would perform the smoothing during a training phase. But one would also wish to adapt in real time as observation or control scenarios progressed. A few words of perspective would be invaluable to help others translate the author's wisdom on this method to other applications.
+ 
 
-\emph{A few comments have been added to the last paragraph of the `Extensions to the Framework' section of the discussion.}
+\end{enumerate}  
 
-\item Figure 4. Should the axes be indicated as spatial frequency rather than just Hz?
+    \section{Reviewer 3}  
+    \subsection{Main Concerns}
+		\begin{enumerate} 
+			\item I am not at all sure that isotopic scaling of the multiresolution is appropriate for brain connections, but I cannot say at this point that it is not.
+			
+			\emph{Response here.}
+			 
+			\item This model cries out for validation in real neuronal systems, but alas, at this point we only see convergence to synthetic data.   
+			
+			\emph{The authors appreciate that the only way to truly validate the proposed framework is with real data. However, before validating the method on real data we believe that it is essential to first validate the estimation method using accepted models and synthetic data, where the true and estimated parameters can be compared. In an effort to make the method employed in the paper more explicit, we have added ``To illustrate the estimation framework, data is generated using the neural field equations incorporating modeled sensors enabling a comparison between the estimated and true parameters'' to the introduction. We plan to validate the framework on real data in future work. We have added that validating the framework on real data is required in the Conclusion.}  
+			
+			\item This audience needs to have all symbols, including commonly used ones such as `equality over distribution', double font domains like R and Z, and jargon terms such as `lead field'.
+			
+			\emph{Response here.}  
+			
+			\item I would off-load all of the very difficult mathematics to the appendices and supplementary data, and focus a NeuroImage paper on the results of image analysis. 
+			
+			\emph{Response here.}
+			
+			\item Contrasting, for example, this multiresolution method with Freestone's 2011 results would be helpful for continuity.
+			
+			\emph{Response here.}
+			
+			\item I would also recommend archiving code that, for instance generates figure 11, so that the readership has a chance to replicate these findings, and adapt this method to their own data.
+			
+ 			\emph{Response here.}
+ 		
+			                                       
+			\end{enumerate}  
+			\subsection{Moderate concerns} 
+			\begin{enumerate} 
+			 \item Page 2: the authors should clearly define the difference between neural field and neural mass models.
+			
+			\emph{Response here.}
+			
+			\item Eqn 3: theta needs indexing 
+ 
+			\emph{Response here.}
+ 			
+			\item Define first and second order synaptic responses (used in figure 2 to explain text that does not refer to these terms)
+			
+			\emph{Response here.}
+			
+			\item{Eqn 9: the state variables $x$ seem to arise without distinction from $v$}  
+			
+			\emph{Response here.}
+			
+			\item Between eqn 19 and 20 change
+			`write the neural field and connectivity kernel decomposition' To `write the connectivity kernel and neural field decomposition'
+			To maintain order with eqns 20 and 21.
 
-\emph{Yes. Axes of Figure 4. (and also Figure 5.) are now changed to spatial frequency. The unit of the spatial frequency within the text is changed to cycles/mm.}
+			\emph{Response here.}
+			
+			 
+			 \end{enumerate}  
+			\subsection{Trivia}
+			\begin{enumerate}
+			 \item 	Define `one-off' on pg 16 
 
-\item Page 45, Appendix D (now Appendix E), Par 1, line 6: should `transform of a n-' should be `transform of an n-' ? I am grammatically challenged perhaps.
+ 			\emph{Response here.}
 
-\emph{We stand corrected. We have changed the text to `an n-dimensional'.}
+  		\item Figure 8 is referred to in the text out of order
 
-\end{enumerate}
+  			\emph{Response here.}
+			 
+			\item Pg 19: `stationary point i.e. global' should be `stationary point, i.e. a global'
 
+			\emph{Response here.}			
+			                   
+			
+			 
+				\end{enumerate} 
+				
+			
 \end{document}
