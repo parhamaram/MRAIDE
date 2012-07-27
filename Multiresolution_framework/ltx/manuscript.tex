@@ -111,10 +111,10 @@ The purpose of forming the multi-resolution approximation (MRA) of the integro-d
 
 The multi-resolution approximation \citep{Mallat1989a} of the neural IDE (MRAIDE) is obtained by decomposing both the field, $v_t(\cdot)$, and the connectivity kernel, $w(\cdot)$, (assuming square-integrable functions) using translations and dilations of a scaling function $\phi(\mathbf{r})$ and a mother wavelet $\psi(\mathbf{r})$. Considering a  one-dimensional field, the static connectivity kernel is decomposed as,
 \begin{equation}
- w\left(r\right)=\sum_{l\in \mathbb{Z}}\alpha_{j_0,l} \underbrace{\phi_{j_0,l}\left(r\right)}_{\text{scaling functions}} + \sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}\beta_{j,l} \underbrace{\psi_{j,l}\left(r\right)}_{\text{wavelets}}, 
+ w\left(r\right)=\sum_{l\in \mathbb{Z}}a_{j_0,l} \underbrace{\phi_{j_0,l}\left(r\right)}_{\text{scaling functions}} + \sum_{j\geq j_0}^{\infty} \sum_{l \in \mathbb{Z}}c_{j,l} \underbrace{\psi_{j,l}\left(r\right)}_{\text{wavelets}}, 
 \label{eq:KernelExpansion}
 \end{equation}
-where $\alpha_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$, and $\beta_{j,l}$ are the detail coefficients at different scales $j$, with
+where $a_{j_0,l}$ are the approximation coefficients at the lowest scale $j_0$, and $c_{j,l}$ are the detail coefficients at different scales $j$, with
 \begin{align}
 \phi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\phi\left(2^j r-l\right) \label{eq:generalscalingfinction}\\	
 \psi_{j,l}\left(r\right) =& 2^{\frac{j}{2}}\psi\left(2^j r-l\right).  \label{eq:generalwaveletfinction}
@@ -134,14 +134,14 @@ Now we will simplify the notation by defining vectors that contain all the trans
 \begin{align}      
 	\boldsymbol\phi_{j_0}(r) \triangleq&\left\lbrace{\phi_{j_0,l}(r)}:l \in \mathbb{Z} \right\rbrace \\
 	\boldsymbol\psi_{j}(r) \triangleq& \left\lbrace{\psi_{j,l}(r)}:l \in \mathbb{Z} \right\rbrace\\
-	\boldsymbol\alpha_{j_0} \triangleq& \left\lbrace\alpha_{j_0, l}:l \in \mathbb{Z} \right\rbrace \\
-	\boldsymbol\beta_{j} \triangleq& \left\lbrace\beta_{j, l}:l \in \mathbb{Z} \right\rbrace \\
+	\mathbf{a}_{j_0} \triangleq& \left\lbrace a_{j_0, l}:l \in \mathbb{Z} \right\rbrace \\
+	\mathbf{c}_{j} \triangleq& \left\lbrace c_{j, l}:l \in \mathbb{Z} \right\rbrace \\
 	\mathbf{x}_{t,j_0} \triangleq& \left\lbrace{x}_{t,j_{0},l}:l \in \mathbb{Z} \right\rbrace \\
 	\check{\mathbf{x}}_{t,j} \triangleq& \left\lbrace{\check{x}}_{t,j,l}:l \in \mathbb{Z} \right\rbrace.
 \end{align}
 Following this we can define the vectors 
 \begin{align}
-\boldsymbol\theta^\top \triangleq& [\begin{array}{ccccc} \boldsymbol\alpha_{j_0}^\top & \boldsymbol\beta_{j_0}^\top & \boldsymbol\beta_{j_0+1}^\top & \cdots & \boldsymbol\beta_{j}^\top \end{array}] 
+\boldsymbol\theta^\top \triangleq& [\begin{array}{ccccc} \mathbf{a}_{j_0}^\top & \mathbf{c}_{j_0}^\top & \mathbf{c}_{j_0+1}^\top & \cdots & \mathbf{c}_{j}^\top \end{array}] 
 \label{KernelWeights} \\
 \mathbf{x}_{t}^\top \triangleq& [\begin{array}{ccccc}\mathbf{x}_{t,j_{0}}^\top &  \check{\mathbf{x}}_{t,j_{0}}^\top & \check{\mathbf{x}}_{t,j_{0}+1}^\top & \cdots & \check{\mathbf{x}}_{t,j}^\top\end{array}]
 \label{FieldWeights} \\
@@ -541,7 +541,7 @@ The research reported herein was partly supported by the Brain Network Recovery 
 	\hline                                                   
 	$\phi_{j,l}(r)$&Scaling function&n.a\\
 	$\psi_{j,l}(r)$&Wavelet function&n.a\\  
-	$\alpha_{j_0,l}, \beta_{j,l}$&Connectivity kernel approximation and detail coefficients&mV~spike$^{-1}$\\ 
+	$a_{j_0,l}, c_{j,l}$&Connectivity kernel approximation and detail coefficients&mV~spike$^{-1}$\\ 
 	$x_{t,j_{0},l},\check{x}_{t,j,l}$&Field approximation and detail coefficients at a given time&mV~spike$^{-1}$\\ 
 	$N_m(r)$&$m^{th}$ order B-spline function&n.a.\\
 	$\varphi_m(r)$&$m^{th}$ order B-spline wavelet function&n.a.\\
