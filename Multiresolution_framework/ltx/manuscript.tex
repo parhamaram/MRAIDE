@@ -160,7 +160,7 @@ Following this we can define the vectors
 \cdots &
 \boldsymbol\psi_{j}^\top(r)\end{array}\right],
 \end{align}
-which allow us to write the neural field and connectivity kernel decomposition in the compact form of
+which allow us to write the connectivity kernel and neural field  decomposition in the compact form of
 \begin{align}
 	w\left(r\right) &\approx \boldsymbol\theta^\top\boldsymbol\lambda\left(r\right) 
 	\label{eq:KernelFiniteExpansion} \\
@@ -474,7 +474,8 @@ To demonstrate the performance of the MRAIDE estimation framework, data was gene
 \begin{equation}\label{eq:ConnectivityKernelForData}
 	w(r-r')=\theta_1\times N_{4;1,2}(r-r')+\theta_2\times N_{4;0,2}(r-r'),
 \end{equation}
-with $\theta_1=200$ and $\theta_2=-100$. This is depicted in Fig.~\ref{fig:KernelEstimate}(A).
+with $\theta_1=200$ and $\theta_2=-100$. 
+% This is depicted in Fig.~\ref{fig:KernelEstimate}(A).
 
 Two different experiments were designed to test the framework. In the first one, 200 realizations of 1 second of data were used, where the field disturbance, $e_t$, and the observation noise, $\boldsymbol\epsilon_t$, were regenerated each run. This way the net shape of the connectivity kernel could be formed by averaging over the parameters estimates from each realization. In the second experiment, a single data set was generated and the field estimations are compared for five state-space models, each accounting up to a certain level of approximation, i.e. $j=0$ to $j=4$. All parameters for the model are given in Table~\ref{tab:Parameters}.
 
@@ -496,7 +497,7 @@ In this paper, we have presented a novel model-based framework for estimating co
 \subsection{Estimation algorithm}
 For a larger space, or in a case where the connectivity kernel decomposition comprises of  many scale levels, the number of parameters to be estimated increases significantly. One solution to this problem could be expectation-conditional maximization (ECM) \citep{Meng1993,Meng1994}, which replaces the M-step by a series of computationally simplified conditional maximization (CM) steps. The ECM is a class of generalized EM (GEM)  algorithms in which the $\mathcal{Q}$-function is increased rather than being maximized \citep{Fessler1994}. For systems with a high number of states, the ensemble Kalman smoother (EnKS) \citep{Evensen2003,Evensen2009a,Evensen2009} provides an alternative to the RTS smoother used in this work. The EnKS is a sequential Monte Carlo (MC) method where the state covariance matrix is approximated by a large stochastic ensemble of model states, thus alleviating computational load due to the storage and forward integration of the state covariance matrix. However, combining the EnKS with the EM algorithm suffers from the loss of monotonicity property --- increase in the likelihood function--- as MC error will be introduced at the E-step.
 
-Typically, a sequence of likelihood values will converge to a stationary point i.e. global (local) maximum or a saddle point. If the sequence of the EM is trapped in a local maximum or a saddle point, a small random perturbation diverges the algorithm from such stationary values \citep{McLachlan1997}. In general, convergence of the EM algorithm to any stationary point depends on the initialization. In the examples presented in this paper, a bounded sequence of the state vectors was used to initialize the algorithm, which gave a satisfactory convergence and good state and parameter estimations. 
+Typically, a sequence of likelihood values will converge to a stationary point, i.e. a global (local) maximum or a saddle point. If the sequence of the EM is trapped in a local maximum or a saddle point, a small random perturbation diverges the algorithm from such stationary values \citep{McLachlan1997}. In general, convergence of the EM algorithm to any stationary point depends on the initialization. In the examples presented in this paper, a bounded sequence of the state vectors was used to initialize the algorithm, which gave a satisfactory convergence and good state and parameter estimations. 
 
 Choosing isotropic scaling and wavelet functions allows switching the order of operations with the inner product and convolution in Eq.~\eqref{eq:ApproxDiscreteTimeModel4}. This simplifies the computational complexity of the estimation algorithm significantly. Although this is correct for one dimensional B-spline scaling and wavelet functions, it does not hold at higher dimensions as the resulting B-spline wavelets are not isotropic. One alternative could be  
 isotropic polyharmonic B-splines scaling functions and wavelets \citep{VanDeVille2005}.
