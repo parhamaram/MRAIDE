@@ -4,13 +4,13 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{setspace} 
-% \usepackage[usenames,dvipsnames]{color}  
+ \usepackage[usenames,dvipsnames]{color}  
 %This bit is how to use hyperlink without  coloured rectangles around it
 \usepackage{float}
 % \usepackage{hyperref}
-% \hypersetup{colorlinks,linkcolor=black,filecolor=black,urlcolor=black,citecolor=black}
-% \newcommand{\dean}[1]{\textcolor{green}{#1}}
-% \newcommand{\parham}[1]{\textcolor{blue}{#1}}
+ % \hypersetup{colorlinks,linkcolor=black,filecolor=black,urlcolor=black,citecolor=black}
+ \newcommand{\dean}[1]{\textcolor{green}{#1}}
+ \newcommand{\parham}[1]{\textcolor{blue}{#1}}
 % \newcommand{\vik}[1]{\textcolor{red}{#1}}    
   
 
@@ -499,10 +499,10 @@ For a larger space, or in a case where the connectivity kernel decomposition com
 
 Typically, a sequence of likelihood values will converge to a stationary point, i.e. a global (local) maximum or a saddle point. If the sequence of the EM is trapped in a local maximum or a saddle point, a small random perturbation diverges the algorithm from such stationary values \citep{McLachlan1997}. In general, convergence of the EM algorithm to any stationary point depends on the initialization. In the examples presented in this paper, a bounded sequence of the state vectors was used to initialize the algorithm, which gave a satisfactory convergence and good state and parameter estimations. 
 
-Choosing isotropic scaling and wavelet functions allows switching the order of operations with the inner product and convolution in Eq.~\eqref{eq:ApproxDiscreteTimeModel4}. This simplifies the computational complexity of the estimation algorithm significantly. Although this is correct for one dimensional B-spline scaling and wavelet functions, it does not hold at higher dimensions as the resulting B-spline wavelets are not isotropic. One alternative could be  
+\parham{The basis structure (i.e., non-redundant, versus a (tight) frame representation) is a requirement for this framework.                                              }Choosing isotropic scaling and wavelet functions allows switching the order of operations with the inner product and convolution in Eq.~\eqref{eq:ApproxDiscreteTimeModel4}. This simplifies the computational complexity of the estimation algorithm significantly. Although this is correct for one dimensional B-spline scaling and wavelet functions, it does not hold at higher dimensions as the resulting B-spline wavelets are not isotropic. One alternative could be  
 isotropic polyharmonic B-splines scaling functions and wavelets \citep{VanDeVille2005}.
  \subsection{Modification to higher dimensions}
- The reconstruction of the neural field in higher dimensions requires $2^n-1$ wavelets, where $n$ is the dimension of the space. For example a two-dimensional MRA can be implemented using 2-D scaling and wavelet functions built up using the tensor-product approach \citep{Meyer1992}. In this case three wavelet functions are required to  extract fine features of the field at vertical, horizontal and diagonal orientations. The formulations provided in this paper can be easily extended to two dimensions. However, the computational load of the estimation algorithm will be significant. It is important to investigate methods for choosing basis functions to balance the complexity with the reconstruction capability of the model.
+ The reconstruction of the neural field in higher dimensions requires $2^n-1$ wavelets, where $n$ is the dimension of the space. For example a two-dimensional MRA can be implemented using 2-D scaling and wavelet functions built up using the tensor-product approach \citep{Meyer1992}. In this case three wavelet functions are required to  extract fine features of the field at vertical, horizontal and diagonal orientations. The formulations provided in this paper can be easily extended to two dimensions. However, the computational load of the estimation algorithm will be significant. It is important to investigate methods for choosing basis functions to balance the complexity with the reconstruction capability of the model. \parham{It is also possible to apply other than dyadic subsampling schemes in multiple dimensions, which leads to less wavelet subbands. For example, in 2D, the quincunx scheme is well-known to have better isotropic properties. Unfortunately, in 3D, it is not possible to have a subsampling operator (acting on a Cartesian sampling lattice) that is performing subsampling at equal rate in each dimension at each iteration \citep{VanDeVille2005a}.}
 \subsection{Extensions to the framework} 
 Clearly there is, and will always be, a discrepancy between the dynamics of the model and the experimental observation. Nevertheless, the model-based framework proposed in this paper may enable meaningful state tracking and connectivity estimation. The MRAIDE approach is not limited to neural fields; the framework can be applied to modeling other multi-resolution spatiotemporal dynamical systems such as weather systems, ecological systems, and others~\citep{Wikle2002,Xu2005}. The key development is the multi-resolution decomposition forming the state-space model. While the decomposition holds for more sophisticated models, efficiently performing nonlinear smoothing in the large state-space remains a challenge.                                                                                                 
 
@@ -993,8 +993,8 @@ Substituting Eq.~\eqref{eq:Xi0derivation1} into Eq.~\eqref{eq:appXi0}, noting th
 \end{equation}   
 An expression for $\boldsymbol\Xi_1$ in terms of the smoothed states can be also found in a similar way by calculating the covariance matrix, $\mathbf P_t^b$ and following the above steps. 
 \newpage
-% \bibliographystyle{./elsarticle/model2-names}  
-\bibliographystyle{model2-names} 
+ \bibliographystyle{./elsarticle/model2-names}  
+% \bibliographystyle{model2-names} 
 \bibliography{MRAIDE}
 \end{document}
 

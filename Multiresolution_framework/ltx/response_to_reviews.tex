@@ -59,11 +59,11 @@ Parham Aram.
 
         \item Section 6 also borrows heavily from Dewar et al, e.g. cf equation (58) of this paper with equation (19) of Dewar et al: the state transition matrix is a perturbation of the corresponding matrix used in that earlier paper. The approach used in both papers seems to be the same with an RTS smoother used in the E-step (this was also used and explained in Freestone et al.) and an M step optimizing a cost function, quadratic in the parameters, cf. equation (62) with  equation (29) of Theorem 2 of Dewar et al. In general, the derivations of section 6 and appendix B follow closely or are very similar to those of Dewar et al.
 
-		\emph{As the reviewer correctly pointed out there are similarities in the derivations herein and that of Dewar et al. Our main aim here is to adapt techniques from control systems theory and machine learning, modify and apply them to the Amari type neural field models. As the result some of the derivations are naturally similar. For example, the Amari type neural field model in this paper is only different to the IDE model in Dewar et al. due to the membrane time constant and the firing rate, as the result the only changes appear in the transition matrix is the presence of the membrane parameter $\xi=1-T_s/\tau$ and the firing rate slope $\varsigma$. The use of the RTS smoother in the E-step of the EM algorithm for state-space models is an effective, standard and widely used approach. In fact, the aim of the IDE representation in a state-space form is to adapt the EM and consequently the RTS smoother. The RTS algorithm is presented only for completeness and it is different than Unscented RTS (for non-linear state-space models) in Freestone et al. The cost function of a linear state-space model is always quadratic in parameters in the M-step ??? in fact it is one of the advantages of this representation, giving a closed form solution for system's parameters. The novel implementation of the M-step in this work significantly simplifies the computational complexity of the EM based algorithm proposed by Dewar et al. as it is shown in Table.~4 of the manuscript, namely from $O(n_x^4n_{\theta}^2)$ to $O(n_x^2n_{\theta}^2)$. This reduction is very significant and crucial for high dimensional systems and specifically for implementing the multi-resolution framework introduced here which otherwise would be possible. }
+		\emph{\parham{As the reviewer correctly pointed out there are similarities in the derivations herein and that of Dewar et al. Our main aim here is to adapt techniques from control systems theory and machine learning, modify and apply them to the Amari type neural field models. As the result some of the derivations are naturally similar. For example, the Amari type neural field model in this paper is only different to the IDE model in Dewar et al. due to the membrane time constant and the firing rate, as the result the only changes appear in the transition matrix is the presence of the membrane parameter $\xi=1-T_s/\tau$ and the firing rate slope $\varsigma$. The use of the RTS smoother in the E-step of the EM algorithm for state-space models is an effective, standard and widely used approach. In fact, the aim of the IDE representation in a state-space form is to adapt the EM and consequently the RTS smoother. The RTS algorithm is presented only for completeness and it is different than Unscented RTS (for non-linear state-space models) in Freestone et al. The cost function of a linear state-space model is always quadratic in parameters in the M-step ??? in fact it is one of the advantages of this representation, giving a closed form solution for system's parameters. The novel implementation of the M-step in this work significantly simplifies the computational complexity of the EM based algorithm proposed by Dewar et al. as it is shown in Table.~4 of the manuscript, namely from $O(n_x^4n_{\theta}^2)$ to $O(n_x^2n_{\theta}^2)$. This reduction is very significant and crucial for high dimensional systems and specifically for implementing the multi-resolution framework introduced here which otherwise would be possible.} }
 		
         \item Also, Appendix A is the analogue of Appendix D of Freestone et al. and Appendix C includes results known from the literature (as the authors point out).
 
-\emph{In order to formulate the state-space representation of the multi-resolution neural field model the inner product of the B-spline functions are required. We believe that it is necessary to provide the interested reader with the required tools to implement the algorithm. Appendix D of Freestone et al. and Appendix A here are only similar in the sense that the inner product of two basis functions are calculated. In Appendix D of Freestone et al. two  n-dimensional Gaussians are considered while here the inner product of two B-spline functions is calculated. As for Appendix C we think that it would be informative for the broad audience of NI to include the derivation of some of the well-known formulations in the EM algorithm. }
+\emph{\parham{In order to formulate the state-space representation of the multi-resolution neural field model the inner product of the B-spline functions are required. We believe that it is necessary to provide the interested reader with the required tools to implement the algorithm. Appendix D of Freestone et al. and Appendix A here are only similar in the sense that the inner product of two basis functions are calculated. In Appendix D of Freestone et al. two  n-dimensional Gaussians are considered while here the inner product of two B-spline functions is calculated. As for Appendix C we think that it would be informative for the broad audience of NI to include the derivation of some of the well-known formulations in the EM algorithm.} }
 
         \item Although I value the use of a wavelet as opposed to a Gaussian basis, the advantages in the context of the analysis of brain imaging data have not been demonstrated and a comparison with the authors' earlier approach has not been performed.  The framework of Freestone et al., seemed not to assume a linear relation between mean membrane potential and firing rate and in that sense the present approach appears more restrictive.
 
@@ -96,17 +96,17 @@ Parham Aram.
 \begin{enumerate}
     \item As a minor comment, I would suggest changing the notation for the scaling and wavelet coefficients in Eq. (6), for example into normal lowercase `a' and `c', respectively. The $\beta$ might be confused by B-spline notation. 
 
-	\emph{We have changed the scaling and wavelet coefficients into normal lowercase `a' and `c', respectively.}
+	\emph{\parham{We have changed the scaling and wavelet coefficients into normal lowercase `a' and `c', respectively.}}
 
 \item For the discussion, it might be useful to add a sentence that the basis structure (i.e., non-redundant, versus a (tight) frame representation) is a requirement for this framework.
 
-\emph{Response here.}
+\emph{\parham{We have added a sentence to Sect 8.1 (last paragraph) for the basis structure requirement.}}
 
 
 
 \item A small comment might also be considered for Sect 8.2: it is possible to apply other than dyadic subsampling schemes in multiple dimensions, which leads to less wavelet subbands. For example, in 2D, the quincunx scheme is well-known to have better isotropic properties. Unfortunately, in 3D, it is not possible to have a subsampling operator (acting on a Cartesian sampling lattice) that is performing subsampling at equal rate in each dimension at each iteration, see Van De Ville et al,`On the multidimensional extension of the quincunx subsampling lattice', IEEE SPL, 12:2, pp.  112-115, 2005, for a comment on this. 
 
-\emph{Response here.}
+\emph{\parham{We have added this comment to Sect 8.2.}}
 
 
  % 
@@ -173,7 +173,7 @@ Parham Aram.
 			`write the neural field and connectivity kernel decomposition' To `write the connectivity kernel and neural field decomposition'
 			To maintain order with eqns 20 and 21.
 
-			\emph{We have changed the text to `the connectivity kernel and neural field decomposition' to maintain order with eqns 20 and 21.}
+			\emph{\parham{We have changed the text to `the connectivity kernel and neural field decomposition' to maintain order with eqns 20 and 21.}}
 			
 			 
 			 \end{enumerate}  
@@ -185,11 +185,11 @@ Parham Aram.
 
   		\item Figure 8 is referred to in the text out of order
 
-  			\emph{The cross-referencing has been corrected.}
+  			\emph{\parham{The cross-referencing has been corrected.}}
 			 
 			\item Pg 19: `stationary point i.e. global' should be `stationary point, i.e. a global'
 
-			\emph{We have changed the text to `stationary point, i.e. a global'.}			
+			\emph{\parham{We have changed the text to `stationary point, i.e. a global'.}}			
 			                   
 			
 			 
