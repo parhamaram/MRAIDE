@@ -11,7 +11,7 @@
  % \hypersetup{colorlinks,linkcolor=black,filecolor=black,urlcolor=black,citecolor=black}
  \newcommand{\dean}[1]{\textcolor{green}{#1}}
  \newcommand{\parham}[1]{\textcolor{blue}{#1}}
-% \newcommand{\vik}[1]{\textcolor{red}{#1}}    
+ \newcommand{\ken}[1]{\textcolor{red}{#1}}    
   
 
 \journal{Neuroimage}
@@ -360,11 +360,15 @@ where $\nu$ is the spatial frequency and $i=\sqrt{-1}$. From Eq.~\eqref{eq:MRA-W
 \section{State and Parameter Estimation}
 The aim of this section is to describe the joint state-parameter estimation method used in this study, the expectation maximization (EM) algorithm. Here we provide a general description of the algorithm and also discuss the specific formulation for MRAIDE framework. 
 
-There exist many variations of state and parameter estimation methods for state-space models. The choice of algorithm is normally determined by the dimension of the system, whether the system is linear or nonlinear and whether or not the parameters are considered static or dynamic. Up to this point of the paper, we have not made any assumptions on any of these criteria for choosing an estimation algorithm. The MRAIDE neural field model formulation may be used in any of the above scenarios. 
+There exist many variations of state and parameter estimation methods for state-space models. The choice of algorithm is normally determined by the dimension of the system, whether the system is linear or nonlinear and whether or not the parameters are considered static or dynamic. Up to this point of the paper, we have not made any assumptions on any of these criteria for choosing an estimation algorithm. The MRAIDE neural field model formulation may be used in any of the above scenarios.
 
-To demonstrate the MRAIDE estimation framework we shall consider the parameters to be static and we shall also assume that the relationship between the mean membrane potential and the mean firing rate is predominantly linear. Note that there is a difference between forward and inverse modeling when making these assumptions. For example, by using a linear activation function in the estimator we are not assuming that there is necessarily a linear relationship between the membrane voltage and firing rate, but that the statistics of the neural masses fall within a linear operating region over the estimation time period. The major benefit of modeling the relationship between the mean membrane potential and firing rate is the ability to apply the EM algorithm. The loss in model accuracy may be offset estimation accuracy. 
+% To demonstrate the MRAIDE estimation framework we shall consider the parameters to be static and we shall also assume that the relationship between the mean membrane potential and the mean firing rate is predominantly linear. Note that there is a difference between forward and inverse modeling when making these assumptions. For example, by using a linear activation function in the estimator we are not assuming that there is necessarily a linear relationship between the membrane voltage and firing rate, but that the statistics of the neural masses fall within a linear operating region over the estimation time period. The major benefit of modeling the relationship between the mean membrane potential and firing rate is the ability to apply the EM algorithm. The loss in model accuracy may be offset estimation accuracy. 
 
-The simplifications used in formulating the equations enable the development of new methods for extracting information from electrophysiological data. The trade-off between parsimony and complexity is always difficult when considering neurodynamics and this is further complicated when using estimation algorithms that have huge computational demands with such high-dimensional systems.   
+% The simplifications used in formulating the equations enable the development of new methods for extracting information from electrophysiological data. The trade-off between parsimony and complexity is always difficult when considering neurodynamics and this is further complicated when using estimation algorithms that have huge computational demands with such high-dimensional systems.
+
+\ken{Nevertheless, when describing a system, a choice needs to be made regarding the complexity of the mathematical description to be adopted. A simpler, more parsimonious model might be unable to capture the full detail of the system behaviour but usually results in accurate and computationally efficient estimates. On the other hand, more complex and higher dimensional descriptions require computationally costly methods and less accurate estimates.}
+
+\ken{Thus, to demonstrate the MRAIDE estimation framework we shall consider the parameters to be static and we shall also assume that the relationship between the mean membrane potential and the mean firing rate is predominantly linear. Note that by using a linear activation function in the estimator we are not assuming that there is necessarily a linear relationship between the membrane voltage and firing rate, but that the statistics of the neural masses fall within a linear operating region over the estimation time period. This allows for the adoption of the EM algorithm and thus results in computationally efficient and accurate estimates. As a result, any loss in model detail may be offset by the estimation accuracy.}
 
 By assuming a linear activation function of the form
 \begin{equation}
