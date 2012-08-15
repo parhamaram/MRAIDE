@@ -27,9 +27,10 @@ Parham Aram.
 
 \section{Handling editor}
 \begin{enumerate}
-\item Whilst the paper does fit the scope of NI, I agree with R1 and R3, that explicit advantages of going to a multiresolution frame - in addition to the conceptual ones - compared to the prior work based on Gaussian basis functions needs clarification and elucidation. 
+\item Whilst the paper does fit the scope of NI, I agree with R1 and R3, that explicit advantages of going to a multiresolution frame - in addition to the conceptual ones - compared to the prior work based on Gaussian basis functions needs clarification and elucidation.
+ 
+\emph{\parham{The first paragraph of the newly added ``State-space representation'' subsection in the Discussion  highlights the benefits of the MRAIDE compared to the prior work. We also added a paragraph to `` Estimation algorithm'' in the Discussion to clarify the benefits of the novel M-step presented in this work compared to the implementation in Dewar et al.. Please refer to Response 5 to the reviewer 1 for more details.}}
 
-\emph{\ken{Guys, I think the editor and reviewers 1 and 3 will be convinced by showing, just through an example, the added accuracy obtained by using the MRA over the Gaussian approximation. Is it possible to run such a comparison? Also, comparing with the results of our previous NI paper - can strengthen the argument that when operating in the linear region this approach can be superior.}}
 
 \dean{Parham: Maybe you can make a list of key differences, highlighting the challenges, the technical details, and the benefits that the MRAIDE offers.}
 
@@ -69,7 +70,7 @@ Parham Aram.
 
         \item Section 6 also borrows heavily from Dewar et al, e.g. cf equation (58) of this paper with equation (19) of Dewar et al: the state transition matrix is a perturbation of the corresponding matrix used in that earlier paper. The approach used in both papers seems to be the same with an RTS smoother used in the E-step (this was also used and explained in Freestone et al.) and an M-step optimizing a cost function, quadratic in the parameters, cf. equation (62) with equation (29) of Theorem 2 of Dewar et al. In general, the derivations of section 6 and appendix B follow closely or are very similar to those of Dewar et al.
 
-		\emph{\dean{To clarify the advantage of the M-step over the implementation in Dewar et al. we have added a paragraph to Section 8.1. Further comments for the reviewer are added below.}}
+		\emph{\dean{To clarify the advantage of the M-step over the implementation in Dewar et al. we have added a paragraph to Section 8.1. (now 8.2) Further comments for the reviewer are added below.}}
 		
 \emph{\dean{The inverse framework in Dewar et al. is based on a general integro-differential equation model, which is not suitable when neural field models are considered. As the result the necessary modifications have been made. }}
 		
