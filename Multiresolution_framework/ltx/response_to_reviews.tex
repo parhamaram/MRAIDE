@@ -5,11 +5,7 @@
 \usepackage{soul}
 \usepackage{anysize} %<-for setting margins
 \marginsize {1.6cm}{1.6cm}{2.0cm}{2cm}
-\usepackage{color}
-\newcommand{\dean}[1]{\textcolor{red}{#1}}
-\newcommand{\mike}[1]{\textcolor{green}{#1}}
-\newcommand{\parham}[1]{\textcolor{blue}{#1}}
-\newcommand{\ken}[1]{\textcolor{cyan}{#1}} 
+
 
 \title{Responses - Spatiotemporal Multi-Resolution Approximation of the Amari Type Neural Field Model}
 \author{ P. Aram, D. R. Freestone, M. Dewar, K. Scerri, V. Jirsa, D. B. Grayden, V. Kadirkamanathan}
@@ -39,16 +35,14 @@ Parham Aram.
 
     \section{Reviewer 1}
     
-    % It would be useful to mention the above (now below) explicitly in the introduction and try to address them in later sections of the paper.
 
     \begin{enumerate}
         \item The exposition of the material and the relevant discussion have many similarities with the papers of the same authors (Freestone et al., 2011) and (Dewar et al., 2009) published in NeuroImage and IEEE Trans on Signal Processing  respectively. The authors say the paper at hand is an ``extension'' of Freestone et al. by which I understand they mean the use of a wavelet as opposed to a Gaussian basis for the decomposition. Since the methodology used is the same as in that earlier NeuroImage paper, the paper at hand repeats several of  the results of that previous paper, see sections 3 and 4: equations (2)-(5) and (20) -(33) have already appeared or are very similar to equations in Freestone et al.   
 								 
-	\emph{Freestone et al. (2011), Dewar et al. (2009) both propose solutions to representing a spatiotemporal field with a finite number of basis functions. Together with this paper, we are building tools that deal with increasing levels of complexity in the spatiotemporal dynamics. The first paper describes key work in the PhD thesis of Dewar, which introduces what we now call a dynamic Galerkin projection. The second in the PhD thesis of Freestone, which recast the estimation problem in the context of neural fields. This paper covers some of the key results from the PhD thesis of Aram, which details methods for achieving a more accurate representation of the neural fields and an elegant estimation scheme. Each of these steps was a major undertaking and should not be underestimated. There are similarities with the frameworks with all of these papers, where the field is represented by a basis function decomposition. The challenges in forming a multi-resolution state-space model included the conceptualisation of the problem, the formulation and derivation of the state-space model, and innovations that make dealing with such a large-scale system feasible. This paper is a result of a concerted effort from our team over a time period of more than two years work. The progress we have made with the earlier papers has made this paper possible, just as we hope that this paper will inspire future work in this direction.}
+	\emph{Freestone et al. (2011), Dewar et al. (2009) both propose solutions to representing a spatiotemporal field with a finite number of basis functions. Together with this paper, we are building tools that deal with increasing levels of complexity in the spatiotemporal dynamics. The first paper describes key work in the PhD thesis of Dewar, which introduces what we now call a dynamic Galerkin projection. The second in the PhD thesis of Freestone, which recast the estimation problem in the context of neural fields. This paper covers some of the key results from the PhD thesis of Aram, which details methods for achieving a more accurate representation of the neural fields and an elegant estimation scheme. Each of these steps was a major undertaking and should not be underestimated. There are similarities with the frameworks with all of these papers, where the field is represented by a basis function decomposition. The challenges in forming a multi-resolution state-space model included the conceptualization of the problem, the formulation and derivation of the state-space model, and innovations that make dealing with such a large-scale system feasible. This paper is a result of a concerted effort from our team over a time period of more than two years work. The progress we have made with the earlier papers has made this paper possible, just as we hope that this paper will inspire future work in this direction.}
 	        
         \item Section 5 is a review of known results and standard background material from wavelet theory and includes a simple calculation of the Fourier transform of the particular basis used here, which would be more appropriate for an appendix (cf appendix H of the Freestone et al. paper where the Fourier transform of the Gaussian basis functions is calculated).
 
-		% \emph{\parham{Section 5 summarizes important characteristics of B-Spline scaling and wavelet functions which are collected from different references, with an attempt to clarify the inner product and convolution of theses functions (please see R2 comment on ``B-spline calculus''). We think that this brief review can familiarize interested readers  with  B-spline scaling and wavelet functions and direct them to the important literature on this matter. As the reviewer suggested the calculation of the Fourier transform is now moved to the appendix.}}    
 
 \emph{As the reviewer suggested, moving the calculation of the Fourier transform to the Appendix will provide a better flow to the paper. This has been done.}
 
@@ -84,7 +78,7 @@ Parham Aram.
 				
 \emph{Given restrictions of computational complexity, the choice of whether to use the framework presented in Freestone et al. or the current paper boils down to a trade-off between temporal accuracy and spatial accuracy. Furthermore, the proven convergence of estimation algorithms for linear systems may actually lead to more accurate models given a closed-loop scheme. This is due to the guaranteed convergence of the EM-algorithm for (observable) linear systems. With convergence, modeling errors can be corrected using data.}
 				
-        \item The authors say that a multi-resolution approach would explain the``organizational level of the brain at which cognition and behaviour are best explained'' but it is unclear what the alternative levels considered here are and what the significance of the results obtained is.
+        \item The authors say that a multi-resolution approach would explain the``organizational level of the brain at which cognition and behavior are best explained'' but it is unclear what the alternative levels considered here are and what the significance of the results obtained is.
 
 \emph{Within our framework, the alternate levels are defined by the spatial scales of the wavelet decomposition. The significant result is the formulation of a model when various spatial scales of a neural field can be simultaneously represented. The ability to image the multi-dimensional neural field will lead to a better understanding of the important spatial scales when neural information processing occurs.}
 
@@ -94,13 +88,12 @@ Parham Aram.
 				
 	\item The comments about model complexity and parsimony on p.13 are somehow vague as these quantities are undefined.
 				
-				% \emph{\parham{some notes to be added to the manuscript: Parsimony: as few as necessary variables to describe a phenomenon, complexity: to add detail description to the model to increase its accuracy with the natural phenomenon, finding a balance between complexity and parsimony is crucial. By parsimony we sacrifice realism ...  }}
 				
 		\emph{To clarify this comment, a short paragraph has been included in Section 6 to better explain the modeling choices facing every user. That is, choosing between a more parsimonious or more complex model structure.  For the audience with less experience in system identification, a reference with further information regarding this topic has also been included.}
 				
 		\item The comments on large scale networks and delays made on p.20 look irrelevant to the present framework.
 				
-		\emph{We have omitted the last paragraph of the discussion on delays in large scale networks as the reviewer suggested.}
+		\emph{We have omitted the last paragraph of the discussion on delays in large scale networks.}
 				
 		\item Much of the discussion of the last section focuses on technical issues, while the discussion of the observation kernel chosen on p.17 is limited.
 				
@@ -131,9 +124,8 @@ Parham Aram.
 			 
 			\item This model cries out for validation in real neuronal systems, but alas, at this point we only see convergence to synthetic data.   
 			  
-			 \emph{We agree with this statement 100 percent. We hope that this paper will motivate new experiments, where neural field models can be experimentally validated. It has now been nearly 40 years since neural field models where introduced in computational studies. For the first time we are at the exciting point in time where computing power and estimation algorithms are sufficiently advanced to link models to actual data. This is why we believe the framework the is introduced in this paper has the potential to make an impact. For further remarks regarding this point please refer to Response 2 to the handling editor.}
-		 % 			
-		 % \emph{\parham{The authors appreciate that the only way to truly validate the proposed framework is with real data. However, before validating the method on real data, we believe that it is essential to first validate the estimation method using accepted models and synthetic data, where the true and estimated parameters can be compared. We believe this was achieved in this paper. The title of the manuscript was chosen to reflect this fact, stating this is a multi-resolution framework for the Amari type neural field model. In an effort to make the method employed in the paper more explicit, we have added ``data was generated synthetically using Amari neural field model'' to the Results section.}}  
+			 \emph{We agree with this statement 100 percent. We hope that this paper will motivate new experiments, where neural field models can be experimentally validated. It has now been nearly 40 years since neural field models where introduced in computational studies. For the first time we are at the exciting point in time where computing power and estimation algorithms are sufficiently advanced to link models to actual data. This is why we believe the framework that is introduced in this paper has the potential to make an impact. For further remarks regarding this point please refer to Response 2 to the handling editor.}
+ 
 			
 		\item This audience needs to have all symbols, including commonly used ones such as `equality over distribution', double font domains like R and Z, and jargon terms such as `lead field'.
 			
