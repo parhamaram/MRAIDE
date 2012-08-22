@@ -1,0 +1,39 @@
+Author: Parham Aram
+Date: 15-08-2012
+
+List of files:
+
+
+Modeling:
+##########
+
+TransformCoefficients.mat: This file contains required coefficients to write B-spline scaling and wavelet functions in terms of the highest level of approximation in the model, covering j=1 up to j=7. Transformation coefficients for scaling functions and wavelets are stored as TPx and TQx respectively, where x stands for the level of approximation.
+
+BsplineBases.py: Defines B-spline scaling and wavelet functions with convolution and inner product methods.
+
+spline.py: Define 8th and 12th order B-spline functions in order to calculate convolution and inner product of B-spline scaling and wavelet functions.
+
+IDEComponents.py: Defines Integro-Difference Equation neural field model components, Connectivity kernel and the decomposed neural field. It also contains 8th order B-spline calculation in order to compute the convolution of the basis functions. 
+
+NF.py: Defines the neural field model. 
+
+MRIDE.py: Defines decomposed neural field model, imports SKF and ML files for two-stage iterative estimation algorithm.
+
+Estimation:
+###########
+ML.py: Defines maximum likelihood estimation used in the M-step of the EM based algorithm. 
+
+SKF.py: Defines the  Kalman filter and the  Rauch-Tung-Striebel smoother for state estimation
+
+
+Generate data and implement estimation:
+##################################
+DataGenerationandEstimation.py: Defines all the parameters and components needed to generate the neural field model and the reduced (state-space) model. It uses the data generated from NF.py to estimate the connectivity kernel parameters estimations in MRIDE.py.
+
+This module imports IDEComponents, BsplineBases, MRIDE and NF.
+
+To run the simulation:
+
+python DataGenerationandEstimation.py
+
+
