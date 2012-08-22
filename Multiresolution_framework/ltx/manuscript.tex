@@ -21,7 +21,7 @@
   
 \author[TNG]{P. Aram\corref{cor1}}
 \ead{parham.aram@univ-amu.fr}
-\author[DEEE]{D. R. Freestone}
+\author[DEEE,BI]{D. R. Freestone}
 \ead{deanrf@unimelb.edu.au} 
 \author[CU]{M. Dewar}
 \ead{md@bit.ly}
@@ -29,7 +29,7 @@
 \ead{kenneth.scerri@um.edu.mt} 
  \author[TNG]{V. Jirsa}
 \ead{viktor.jirsa@univ-amu.fr}
-\author[DEEE]{D. B. Grayden}
+\author[DEEE,BI]{D. B. Grayden}
 \ead{grayden@unimelb.edu.au}
 \author[US]{V. Kadirkamanathan}
 \ead{visakan@sheffield.ac.uk}
@@ -39,6 +39,7 @@
 \address[CU]{bit.ly, New York City, USA}
 \address[UM]{Department of Systems and Control Engineering, University of Malta, Msida, MSD, Malta}
  \address[US]{Department of Automatic Control and Systems Engineering, University of Sheffield, Sheffield, UK}
+ \address[BI]{The Bionics Institute, East Melbourne, VIC, Australia}
 
 \cortext[cor1]{Corresponding author}
 
@@ -499,7 +500,6 @@ Typically, a sequence of likelihood values will converge to a stationary point, 
 
 \dean{The basis structure (i.e., non-redundant versus a (tight) frame representation) is a requirement for this framework.} 
 
-
 \subsection{Modification to Higher Dimensions}
 The reconstruction of the neural field in higher dimensions requires $2^n-1$ wavelets, where $n$ is the dimension of the space. For example a two-dimensional MRA can be implemented using 2-D scaling and wavelet functions built up using the tensor-product approach \citep{Meyer1992}. In this case three wavelet functions are required to extract fine features of the field at vertical, horizontal and diagonal orientations. Theoretically, the formulations provided in this paper can be easily extended to two dimensions. However, the increase in computational load of the estimation algorithm will be significant. This is not only due to the increase in number of wavelets, but also the switch of convolution and inner product does not hold, as the resulting higher-dimensional B-spline wavelets are not isotropic. A possible solution could be to use  
 isotropic polyharmonic B-splines scaling functions and wavelets as an alternative \citep{VanDeVille2005}.
@@ -512,7 +512,7 @@ Additional extension for future work include extending the model to capture a se
 
 % (see \citet{Deco2010} for review) In fact, \citet{Ghosh2008} emphasize that the couplings in large-scale brain networks have a space-time structure composed of their anatomical connectivity (space) and signal transmission delays (time). To capture correctly the constraints posed upon the network dynamics by connectivity, the space-time structure of the brain connectivity must be correctly estimated. 
 \section{Acknowledgements}
-The research reported herein was partly supported by the Brain Network Recovery Group through the James S. McDonnell Foundation and the FP7-ICT BrainScales. This research was also partly supported by the Australian Research Council (Linkage Project LP100200571). 
+The research reported herein was partly supported by the Brain Network Recovery Group through the James S. McDonnell Foundation and the FP7-ICT BrainScales. This research was also partly supported by the Australian Research Council (Linkage Project LP100200571). The Bionics Institute acknowledges the support it receives from the Victorian State Government through the Operational Infrastructure Support Program.
 \clearpage
 \newpage
 \section*{Tables}
