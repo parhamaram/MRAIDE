@@ -69,44 +69,44 @@ Parham Aram.
 		
 		\emph{\parham{For linear state-space models, under Gaussian conditions, the lower bound on the log-likelihood function is always quadratic in parameters, and can be solved analytically when the parameters are separable giving results equivalent to the least square estimates. In fact this is one of the advantages of this representation, such a closed form solution for the system's parameters results in significant computational savings.}}
 		
-        \item Also, Appendix A is the analogue of Appendix D of Freestone et al. and Appendix C includes results known from the literature (as the authors point out).
+        \item Appendix A is the analogue of Appendix D of Freestone et al. and Appendix C includes results known from the literature (as the authors point out).
 
-\emph{\parham{In order to formulate the state-space representation of the multi-resolution neural field model, the inner product of the B-spline functions are required. We believe that it is necessary to provide the interested reader with the required tools to implement the algorithm. Appendix D of Freestone et al. (2009) and Appendix A herein are only similar in the sense that the inner product of two basis functions are calculated. In Appendix D of Freestone et al., two  n-dimensional Gaussians are considered, while here the inner product of two B-spline functions is calculated. We have no objections to removing Appendix C. However as stated above, we think that it would be informative for the broad audience of NeuroImage to include the model-specific derivations and some of the well-known formulations of the EM algorithm, since it draws on a wide range of literature.} }
+\emph{\parham{In order to formulate the state-space representation of the multi-resolution neural field model, the inner product of the B-spline functions are required. We believe that it is necessary to provide the interested reader with the required tools to implement the algorithm. Appendix D of Freestone et al. (2009) and Appendix A herein are only similar in the sense that the inner product of two basis functions are calculated. In Appendix D of Freestone et al., two  n-dimensional Gaussians are considered, while here the inner product of two B-spline functions is calculated. We have no objections to removing Appendix C. However, as stated above, we think that it would be informative for the broad audience of NeuroImage to include the model-specific derivations and some of the well-known formulations of the EM algorithm, since it draws on a wide range of literature.} }
 
         \item Although I value the use of a wavelet as opposed to a Gaussian basis, the advantages in the context of the analysis of brain imaging data have not been demonstrated and a comparison with the authors' earlier approach has not been performed.  
 
-\emph{\parham{To respond to this important comment we have added ``State-space representation'' subsection into the discussion.}}
+\emph{\parham{To respond to this important comment we have added ``8.1 State-space representation'' subsection into the discussion.}}
 
 				\item{The framework of Freestone et al., seemed not to assume a linear relation between mean membrane potential and firing rate and in that sense the present approach appears more restrictive. }
 
 \emph{\dean{The linear activation function in the estimation algorithm was made out of necessity. This was due to the high dimensionality and associated computational demands of the estimation problem.}}
 
-\emph{\dean{The authors would like to point out that the derivation of the state-space multi-resolution model was made general for all possible activation functions. This derivation is perhaps the most important contribution of the paper \parham{not sure about this because we have already done the derivation in Freestone 2011}. We understand that all physical systems are nonlinear. However, we also understand that linear approximations are often required in engineering for useful models. In the introduction to the estimation section, we have attempted to discuss this issue with regard to forward vs. inverse modelling. \parham{Dean: I think something is missing here: We believe that the linear model is more acceptable for inverse modelling, but understand it is required for forward modelling.} For example, in a forward model the nonlinearity is required to prevent negative firing rates. However in the inverse case, the physiology naturally restricts firing rates to be positive. Furthermore, in the mean field case, we do not expect firing rates of all neurons to be zero or all neurons to be simultaneously firing at their maximal rate. Therefore, a linear model may suffice to image a multi-resolution neural field and physiological parameters using electrophysiological data .}}
+\emph{\dean{The authors would like to point out that the derivation of the state-space multi-resolution model was made general for all possible activation functions. This derivation is perhaps the most important contribution of the paper \parham{not sure about this because we have already done the derivation in Freestone 2011}. We understand that all physical systems are nonlinear. However, we also understand that linear approximations are often required in engineering for useful models. In the introduction to the estimation section, we have attempted to discuss this issue with regard to forward vs. inverse modelling. \parham{Dean: I think something is missing here: We believe that the linear model is more acceptable for inverse modelling, but understand it is required for forward modelling.} For example, in a forward model, the nonlinearity is required to prevent negative firing rates. However, in the inverse case, the physiology naturally restricts firing rates to be positive. Furthermore, in the mean field case, we do not expect firing rates of all neurons to be zero or all neurons to be simultaneously firing at their maximal rate. Therefore, a linear model may suffice to image a multi-resolution neural field and physiological parameters using electrophysiological data .}}
 				
-\emph{\dean{Given restrictions of computational complexity, the choice of whether to use the framework presented in Freestone et al. or the current paper may boil down to a trade-off between temporal accuracy and spatial accuracy. Furthermore, the proven convergence of estimation algorithms for linear systems may actually lead to more accurate models given a closed-loop scheme. This is due to the correction step in the algorithm where model error is reduced using measurements.\parham{not sure this is due to the correction step, the correction step of this paper and Freestone 2011 are the same due to the linearity of the observation equation.}}}
+\emph{\dean{Given restrictions of computational complexity, the choice of whether to use the framework presented in Freestone et al. or the current paper boils down to a trade-off between temporal accuracy and spatial accuracy. Furthermore, the proven convergence of estimation algorithms for linear systems may actually lead to more accurate models given a closed-loop scheme. This is due to the correction step in the algorithm where model error is reduced using measurements.\parham{not sure this is due to the correction step, the correction step of this paper and Freestone 2011 are the same due to the linearity of the observation equation.}}}
 				
 
         \item The authors say that a multi-resolution approach would explain the``organizational level of the brain at which cognition and behaviour are best explained'' but it is unclear what the alternative levels considered here are and what the significance of the results obtained is.
 
-\dean{\emph{Within our framework the alternate levels are defined by the spatial scales of the wavelet decomposition. The significant result is the formulation of a model when various spatial scales of a neural field can be simultaneously represented. The ability to image the multi-dimensional neural field will lead to a better understanding of the important spatial scales when neural information processing occurs.  }}
+\dean{\emph{Within our framework, the alternate levels are defined by the spatial scales of the wavelet decomposition. The significant result is the formulation of a model when various spatial scales of a neural field can be simultaneously represented. The ability to image the multi-dimensional neural field will lead to a better understanding of the important spatial scales when neural information processing occurs.  }}
 
-				\item Similar claims to the ones mentioned here regarding  implications for ``patient-specific'' modelling have also been made in Freestone et al., so it is not clear how these relate to the current multi-resolution approach and also such remarks might look too ambitious given that only synthetic data with fixed parameters are considered.
+				\item Similar claims to the ones mentioned here regarding implications for ``patient-specific'' modelling have also been made in Freestone et al. (2010), so it is not clear how these relate to the current multi-resolution approach and also such remarks might look too ambitious given that only synthetic data with fixed parameters are considered.
 				
-				\dean{\emph{Please refer to Response 2 to the handling editor.}}
+				\dean{\emph{Please refer to Response 2 to the handling editor. In summary, ... }}
 				
 				\item The comments about model complexity and parsimony on p.13 are somehow vague as these quantities are undefined.
 				
 				% \emph{\parham{some notes to be added to the manuscript: Parsimony: as few as necessary variables to describe a phenomenon, complexity: to add detail description to the model to increase its accuracy with the natural phenomenon, finding a balance between complexity and parsimony is crucial. By parsimony we sacrifice realism ...  }}
 				
-				\emph{\ken{To clarify this comment, a short paragraph has been included in section 6 to better explain the modeling choice facing every user, that is; choosing between a more parsimonious or more complex model structure.  For the audience with less experience in system identification, a reference with further information regarding this topic has also been included.}}
+				\emph{\ken{To clarify this comment, a short paragraph has been included in Section 6 to better explain the modeling choice facing every user, that is, choosing between a more parsimonious or more complex model structure.  For the audience with less experience in system identification, a reference with further information regarding this topic has also been included.}}
 				
-				\item Also, the comments on large scale networks and delays made on p.20 look irrelevant to the present framework.
+				\item The comments on large scale networks and delays made on p.20 look irrelevant to the present framework.
 				
 				\emph{\parham{We have omitted the last paragraph of the discussion on delays in large scale networks.}}
 				
 				\item Much of the discussion of the last section focuses on technical issues, while the discussion of the observation kernel chosen on p.17 is limited.
 				
-				\emph{\parham{We have added a paragraph in the new subsection ``State-space representation'' in the Discussion, regarding the choice of the observation kernel.}}
+				\emph{\parham{We have added a paragraph in the new subsection ``8.1 State-space representation'' in the Discussion, regarding the choice of the observation kernel.}}
 
     \end{enumerate}
     
@@ -120,8 +120,6 @@ Parham Aram.
 \item For the discussion, it might be useful to add a sentence that the basis structure (i.e., non-redundant, versus a (tight) frame representation) is a requirement for this framework.
 
 \emph{\parham{We have added a sentence to Sect 8.1 (now 8.2) for the basis structure requirement.}}
-
-
 
 \item A small comment might also be considered for Sect 8.2: it is possible to apply other than dyadic subsampling schemes in multiple dimensions, which leads to less wavelet subbands. For example, in 2D, the quincunx scheme is well-known to have better isotropic properties. Unfortunately, in 3D, it is not possible to have a subsampling operator (acting on a Cartesian sampling lattice) that is performing subsampling at equal rate in each dimension at each iteration, see Van De Ville et al,`On the multidimensional extension of the quincunx subsampling lattice', IEEE SPL, 12:2, pp.  112-115, 2005, for a comment on this. 
 
@@ -200,7 +198,7 @@ Parham Aram.
 			
 			 
 			 \end{enumerate}  
-			\subsection{Trivia}
+			\subsection{Minor Comments}
 			\begin{enumerate}
 			 \item 	Define `one-off' on pg 16 
 
