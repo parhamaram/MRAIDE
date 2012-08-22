@@ -144,17 +144,17 @@ Parham Aram.
 		\begin{enumerate} 
 			\item I am not at all sure that isotopic scaling of the multiresolution is appropriate for brain connections, but I cannot say at this point that it is not.
 			
-			\emph{\parham{It is generally accepted that the intracortical connectivity structure is isotropic, however, as the reviewer pointed out this is not the case  for corto-cortical connectivity. The presented framework is also valid for other connectivity kernels provided they are spatially homogeneous and that they can be approximated by a set of weighted isotropic basis functions. The connectivity kernel can take any arbitrary shapes but this may require more basis functions to accurately estimate the kernel.}}
+			\emph{\parham{It is generally accepted that the intracortical connectivity structure is isotropic. However, as the reviewer pointed out, this is not the case for cortico-cortical connectivity. The presented framework is also valid for other connectivity kernels provided they are spatially homogeneous and that they can be approximated by a set of weighted isotropic basis functions (that can form an anisotropic kernel). The connectivity kernel can take any arbitrary shapes but this may require more basis functions to accurately estimate the kernel.}}
 			 
 			\item This model cries out for validation in real neuronal systems, but alas, at this point we only see convergence to synthetic data.   
 			  
 			 \emph{\parham{Please refer to Response 2 to the handling editor. Further comments are also added below.}}
 			
-			 \emph{\parham{The authors appreciate that the only way to truly validate the proposed framework is with real data. However, before validating the method on real data we believe that it is essential to first validate the estimation method using accepted models and synthetic data, where the true and estimated parameters can be compared. The title of the manuscript was chosen such that to reflect this fact, stating this is a multi-resolution framework for Amari type neural field model. In an effort to make the method employed in the paper more explicit, we have added ``data was generated synthetically using Amari neural field model'' to the Result section.}}  
+			 \emph{\parham{The authors appreciate that the only way to truly validate the proposed framework is with real data. However, before validating the method on real data, we believe that it is essential to first validate the estimation method using accepted models and synthetic data, where the true and estimated parameters can be compared. We believe this was achieved in this paper. The title of the manuscript was chosen to reflect this fact, stating this is a multi-resolution framework for the Amari type neural field model. In an effort to make the method employed in the paper more explicit, we have added ``data was generated synthetically using Amari neural field model'' to the Results section.}}  
 			
 			\item This audience needs to have all symbols, including commonly used ones such as `equality over distribution', double font domains like R and Z, and jargon terms such as `lead field'.
 			
-			\emph{\parham{ We have defined independent and identically distributed (i.i.d.) random variables under Eq. (5). The double font domains are added to Table.1. A brief description of `lead field' is also added below Eq. (5).}}  
+			\emph{\parham{ We have defined independent and identically distributed (i.i.d.) random variables under Eq. (5). The double font domains are added to Table 1. A brief description of `lead field' is also added below Eq. (5).}}  
 			
 			\item Frankly, I would off-load all of the very difficult mathematics to the appendices and supplementary data, and focus a NeuroImage paper on the results of image analysis. 
 			
@@ -166,21 +166,22 @@ Parham Aram.
 						
 			% \emph{\parham{To respond to this comment we have added ``State-space representation'' subsection into the discussion.}}
 			
-			\item I would also recommend archiving code that, for instance generates figure 11, so that the readership has a chance to replicate these findings, and adapt this method to their own data.
+			\item I would also recommend archiving code that, for instance generates Figure 11, so that the readership has a chance to replicate these findings, and adapt this method to their own data.
 			
  			\emph{\parham{We have added a footnote on page 17 : The Python source code for our numerical simulations is available from the authors on request.}}
  		
+\dean{Cant we just upload it?}
 			                                       
 			\end{enumerate}  
 			\subsection{Moderate Concerns} 
 			\begin{enumerate} 
 			 \item Page 2: the authors should clearly define the difference between neural field and neural mass models.
 			
-			\emph{\parham{We have added the following paragraph on page 2: The main difference between these two classes is that neural field models describe the spatiotemporal evolution of a particular variable such as firing rate, membrane voltage or synaptic activity defined as the statistical expectation taken over a neural population while neural mass models describe such a quantity over time only, assuming that neurons are localized at approximately the same spatial location.}}
+			\emph{\parham{We have added the following paragraph on page 2: The main difference between these two classes is that neural field models describe the spatiotemporal evolution of a particular variable such as firing rate, membrane voltage, or synaptic activity defined as the statistical expectation taken over a neural population, while neural mass models describe such a quantity over time only, assuming that neurons are localized at approximately the same spatial location.}}
 			
 			\item Eqn 3: theta needs indexing 
  
-			\emph{\parham{Authors think that the reviewer is after Eqn 2. for the correction.  We have rewritten Eqn 2 by removing the parameter $\theta$ in order to be consistent with the rest of equations in the manuscript and we have described the coupling strength or synaptic efficiency within the text under Eq 2.}}
+			\emph{\parham{We think that the Reviewer is referring to Eq. 2 for the correction.  We have rewritten Eq. 2 by removing the parameter $\theta$ in order to be consistent with the rest of equations in the manuscript, and we have described the coupling strength or synaptic efficiency within the text under Eq. 2.}}
  			
 			\item Define first and second order synaptic responses (used in figure 2 to explain text that does not refer to these terms)
 			
@@ -188,13 +189,13 @@ Parham Aram.
 			
 			\item{Eqn 9: the state variables $x$ seem to arise without distinction from $v$}  
 			
-			\emph{The units of $x$ are also Volts. However the states are weights for particular levels of resolution, where $v$ is the total net field. We have added a sentence to add clarification. \parham{please dont forget to add this to manuscript}}
+			\emph{The units of $x$ are also Volts. However the states are weights for particular levels of resolution, where $v$ is the total net field. We have added a sentence to add clarification in Section \dean{xx}. \parham{please dont forget to add this to manuscript}}
 			
-			\item Between eqn 19 and 20 change
+			\item Between Eq. 19 and 20 change
 			`write the neural field and connectivity kernel decomposition' To `write the connectivity kernel and neural field decomposition'
-			To maintain order with eqns 20 and 21.
+			To maintain order with Eqs 20 and 21.
 
-			\emph{\parham{We have changed the text to `the connectivity kernel and neural field decomposition' to maintain order with eqns 20 and 21.}}
+			\emph{\parham{We have changed the text to `the connectivity kernel and neural field decomposition' to maintain order with Eqs. 20 and 21.}}
 			
 			 
 			 \end{enumerate}  
