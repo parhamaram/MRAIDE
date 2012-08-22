@@ -62,7 +62,7 @@ Parham Aram.
 		
 \emph{The inverse framework in Dewar et al. (2009) is based on a general integro-differential equation model, which is not suitable when neural field models are considered. As a result, the necessary modifications have been made. }
 		
-\emph{This paper has a novel implementation of the M-step, which significantly simplifies the computational complexity of the EM-based algorithm proposed by Dewar et al. (2009). These modifications are significant and crucial for high-dimensional systems. More specifically, implementing the multi-resolution framework introduced in the paper would be impossible without this new contribution. The differences are highlighted in Table.~4 of the manuscript, namely from $O(n_x^4n_{\theta}^2)$ to $O(n_x^2n_{\theta}^2)$, see equation (64) of this paper and equation (31) of Dewar et al. (2009), where the static and dynamic components are separated by defining $\boldsymbol \Gamma_1$ and $\mathbf U$ (see equations (65) and (67)). A simplification is also performed to calculate $\boldsymbol\upsilon_0, \boldsymbol\upsilon_1$ (see equations (62) and (63) of this paper and equation (30) of Dewar et al. (2009)).}
+\emph{This paper has a novel implementation of the M-step, which significantly simplifies the computational complexity of the EM-based algorithm proposed by Dewar et al. (2009). These modifications are significant and crucial for high-dimensional systems. More specifically, implementing the multi-resolution framework introduced in the paper would be impossible without this new contribution. The differences are highlighted in Table.~4 of the manuscript, namely from $O(n_x^4n_{\theta}^2)$ to $O(n_x^2n_{\theta}^2)$, see equation (64) of this paper and equation (31) of Dewar et al. (2009), where the static and dynamic components are separated by defining $\boldsymbol \Gamma_2$ and $\mathbf U$ (see equations (66) and (67)). A simplification is also performed to calculate $\boldsymbol\upsilon_0, \boldsymbol\upsilon_1$ (see equations (62) and (63) of this paper and equation (30) of Dewar et al. (2009)).}
 		
 \emph{The use of the RTS smoother in the E-step of the EM algorithm for linear state-space models is an effective, standard and widely used approach. In fact, the aim of the IDE representation in a state-space form is to adopt the EM and consequently the RTS smoother in the E-step. The RTS algorithm is presented for completeness to interested readers.}
 		
@@ -117,7 +117,7 @@ Parham Aram.
 
 \item For the discussion, it might be useful to add a sentence that the basis structure (i.e., non-redundant, versus a (tight) frame representation) is a requirement for this framework.
 
-\emph{We have added a sentence to Sect. 8.1 (now 8.2) for the basis structure requirement.}
+\emph{We have added a sentence to Sect. 8.1 for the basis structure.}
 
 \item A small comment might also be considered for Sect 8.2: it is possible to apply other than dyadic subsampling schemes in multiple dimensions, which leads to less wavelet subbands. For example, in 2D, the quincunx scheme is well-known to have better isotropic properties. Unfortunately, in 3D, it is not possible to have a subsampling operator (acting on a Cartesian sampling lattice) that is performing subsampling at equal rate in each dimension at each iteration, see Van De Ville et al,`On the multidimensional extension of the quincunx subsampling lattice', IEEE SPL, 12:2, pp.  112-115, 2005, for a comment on this. 
 
@@ -158,17 +158,11 @@ Parham Aram.
 			
 			\emph{We attempted to move the derivation from Eq. 22 to Eq. 33 to the appendix. This led to more complications, where it was very difficult to define the various components of the model and a notational nightmare. To guide the reader who may just be interested in the conceptual framework and results we have added ``The conceptual framework and the key results can be interpreted without following this derivation in detail.'' below Eq. 22.}
 			
-			% \item Contrasting, for example, this multiresolution method with Freestone's 2011 results would be helpful for continuity.
-			% 
-			% \emph{Response here.}
-						
-			% \emph{\parham{To respond to this comment we have added ``State-space representation'' subsection into the discussion.}}
-			
+
 			\item I would also recommend archiving code that, for instance generates Figure 11, so that the readership has a chance to replicate these findings, and adapt this method to their own data.
 			
- 			\emph{\parham{We have added a footnote on page 17 : The Python source code for our numerical simulations is available from the authors on request.}}
+ 			\emph{We have uploaded the Python source codes for our numerical simulations as supplementary material.}
  		
-\dean{Cant we just upload it?}
 			                                       
 			\end{enumerate}  
 			\subsection{Moderate Concerns} 
@@ -201,7 +195,7 @@ Parham Aram.
 			\begin{enumerate}
 			 \item 	Define `one-off' on pg. 16 
 
- 			\emph{\dean{Response here.}}
+ 			\emph{We have clarified this point by changing the text to `All $n_x^2$ blocks of $\mathbf U$, $\boldsymbol\Gamma_1$ and $\boldsymbol\Gamma_2$ can be computed and stored prior to the commencement of the EM iterations' }
 
   		\item Figure 8 is referred to in the text out of order
 
