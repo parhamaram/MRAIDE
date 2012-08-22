@@ -29,7 +29,7 @@ Parham Aram.
 \begin{enumerate}
 \item Whilst the paper does fit the scope of NI, I agree with R1 and R3, that explicit advantages of going to a multi-resolution frame - in addition to the conceptual ones - compared to the prior work based on Gaussian basis functions needs clarification and elucidation.
  
-\emph{The first paragraph of the newly added ``8.1 State-Space Representation'' subsection in the Discussion  highlights the benefits of the MRAIDE compared to the prior work. We also added a paragraph to ``8.2 Estimation Algorithm'' in the Discussion to clarify the benefits of the novel M-step presented in this work compared to the implementation in Dewar et al. (2009). Please refer to Responses 1 and 5 to R1 for more details.}
+\emph{The first paragraph of the newly added ``8.1 State-Space Representation'' subsection in the Discussion  highlights the benefits of the MRAIDE compared to the prior work. We also added a paragraph to ``8.2 Estimation Algorithm'' in the Discussion to clarify the benefits of the novel M-step presented in this work compared to the implementation in Dewar et al. (2009). Please refer to Responses 1 and 3 to R1 for more details.}
 
 \item  In addition, at least a ``proof of principle" inversion from empirical data would enhance the potential impact of the paper. 
 
@@ -58,11 +58,11 @@ Parham Aram.
 
         \item Section 6 also borrows heavily from Dewar et al, e.g. cf equation (58) of this paper with equation (19) of Dewar et al: the state transition matrix is a perturbation of the corresponding matrix used in that earlier paper. The approach used in both papers seems to be the same with an RTS smoother used in the E-step (this was also used and explained in Freestone et al.) and an M-step optimizing a cost function, quadratic in the parameters, cf. equation (62) with equation (29) of Theorem 2 of Dewar et al. In general, the derivations of section 6 and appendix B follow closely or are very similar to those of Dewar et al.
 
-		\emph{To clarify the advantage of the M-step over the implementation in Dewar et al. we have added a paragraph to Section 8.1 (now 8.2). Further comments for the reviewer are added below.}
+		\emph{To clarify the advantage of the M-step over the implementation in Dewar et al. we have added a paragraph to Section 8.1 (now 8.2 ``Estimation Algorithm''). Further comments for the reviewer are added below.}
 		
 \emph{The inverse framework in Dewar et al. (2009) is based on a general integro-differential equation model, which is not suitable when neural field models are considered. As a result, the necessary modifications have been made. }
 		
-\emph{This paper has a novel implementation of the M-step, which significantly simplifies the computational complexity of the EM-based algorithm proposed by Dewar et al. (2009). These modifications are significant and crucial for high-dimensional systems. More specifically, implementing the multi-resolution framework introduced in the paper would be impossible without this new contribution. The differences are highlighted in Table.~4 of the manuscript, namely from $O(n_x^4n_{\theta}^2)$ to $O(n_x^2n_{\theta}^2)$, see equation (64) of this paper and equation (31) of Dewar et al. (2009), where the static and dynamic components are separated by defining $\boldsymbol \Gamma_2$ and $\mathbf U$ (see equations (66) and (67)). A simplification is also performed to calculate $\boldsymbol\upsilon_0, \boldsymbol\upsilon_1$ (see equations (62) and (63) of this paper and equation (30) of Dewar et al. (2009)).}
+\emph{This paper has a novel implementation of the M-step, which significantly simplifies the computational complexity of the EM-based algorithm proposed by Dewar et al. (2009). These modifications are significant and crucial for high-dimensional systems. More specifically, implementing the multi-resolution framework introduced in the paper would be impossible without this new contribution. The differences are highlighted in Table.~4 of the manuscript, namely from $O(n_x^4n_{\theta}^2)$ to $O(n_x^2n_{\theta}^2)$, see equation (64) of this paper and equation (31) of Dewar et al. (2009), where the static and dynamic components are separated by defining $\boldsymbol \Gamma_2$ and $\mathbf U$ (see equations (66) and (67)). A simplification is also performed  (by defining $\boldsymbol \Gamma_1$, i.e. equation (65)) to calculate $\boldsymbol\upsilon_0, \boldsymbol\upsilon_1$ (see equations (62) and (63) of this paper and equation (30) of Dewar et al. (2009)).}
 		
 \emph{The use of the RTS smoother in the E-step of the EM algorithm for linear state-space models is an effective, standard and widely used approach. In fact, the aim of the IDE representation in a state-space form is to adopt the EM and consequently the RTS smoother in the E-step. The RTS algorithm is presented for completeness to interested readers.}
 		
@@ -100,7 +100,7 @@ Parham Aram.
 				
 		\item The comments on large scale networks and delays made on p.20 look irrelevant to the present framework.
 				
-		\emph{We have omitted the last paragraph of the discussion on delays in large scale networks.}
+		\emph{We have omitted the last paragraph of the discussion on delays in large scale networks as the reviewer suggested.}
 				
 		\item Much of the discussion of the last section focuses on technical issues, while the discussion of the observation kernel chosen on p.17 is limited.
 				
@@ -115,25 +115,10 @@ Parham Aram.
 
 	\emph{We have changed the scaling and wavelet coefficients into normal lowercase `a' and `c', respectively.}
 
-\item For the discussion, it might be useful to add a sentence that the basis structure (i.e., non-redundant, versus a (tight) frame representation) is a requirement for this framework.
+\item For the discussion, it might be useful to add a sentence that the basis structure (i.e., non-redundant, versus a (tight) frame representation) is a requirement for this framework. A small comment might also be considered for Sect 8.2: it is possible to apply other than dyadic subsampling schemes in multiple dimensions, which leads to less wavelet subbands. For example, in 2D, the quincunx scheme is well-known to have better isotropic properties. Unfortunately, in 3D, it is not possible to have a subsampling operator (acting on a Cartesian sampling lattice) that is performing subsampling at equal rate in each dimension at each iteration, see Van De Ville et al,`On the multidimensional extension of the quincunx subsampling lattice', IEEE SPL, 12:2, pp.  112-115, 2005, for a comment on this. 
 
-\emph{We have added a sentence to Sect. 8.1 for the basis structure.}
+\emph{We have added a paragraph  to Section~8.2 (now 8.3 ``Modification to Higher Dimensions'') regarding this important point.}
 
-\item A small comment might also be considered for Sect 8.2: it is possible to apply other than dyadic subsampling schemes in multiple dimensions, which leads to less wavelet subbands. For example, in 2D, the quincunx scheme is well-known to have better isotropic properties. Unfortunately, in 3D, it is not possible to have a subsampling operator (acting on a Cartesian sampling lattice) that is performing subsampling at equal rate in each dimension at each iteration, see Van De Ville et al,`On the multidimensional extension of the quincunx subsampling lattice', IEEE SPL, 12:2, pp.  112-115, 2005, for a comment on this. 
-
-\emph{We have added this comment to Sect. 8.2 (now 8.3).}
-
-
- % 
- % \begin{figure*}[!ht]
- % \begin{center}
- % \includegraphics{./Graph/pdf/fig1.pdf} 
- % \end{center}
- % \caption{}
- % \label{fig:Figure1}
- % \end{figure*}
-
- 
 
 \end{enumerate}  
 
