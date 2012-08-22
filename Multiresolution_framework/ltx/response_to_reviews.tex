@@ -41,7 +41,6 @@ Parham Aram.
     
     % It would be useful to mention the above (now below) explicitly in the introduction and try to address them in later sections of the paper.
 
-
     \begin{enumerate}
         \item The exposition of the material and the relevant discussion have many similarities with the papers of the same authors (Freestone et al., 2011) and (Dewar et al., 2009) published in Neuroimage and IEEE Trans on Signal Processing  respectively. The authors say the paper at hand is an ``extension'' of Freestone et al. by which I understand they mean the use of a wavelet as opposed to a Gaussian basis for the decomposition. Since the methodology used is the same as in that earlier Neuroimage paper, the paper at hand repeats several of  the results of that previous paper, see sections 3 and 4: equations (2)-(5) and (20) -(33) have already appeared or are very similar to equations in Freestone et al.   
 								 
@@ -51,7 +50,7 @@ Parham Aram.
 
 		% \emph{\parham{Section 5 summarizes important characteristics of B-Spline scaling and wavelet functions which are collected from different references, with an attempt to clarify the inner product and convolution of theses functions (please see R2 comment on ``B-spline calculus''). We think that this brief review can familiarize interested readers  with  B-spline scaling and wavelet functions and direct them to the important literature on this matter. As the reviewer suggested the calculation of the Fourier transform is now moved to the appendix.}}    
 
-\emph{As the reviewer suggested, moving the calculation of the Fourier transform to the appendix will provide a better flow to the paper. This has been done.}
+\emph{As the reviewer suggested, moving the calculation of the Fourier transform to the Appendix will provide a better flow to the paper. This has been done.}
 
 \emph{We understand that this section will not be the central focus of the paper for some members of our research community, however we believe that it is important that this information remains in the paper to allow for implementation without the requirement of digesting information from several texts.} 
 
@@ -81,9 +80,9 @@ Parham Aram.
 
 \emph{\dean{The linear activation function in the estimation algorithm was made out of necessity. This was due to the high dimensionality and associated computational demands of the estimation problem.}}
 
-\emph{\dean{The authors would like to point out that the derivation of the state-space multi-resolution model was made general for all possible activation functions. This derivation is perhaps the most important contribution of the paper \parham{not sure about this because we have already done the derivation in Freestone 2011}. We understand that all physical systems are nonlinear. However, we also understand that linear approximations are often required in engineering for useful models. In the introduction to the estimation section, we have attempted to discuss this issue with regard to forward vs. inverse modelling. \parham{Dean: I think something is missing here: We believe that the linear model is more acceptable for inverse modelling, but understand it is required for forward modelling.} For example, in a forward model, the nonlinearity is required to prevent negative firing rates. However, in the inverse case, the physiology naturally restricts firing rates to be positive. Furthermore, in the mean field case, we do not expect firing rates of all neurons to be zero or all neurons to be simultaneously firing at their maximal rate. Therefore, a linear model may suffice to image a multi-resolution neural field and physiological parameters using electrophysiological data .}}
+\emph{\dean{The authors would like to point out that the derivation of the state-space multi-resolution model was made general for all possible activation functions. This derivation to represent different spatial scales in the neural field simultaneously in a state-space format, such that estimation algorithms can be applied, is perhaps the most important contribution of the paper \parham{not sure about this because we have already done the derivation in Freestone 2011}. We understand that all physical systems are nonlinear. However, we also understand that linear approximations are often required in engineering for useful models. In the introduction to the estimation section, we have attempted to discuss this issue with regard to forward vs. inverse modelling. \parham{Dean: I think something is missing here: We believe that the linear model is more acceptable for inverse modelling, but understand a nonlinear activation function is required for forward modelling.} For example, in a forward model, the nonlinearity is required to prevent negative firing rates. However, in the inverse case, the physiology naturally restricts firing rates to be positive. Furthermore, in the mean field case, we do not expect firing rates of all neurons to be zero or all neurons to be simultaneously firing at their maximal rate. Therefore, a linear model may suffice to image a multi-resolution neural field and physiological parameters using electrophysiological data.}}
 				
-\emph{\dean{Given restrictions of computational complexity, the choice of whether to use the framework presented in Freestone et al. or the current paper boils down to a trade-off between temporal accuracy and spatial accuracy. Furthermore, the proven convergence of estimation algorithms for linear systems may actually lead to more accurate models given a closed-loop scheme. This is due to the correction step in the algorithm where model error is reduced using measurements.\parham{not sure this is due to the correction step, the correction step of this paper and Freestone 2011 are the same due to the linearity of the observation equation.}}}
+\emph{\dean{Given restrictions of computational complexity, the choice of whether to use the framework presented in Freestone et al. or the current paper boils down to a trade-off between temporal accuracy and spatial accuracy. Furthermore, the proven convergence of estimation algorithms for linear systems may actually lead to more accurate models given a closed-loop scheme. This is due to the guaranteed convergence of the EM-algorithm for linear system. With convergence, modelling errors can be corrected using data. where model error is reduced using measurements.\parham{not sure this is due to the correction step, the correction step of this paper and Freestone 2011 are the same due to the linearity of the observation equation.}}}
 				
 
         \item The authors say that a multi-resolution approach would explain the``organizational level of the brain at which cognition and behaviour are best explained'' but it is unclear what the alternative levels considered here are and what the significance of the results obtained is.
@@ -119,11 +118,11 @@ Parham Aram.
 
 \item For the discussion, it might be useful to add a sentence that the basis structure (i.e., non-redundant, versus a (tight) frame representation) is a requirement for this framework.
 
-\emph{\parham{We have added a sentence to Sect 8.1 (now 8.2) for the basis structure requirement.}}
+\emph{\parham{We have added a sentence to Sect. 8.1 (now 8.2) for the basis structure requirement.}}
 
 \item A small comment might also be considered for Sect 8.2: it is possible to apply other than dyadic subsampling schemes in multiple dimensions, which leads to less wavelet subbands. For example, in 2D, the quincunx scheme is well-known to have better isotropic properties. Unfortunately, in 3D, it is not possible to have a subsampling operator (acting on a Cartesian sampling lattice) that is performing subsampling at equal rate in each dimension at each iteration, see Van De Ville et al,`On the multidimensional extension of the quincunx subsampling lattice', IEEE SPL, 12:2, pp.  112-115, 2005, for a comment on this. 
 
-\emph{\parham{We have added this comment to Sect 8.2 (now 8.3).}}
+\emph{\parham{We have added this comment to Sect. 8.2 (now 8.3).}}
 
 
  % 
