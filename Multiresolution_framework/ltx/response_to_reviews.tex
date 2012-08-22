@@ -29,11 +29,11 @@ Parham Aram.
 \begin{enumerate}
 \item Whilst the paper does fit the scope of NI, I agree with R1 and R3, that explicit advantages of going to a multi-resolution frame - in addition to the conceptual ones - compared to the prior work based on Gaussian basis functions needs clarification and elucidation.
  
-\emph{The first paragraph of the newly added ``State-space representation'' subsection in the Discussion  highlights the benefits of the MRAIDE compared to the prior work. We also added a paragraph to ``Estimation algorithm'' in the Discussion to clarify the benefits of the novel M-step presented in this work compared to the implementation in Dewar et al. (2009). Please refer to Responses 1 and 5 to R1 for more details.}
+\emph{The first paragraph of the newly added ``8.1 State-Space Representation'' subsection in the Discussion  highlights the benefits of the MRAIDE compared to the prior work. We also added a paragraph to ``Estimation algorithm'' in the Discussion to clarify the benefits of the novel M-step presented in this work compared to the implementation in Dewar et al. (2009). Please refer to Responses 1 and 5 to R1 for more details.}
 
 \item  In addition, at least a ``proof of principle" inversion from empirical data would enhance the potential impact of the paper. 
 
-\emph{We agree that the use of empirical data will strengthen the paper. Unfortunately, we do not have access to the appropriate data at present. However, we understand that several other groups are now collecting high resolution data that is appropriate for the methods developed in this paper. We believe that the methods developed in this paper are equally important as the development of high  resolution spatiotemporal recording techniques and together, these approaches have enormous potential to answer some of the biggest questions in neuroscience. The ability to use mathematical models as filters, or lenses into the brain, is still a relatively new concept to many members of our community. This new lens allows us to image aspects of neurophysiology of individual subjects that are normally hidden in electrical recordings. Therefore, we believe it is important to continue to improve our methods that will lead to the next era in systems neuroscience, where mathematical modeling, experimental measures and model-data fusion will become standard methods. Furthermore, we believe that (good) experimental design is based upon the availability of analysis tools. Therefore, new imaging tools, like the framework presented in this paper, will lead to new data being collected and potential advances in our collective knowledge of brain function. }
+\emph{We agree that the use of empirical data will strengthen the paper. Unfortunately, we do not have access to the appropriate data at present. However, we understand that several other groups are now collecting high resolution data that is appropriate for the methods developed in this paper. We believe that the methods developed in this paper are equally important as the development of high  resolution spatiotemporal recording techniques and together, these approaches have enormous potential to answer some of the biggest questions in neuroscience. The ability to use mathematical models as filters, or lenses into the brain, is still a relatively new concept to many members of our community. This new lens allows us to image aspects of neurophysiology of individual subjects that are normally hidden in electrical recordings. Therefore, we believe it is important to continue to improve our methods that will lead to the next era in systems neuroscience, where mathematical modeling, experimental measures and model-data fusion will become standard methods. Furthermore, we believe that (good) experimental design is based upon the availability of analysis tools. Therefore, new imaging tools, like the framework presented in this paper, will lead to new data being collected and potential advances in our collective knowledge of brain function.}
 	
 \end{enumerate}
 
@@ -54,7 +54,7 @@ Parham Aram.
 
 \emph{We understand that this section will not be the central focus of the paper for some members of our research community, however we believe that it is important that this information remains in the paper to allow for implementation without the requirement of digesting information from several texts.} 
 
-\emph{\dean{We have had similar feedback to your suggestion from our colleagues prior to submission of the paper. Interestingly, the feedback from the people with expertise in wavelet theory thought that the overview of the estimation methods was essential, but the section on wavelets should be reduced. Conversely, people with expertise in the estimation methods thought the overview on wavelets was critical and the section on EM-algorithm should be reduced. We completely appreciate R1's comments and suggestions, but since R2 commented on the usefulness of this section we would very much like to leave it in. We believe that different sections will be valuable for people with different specializations, the synthesis of this information is a valuable contribution for implementation for a wide audience.}}
+\emph{We have had similar feedback to your suggestion from our colleagues prior to submission of the paper. Interestingly, the feedback from the people with expertise in wavelet theory thought that the overview of the estimation methods was essential, but the section on wavelets should be reduced. Conversely, people with expertise in the estimation methods thought the overview on wavelets was critical and the section on EM-algorithm should be reduced. We completely appreciate R1's comments and suggestions, but since R2 commented on the usefulness of this section we would very much like to leave it in. We believe that different sections will be valuable for people with different specializations, the synthesis of this information is a valuable contribution for implementation for a wide audience.}
 
         \item Section 6 also borrows heavily from Dewar et al, e.g. cf equation (58) of this paper with equation (19) of Dewar et al: the state transition matrix is a perturbation of the corresponding matrix used in that earlier paper. The approach used in both papers seems to be the same with an RTS smoother used in the E-step (this was also used and explained in Freestone et al.) and an M-step optimizing a cost function, quadratic in the parameters, cf. equation (62) with equation (29) of Theorem 2 of Dewar et al. In general, the derivations of section 6 and appendix B follow closely or are very similar to those of Dewar et al.
 
@@ -76,7 +76,7 @@ Parham Aram.
 
 \emph{To respond to this important comment we have added ``8.1 State-Space Representation'' subsection into the discussion.}
 
-				\item{The framework of Freestone et al. (2011), seemed not to assume a linear relation between mean membrane potential and firing rate and in that sense the present approach appears more restrictive. }
+		\item{The framework of Freestone et al. (2011), seemed not to assume a linear relation between mean membrane potential and firing rate and in that sense the present approach appears more restrictive.}
 
 \emph{The linear activation function in the estimation algorithm was made out of necessity. This was due to the high dimensionality and associated computational demands of the estimation problem.}
 
@@ -84,28 +84,27 @@ Parham Aram.
 				
 \emph{Given restrictions of computational complexity, the choice of whether to use the framework presented in Freestone et al. or the current paper boils down to a trade-off between temporal accuracy and spatial accuracy. Furthermore, the proven convergence of estimation algorithms for linear systems may actually lead to more accurate models given a closed-loop scheme. This is due to the guaranteed convergence of the EM-algorithm for (observable) linear systems. With convergence, modeling errors can be corrected using data.}
 				
-
         \item The authors say that a multi-resolution approach would explain the``organizational level of the brain at which cognition and behaviour are best explained'' but it is unclear what the alternative levels considered here are and what the significance of the results obtained is.
 
 \emph{Within our framework, the alternate levels are defined by the spatial scales of the wavelet decomposition. The significant result is the formulation of a model when various spatial scales of a neural field can be simultaneously represented. The ability to image the multi-dimensional neural field will lead to a better understanding of the important spatial scales when neural information processing occurs.}
 
-				\item Similar claims to the ones mentioned here regarding implications for ``patient-specific'' modeling have also been made in Freestone et al. (2011), so it is not clear how these relate to the current multi-resolution approach and also such remarks might look too ambitious given that only synthetic data with fixed parameters are considered.
+		\item Similar claims to the ones mentioned here regarding implications for ``patient-specific'' modeling have also been made in Freestone et al. (2011), so it is not clear how these relate to the current multi-resolution approach and also such remarks might look too ambitious given that only synthetic data with fixed parameters are considered.
 				
-	\emph{Please refer to Response 2 to the handling editor. In summary, ... }
+	\emph{Please refer to Response 2 to the handling editor. \dean{In summary, the framework can be used to create patient-specific models when it is applied with patient-specific data. Demonstrating convergence with synthetic data, where actual states and parameters are known, is a necessary first step. Furthermore, there is a significant body of work where various phenomena have been replicated using the neural field equations. This motivates the creation of tools to verify the models and experimentally test hypotheses that computational studies have generated.    }}
 				
 	\item The comments about model complexity and parsimony on p.13 are somehow vague as these quantities are undefined.
 				
 				% \emph{\parham{some notes to be added to the manuscript: Parsimony: as few as necessary variables to describe a phenomenon, complexity: to add detail description to the model to increase its accuracy with the natural phenomenon, finding a balance between complexity and parsimony is crucial. By parsimony we sacrifice realism ...  }}
 				
-				\emph{\ken{To clarify this comment, a short paragraph has been included in Section 6 to better explain the modeling choice facing every user, that is, choosing between a more parsimonious or more complex model structure.  For the audience with less experience in system identification, a reference with further information regarding this topic has also been included.}}
+		\emph{To clarify this comment, a short paragraph has been included in Section 6 to better explain the modeling choices facing every user. That is, choosing between a more parsimonious or more complex model structure.  For the audience with less experience in system identification, a reference with further information regarding this topic has also been included.}
 				
-				\item The comments on large scale networks and delays made on p.20 look irrelevant to the present framework.
+		\item The comments on large scale networks and delays made on p.20 look irrelevant to the present framework.
 				
-				\emph{\parham{We have omitted the last paragraph of the discussion on delays in large scale networks.}}
+		\emph{We have omitted the last paragraph of the discussion on delays in large scale networks.}
 				
-				\item Much of the discussion of the last section focuses on technical issues, while the discussion of the observation kernel chosen on p.17 is limited.
+		\item Much of the discussion of the last section focuses on technical issues, while the discussion of the observation kernel chosen on p.17 is limited.
 				
-				\emph{\parham{We have added a paragraph in the new subsection ``8.1 State-space representation'' in the Discussion, regarding the choice of the observation kernel.}}
+		\emph{We have added a paragraph in the new subsection ``8.1 State-Space Representation'' in the Discussion, regarding the choice of the observation kernel.}
 
     \end{enumerate}
     
