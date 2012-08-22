@@ -51,23 +51,23 @@ Parham Aram.
 
 		% \emph{\parham{Section 5 summarizes important characteristics of B-Spline scaling and wavelet functions which are collected from different references, with an attempt to clarify the inner product and convolution of theses functions (please see R2 comment on ``B-spline calculus''). We think that this brief review can familiarize interested readers  with  B-spline scaling and wavelet functions and direct them to the important literature on this matter. As the reviewer suggested the calculation of the Fourier transform is now moved to the appendix.}}    
 
-\emph{\parham{As the reviewer suggested, moving the calculation of the Fourier transform to the appendix will provide a better flow to the paper. This has been done.}}
+\emph{As the reviewer suggested, moving the calculation of the Fourier transform to the appendix will provide a better flow to the paper. This has been done.}
 
-\emph{\dean{We understand that this section will not be the central focus of the paper for some members of our research community, however we believe that it is important that this information remains in the paper to allow for implementation without the requirement of digesting information from several texts.}} 
+\emph{We understand that this section will not be the central focus of the paper for some members of our research community, however we believe that it is important that this information remains in the paper to allow for implementation without the requirement of digesting information from several texts.} 
 
 \emph{\dean{We have had similar feedback to your suggestion from our colleagues prior to submission of the paper. Interestingly, the feedback from the people with expertise in wavelet theory thought that the overview of the estimation methods was essential, but the section on wavelets should be reduced. Conversely, people with expertise in the estimation methods thought the overview on wavelets was critical and the section on EM-algorithm should be reduced. We completely appreciate R1's comments and suggestions, but since R2 commented on the usefulness of this section we would very much like to leave it in. We believe that different sections will be valuable for people with different specializations, the synthesis of this information is a valuable contribution for implementation for a wide audience.}}
 
         \item Section 6 also borrows heavily from Dewar et al, e.g. cf equation (58) of this paper with equation (19) of Dewar et al: the state transition matrix is a perturbation of the corresponding matrix used in that earlier paper. The approach used in both papers seems to be the same with an RTS smoother used in the E-step (this was also used and explained in Freestone et al.) and an M-step optimizing a cost function, quadratic in the parameters, cf. equation (62) with equation (29) of Theorem 2 of Dewar et al. In general, the derivations of section 6 and appendix B follow closely or are very similar to those of Dewar et al.
 
-		\emph{\dean{To clarify the advantage of the M-step over the implementation in Dewar et al. we have added a paragraph to Section 8.1. (now 8.2) Further comments for the reviewer are added below.}}
+		\emph{To clarify the advantage of the M-step over the implementation in Dewar et al. we have added a paragraph to Section 8.1 (now 8.2). Further comments for the reviewer are added below.}
 		
 \emph{\dean{The inverse framework in Dewar et al. (2009) is based on a general integro-differential equation model, which is not suitable when neural field models are considered. As a result, the necessary modifications have been made. }}
 		
 \emph{\dean{This paper has a novel implementation of the M-step, which significantly simplifies the computational complexity of the EM-based algorithm proposed by Dewar et al. (2009). These modifications are significant and crucial for high-dimensional systems. More specifically, implementing the multi-resolution framework introduced in the paper would be impossible without this new contribution. The differences are highlighted in Table.~4 of the manuscript, namely from $O(n_x^4n_{\theta}^2)$ to $O(n_x^2n_{\theta}^2)$, see equation (64) of this paper and equation (31) of Dewar et al. (2009), where the static and dynamic components are separated by defining $\boldsymbol \Gamma_1$ and $\mathbf U$ (see equations (65) and (67)). A simplification is also performed to calculate $\boldsymbol\upsilon_0, \boldsymbol\upsilon_1$ (see equations (62) and (63) of this paper and equation (30) of Dewar et al. (2009)).} }
 		
-\emph{\dean{The use of the RTS smoother in the E-step of the EM algorithm for state-space models is an effective, standard and widely used approach. In fact, the aim of the IDE representation in a state-space form is to adapt the EM and consequently the RTS smoother in the E-step. The RTS algorithm is presented only for completeness.} }
+\emph{The use of the RTS smoother in the E-step of the EM algorithm for linear state-space models is an effective, standard and widely used approach. In fact, the aim of the IDE representation in a state-space form is to adopt the EM and consequently the RTS smoother in the E-step. The RTS algorithm is presented for completeness to interested readers.}
 		
-		\emph{\parham{The cost function of a linear state-space model with separable parameters (linear w.r.t states) is always quadratic in parameters in the M-step and, in fact it is one of the advantages of this representation, giving a closed form solution for system's parameters which is essentially equivalent to least squares.}}
+		\emph{\parham{For linear state-space models, under Gaussian conditions, the lower bound on the log-likelihood function is always quadratic in parameters, and can be solved analytically when the parameters are separable giving results equivalent to the least square estimates. In fact this is one of the advantages of this representation, such a closed form solution for the system's parameters results in significant computational savings.}}
 		
         \item Also, Appendix A is the analogue of Appendix D of Freestone et al. and Appendix C includes results known from the literature (as the authors point out).
 
@@ -81,7 +81,7 @@ Parham Aram.
 
 \emph{\dean{The linear activation function in the estimation algorithm was made out of necessity. This was due to the high dimensionality and associated computational demands of the estimation problem.}}
 
-\emph{\dean{The authors would like to point out that the derivation of the state-space multi-resolution model was made general for all possible activation functions. This derivation is perhaps the most important contribution of the paper \parham{not sure about this because we have already done the derivation in Freestone 2011}. We understand that all physical systems are nonlinear. However, we also understand that linear approximations are often required in engineering for useful models. In the introduction to the estimation section, we have attempted to discuss this issue with regard to forward vs. inverse modelling. We believe that the linear model is more acceptable for inverse modelling, but understand it is required for forward modelling. For example, in a forward model the nonlinearity is required to prevent negative firing rates. However in the inverse case, the physiology naturally restricts firing rates to be positive. Furthermore, in the mean field case, we do not expect firing rates of all neurons to be zero or all neurons to be simultaneously firing at their maximal rate. Therefore, a linear model may suffice to image a multi-resolution neural field and physiological parameters using electrophysiological data .}}
+\emph{\dean{The authors would like to point out that the derivation of the state-space multi-resolution model was made general for all possible activation functions. This derivation is perhaps the most important contribution of the paper \parham{not sure about this because we have already done the derivation in Freestone 2011}. We understand that all physical systems are nonlinear. However, we also understand that linear approximations are often required in engineering for useful models. In the introduction to the estimation section, we have attempted to discuss this issue with regard to forward vs. inverse modelling. \parham{Dean: I think something is missing here: We believe that the linear model is more acceptable for inverse modelling, but understand it is required for forward modelling.} For example, in a forward model the nonlinearity is required to prevent negative firing rates. However in the inverse case, the physiology naturally restricts firing rates to be positive. Furthermore, in the mean field case, we do not expect firing rates of all neurons to be zero or all neurons to be simultaneously firing at their maximal rate. Therefore, a linear model may suffice to image a multi-resolution neural field and physiological parameters using electrophysiological data .}}
 				
 \emph{\dean{Given restrictions of computational complexity, the choice of whether to use the framework presented in Freestone et al. or the current paper may boil down to a trade-off between temporal accuracy and spatial accuracy. Furthermore, the proven convergence of estimation algorithms for linear systems may actually lead to more accurate models given a closed-loop scheme. This is due to the correction step in the algorithm where model error is reduced using measurements.\parham{not sure this is due to the correction step, the correction step of this paper and Freestone 2011 are the same due to the linearity of the observation equation.}}}
 				
@@ -102,11 +102,11 @@ Parham Aram.
 				
 				\item Also, the comments on large scale networks and delays made on p.20 look irrelevant to the present framework.
 				
-				\emph{\parham{In response to this point, we have omitted the last paragraph of the discussion on delays in large scale networks.}}
+				\emph{\parham{We have omitted the last paragraph of the discussion on delays in large scale networks.}}
 				
 				\item Much of the discussion of the last section focuses on technical issues, while the discussion of the observation kernel chosen on p.17 is limited.
 				
-				\emph{\parham{We have added a paragraph in new Section ``State-space representation'', regarding the choice of the observation kernel.}}
+				\emph{\parham{We have added a paragraph in the new subsection ``State-space representation'' in the Discussion, regarding the choice of the observation kernel.}}
 
     \end{enumerate}
     
@@ -146,10 +146,12 @@ Parham Aram.
 		\begin{enumerate} 
 			\item I am not at all sure that isotopic scaling of the multiresolution is appropriate for brain connections, but I cannot say at this point that it is not.
 			
-			\emph{\parham{It is generally accepted that the intracortical connectivity structure is isotropic, however, as the reviewer pointed out this is not the case  for corto-cortical connectivity. The presented framework is also valid for other connectivity kernels provided they are spatially homogeneous and that they can be approximated by a set of weighted isotropic basis functions. The connectivity kernel can take any arbitrary shapes but this requires more basis functions to accurately estimate the kernel.}}
+			\emph{\parham{It is generally accepted that the intracortical connectivity structure is isotropic, however, as the reviewer pointed out this is not the case  for corto-cortical connectivity. The presented framework is also valid for other connectivity kernels provided they are spatially homogeneous and that they can be approximated by a set of weighted isotropic basis functions. The connectivity kernel can take any arbitrary shapes but this may require more basis functions to accurately estimate the kernel.}}
 			 
 			\item This model cries out for validation in real neuronal systems, but alas, at this point we only see convergence to synthetic data.   
-			 
+			  
+			 \emph{\parham{Please refer to Response 2 to the handling editor. Further comments are also added below.}}
+			
 			 \emph{\parham{The authors appreciate that the only way to truly validate the proposed framework is with real data. However, before validating the method on real data we believe that it is essential to first validate the estimation method using accepted models and synthetic data, where the true and estimated parameters can be compared. The title of the manuscript was chosen such that to reflect this fact, stating this is a multi-resolution framework for Amari type neural field model. In an effort to make the method employed in the paper more explicit, we have added ``data was generated synthetically using Amari neural field model'' to the Result section.}}  
 			
 			\item This audience needs to have all symbols, including commonly used ones such as `equality over distribution', double font domains like R and Z, and jargon terms such as `lead field'.
@@ -163,6 +165,8 @@ Parham Aram.
 			\item Contrasting, for example, this multiresolution method with Freestone's 2011 results would be helpful for continuity.
 			
 			\emph{Response here.}
+						
+			% \emph{\parham{To respond to this comment we have added ``State-space representation'' subsection into the discussion.}}
 			
 			\item I would also recommend archiving code that, for instance generates figure 11, so that the readership has a chance to replicate these findings, and adapt this method to their own data.
 			
@@ -182,7 +186,7 @@ Parham Aram.
  			
 			\item Define first and second order synaptic responses (used in figure 2 to explain text that does not refer to these terms)
 			
-			\emph{\parham{Definitions of first and second order synaptic responses have been added to the text under Eq.2.}}
+			\emph{\parham{Definitions of first and second order synaptic responses have been added to the text under Eq 2.}}
 			
 			\item{Eqn 9: the state variables $x$ seem to arise without distinction from $v$}  
 			
