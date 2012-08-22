@@ -19,7 +19,7 @@
 \begin{frontmatter}
 \title{Spatiotemporal Multi-Resolution Approximation of the Amari Type Neural Field Model}
   
-\author[TNG]{P. Aram\corref{cor1}}
+\author[TNG,US]{P. Aram\corref{cor1}}
 \ead{parham.aram@univ-amu.fr}
 \author[DEEE,BI]{D. R. Freestone}
 \ead{deanrf@unimelb.edu.au} 
@@ -525,8 +525,8 @@ The research reported herein was partly supported by the Brain Network Recovery 
 	\multicolumn{3}{|c|}{\emph{Domain and indices}}\\
 	\hline
 	$\Omega$ & Spatial domain & n.a.\\ 
-	$\mathbb{R}$&\parham{The set of all real numbers}&n.a.\\
-	$\mathbb{Z}$&\parham{The set of all integers}&n.a.\\
+	$\mathbb{R}$&The set of all real numbers&n.a.\\
+	$\mathbb{Z}$&The set of all integers&n.a.\\
 	$\mathbf{r}$ & Spatial location & [mm, mm]\\
 	$t$ & Time & s\\
 	\hline
@@ -873,7 +873,7 @@ Therefore
 &=N_{m+m'}\left(m'+l_{2}-l_{1}\right).
 \end{align} 
 \section{Fourier transform of B-spline wavelets}\label{ap:FourierofBsplines}
-\parham{To calculate the frequency response of the B-spline wavelet the Fourier transform of $N_1(r)$ is first calculated, 
+To calculate the frequency response of the B-spline wavelet the Fourier transform of $N_1(r)$ is first calculated, 
 \begin{align}\label{eq:MRA-N1Fouriertransform}
 \mathcal F(N_1(r))&=\int_{-\infty}^{+\infty}N_1(r)\mathrm{exp}(-2\pi i \nu r)dr \nonumber \\
 &=\int_{0}^{1} \mathrm{exp}(-2\pi i \nu r)dr \nonumber \\
@@ -887,7 +887,7 @@ The Fourier transform of the $m^{th}$ order B-spline allows the calculation of t
 \begin{align}      
 	  \mathcal{F}(\varphi_{m}\left(r\right)) &= \sum_{n=0}^{3m-2}  q_n \mathcal{F}\left(N_{m}\left(2r-n\right)\right) \nonumber\\
 	&=\frac{1}{2}\left(\frac{1-\mathrm{exp}(-\pi i \nu)}{\pi i\nu}\right)^m~\sum_{n=0}^{3m-2}  q_n \mathrm{exp}(-\pi in\nu).\label{app:MRA-Wavelettransform}
-\end{align} }
+\end{align} 
 \section{Construction and maximization of the lower bound for the state-space representation of the MRAIDE}\label{ap:QDerivation}
 For the linear state-space model given by Eqs.~\eqref{eq:StateEquation} and \eqref{eq:ReducedObservationEquation}. The joint probability distribution $p(\mathbf X,\mathbf Y;\boldsymbol \theta)$ can be written as
  \begin{equation}\label{eq:jointdistribution}
